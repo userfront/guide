@@ -1,12 +1,12 @@
 ---
 home: true
-heroImage: https://res.cloudinary.com/component/image/upload/v1519768558/mod_logo_min.svg
+heroImage: https://res.cloudinary.com/component/image/upload/v1582652683/circle_400_light_jrgbjq.png
 actionText: Get Started →
 actionLink: /guide/
 footer: ©2020 Userfront
 ---
 
-<div class="features">
+<!-- <div class="features">
   <div class="feature">
     <h2>Guide</h2>
     <p>
@@ -23,4 +23,4 @@ footer: ©2020 Userfront
       <a href="/examples/">See examples →</a>
     </p>
   </div>
-</div>
+</div> -->
