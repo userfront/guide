@@ -1,0 +1,29 @@
+{
+  "name": "userfront-guide",
+  "version": "1.0.0",
+  "description": "Guide for userfront.com",
+  "main": "index.js",
+  "dependencies": {
+    "vuepress": "^1.3.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/userfront/guide.git"
+  },
+  "keywords": [
+    "userfront",
+    "guide",
+    "auth"
+  ],
+  "author": "Userfront",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/userfront/guide/issues"
+  },
+  "homepage": "https://github.com/userfront/guide#readme"
+}
