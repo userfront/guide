@@ -38,9 +38,9 @@ module.exports = {
     nav: [
       { text: "Guide", link: "/guide/" },
       // { text: "Examples", link: "/examples/" }
-      { text: "Demo", link: "https://g48xypb9.demo.userfront.com" },
-      { text: "Docs", link: "https://docs.userfront.com" },
-      { text: "Dashboard", link: "https://userfront.com/projects" }
+      { text: "Demo", link: "https://g48xypb9.userfront.dev" },
+      { text: "Docs", link: "https://docs.userfront.com" }
+      // { text: "Dashboard", link: "https://userfront.com/projects" }
     ],
     sidebar: {
       "/guide/": [

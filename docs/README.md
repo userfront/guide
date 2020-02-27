@@ -6,21 +6,29 @@ actionLink: /guide/
 footer: ©2020 Userfront
 ---
 
-<!-- <div class="features">
+<div class="features">
   <div class="feature">
     <h2>Guide</h2>
     <p>
-      Introduction, quickstart, and documentation.
+      Introduction, quickstart, and features in the dashboard.
       <br>
-      <a href="/guide/">Browse the docs →</a>
+      <a href="/guide/">Browse the guide →</a>
     </p>
   </div>
   <div class="feature">
-    <h2>Examples</h2>
+    <h2>Demo</h2>
     <p>
-      Various examples of how to use Userfront.
+      Try a demo application that uses Userfront, and view the code it uses.
       <br>
-      <a href="/examples/">See examples →</a>
+      <a href="https://g48xypb9.userfront.dev">See demo →</a>
     </p>
   </div>
-</div> -->
+  <div class="feature">
+    <h2>Documentation</h2>
+    <p>
+      Technical documentation for making API requests to Userfront.
+      <br>
+      <a href="https://docs.userfront.com">API docs →</a>
+    </p>
+  </div>
+</div>
