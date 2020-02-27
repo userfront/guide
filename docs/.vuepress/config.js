@@ -38,33 +38,22 @@ module.exports = {
     nav: [
       { text: "Guide", link: "/guide/" },
       // { text: "Examples", link: "/examples/" }
+      { text: "Demo", link: "https://g48xypb9.demo.userfront.com" },
+      { text: "Docs", link: "https://docs.userfront.com" },
       { text: "Dashboard", link: "https://userfront.com/projects" }
     ],
     sidebar: {
       "/guide/": [
-        "/guide/welcome.html",
         "/guide/",
-        {
-          title: "Features",
-          collapsable: false,
-          children: ["/guide/welcome.html"]
-        },
-        {
-          title: "Dashboard",
-          collapsable: false,
-          children: ["/guide/welcome.html"]
-        },
-        {
-          title: "Using Userfront",
-          collapsable: false,
-          children: ["/guide/welcome.md"]
-        }
+        "/guide/auth.html",
+        "/guide/dashboard.html",
+        "/guide/messaging.html"
+        // {
+        //   title: "Using Userfront",
+        //   collapsable: false,
+        //   children: ["/guide/welcome.md"]
+        // }
       ]
-      // "/examples/": [
-      //   ["/examples/", "List of examples"],
-      //   // Getting started
-      //   "/examples/add-a-mod.html",
-      // ],
     },
     lastUpdated: "Last Updated", // string | boolean
     // https://vuepress.vuejs.org/default-theme-config/#algolia-search
