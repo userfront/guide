@@ -44,15 +44,22 @@ module.exports = {
     ],
     sidebar: {
       "/guide/": [
+        "/guide/quickstart.html",
         "/guide/",
-        "/guide/auth.html",
+        {
+          title: "Auth & Onboarding",
+          collapsable: false,
+          children: [
+            "/guide/auth.md",
+            "/guide/signup.md",
+            "/guide/login.md",
+            "/guide/reset.md",
+            "/guide/logout.md",
+            "/guide/profile.md"
+          ]
+        },
         "/guide/dashboard.html",
         "/guide/messaging.html"
-        // {
-        //   title: "Using Userfront",
-        //   collapsable: false,
-        //   children: ["/guide/welcome.md"]
-        // }
       ]
     },
     lastUpdated: "Last Updated", // string | boolean
