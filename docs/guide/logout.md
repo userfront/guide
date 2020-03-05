@@ -16,6 +16,12 @@ For your live sites, always use `https://` (also called SSL).
 This ensures that your users' login credentials are not visible to others. If your URL begins with `http://`, it is not secure.
 :::
 
+The Logout Button does the following when clicked:
+
+1. Invalidates the user's auth token with Userfront, so that it is no longer valid.
+2. Removes the user's auth token from their browser. The token is a cookie named `auth.${projectId}`; for example, if your project ID was `abcdefg`, the token would be `auth.abcdefg`.
+3. Redirects the user to the designated logout page.
+
 Add your Logout Button to pages where you want your users to be able to log out. You can add multiple Logout Buttons to the same page, and can also add the Logout Button to many different pages if desired.
 
 ## Redirection
