@@ -60,11 +60,11 @@ It will contain information about the user in the body:
 }
 ```
 
-## API interaction
+## API interaction (optional)
 
 If you want to build a custom signup form, you can do so by using the same endpoints as the Signup Form in your Toolkit:
 
-### Create a user
+### Sign up a user
 
 ```
 POST https://api.userfront.com/v0/auth/create
@@ -95,4 +95,10 @@ Your custom JS code should add the `token` contained in the response to the cook
 
 ```
 auth.g48xypb9 = 'Bearer abcde'
+```
+
+And your custom JS code should redirect the page once the token has been added to the cookies.
+
+```js
+window.location.href = "https://example.com/dashboard";
 ```

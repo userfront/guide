@@ -58,8 +58,8 @@ module.exports = {
             "/guide/profile.md"
           ]
         },
-        "/guide/dashboard.html",
-        "/guide/messaging.html"
+        "/guide/dashboard.html"
+        // "/guide/messaging.html"
       ]
     },
     lastUpdated: "Last Updated", // string | boolean

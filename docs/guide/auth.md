@@ -14,11 +14,13 @@ You can view all of your project's tools in the Toolkit section of the dashboard
 
 ![Userfront Toolkit](https://res.cloudinary.com/component/image/upload/v1583359227/guide/menu.png)
 
-## Installing auth tools
+## Installation
 
-To add a tool to your page, click its "Install" button. This gives you a code you can copy and paste into your HTML.
+To add a tool to your page, visit your project Toolkit and then click a tool's "Install" button. This gives you a code you can copy and paste into your HTML.
 
 Place the Userfront `<script>` once in the `<head>` section of your HTML, and then paste the tool's `<div>` in the `<body>` section wherever you want the tool to show.
+
+If you want to add more than one tool to a page, you only need to include the `<script>` one time.
 
 <!-- prettier-ignore-start -->
 ```html
