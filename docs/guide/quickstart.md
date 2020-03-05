@@ -42,8 +42,8 @@ Find your signup form there, and click "Install". This gives you a code you can 
 
 Place the Userfront script once in the `<head>` section of your HTML, and then paste the Signup Form's `<div>` wherever you want the form to show.
 
+<!-- prettier-ignore-start -->
 ```html
-<!-- prettier-ignore -->
 <head>
 
   <!-- Userfront -->
@@ -62,6 +62,7 @@ Place the Userfront script once in the `<head>` section of your HTML, and then p
   <div id="userfront-mloaon"></div>
 </body>
 ```
+<!-- prettier-ignore-end -->
 
 ## Finished
 
