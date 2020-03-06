@@ -16,7 +16,11 @@ You can view all of your project's tools in the Toolkit section of the dashboard
 
 ## Installation
 
-To add a tool to your page, visit your project Toolkit and then click a tool's "Install" button. This gives you a code you can copy and paste into your HTML.
+To add a tool to your page, visit your project Toolkit and then click a tool's "Install" button.
+
+![Toolkit card](https://res.cloudinary.com/component/image/upload/v1583511331/guide/toolkit_card.png)
+
+This gives you a code you can copy and paste into your HTML.
 
 Place the Userfront `<script>` once in the `<head>` section of your HTML, and then paste the tool's `<div>` in the `<body>` section wherever you want the tool to show.
 
