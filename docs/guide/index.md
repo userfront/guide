@@ -10,7 +10,7 @@ Userfront makes it easy to onboard & engage your users, focusing on 3 areas:
 
 Userfront works with **ANY** website, regardless of what technology your site uses. You can add it to existing projects to supercharge them, or can build a new project on whatever platform you prefer.
 
-::: tip
+:::tip
 Try the [Quickstart](/guide/quickstart.html) to get up and running quickly.
 :::
 

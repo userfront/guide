@@ -7,22 +7,22 @@ module.exports = {
       {
         rel: "icon",
         href:
-          "https://res.cloudinary.com/component/image/upload/v1582652683/circle_400_light_jrgbjq.png"
-      }
+          "https://res.cloudinary.com/component/image/upload/v1582652683/circle_400_light_jrgbjq.png",
+      },
     ],
     [
       "link",
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css?family=Material+Icons"
-      }
+        href: "https://fonts.googleapis.com/css?family=Material+Icons",
+      },
     ],
     /* Production scripts */
     [
       "script",
       { id: "Userfront-script" },
-      "(function (m,o,d,u,l,a,r,i,z,e) {u[m]={Project:o,rq:[],Opts:r,ready:function(j){u[m].rq.push(j)}};function j(s){return encodeURIComponent(btoa(s))};z=l.getElementById(m+'-'+a);r=u.location;e=[d+'/page/'+o+'/'+j(r.pathname)+'/'+j(r.host)+'?t='+Date.now(),d];e.map(function(w){i=l.createElement(a);i.defer=1;i.src=w;z.parentNode.insertBefore(i,z);});})('Userfront','g48xypb9','https://mod.userfront.com/v2',window,document,'script', { toolkit: false });"
-    ]
+      "(function (m,o,d,u,l,a,r,i,z,e) {u[m]={Project:o,rq:[],Opts:r,ready:function(j){u[m].rq.push(j)}};function j(s){return encodeURIComponent(btoa(s))};z=l.getElementById(m+'-'+a);r=u.location;e=[d+'/page/'+o+'/'+j(r.pathname)+'/'+j(r.host)+'?t='+Date.now(),d];e.map(function(w){i=l.createElement(a);i.defer=1;i.src=w;z.parentNode.insertBefore(i,z);});})('Userfront','g48xypb9','https://mod.userfront.com/v2',window,document,'script', { toolkit: false });",
+    ],
     /* Local scripts */
     // ['script', { id: 'Userfront-script' }, "(function (m,o,d,u,l,a,r,i,z,e) {u[m]={Project:o,rq:[],Opts:r,ready:function(j){u[m].rq.push(j)}};function j(s){return encodeURIComponent(btoa(s))};z=l.getElementById(m+'-'+a);r=u.location;e=['http://localhost:5000/v2/page/'+o+'/'+j(r.pathname)+'/'+j(r.host)+'?t='+Date.now(),d];e.map(function(w){i=l.createElement(a);i.defer=1;i.src=w;z.parentNode.insertBefore(i,z);});})('Userfront','g48xypb9','http://localhost:4000/v2',window,document,'script', { toolkit: false });"],
   ],
@@ -39,7 +39,7 @@ module.exports = {
       { text: "Guide", link: "/guide/" },
       // { text: "Examples", link: "/examples/" }
       { text: "Demo", link: "https://userfront.dev" },
-      { text: "Docs", link: "https://docs.userfront.com" }
+      { text: "Docs", link: "https://docs.userfront.com" },
       // { text: "Dashboard", link: "https://userfront.com/projects" }
     ],
     sidebar: {
@@ -55,12 +55,17 @@ module.exports = {
             "/guide/login.md",
             "/guide/reset.md",
             "/guide/logout.md",
-            "/guide/profile.md"
-          ]
+            "/guide/profile.md",
+          ],
         },
-        "/guide/dashboard.html"
+        {
+          title: "Learning",
+          collapsable: false,
+          children: ["/guide/cohort.md", "/guide/cohort-analysis.md"],
+        },
+        "/guide/dashboard.html",
         // "/guide/messaging.html"
-      ]
+      ],
     },
     lastUpdated: "Last Updated", // string | boolean
     // https://vuepress.vuejs.org/default-theme-config/#algolia-search
@@ -84,11 +89,11 @@ module.exports = {
     // defaults to false, set to true to enable
     editLinks: true,
     // custom text for edit link. Defaults to "Edit this page"
-    editLinkText: "Help us improve this page"
+    editLinkText: "Help us improve this page",
   },
   extendMarkdown(md) {
     return {
-      lineNumbers: true
+      lineNumbers: true,
     };
-  }
+  },
 };
