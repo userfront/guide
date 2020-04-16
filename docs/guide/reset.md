@@ -17,9 +17,8 @@ This is the same tool as above, and it should be installed at the Redirection UR
 ## Usage
 
 :::warning
-For your live sites, always use `https://` (also called SSL).
-
-This ensures that your users' login credentials are not visible to others. If your URL begins with `http://`, it is not secure.
+For your live sites, always use `https://` (also called SSL).<br>
+If your URL begins with `http://`, it is not secure.
 :::
 
 Add your Password Reset Form to a page where you want your users to be able to reset their password.

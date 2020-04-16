@@ -11,9 +11,8 @@ When a user logs out, they are redirected to the URL of your choice (default is 
 ## Usage
 
 :::warning
-For your live sites, always use `https://` (also called SSL).
-
-This ensures that your users' login credentials are not visible to others. If your URL begins with `http://`, it is not secure.
+For your live sites, always use `https://` (also called SSL).<br>
+If your URL begins with `http://`, it is not secure.
 :::
 
 The Logout Button does the following when clicked:

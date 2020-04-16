@@ -14,11 +14,11 @@ Understand your users better with cohort analysis tools on [Userfront](https://u
 
 ## Cohort uses
 
-If you’ve ever heard of Baby Boomers, Millennials, or Gen Z, you’re already familiar with cohorts. You probably even identify with one of these cohorts yourself.
+If you've ever heard of Baby Boomers, Millennials, or Gen Z, you're already familiar with cohorts. You probably even identify with one of these cohorts yourself.
 
 We use high-level cohorts to talk about changes in society: how growing up with the Internet differs from TV-only, or how social media has impacted teens. Cohorts are useful for this kind of qualitative reasoning, but they really shine when we get specific.
 
-Used in medicine, cohorts have helped us understand maternity, childhood development, general health, medicine, smoking, cancer, and virtually every important topic you’d want to know about.
+Used in medicine, cohorts have helped us understand maternity, childhood development, general health, medicine, smoking, cancer, and virtually every important topic you'd want to know about.
 
 Cohorts tell us about graduation rates, family values, the economy, laws, and how to run a business or grow a project. Any time there is variation in how a group of people experience the world, we can learn from cohorts.
 
@@ -26,7 +26,7 @@ Applied to more practical areas, cohorts tell us about our users, customers, or 
 
 ## Cohorts of users
 
-Before defining our cohorts, it’s a good idea to ask: “what change do we want to measure?” Maybe we have a new service with ongoing product changes. Maybe we are changing how or where we talk about a project, or perhaps different users are joining at different times of the year, and that might be meaningful. If we’re changing how we interact with users, that’s important too. For each type of change, we want to measure different things:
+Before defining our cohorts, it's a good idea to ask: “what change do we want to measure?” Maybe we have a new service with ongoing product changes. Maybe we are changing how or where we talk about a project, or perhaps different users are joining at different times of the year, and that might be meaningful. If we're changing how we interact with users, that's important too. For each type of change, we want to measure different things:
 
 ### Product changes
 

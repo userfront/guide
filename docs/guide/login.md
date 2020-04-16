@@ -11,9 +11,8 @@ When a user logs in, they are redirected to the URL of your choice (default is `
 ## Usage
 
 :::warning
-For your live sites, always use `https://` (also called SSL).
-
-This ensures that your users' login credentials are not visible to others. If your URL begins with `http://`, it is not secure.
+For your live sites, always use `https://` (also called SSL).<br>
+If your URL begins with `http://`, it is not secure.
 :::
 
 Add your Login Form to any page where you want a user to be able to log in. For example, you may want your Login Form on a page at `/login` and also in the footer of your landing page.

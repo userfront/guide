@@ -11,9 +11,8 @@ When a new user signs up, they are redirected to the URL of your choice (default
 ## Usage
 
 :::warning
-For your live sites, always use `https://` (also called SSL).
-
-This ensures that your users' login credentials are not visible to others. If your URL begins with `http://`, it is not secure.
+For your live sites, always use `https://` (also called SSL).<br>
+If your URL begins with `http://`, it is not secure.
 :::
 
 Add your Signup Form to any page where you want a user to sign up. For example, you may want your Signup Form directly on your home page and also on a page at `/signup`. You can also add it to your marketing pages if desired.
