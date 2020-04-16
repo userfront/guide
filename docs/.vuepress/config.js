@@ -65,6 +65,7 @@ module.exports = {
             "/guide/cohort.md",
             "/guide/cohort-analysis.md",
             "/guide/authentication.md",
+            "/guide/auth-landscape.md",
           ],
         },
         "/guide/dashboard.html",
