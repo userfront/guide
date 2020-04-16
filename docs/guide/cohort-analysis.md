@@ -50,7 +50,7 @@ Each number represents the percentage of users who were still active 1 week afte
 
 In this case, retention has improved significantly over the course of 7 weeks. While 60% of users were continuing with the service at the beginning of January, by late February that number rose to 90%.
 
-This particular example would tell us that we’re getting better: users who joined later are a lot more likely to keep using the service over time. If we didn’t see any improvement here, we might want to rethink our focus.
+This particular example would tell us that we're getting better: users who joined later are a lot more likely to keep using the service over time. If we didn't see any improvement here, we might want to rethink our focus.
 
 ## Actions to improve
 

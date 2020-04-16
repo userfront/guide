@@ -61,7 +61,11 @@ module.exports = {
         {
           title: "Learning",
           collapsable: false,
-          children: ["/guide/cohort.md", "/guide/cohort-analysis.md"],
+          children: [
+            "/guide/cohort.md",
+            "/guide/cohort-analysis.md",
+            "/guide/authentication.md",
+          ],
         },
         "/guide/dashboard.html",
         // "/guide/messaging.html"
