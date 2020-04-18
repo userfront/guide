@@ -1,22 +1,28 @@
 # Auth landscape
 
-There are many different ways to authenticate a user's identity, and just about every one of them has at least one acronym. This article will help you understand some of the more common authentication strategies along with when you might want to use each one.
+The auth landscape has a long history of different approaches, several of which build on each other, serve different use cases, or overlap in some way.
 
-The auth landscape has a long history of different approaches, several of which build on each other, serve different use cases, or overlap in some way. The earliest, and still most common, authentication strategies involve a user sending information directly to the service in question. However, some newer authentication approaches rely on a 3rd party service to provide additional security.
+There are many different ways to authenticate a user's identity, and just about every one of them has at least one acronym. This article will help you understand some of the more common authentication strategies with the auth landscape, along with when you might want to use each one.
+
+The earliest, and still most common, authentication strategies involve a user sending information directly to the service in question. However, some newer authentication approaches rely on a 3rd party service to provide additional security.
 
 ## Direct authentication
 
-Direct authentication happens when a user sends their credentials directly to the website they want to access.
+Direct authentication happens when a user sends their authentication information directly to the website they want to access. The user can either send their login information with every request, or the server can create a token that is used to keep the user logged in.
 
 ### HTTP Basic
 
-One of the earliest methods of authentication was to send a username & password in the header of every request. The username and password are put together with a colon, like `username:password`, and then Base64 encoded:
+HTTP Basic is one of the earliest methods of authentication, in which the browser sends a username & password in the header of every request. The username and password are put together with a colon, like `username:password`, and then Base64 encoded:
 
-`btoa("username:password") -> "dXNlcm5hbWU6cGFzc3dvcmQ="`
+```js
+btoa("username:password") -> "dXNlcm5hbWU6cGFzc3dvcmQ="
+```
 
 This resulting value is then included with every request in the `Authorization` header. In our example, the request header would look like:
 
-`Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=`
+```
+Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
+```
 
 The HTTP Basic approach is simple, but it does require the browser to always store the username & password directly, which can pose security issues. The server also has to store the password in order to compare it to the incoming password, which is another potential security risk.
 
@@ -26,23 +32,74 @@ For HTTP Basic, there is no way to have a user "sign out" without changing eithe
 
 Bearer tokens solve many of the problems with HTTP Basic, and are how most websites handle authentication today. In this approach, a username and password are sent one time to "log in". If the credentials are correct, then the server creates and sends a token back to the browser. This token can be totally random characters (sometimes called an "opaque token"), or it can have some information about the user (a "non-opaque token").
 
-For example, when a user logs in, the server might create a random, opaque token for them that looks like `cb0bf23dc6ee4730bd595a21d162efeb`. The server will store this token in the database and then send it back to the browser, which will also store the token.
+For example, when a user logs in, the server might create a random, opaque token for them that looks like `cb0bf23dc6ee4730bd595a21d162efeb`. The server will store this token in the database and then send it back to the browser, which will also store the token. Once the browser has this token, the user is considered to be "logged in".
 
-The browser can store a token many different ways: as a cookie; in session storage; in local storage; or in a local SQL database on the user's computer.
+The browser sends this token in the header with each request, often with the prefix `Bearer`. So the header for a request might look like:
 
-As long as the browser has the token that matches the token on the server, the user is considered to be "logged in".
-
-Once logged in, the browser sends its token in the header with each request, often with the prefix `Bearer`. So the header for a request might look like:
-
-`Authorization: Bearer cb0bf23dc6ee4730bd595a21d162efeb`
+```
+Authorization: Bearer cb0bf23dc6ee4730bd595a21d162efeb
+```
 
 When the server sees that this token is a match, it can confirm that the user is logged in and can respond accordingly.
 
-In order to "log out" a user, the server can delete its own token or mark it as invalid. The server usually instructs the browser to delete its own token too, since it is no longer useful. Once the server has removed its token, any subsequent requests that try to use that token will fail.
+In order to "log out" a user, the server can delete its own token or mark it as invalid. The server usually instructs the browser to delete the token too, since it is no longer useful. Once the server has removed its token, any subsequent requests that try to use that token will fail.
+
+## Single Sign On (SSO)
+
+Single Sign On, commonly called SSO, is the ability to authenticate with one server to receive access credentials, and then use those credentials with other servers in the same organization.
+
+It is usually not practical to use a Bearer token with this approach, since the token that gets created by the authenticating server would need to be shared with the other servers in realtime. There are 2 main ways of providing Single Sign On: by using a token-based approach similar to direct authentication, or by using a file-based approach where a file is sent between server and browser.
+
+For token-based approaches, JWTs are the most common token type, and OpenID Connect is the most common authentication protocol. OpenID Connect typically uses JWTs for tokens.
 
 ### JSON Web Token (JWT)
 
-### TOTP (Time-based One-Time Password)
+A JSON Web Token (JWT, pronounced "jot") can be used the same way as an opaque bearer token, but instead of being random, the JWT has some information about the user included.
+
+The information in a JWT is "signed" using a secret phrase. Unlike encryption, signing means that the token's data can be read by the browser or other servers.
+
+A JWT consists of 3 parts: a header, a signature, and a payload. The final token is written as `header.payload.signature`, with dots separating each part. This is generated by the authentication server and stored by the browser. In many implementations, the browser then sends the token as a Bearer token:
+
+```
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvZSIsImlhdCI6MTUxNjIzOTAyMn0.N5BX5TaoQqKZRodNq5Ny3EZ01UTTSWHIm6v2ijcw33Q
+```
+
+When a server receives this token, it can verify that the token has not been tampered with if it has the secret phrase used to generate the JWT.
+
+For SSO, this means each server in the organization should have the secret phrase that allows verification of JWTs issued by the authentication server. If a server is configured properly, it can verify incoming JWTs without needing to contact the authentication server, and this enables Single Sign On functionality.
+
+A major downside of using JWTs as access tokens is that the authentication server has no way to instruct other servers to invalidate an existing token. JWTs typically contain information in the payload about when the token expires, but if the users logs out before that time, the token could technically still be used. OpenID Connect solves this problem and also standardizes how to name the attributes in the JWT payload.
+
+### OpenID Connect (OIDC)
+
+OpenID Connect is a protocol for authenticating users that typically uses JWTs.
+
+Instead of using long-lived JWTs as access tokens, OpenID Connect uses two types of tokens:
+
+- **ID tokens** are issued by the authentication server and only work with the authentication server. ID tokens are typically opaque bearer tokens. A user can send an ID token to the authentication server to obtain a short-lived access token. ID tokens are sometimes called refresh tokens for this reason.
+- **Access tokens** are issued by the authentication server to be used as proof of identity when the browser sends a request to other servers. These are typically short-lived JWTs.
+
+In this scheme, the browser must get a new JWT access token from the authentication server regularly. When the authentication server needs to log the user out, it can invalidate the ID token and stop issuing the user new access tokens. This is a compromise solution: when the user logs out, the server asks the browser to delete its token, but the existing access token is still technically valid because it has not expired yet. However, with a short enough expiration time, the access token will expire quickly and cannot be renewed because the ID token is no longer valid.
+
+OpenID Connect is widely considered to be the most modern popular standard for authentication. However, SAML is an older SSO standard that is still used by many large organizations.
+
+### SAML
+
+The SAML protocol includes authentication and authorization information in an XML file instead of a token. SAML stands for Security Assertion Markup Language and is pronounced SAM-L.
+
+SAML was developed before JWT based authentication strategies and has some drawback that make it less attractive for modern browser- or mobile-based applications.
+
+SAML uses XML files to authenticate, so it can be used outside of the browser: any system that can send and recieve files can technically be authenticated. However, within the context of a browser, SAML is more difficult to work with than tokens and can be susceptible to additional security flaws if not configured properly. In short, SAML is more general-purpose than token-based authentication but is not as specialized as a result.
+
+Because it is harder to work with in the browser, and because its configuration is susceptible to security errors, SAML is not widely used in newer, browser-based applications.
+
+## Federated identity
+
+Federated identity, sometimes called Federated Identity Management (FIM), is similar to SSO, except the authentication server does not have to be part of the same organization as the other servers.
+
+In this sense, all SSO systems are federated identity systems because the authentication server is different than the resource servers. However, the reverse is not true: many FIM systems are not considered to be SSO because the authentication server is run by a different organization. Despite these semantics, sometimes SSO and federated identity are used interchangeably.
+
+Under the federated identity model, the authentication server is often referred to as an identity provider (IdP) because it is responsible for providing a token that the user can use to prove their identity to another service. The service that the user wants to access is often called the Service Provider (SP) or Resource Server (RS). The user is often (confusingly) called the Resource Owner.
 
 ## Delegated authorization
 
@@ -50,18 +107,3 @@ ability for one service to grant access to a resource for another service (e.g. 
 
 - Oauth 2.0
   - Access granting protocol
-
-## Federated identity
-
-ability to log into a site using another service as proof of identitiy
-
-- SAML 2.0
-
-  - Came first, but no longer as relevant for API calls
-  - Relies on exchange of messages for authentication in XML SAML format
-  - Older, more adoption in enterprise
-
-- OpenID Connect (OIDC 1.0)
-  - Built on top of Oauth 2.0
-  - Typically uses JWT format for id-token
-  - Newer, more adoption in web & mobile applications

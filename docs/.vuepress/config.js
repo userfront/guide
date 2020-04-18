@@ -66,6 +66,8 @@ module.exports = {
             "/guide/cohort-analysis.md",
             "/guide/authentication.md",
             "/guide/auth-landscape.md",
+            // "/guide/auth-token-types.md",
+            "/guide/jwt.md",
           ],
         },
         "/guide/dashboard.html",
