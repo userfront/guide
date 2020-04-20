@@ -46,9 +46,9 @@ In order to "log out" a user, the server can delete its own token or mark it as 
 
 ## Single Sign On (SSO)
 
-Single Sign On, commonly called SSO, is the ability to authenticate with one server to receive access credentials, and then use those credentials with other servers in the same organization.
+Single Sign On, commonly called SSO, is the ability to authenticate with one server to receive access credentials, and then use those auth credentials with other servers.
 
-It is usually not practical to use a Bearer token with this approach, since the token that gets created by the authenticating server would need to be shared with the other servers in realtime. There are 2 main ways of providing Single Sign On: by using a token-based approach similar to direct authentication, or by using a file-based approach where a file is sent between server and browser.
+It is usually not practical to use a Bearer token with this approach, since the token that gets created by the authentication server would need to be shared with the other servers in realtime. There are 2 main ways of providing Single Sign On: by using a token-based approach similar to direct authentication, or by using a file-based approach where a file is sent between server and browser.
 
 For token-based approaches, JWTs are the most common token type, and OpenID Connect is the most common authentication protocol. OpenID Connect typically uses JWTs for tokens.
 
@@ -95,15 +95,38 @@ Because it is harder to work with in the browser, and because its configuration 
 
 ## Federated identity
 
-Federated identity, sometimes called Federated Identity Management (FIM), is similar to SSO, except the authentication server does not have to be part of the same organization as the other servers.
+Federated identity, sometimes called Federated Identity Management (FIM), refers to managing a user's identity across one or more systems and servers.
 
-In this sense, all SSO systems are federated identity systems because the authentication server is different than the resource servers. However, the reverse is not true: many FIM systems are not considered to be SSO because the authentication server is run by a different organization. Despite these semantics, sometimes SSO and federated identity are used interchangeably.
+In this sense, all SSO systems are federated identity systems because the authentication server is different than the resource servers. However, the reverse is not true: many FIM systems are not considered to be SSO because there may be multiple authentication servers, or different authentication servers providing different levels of access to the resource servers.
 
-Under the federated identity model, the authentication server is often referred to as an identity provider (IdP) because it is responsible for providing a token that the user can use to prove their identity to another service. The service that the user wants to access is often called the Service Provider (SP) or Resource Server (RS). The user is often (confusingly) called the Resource Owner.
+Under the federated identity model, an authentication server is often referred to as an identity provider (IdP) because it is responsible for providing a token that the user can use to prove their identity to other services. A service that the user wants to access is often called a Service Provider (SP) or Resource Server (RS). The user is often (confusingly) called the Resource Owner.
+
+Federated identity commonly uses the same technologies as SSO: either token-based or file-based credentials, with JWT, OpenID Connect, and SAML all in regular use.
+
+And finally, despite the fact that SSO is a subset of federated identity, the terms are sometimes used interchangeably.
 
 ## Delegated authorization
 
-ability for one service to grant access to a resource for another service (e.g. Google can get access to a list on Yelp)
+Delegated authorization, or delegated access, is when a user allows one service to access their account information on another service. In order to do this, the user must be logged into the first service, and may or may not be logged into the second service.
 
-- Oauth 2.0
-  - Access granting protocol
+### OAuth
+
+OAuth 2.0 defines a flow to use when a person wants one service to share their information with another service. It is a popular open standard for access delegation, and it does not address how the user should be authenticated on either service.
+
+With OAuth, a user can grant access to anything related to their account on the first service: a playlist; their contacts or history; their own identity information; or anything else.
+
+The OAuth flow is as follows:
+
+1. The user clicks a button indicating they want to allow a first service to share their information with a second service.
+2. The user is redirected to the first service. If the user is not logged into the first service, they are prompted to log in. OAuth does not dictate how this login process should happen.
+3. Once the user is logged in, the first service displays a screen indicating which information is about to be shared, and asking the user whether or not they approve.
+4. If the user approves, the first service sends the requested information to the second service. If the user does not approve, the information is not sent.
+5. The user is redirected back to the second service, where they can continue.
+
+In this way, the OAuth flow lets a user first know what information is about to be shared, and then allows the user to approve or reject the operation.
+
+OpenID Connect, the authenticaton protocol discussed above, is built on top of OAuth 2.0. In the case of OpenID Connect, the first server is an authentication server, and the user decides whether to share their identity information with the second server. If the user does share this information, then the second server can rely on the first server to provide authentication.
+
+:::tip
+To quickly set up auth for a web application, try the toolkit from [Userfront](https://userfront.com/auth-user-management).
+:::
