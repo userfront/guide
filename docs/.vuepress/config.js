@@ -37,47 +37,47 @@ module.exports = {
   ],
   themeConfig: {
     nav: [
-      { text: "Guide", link: "/guide/" },
+      { text: "Guide", link: "/" },
       // { text: "Examples", link: "/examples/" }
       { text: "Demo", link: "https://userfront.dev" },
       { text: "Docs", link: "https://docs.userfront.com" },
       // { text: "Dashboard", link: "https://userfront.com/projects" }
     ],
     sidebar: {
-      "/guide/": [
-        "/guide/quickstart.html",
-        "/guide/",
+      "/": [
+        "/quickstart.html",
+        "/",
         {
           title: "Auth & Onboarding",
           collapsable: false,
           children: [
-            "/guide/auth.md",
-            "/guide/signup.md",
-            "/guide/login.md",
-            "/guide/reset.md",
-            "/guide/logout.md",
-            "/guide/profile.md",
+            "/auth.md",
+            "/signup.md",
+            "/login.md",
+            "/reset.md",
+            "/logout.md",
+            "/profile.md",
           ],
         },
         {
           title: "Learning",
           collapsable: false,
           children: [
-            "/guide/cohort.md",
-            "/guide/cohort-analysis.md",
-            "/guide/authentication.md",
-            "/guide/auth-landscape.md",
-            // "/guide/auth-token-types.md",
-            "/guide/jwt.md",
+            "/cohort.md",
+            "/cohort-analysis.md",
+            "/authentication.md",
+            "/auth-landscape.md",
+            // "/auth-token-types.md",
+            "/jwt.md",
           ],
         },
         {
           title: "Dashboard",
           collapsable: false,
-          children: ["/guide/import-export.md"],
+          children: ["/import-export.md"],
         },
-        // "/guide/dashboard.html",
-        // "/guide/messaging.html"
+        // "/dashboard.html",
+        // "/messaging.html"
       ],
     },
     lastUpdated: "Last Updated", // string | boolean
