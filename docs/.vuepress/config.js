@@ -1,5 +1,5 @@
 module.exports = {
-  title: "Userfront",
+  title: "Userfront Guide",
   description: "Guide and examples for Userfront",
   base: "/guide/", // For deploying at userfront.com/guide/
   head: [
@@ -36,12 +36,13 @@ module.exports = {
     ],
   ],
   themeConfig: {
+    smoothScroll: true,
     nav: [
-      { text: "Guide", link: "/" },
+      // { text: "Guide", link: "/" },
       // { text: "Examples", link: "/examples/" }
+      { text: "Home", link: "https://userfront.com/" },
       { text: "Demo", link: "https://userfront.dev" },
       { text: "Docs", link: "https://docs.userfront.com" },
-      // { text: "Dashboard", link: "https://userfront.com/projects" }
     ],
     sidebar: {
       "/": [

@@ -1,5 +1,4 @@
 ---
-home: true
 heroImage: https://res.cloudinary.com/component/image/upload/v1582652683/circle_400_light_jrgbjq.png
 actionText: Get Started →
 actionLink: /guide/
