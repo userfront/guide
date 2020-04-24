@@ -26,14 +26,14 @@ module.exports = {
     /* Local scripts */
     // ['script', { id: 'Userfront-script' }, "(function (m,o,d,u,l,a,r,i,z,e) {u[m]={Project:o,rq:[],Opts:r,ready:function(j){u[m].rq.push(j)}};function j(s){return encodeURIComponent(btoa(s))};z=l.getElementById(m+'-'+a);r=u.location;e=['http://localhost:5000/v2/page/'+o+'/'+j(r.pathname)+'/'+j(r.host)+'?t='+Date.now(),d];e.map(function(w){i=l.createElement(a);i.defer=1;i.src=w;z.parentNode.insertBefore(i,z);});})('Userfront','g48xypb9','http://localhost:4000/v2',window,document,'script', { toolkit: false });"],
   ],
-  // plugins: [
-  //   [
-  //     "@vuepress/google-analytics",
-  //     {
-  //       ga: "UA-89033101-2"
-  //     }
-  //   ]
-  // ],
+  plugins: [
+    [
+      "@vuepress/google-analytics",
+      {
+        ga: "UA-164523904-2",
+      },
+    ],
+  ],
   themeConfig: {
     nav: [
       { text: "Guide", link: "/guide/" },
@@ -70,7 +70,12 @@ module.exports = {
             "/guide/jwt.md",
           ],
         },
-        "/guide/dashboard.html",
+        {
+          title: "Dashboard",
+          collapsable: false,
+          children: ["/guide/import-export.md"],
+        },
+        // "/guide/dashboard.html",
         // "/guide/messaging.html"
       ],
     },
