@@ -1,6 +1,7 @@
 module.exports = {
   title: "Userfront Guide",
   description: "Documentation & Examples for Userfront",
+  base: "/guide/", // For deploying at userfront.com/guide/
   head: [
     [
       "link",
