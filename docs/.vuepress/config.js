@@ -83,10 +83,10 @@ module.exports = {
     },
     lastUpdated: "Last Updated", // string | boolean
     // https://vuepress.vuejs.org/default-theme-config/#algolia-search
-    // algolia: {
-    //   apiKey: "1869e5a6fd56b1d3d72d2e23acd8b900",
-    //   indexName: "userfront"
-    // },
+    algolia: {
+      apiKey: "3d15a906f533dae762fe03ca79737fa5",
+      indexName: "userfront",
+    },
 
     // Assumes GitHub. Can also be a full GitLab url.
     // repo: 'userfront/guide',
