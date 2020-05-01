@@ -1,6 +1,6 @@
 # Introduction
 
-Userfront makes it easy to onboard & engage your users, focusing on 3 areas:
+Userfront makes it easy to onboard & retain your users, focusing on 3 areas:
 
 1. [**Onboarding (auth)**](/guide/auth.html) - Userfront has ready-to-use forms for signup, login, password reset, and more. These are copy/pasted into your website's HTML and don't require any backend to work.
 
