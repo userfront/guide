@@ -70,5 +70,5 @@ Thus, a JWT should not contain sensitive information, since the user could read 
 Once constructed by a server and sent to the browser, this JWT could be sent to another server to use as authentication. As long as the other server already has the secret used to sign the JWT, the server can verify that the payload has not been tampered with.
 
 :::tip
-To learn more about the pros and cons of JWTs, read about the [Auth landscape](/guide/auth-landscape.html).
+To learn more about the pros and cons of JWTs, read about the [Auth landscape](/auth-landscape.html).
 :::

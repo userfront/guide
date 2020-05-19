@@ -70,8 +70,8 @@ Congrats! You now have a signup form for new users. You can follow the same step
 
 More information about each tool:
 
-- [Signup Form](/guide/signup.html)
-- [Login Form](/guide/login.html)
-- [Password Reset Form](/guide/reset.html)
-- [Logout Button](/guide/logout.html)
-- [User Profile](/guide/profile.html)
+- [Signup Form](/signup.html)
+- [Login Form](/login.html)
+- [Password Reset Form](/reset.html)
+- [Logout Button](/logout.html)
+- [User Profile](/profile.html)

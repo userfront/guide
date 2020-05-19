@@ -3,7 +3,7 @@
 To perform a cohort analysis, we can group users based on when they joined: often into weekly or monthly cohorts. This works well when we want to track improvements over time, or when we want to understand trends in user behavior.
 
 :::tip
-Learn about the term "cohort" [here](/guide/cohort.html), or create your own cohort analysis with [Userfront](https://userfront.com).
+Learn about the term "cohort" [here](/cohort.html), or create your own cohort analysis with [Userfront](https://userfront.com).
 :::
 
 ## Cohort analysis example
