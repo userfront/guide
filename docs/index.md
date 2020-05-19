@@ -2,15 +2,15 @@
 
 Userfront is built to make startups more likely to succeed, focusing on three areas:
 
-1. [**Auth**](/auth.html) - In about 10 minutes, add signup, login, password reset, and more to any website. Install by copy/pasting a snippet of code into your website's HTML.
+1. [**10-minute Auth**](/auth.html) lets you add signup, login, and password reset to any website by copy/pasting a snippet of code into your HTML.
 
-2. [**Startup metrics**](/dashboard.html) - When your users sign up or use your site, their activity is automatically shown in your dashboard. There you can manage their data, view activity, send them messages, and more.
+2. [**Startup metrics**](/dashboard.html) improve your decision making and make it easy to share your progress with investors.
 
-3. [**Automated messaging**](/messaging.html) - Use automation to grow your user base, with triggers based on user activity. You can customize campaigns for when a user first signs up, takes a certain action, goes inactive, and more.
-
-Userfront works with **ANY** website, regardless of what technology your site uses. You can add it to existing projects to supercharge them, or can build a new project on whatever platform you prefer.
+3. [**Automated messaging**](/messaging.html) helps you onboard users and keep them engaged, for better retention and faster growth.
 
 :::tip
+Userfront works with **ANY** website or app, regardless of what technology you use. You can add it to existing projects to supercharge them, or can build a new project on whatever platform you prefer.
+
 Try the [Quickstart](/quickstart.html) to get up and running quickly.
 :::
 
