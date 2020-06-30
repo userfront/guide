@@ -6,7 +6,6 @@ Userfront has ready-to-use forms for signup, login, password reset, and more. Th
 - [Login Form](/login.html) lets your users log in.
 - [Password Reset Form](/reset.html) lets your users reset their password.
 - [Logout Button](/logout.html) logs a user out of your site.
-- [User Profile](/profile.html) lets your users edit their own information.
 
 ## Your Toolkit
 
