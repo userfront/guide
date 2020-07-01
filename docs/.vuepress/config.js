@@ -57,8 +57,13 @@ module.exports = {
             "/login.md",
             "/reset.md",
             "/logout.md",
-            "/profile.md",
+            // "/profile.md",
           ],
+        },
+        {
+          title: "Usage",
+          collapsable: false,
+          children: ["dev-mode.md", "/import-export.md"],
         },
         {
           title: "Learning",
@@ -71,11 +76,6 @@ module.exports = {
             // "/auth-token-types.md",
             "/jwt.md",
           ],
-        },
-        {
-          title: "Dashboard",
-          collapsable: false,
-          children: ["/import-export.md"],
         },
         // "/dashboard.html",
         // "/messaging.html"
