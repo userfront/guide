@@ -46,7 +46,7 @@ The form shows wherever you paste the `<div>`:
 
 Give it a try: fill out your signup form and submit it.
 
-Your form is in [Dev mode](/dev-mode.html), which means it goes through the signup flow without creating a new user each time.
+Your form is in [dev mode](/dev-mode.html), which means it goes through the signup flow without creating a new user each time.
 
 Upon successful signup, the form does 2 things:
 
@@ -67,23 +67,21 @@ Try updating the "Signup path" to `/home`, then re-submit your signup form. You 
 
 ## 4. Add login and others
 
-Follow the same process to add a login form to `/login`, a password reset form at `/reset`, and a logout button anywhere you need it.
+Follow the same process for your other tools:
 
-While you are in dev mode, you can
+- Add a login form to your `/login` page
+- Add a password reset form to your `/reset` page
+- Add a logout button anywhere you need it
 
-## Visit your demo app
+Your tools will all work in dev mode until you deploy them to your live domain; then they will work in live mode automatically.
 
-Visit [https://userfront.dev](https://userfront.dev) and enter your project ID from above.
+### Finished
 
-Your demo app uses your live tools, so anything you do there will be reflected in your dashboard.
+Congratulations, you've added auth to your site.
 
-## Finished
+Check out learn more about your auth tools:
 
-Congrats! You now have a signup form for new users. You can follow the same steps to add your Login Form, Password Reset Form, Logout Button, and more.
-
-More information about each tool:
-
-- [Signup Form](/signup.html)
-- [Login Form](/login.html)
-- [Password Reset Form](/reset.html)
-- [Logout Button](/logout.html)
+- [Signup form](/signup.html)
+- [Login form](/login.html)
+- [Password reset form](/reset.html)
+- [Logout button](/logout.html)
