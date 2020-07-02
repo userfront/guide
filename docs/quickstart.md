@@ -79,9 +79,14 @@ Your tools will all work in dev mode until you deploy them to your live domain; 
 
 Congratulations, you've added auth to your site.
 
-Check out learn more about your auth tools:
+Learn more about your auth tools:
 
 - [Signup form](/signup.html)
 - [Login form](/login.html)
 - [Password reset form](/reset.html)
 - [Logout button](/logout.html)
+
+Learn more about the JWT auth token:
+
+- [JWT structure](/jwt-structure.html)
+- [What is a JWT](/jwt-json-web-token.html)
