@@ -2,7 +2,7 @@
 
 ## Auth token
 
-When a user signs up or logs in, they recieve a [JWT](/jwt-json-web-token) auth token in their browser at your domain. Your application can use this token to authenticate and authorize the user.
+When a user signs up or logs in, they recieve a [JWT](/jwt-json-web-token) auth token in their browser as a cookie for your domain. Your application can use this token to authenticate and authorize the user.
 
 The token's payload is:
 
