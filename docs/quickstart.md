@@ -51,7 +51,7 @@ Your form is in [dev mode](/dev-mode.html), which means it goes through the sign
 Upon successful signup, the form does 2 things:
 
 - Redirects you to `/dashboard`. We'll edit this next.
-- Adds a secure auth token named `auth.PROJECT_ID` to your browser's cookies (with your project ID). This token is a JWT with the user's identity and authorization information, which you can send to your own backend.
+- Adds a secure access token named `access.PROJECT_ID` to your browser's cookies (with your project ID). This token is a JWT with the user's identity and authorization information, which you can send to your own backend.
 
 ## 3. Set your redirect & domain
 
@@ -86,7 +86,7 @@ Learn more about your auth tools:
 - [Password reset form](/reset.html)
 - [Logout button](/logout.html)
 
-Learn more about the JWT auth token:
+Learn more about the JWT access token:
 
 - [JWT structure](/jwt-structure.html)
 - [What is a JWT](/jwt-json-web-token.html)

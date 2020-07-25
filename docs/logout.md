@@ -6,7 +6,7 @@ The purpose of the Logout Button is to allow a logged in user to log out.
 
 ![Logout Button](https://res.cloudinary.com/component/image/upload/c_crop,e_trim:2:white/if_w_lt_6/c_lpad,h_150,w_140,l_text:Arial_16:No%20preview,co_rgb:999999/if_end/if_w_lt_100/w_1.33,h_1.33,e_sharpen:50/if_end/c_lpad,h_150,w_140,b_rgb:ffffff/v1582158400/logout_uje4x0.png)
 
-When a user logs out, they are redirected to the URL of your choice (default is `/login`). Their authentication token is removed from the browser and also invalidated on Userfront.
+When a user logs out, they are redirected to the URL of your choice (default is `/login`). Their access token is removed from the browser and also invalidated on Userfront.
 
 ## Usage
 
@@ -17,8 +17,8 @@ If your URL begins with `http://`, it is not secure.
 
 The Logout Button does the following when clicked:
 
-1. Invalidates the user's auth token with Userfront, so that it is no longer valid.
-2. Removes the user's auth token from their browser. The token is a cookie named `auth.${projectId}`; for example, if your project ID was `abcdefg`, the token would be `auth.abcdefg`.
+1. Invalidates the user's access token with Userfront, so that it is no longer valid.
+2. Removes the user's access token from their browser. The token is a cookie named `access.${projectId}`; for example, if your project ID was `abcdefg`, the token would be `access.abcdefg`.
 3. Redirects the user to the designated logout page.
 
 Add your Logout Button to pages where you want your users to be able to log out. You can add multiple Logout Buttons to the same page, and can also add the Logout Button to many different pages if desired.
