@@ -19,8 +19,8 @@ Paste the Userfront script once in the `<head>` section of the HTML for your sig
   (function(m,o,d,u,l,a,r,i,z,e) {
     u[m]={rq:[],ready:function(j){u[m].rq.push(j);},m:m,o:o,d:d,r:r};function j(s){return encodeURIComponent(btoa(s));}z=l.getElementById(m+"-"+a);r=u.location;
     e=[d+"/page/"+o+"/"+j(r.pathname)+"/"+j(r.host)+"?t="+Date.now(),d];e.map(function(w){i=l.createElement(a);i.defer=1;i.src=w;z.parentNode.insertBefore(i,z);});u.amvartem=m;
-  })("Userfront","demo1234","https://mod.userfront.com/v2",window,document,"script");
-  // Replace demo1234 ^ with your project ID
+  })("Userfront","n8bjqqx7","https://mod.userfront.com/v2",window,document,"script");
+  // Replace n8bjqqx7 ^ with your project ID
 </script>
 <!--/Userfront -->
 ```
@@ -51,7 +51,7 @@ Your form is in [dev mode](/dev-mode.html), which means it goes through the sign
 Upon successful signup, the form does 2 things:
 
 - Redirects you to `/dashboard`. We'll edit this next.
-- Adds a secure auth token named `auth.PROJECT_ID` to your browser's cookies (with your project ID). This token is a JWT with the user's identity and authorization information, which you can send to your own backend.
+- Adds a secure access token named `access.PROJECT_ID` to your browser's cookies (with your project ID). This token is a JWT with the user's identity and authorization information, which you can send to your own backend.
 
 ## 3. Set your redirect & domain
 
@@ -86,7 +86,7 @@ Learn more about your auth tools:
 - [Password reset form](/reset.html)
 - [Logout button](/logout.html)
 
-Learn more about the JWT auth token:
+Learn more about the JWT access token:
 
 - [JWT structure](/jwt-structure.html)
 - [What is a JWT](/jwt-json-web-token.html)

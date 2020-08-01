@@ -1,8 +1,8 @@
 # JWT structure & keys
 
-## Auth token
+## Access token
 
-When a user signs up or logs in, they recieve a [JWT](/jwt-json-web-token) auth token in their browser as a cookie for your domain. Your application can use this token to authenticate and authorize the user.
+When a user signs up or logs in, they recieve a [JWT](/jwt-json-web-token) access token in their browser as a cookie for your domain. Your application can use this token to authenticate and authorize the user.
 
 The token's payload is:
 
@@ -21,13 +21,13 @@ The token's payload is:
 }
 ```
 
-This information is encoded into a JWT and added as a cookie named `auth.PROJECT_ID`, where PROJECT_ID is your project's ID.
+This information is encoded into a JWT and added as a cookie named `access.PROJECT_ID`, where PROJECT_ID is your project's ID.
 
 :::tip
 Your project ID is in the URL for your project:
 ![Project ID](https://res.cloudinary.com/component/image/upload/v1583347563/guide/project_id_ilsrsa.png)
 
-In this example, the JWT cookie would be named `auth.g48xypb9`
+In this example, the JWT cookie would be named `access.n8bjqqx7`
 :::
 
 The actual JWT looks like this:

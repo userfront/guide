@@ -1,4 +1,4 @@
-# Auth token types
+# Token types
 
 ## HTTP Basic
 
