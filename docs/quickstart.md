@@ -19,8 +19,8 @@ Paste the Userfront script once in the `<head>` section of the HTML for your sig
   (function(m,o,d,u,l,a,r,i,z,e) {
     u[m]={rq:[],ready:function(j){u[m].rq.push(j);},m:m,o:o,d:d,r:r};function j(s){return encodeURIComponent(btoa(s));}z=l.getElementById(m+"-"+a);r=u.location;
     e=[d+"/page/"+o+"/"+j(r.pathname)+"/"+j(r.host)+"?t="+Date.now(),d];e.map(function(w){i=l.createElement(a);i.defer=1;i.src=w;z.parentNode.insertBefore(i,z);});u.amvartem=m;
-  })("Userfront","demo1234","https://mod.userfront.com/v2",window,document,"script");
-  // Replace demo1234 ^ with your project ID
+  })("Userfront","n8bjqqx7","https://mod.userfront.com/v2",window,document,"script");
+  // Replace n8bjqqx7 ^ with your project ID
 </script>
 <!--/Userfront -->
 ```

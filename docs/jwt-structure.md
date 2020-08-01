@@ -27,7 +27,7 @@ This information is encoded into a JWT and added as a cookie named `access.PROJE
 Your project ID is in the URL for your project:
 ![Project ID](https://res.cloudinary.com/component/image/upload/v1583347563/guide/project_id_ilsrsa.png)
 
-In this example, the JWT cookie would be named `access.g48xypb9`
+In this example, the JWT cookie would be named `access.n8bjqqx7`
 :::
 
 The actual JWT looks like this:

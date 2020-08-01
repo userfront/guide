@@ -43,7 +43,7 @@ POST https://api.userfront.com/v0/auth/basic
 
 ```json
 {
-  "project": "g48xypb9",
+  "project": "n8bjqqx7",
   "emailOrUsername": "janedoe",
   "password": "my-long-password"
 }
@@ -61,7 +61,7 @@ POST https://api.userfront.com/v0/auth/basic
 Your custom JS code should add the `token` contained in the response to the cookie `access.${projectId}` and then redirect to the `redirectTo` URL. In this example, the cookie would be:
 
 ```
-access.g48xypb9 = 'Bearer abcde'
+access.n8bjqqx7 = 'Bearer abcde'
 ```
 
 And your custom JS code should redirect the page once the token has been added to the cookies.

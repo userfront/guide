@@ -34,7 +34,7 @@ If you want to add more than one tool to a page, you only need to include the `<
     (function(m,o,d,u,l,a,r,i,z,e) {
       u[m]={rq:[],ready:function(j){u[m].rq.push(j);},m:m,o:o,d:d,r:r};function j(s){return encodeURIComponent(btoa(s));}z=l.getElementById(m+"-"+a);r=u.location;
       e=[d+"/page/"+o+"/"+j(r.pathname)+"/"+j(r.host)+"?t="+Date.now(),d];e.map(function(w){i=l.createElement(a);i.defer=1;i.src=w;z.parentNode.insertBefore(i,z);});u.amvartem=m;
-    })("Userfront","g48xypb9","https://mod.userfront.com/v2",window,document,"script");
+    })("Userfront","n8bjqqx7","https://mod.userfront.com/v2",window,document,"script");
   </script>
   <!--/Userfront -->
 
@@ -48,5 +48,5 @@ If you want to add more than one tool to a page, you only need to include the `<
 <!-- prettier-ignore-end -->
 
 :::tip
-Be sure to replace `g48xypb9` above with your project's ID, and to use your tool's code instead of `userfront-mloaon`.
+Be sure to replace `n8bjqqx7` above with your project's ID, and to use your tool's code instead of `userfront-mloaon`.
 :::
