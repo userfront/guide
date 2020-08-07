@@ -4,41 +4,22 @@ This quickstart will get you up and running with auth in about 10 minutes.
 
 ## 1. Add your signup form
 
-Visit the `Toolkit` section of the Userfront dashboard. ([Create an account](https://userfront.com/signup?ref=quickstart) if you haven't already)
+Select your signup form below, then do the following:
 
-![Userfront Toolkit](https://res.cloudinary.com/component/image/upload/v1583359227/guide/menu.png)
+1. Paste the `<script>` inside the `<head>` of your HTML
+2. Paste the `<div>` inside the `<body>` of your HTML (or follow the React / Vue / Angular instructions)
 
-Find your signup form and click "Install". This gives you a code you can copy and paste into your HTML to get your form.
+<!-- Quickstart mod -->
+<div id="userfront-baboon"></div>
 
-Paste the Userfront script once in the `<head>` section of the HTML for your signup page:
+<style>
+[baboon] pre {
+  padding: inherit;
+  background-color: #f8f8f8;
+}
+</style>
 
-<!-- prettier-ignore-start -->
-```html
-<!-- Userfront -->
-<script id="Userfront-script">
-  (function(m,o,d,u,l,a,r,i,z,e) {
-    u[m]={rq:[],ready:function(j){u[m].rq.push(j);},m:m,o:o,d:d,r:r};function j(s){return encodeURIComponent(btoa(s));}z=l.getElementById(m+"-"+a);r=u.location;
-    e=[d+"/page/"+o+"/"+j(r.pathname)+"/"+j(r.host)+"?t="+Date.now(),d];e.map(function(w){i=l.createElement(a);i.defer=1;i.src=w;z.parentNode.insertBefore(i,z);});u.amvartem=m;
-  })("Userfront","n8bjqqx7","https://mod.userfront.com/v2",window,document,"script");
-  // Replace n8bjqqx7 ^ with your project ID
-</script>
-<!--/Userfront -->
-```
-:::tip
-Your project ID is in the URL for your project:
-![Project ID](https://res.cloudinary.com/component/image/upload/v1583347563/guide/project_id_ilsrsa.png)
-:::
-
-Now paste the `<div>` wherever you want the signup form to show.
-<!-- prettier-ignore-start -->
-```html
-<!-- Signup form -->
-<div id="userfront-bannba"></div>
-<!-- Replace bannba ^ with your form id -->
-```
-<!-- prettier-ignore-end -->
-
-The form shows wherever you paste the `<div>`:
+The form shows wherever you add the `<div>`:
 
 ![Userfront signup form](https://res.cloudinary.com/component/image/upload/v1593130567/permanent/signup-form-dev.png)
 
