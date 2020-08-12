@@ -19,10 +19,6 @@ Select your signup form below, then do the following:
 }
 </style>
 
-The form shows wherever you add the `<div>`:
-
-![Userfront signup form](https://res.cloudinary.com/component/image/upload/v1593130567/permanent/signup-form-dev.png)
-
 ## 2. Use your signup form
 
 Give it a try: fill out your signup form and submit it.
