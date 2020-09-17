@@ -23,7 +23,7 @@ Select your signup form below, then do the following:
 
 Give it a try: fill out your signup form and submit it.
 
-Your form is in [dev mode](/dev-mode.html), which means it goes through the signup flow without creating a new user each time.
+Your form is in [test mode](/test-mode.html), which means it goes through the signup flow without creating a new user each time.
 
 Upon successful signup, the form does 2 things:
 
@@ -50,7 +50,7 @@ Follow the same process for your other tools:
 - Add a password reset form to your `/reset` page
 - Add a logout button anywhere you need it
 
-Your tools will all work in dev mode until you deploy them to your live domain; then they will work in live mode automatically.
+Your tools will all work in test mode until you deploy them to your live domain; then they will work in live mode automatically.
 
 ### Finished
 

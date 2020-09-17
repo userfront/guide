@@ -1,8 +1,10 @@
-# Dev mode
+# Test mode
 
-By default, your auth tools work in dev mode. This means they do not create or use your "real" users.
+By default, your toolkit forms operate in test mode.
 
-Dev mode always uses these users:
+When in test mode, Userfront does not send welcome or confirmation emails. Instead, relevant information is displayed on screen to the user directly.
+
+Test mode starts with these users:
 
 | ID  | Name        | Username    | Email                   | Password  |
 | :-- | :---------- | :---------- | ----------------------- | :-------- |
@@ -11,21 +13,13 @@ Dev mode always uses these users:
 | 3   | Viewer User | viewer      | viewer@example.com      | password1 |
 | 4   | Unconfirmed | unconfirmed | unconfirmed@example.com | password1 |
 
-When in dev mode, Userfront does not send welcome or confirmation emails. Instead, relevant information is displayed on screen to the user directly.
-
 ## Login
 
-When in dev mode, the login form allows any of the above users to log in.
+When in test mode, the login form allows any of the above users to log in.
 
 For example, you could use `member` for the username and `password1` for the password, and your login form will log you in as the Member User above.
 
-## Signup
-
-When in dev mode, you can enter any information you want into the signup form.
-
-The signup form will always continue as though you signed up with the Unconfirmed user listed above.
-
-## Getting out of dev mode
+## Getting out of test mode
 
 You can add your live domain so that your Toolkit will automatically work in live mode on your live site.
 
