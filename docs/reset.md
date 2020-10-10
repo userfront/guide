@@ -4,7 +4,7 @@
 
 The purpose of the Password Reset Form is to allow existing users to reset their password.
 
-![Password Reset Form](https://res.cloudinary.com/component/image/upload/w_300/v1582158400/reset_gtr63a.png)
+![Password Reset Form](https://res.cloudinary.com/component/image/upload/w_300/v1597168270/permanent/reset-mod.png)
 
 When a user wants to reset their password, they enter their email and recieve a link to the URL of your choice (default is `/reset`). This page should have your Password Reset Form on it.
 

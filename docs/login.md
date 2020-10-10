@@ -4,7 +4,7 @@
 
 The purpose of the Login Form is to allow existing users to log into your service.
 
-![Login Form](https://res.cloudinary.com/component/image/upload/w_300/v1582157205/login_mogj1i.png)
+![Login Form](https://res.cloudinary.com/component/image/upload/w_300/v1597168270/permanent/login-mod.png)
 
 When a user logs in, they are redirected to the URL of your choice (default is `/dashboard`). They can also choose to generate a login link or reset their password if they have forgotten it.
 

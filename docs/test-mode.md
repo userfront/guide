@@ -6,18 +6,18 @@ When in test mode, Userfront does not send welcome or confirmation emails. Inste
 
 Test mode starts with these users:
 
-| ID  | Name        | Username    | Email                   | Password  |
-| :-- | :---------- | :---------- | ----------------------- | :-------- |
-| 1   | Admin User  | admin       | admin@example.com       | password1 |
-| 2   | Member User | member      | member@example.com      | password1 |
-| 3   | Viewer User | viewer      | viewer@example.com      | password1 |
-| 4   | Unconfirmed | unconfirmed | unconfirmed@example.com | password1 |
+| ID  | Name        | Username    | Email                   | Password         |
+| :-- | :---------- | :---------- | ----------------------- | :--------------- |
+| 1   | Admin User  | admin       | admin@example.com       | testmodepassword |
+| 2   | Member User | member      | member@example.com      | testmodepassword |
+| 3   | Viewer User | viewer      | viewer@example.com      | testmodepassword |
+| 4   | Unconfirmed | unconfirmed | unconfirmed@example.com | testmodepassword |
 
 ## Login
 
 When in test mode, the login form allows any of the above users to log in.
 
-For example, you could use `member` for the username and `password1` for the password, and your login form will log you in as the Member User above.
+For example, you could use `member` for the username and `testmodepassword` for the password, and your login form will log you in as the Member User above.
 
 ## Getting out of test mode
 

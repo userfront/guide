@@ -4,7 +4,7 @@
 
 The purpose of the Signup Form is to allow new users to sign up for your service.
 
-![Signup Form](https://res.cloudinary.com/component/image/upload/w_300/v1582158400/signup_rntzec.png)
+![Signup Form](https://res.cloudinary.com/component/image/upload/w_300/v1597168270/permanent/signup-mod.png)
 
 When a new user signs up, they are redirected to the URL of your choice (default is `/dashboard`). They also receive a welcome email with a link to confirm their email address.
 
