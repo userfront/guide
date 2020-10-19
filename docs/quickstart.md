@@ -65,5 +65,5 @@ Learn more about your auth tools:
 
 Learn more about the JWT access token:
 
-- [JWT structure](/jwt-structure.html)
+- [Tokens](/tokens.html)
 - [What is a JWT](/jwt-json-web-token.html)

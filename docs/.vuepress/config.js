@@ -73,7 +73,7 @@ module.exports = {
             "/login.md",
             "/reset.md",
             "/logout.md",
-            "/jwt-structure.md",
+            "/tokens.md",
             // "/profile.md",
           ],
         },
