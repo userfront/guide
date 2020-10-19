@@ -1,5 +1,5 @@
 module.exports = {
-  title: "Userfront Guide",
+  title: "Userfront guide",
   description: "Guide and examples for Userfront",
   base: "/guide/", // For deploying at userfront.com/guide/
   head: [
@@ -53,9 +53,12 @@ module.exports = {
     nav: [
       // { text: "Guide", link: "/" },
       // { text: "Examples", link: "/examples/" }
-      { text: "Home", link: "https://userfront.com/" },
-      { text: "Demo", link: "https://userfront.dev" },
-      { text: "Docs", link: "https://docs.userfront.com" },
+      {
+        text: "Demo project",
+        ariaLabel: "Project selector",
+        items: [{ text: "Chinese", link: "?project=demo1234" }],
+      },
+      { text: "API docs", link: "https://userfront.readme.io/reference" },
     ],
     sidebar: {
       "/": [
@@ -65,7 +68,7 @@ module.exports = {
           title: "Auth & Onboarding",
           collapsable: false,
           children: [
-            "/auth.md",
+            "/toolkit.md",
             "/signup.md",
             "/login.md",
             "/reset.md",

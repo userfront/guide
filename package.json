@@ -4,6 +4,7 @@
   "description": "Guide for userfront.com",
   "main": "index.js",
   "dependencies": {
+    "js-cookie": "^2.2.1",
     "vuepress": "^1.5.2"
   },
   "devDependencies": {

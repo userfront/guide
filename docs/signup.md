@@ -1,33 +1,34 @@
-# Signup Form
+# Signup
 
-## Purpose
+The purpose of the signup form is to allow new users to register for your service.
 
-The purpose of the Signup Form is to allow new users to sign up for your service.
+<iframe
+  :src="`https://test-demo1234.userfront.dev/signup`"
+  frameborder="0"
+  style="width:100%;min-height:500px;border:1px solid #eee;"
+></iframe>
 
-![Signup Form](https://res.cloudinary.com/component/image/upload/w_300/v1597168270/permanent/signup-mod.png)
+When a new user signs up, they are redirected to the URL of your choice (default is `/dashboard`).
 
-When a new user signs up, they are redirected to the URL of your choice (default is `/dashboard`). They also receive a welcome email with a link to confirm their email address.
+When a user signs up on your live site, they also receive a welcome email with a link to confirm their email address.
 
 ## Usage
 
-:::warning
-For your live sites, always use `https://` (also called SSL).<br>
-If your URL begins with `http://`, it is not secure.
+Add your signup form to any page where you want a user to sign up. For example, you may want your signup form directly on your home page and also on a page at `/signup`. You can also add it to your marketing pages if desired.
+
+In order for the signup form to work properly, it should be located at the same domain as your "logged in" pages.
+
+:::tip
+For your live sites, always use `https://` (also called SSL).
 :::
-
-Add your Signup Form to any page where you want a user to sign up. For example, you may want your Signup Form directly on your home page and also on a page at `/signup`. You can also add it to your marketing pages if desired.
-
-In order for the Signup Form to work properly, it should be on a page with the same domain as your "logged in" pages.
 
 ## Redirection
 
-When a user signs up, they are redirected to the URL of your choice. The default is `/dashboard`, but you can change it in your project's settings:
-
-![Signup URL](https://res.cloudinary.com/component/image/upload/v1583361090/guide/signup_url.png)
+When a user signs up, they are redirected to the URL of your choice. The default is `/dashboard`, but you can change it in your project's settings.
 
 When defined as a relative path like `/dashboard`, the user will be redirected whatever domain the form is on, plus that path.
 
-For example, if the Signup Form is at `https://example.com/features`, then the user will be redirected to `https://example.com/dashboard` upon sign up.
+For example, if the signup form is at `https://example.com/features`, then the user will be redirected to `https://example.com/dashboard` upon sign up.
 
 ## Signup webhook (optional)
 
@@ -61,7 +62,7 @@ It will contain information about the user in the body:
 
 ## API interaction (optional)
 
-If you want to build a custom signup form, you can do so by using the same endpoints as the Signup Form in your Toolkit:
+If you want to build a custom signup form, you can do so by using the same endpoints as the signup form in your Toolkit:
 
 ### Sign up a user
 

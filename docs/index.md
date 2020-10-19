@@ -1,21 +1,22 @@
 # Introduction
 
-Userfront is built to make startups more likely to succeed, focusing on three areas:
+### Userfront makes auth much simpler.
 
-1. [**10-minute Auth**](/auth.html) lets you add signup, login, and password reset to any website by copy/pasting a snippet of code into your HTML.
+The topics below help you get up and running quickly, understand how your auth flows work, and maintain a secure data platform for your users.
 
-2. [**Startup metrics**](/dashboard.html) improve your decision making and make it easy to share your progress with investors.
-
-3. [**Automated messaging**](/messaging.html) helps you onboard users and keep them engaged, for better retention and faster growth.
-
-:::tip
-Userfront works with **ANY** website or app, regardless of what technology you use. You can add it to existing projects to supercharge them, or can build a new project on whatever platform you prefer.
-
-Try the [Quickstart](/quickstart.html) to get up and running quickly.
-:::
+| Topic                                                 |                                                                                                             |
+| :---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| [**Quickstart**](/quickstart.html)                    | Get up and running in 10 minutes.                                                                           |
+| [**Toolkit**](/toolkit.html)                          | Forms for signup, login, password reset, and more.                                                          |
+| [**Tokens**](/tokens.html)                            | Learn which tokens are created when a user authenticates, how they're stored, and how you can use each one. |
+| [**Multi-tenancy**](/multi-tenancy.html)              | Create custom divisions in your application for things like user teams, projects, or organizations.         |
+| [**Security**](/security.html)                        | Understand the standards & best practices that protect your data.                                           |
+| [**Metrics**](/metrics.html)                          | Built-in analytics you can use to grow your project.                                                        |
+| [**API docs**](https://userfront.readme.io/reference) | Documentation for the Userfront API.                                                                        |
+| [**Webhooks**](https://userfront.readme.io/reference) | Webhooks you can configure for user & tenant actions.                                                       |
 
 ## Getting started
 
 When you sign up for Userfront, your project has a Toolkit with everything you need to allow users to sign up and log into your site.
 
-To add tools like your Signup Form, Login Form, and others to your site, follow the [installation instructions](/auth.html#installation).
+To add tools like your Signup Form, Login Form, and others to your site, follow the [installation instructions](/toolkit.html#installation).
