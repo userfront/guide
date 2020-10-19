@@ -58,7 +58,7 @@ module.exports = {
         ariaLabel: "Project selector",
         items: [{ text: "Chinese", link: "?project=demo1234" }],
       },
-      { text: "API docs", link: "https://docs.userfront.com" },
+      { text: "API docs", link: "https://userfront.readme.io/reference" },
     ],
     sidebar: {
       "/": [
