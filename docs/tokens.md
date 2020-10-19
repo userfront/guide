@@ -8,7 +8,7 @@ When a user logs into your application, they are issued 3 tokens:
 | [ID token](#id-token)           | This token has more detailed information about the user, such as their image. |
 | [Refresh token](#refresh-token) | This token is used to obtain new Access & ID tokens.                          |
 
-These 3 tokens are all [JWTs](/jwt-json-web-token) (JSON Web Tokens, pronounced "jots").
+These 3 tokens are all [JWTs](/jwt-json-web-token.html) (JSON Web Tokens, pronounced "jots").
 
 All tokens are signed using the RSA algorithm, with signing keys specific to your project.
 
@@ -42,7 +42,7 @@ The token's payload looks like:
 }
 ```
 
-The actual JWT looks like this:
+The actual JWT will look something like this:
 
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjk5LCJ1c2Vybm
@@ -54,7 +54,7 @@ M2NDk2MDcsImV4cCI6MTU5NjI0MTYwN30.QQPTMEDrJ6FFuBJ8sCZCZZIjDZvpA
 85dI-EImILTG5g
 ```
 
-This is a signed JWT; you can learn about the signing process [here](/jwt-json-web-token).
+This is a signed JWT; you can learn about the signing process [here](/jwt-json-web-token.html).
 
 #### In the user's browser
 
