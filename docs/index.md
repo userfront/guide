@@ -1,6 +1,6 @@
 # Introduction
 
-### An auth system designed to be simple.
+### Auth designed to be simple.
 
 Install, manage, and maintain your auth with far less complexity.
 
@@ -12,10 +12,11 @@ The topics below help you get up and running quickly.
 | [**Toolkit**](/toolkit.html)                          | View the tools for signup, login, password reset, and more.                                                 |
 | [**Tokens**](/tokens.html)                            | Learn which tokens are created when a user authenticates, how they're stored, and how you can use each one. |
 | [**Multi-tenancy**](/multi-tenancy.html)              | Create custom divisions in your application for things like teams, projects, or organizations.              |
-| [**Security**](/security.html)                        | Understand the built-in best practices that protect your data.                                              |
-| [**Metrics**](/metrics.html)                          | Discover user & tenant analytics you can use to grow your project.                                          |
+| [**Metrics**](/cohort-analysis.html)                  | Discover user & tenant analytics you can use to grow your project.                                          |
 | [**API docs**](https://userfront.readme.io/reference) | Documentation for the Userfront API.                                                                        |
-| [**Webhooks**](https://userfront.readme.io/reference) | Webhooks you can configure for user & tenant actions.                                                       |
+
+<!-- | [**Security**](/security.html)                        | Understand the built-in best practices that protect your data.                                              | -->
+<!-- | [**Webhooks**](https://userfront.readme.io/reference) | Webhooks you can configure for user & tenant actions.                                                       | -->
 
 ## Getting started
 

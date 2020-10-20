@@ -51,13 +51,7 @@ module.exports = {
   themeConfig: {
     smoothScroll: true,
     nav: [
-      // { text: "Guide", link: "/" },
-      // { text: "Examples", link: "/examples/" }
-      {
-        text: "Demo project",
-        ariaLabel: "Project selector",
-        items: [{ text: "Chinese", link: "?project=demo1234" }],
-      },
+      { text: "Dashboard", link: "https://userfront.com/projects" },
       { text: "API docs", link: "https://userfront.readme.io/reference" },
     ],
     sidebar: {
@@ -65,7 +59,7 @@ module.exports = {
         "/quickstart.html",
         "/",
         {
-          title: "Auth & Onboarding",
+          title: "Toolkit",
           collapsable: false,
           children: [
             "/toolkit.md",
@@ -73,9 +67,13 @@ module.exports = {
             "/login.md",
             "/reset.md",
             "/logout.md",
-            "/tokens.md",
             // "/profile.md",
           ],
+        },
+        {
+          title: "Tokens",
+          collapsable: false,
+          children: ["/tokens.md"],
         },
         {
           title: "Usage",
@@ -86,12 +84,12 @@ module.exports = {
           title: "Learning",
           collapsable: false,
           children: [
-            "/cohort.md",
-            "/cohort-analysis.md",
-            "/authentication.md",
-            "/auth-landscape.md",
-            // "/auth-token-types.md",
             "/jwt-json-web-token.md",
+            "/auth-landscape.md",
+            "/authentication.md",
+            "/cohort-analysis.md",
+            "/cohort.md",
+            // "/auth-token-types.md",
           ],
         },
         // "/dashboard.html",

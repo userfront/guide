@@ -1,4 +1,4 @@
-# Login Form
+# Login
 
 ## Purpose
 

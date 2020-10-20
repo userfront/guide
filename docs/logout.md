@@ -1,4 +1,4 @@
-# Logout Button
+# Logout
 
 ## Purpose
 

@@ -1,4 +1,4 @@
-# Password Reset Form
+# Password Reset
 
 ## Purpose
 
