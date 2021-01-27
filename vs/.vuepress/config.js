@@ -1,6 +1,6 @@
 module.exports = {
-  title: "Comparisons",
-  description: "Comparison of auth providers",
+  title: "Best auth comparison",
+  description: "Comparison of authentication and authorization providers",
   base: "/vs/", // For deploying at userfront.com/vs/
   head: [
     [
