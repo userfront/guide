@@ -18,6 +18,10 @@ Usable in any framework
 
 ![Auth0 logo](https://res.cloudinary.com/component/image/upload/w_100/v1611772729/permanent/auth0.png)
 
+:::tip
+Auth0 is a great solution for legacy tech stacks or complex use cases, where willingness to pay is relatively high.
+:::
+
 > “Secure access for everyone. But not just anyone.”
 
 Auth0 is the 2nd largest provider on our list. Initially focused on smaller firms, they have begun to focus on larger and more complex contracts. This is reflected in their emphasis on legacy support and custom solutions, as well as in their increased pricing and reduction of their free tier.
@@ -26,17 +30,17 @@ From their site, Auth0 is designed to “solve the most complex and large-scale 
 
 “Auth0 enables users to single sign-on for applications running on various platforms with various identity providers; add few lines of JavaScript to power their applications; customize various stages of the authentication and authorization pipeline, and connect their applications and APIs to their database of users and passwords. Its platform also allows users to authenticate to active directory, LDAP, SAML, Integrated Windows Authentication, Google Apps, Salesforce, and other IdPs without having to configure firewall; add and remove users, modify profiles and authorization attributes, and identify root cause user login issues; see a stream of recent logins and their locations; and enable various SaaS and SAML-enabled applications.”
 
-Verdict: a great solution for more complex use cases or legacy tech stacks, where willingness to pay is relatively high.
-
 ## Firebase
 
 ![Firebase logo](https://res.cloudinary.com/component/image/upload/w_100/v1611772837/permanent/firebase.png)
 
+:::tip
+Firebase is a full backend for mobile app development, and it excels in this area. Auth is included as part of that larger offering.
+:::
+
 > “Google's mobile platform that helps you quickly develop high-quality apps and grow your business.”
 
 Firebase's offerings include a hosted database, analytics, authentication, authorization, crash reporting, push notifications, and more.
-
-#### Firebase offerings
 
 Firebase began as a hosted database platform and was acquired by Google in 2014. It is now focused on delivering a tightly integrated solution for mobile applications.
 
@@ -56,9 +60,29 @@ Implementing Firebase authentication is straightforward if you have a standard u
 
 ![Okta logo](https://res.cloudinary.com/component/image/upload/w_90/v1611772964/permanent/okta.png)
 
+:::tip
+Okta is focused on large enterprises, with thousands of integrations and a team of sales engineers. It is priced accordingly.
+:::
+
+> "Build secure, seamless experiences for your customers and workforce."
+
+Okta is the largest provider on our list and is primarily focused on enterprise contracts. They focus on complex integrations, legacy applications, and providing SLA and other contractual support.
+
+Because Okta is the largest and oldest provider here, they support virtually every scenario that could be required for authentication and authorization, from LDAP to SSO, MFA, and over 6,500 integrations across many different industries.
+
+This does beg the question: what do I need 6,500 integrations for? And it leads to the major downside of Okta, which is that it can be confusing to use. There are many, many different options and features available, to the point where knowing which one to use can take effort in itself.
+
 ## AWS Cognito
 
 ![Cognito logo](https://res.cloudinary.com/component/image/upload/w_70,e_trim/v1611773032/permanent/cognito.jpg)
+
+:::tip
+Cognito works great for authenticating to AWS's own services, but often falls short as a general auth solution.
+:::
+
+> "Simple and Secure User Sign-Up, Sign-In, and Access Control"
+
+"Amazon Cognito lets you add user sign-up, sign-in, and access control to your web and mobile apps quickly and easily. Amazon Cognito scales to millions of users and supports sign-in with social identity providers, such as Apple, Facebook, Google, and Amazon, and enterprise identity providers via SAML 2.0 and OpenID Connect. "
 
 ## Userfront
 
