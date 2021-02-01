@@ -30,6 +30,10 @@ From their site, Auth0 is designed to “solve the most complex and large-scale 
 
 “Auth0 enables users to single sign-on for applications running on various platforms with various identity providers; add few lines of JavaScript to power their applications; customize various stages of the authentication and authorization pipeline, and connect their applications and APIs to their database of users and passwords. Its platform also allows users to authenticate to active directory, LDAP, SAML, Integrated Windows Authentication, Google Apps, Salesforce, and other IdPs without having to configure firewall; add and remove users, modify profiles and authorization attributes, and identify root cause user login issues; see a stream of recent logins and their locations; and enable various SaaS and SAML-enabled applications.”
 
+#### Auth0 authentication
+
+![Auth0 login screen](https://res.cloudinary.com/component/image/upload/w_420/v1611942512/permanent/auth0-login.png)
+
 ## Firebase
 
 ![Firebase logo](https://res.cloudinary.com/component/image/upload/w_100/v1611772837/permanent/firebase.png)
@@ -52,6 +56,10 @@ Focusing on the authentication portion of Firebase, the platform "aims to make b
 
 Firebase has a customizable user interface called FirebaseUI that has built-in components for mobile and web, with a focus on mobile. The look of the UI is _Googley_ as you might expect, since this is a service by Google.
 
+![Firebase login form](https://res.cloudinary.com/component/image/upload/w_280/v1611942270/permanent/firebase-login.png)
+
+That said, you can customize the look and feel of the login screen with additional effort, so if you don't like the look, you can change it.
+
 Because Firebase is built by Google, you can also expect strong security. Firebase claims that the same team built Firebase auth as worked on many of Google's other large-scale projects.
 
 Implementing Firebase authentication is straightforward if you have a standard use case, and Firebase claims you can "Set up the entire authentication system of your app in under 10 lines of code". This was not our experience, but there are likely some basic use cases where this would be true.
@@ -61,16 +69,22 @@ Implementing Firebase authentication is straightforward if you have a standard u
 ![Okta logo](https://res.cloudinary.com/component/image/upload/w_90/v1611772964/permanent/okta.png)
 
 :::tip
-Okta is focused on large enterprises, with thousands of integrations and a team of sales engineers. It is priced accordingly.
+Okta is focused on identitity management for large enterprises, with thousands of integrations and a team of sales engineers. It is also priced accordingly.
 :::
 
 > "Build secure, seamless experiences for your customers and workforce."
 
-Okta is the largest provider on our list and is primarily focused on enterprise contracts. They focus on complex integrations, legacy applications, and providing SLA and other contractual support.
+Okta is the largest provider on our list and is primarily focused on enterprise contracts for identity management, which means allowing employees to sign into _any_ website, including company websites. They focus on complex integrations, legacy applications, and providing SLA and other contractual support.
 
 Because Okta is the largest and oldest provider here, they support virtually every scenario that could be required for authentication and authorization, from LDAP to SSO, MFA, and over 6,500 integrations across many different industries.
 
-This does beg the question: what do I need 6,500 integrations for? And it leads to the major downside of Okta, which is that it can be confusing to use. There are many, many different options and features available, to the point where knowing which one to use can take effort in itself.
+The major downside of Okta, aside from the price, is that it can be confusing to administer. There are many, many different options and features available, to the point where knowing which one to use can take effort in itself.
+
+#### Okta authentication
+
+Authentication is a small part of Okta's offering, and they approach it as a basic necessity for their other services. This means you can set up a hosted login screen at `yoursite.okta.com`
+
+![Okta login screen](https://res.cloudinary.com/component/image/upload/w_420/v1611941722/permanent/okta-login.png)
 
 ## AWS Cognito
 
