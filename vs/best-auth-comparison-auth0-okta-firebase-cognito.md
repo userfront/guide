@@ -96,7 +96,17 @@ Cognito works great for authenticating to AWS's own services, but often falls sh
 
 > "Simple and Secure User Sign-Up, Sign-In, and Access Control"
 
-"Amazon Cognito lets you add user sign-up, sign-in, and access control to your web and mobile apps quickly and easily. Amazon Cognito scales to millions of users and supports sign-in with social identity providers, such as Apple, Facebook, Google, and Amazon, and enterprise identity providers via SAML 2.0 and OpenID Connect. "
+Cognito is Amazon Web Service's offering for authentication and authorization. It is focused on interfacing with AWS services first and foremost, but also enables you to add auth to your own application.
+
+"Amazon Cognito lets you add user sign-up, sign-in, and access control to your web and mobile apps quickly and easily. Amazon Cognito scales to millions of users and supports sign-in with social identity providers, such as Apple, Facebook, Google, and Amazon, and enterprise identity providers via SAML 2.0 and OpenID Connect."
+
+#### Cognito authentication
+
+Cognito has the concept of "user pools", which are groups of users that you can set up your application to access. The authenication flow for granting tokens for these users is hosted by AWS by default. This means you get a login screen like `https://mysite.auth.us-east-1.amazoncognito.com/login`. You can lightly customize the look and feel of this page, as well as point your own domain at it.
+
+![Cognito login form](https://res.cloudinary.com/component/image/upload/w_380/v1612204950/permanent/cognito-login.png)
+
+Cognito also has the option to build your own custom forms and self-host them, using their UI library called Amplify.
 
 ## Userfront
 
