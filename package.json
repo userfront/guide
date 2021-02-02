@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "js-cookie": "^2.2.1",
-    "vuepress": "^1.5.2"
+    "vuepress": "^1.8.0"
   },
   "devDependencies": {
     "@vuepress/plugin-google-analytics": "^1.4.1"
