@@ -133,5 +133,23 @@ If the plain, hosted option does not fit your project needs, Cognito also has th
 ![Userfront logo](https://res.cloudinary.com/component/image/upload/w_150/v1586541167/permanent/cover_400.png)
 
 :::tip
-Userfront is excellent for modern web applications that will use SSO, access control, or multi-tenancy.
+Userfront is excellent for modern web applications that want access control, SSO, or multi-tenancy.
 :::
+
+> "Auth without complexity."
+
+Userfront is the newest entrant on our list, and it is focused on ease of use for authentication and access control. That means it is easy to install, and it stays up to date automatically. Unlike the other providers on this list, Userfront's sign on forms automatically update with new protocols and security features, even if you are self-hosting the forms.
+
+Rather than getting involved with how different auth flows work, Userfront handles all the handshakes and protocols for you, and it adds a token (JWT) to the user's browser that you can then send to your application.
+
+As the newest entrant, Userfront has the basics for integrations like SSO via the major providers (Google, Facebook, Azure, Office365, etc.), but it does not have the less common integrations or custom protocols that something like Okta would provide. It is also focused on modern protocols, so does not offer support for legacy technologies like LDAP or SAML.
+
+#### Userfront authentication
+
+Authentication is a first-class citizen at Userfront, meaning they have put a good deal of thought into the UX and design of the various authentication flows.
+
+Unlike other providers on this list, the default installation for Userfront is to add your forms directly to your own page, rather than having a hosted portal. Userfront makes this easy to do with ready-to-use snippets for HTML, React, Vue, and Angular available in the dashboard.
+
+The default sign on forms are attractive and modern without being overbearing.
+
+![Userfront login form](https://res.cloudinary.com/component/image/upload/v1612378383/permanent/userfront-login.png)
