@@ -146,10 +146,33 @@ As the newest entrant, Userfront has the basics for integrations like SSO via th
 
 #### Userfront authentication
 
-Authentication is a first-class citizen at Userfront, meaning they have put a good deal of thought into the UX and design of the various authentication flows.
+Authentication is a first-class citizen at Userfront, meaning they have put a good deal of thought into the UX and design of the various authentication flows, and everything "just works" once installed.
 
-Unlike other providers on this list, the default installation for Userfront is to add your forms directly to your own page, rather than having a hosted portal. Userfront makes this easy to do with ready-to-use snippets for HTML, React, Vue, and Angular available in the dashboard.
+Unlike other providers on this list, the default installation for Userfront is to add the forms directly to your own page, rather than having a hosted portal. Each project gets a "Toolkit" with JavaScript widgets for signup, login, password reset, and other typical auth functions. They are easy to install, with ready-to-use snippets for HTML, React, Vue, and Angular.
 
-The default sign on forms are attractive and modern without being overbearing.
+The default sign on forms are attractive and modern without being overbearing. They have modern touches like working with password managers' autofill, the ability to show/hide passwords, and helpful error messages if the user enters incorrect information.
 
 ![Userfront login form](https://res.cloudinary.com/component/image/upload/v1612378383/permanent/userfront-login.png)
+
+Overall, Userfront is the most pure-play web auth solution on our list, and probably executes it the best for projects where simplicity and modern protocols are a focus.
+
+## Verdict
+
+So, which auth solution is the best? That depends entirely on your needs.
+
+For legacy, enterprise, and projects with lots of complex integrations, Auth0 and Okta are the winners. For standard needs and "keep it simple" projects, Userfront is the best option. For mobile apps, or for projects where you want to use a hosted database for everything in your application, Firebase is the best option. For letting users access your AWS resources like S3 or EC2, Cognito wins.
+
+Here is a summary of the various use cases:
+
+| Use case          | Best option        |
+| :---------------- | :----------------- |
+| Enterprise        | Okta or Auth0      |
+| Startup           | Userfront          |
+| Legacy            | Auth0              |
+| SaaS              | Userfront          |
+| Mobile app        | Firebase           |
+| Multi-tenancy     | Userfront or Auth0 |
+| Complex use cases | Auth0 or Okta      |
+| Accessing AWS     | Cognito            |
+
+As always, your mileage may vary, so if you have some overlap in the above use cases, you may want to trial more than one option before making your final decision.
