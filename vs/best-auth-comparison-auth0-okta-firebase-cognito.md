@@ -8,13 +8,15 @@ Each provider reviewed here is usable in any web framework.
 
 These are the providers we will review:
 
-| Provider  | Pros                                      | Cons                                                                              |
-| --------- | ----------------------------------------- | --------------------------------------------------------------------------------- |
-| Auth0     | Lots of integrations; Legacy support      | Expensive; Larger number of integrations makes it more confusing                  |
-| Firebase  | Great for mobile; Lots of integrations    | Focus on mobile makes it harder to use on web; Database lock-in; Privacy concerns |
-| Okta      | Lots of integrations; Legacy support      | Expensive; A little dated; Focused on enterprise                                  |
-| Cognito   | Great for granting access to AWS services | Poor integration for non-AWS applications; Limited access controls                |
-| Userfront | Very easy to use; Less complex            | Focus on modern tech means limited support for legacy protocols                   |
+| Provider                | Pros                                      | Cons                                                                              |
+| ----------------------- | ----------------------------------------- | --------------------------------------------------------------------------------- |
+| [Auth0](#auth0)         | Lots of integrations; Legacy support      | Expensive; Larger number of integrations makes it more confusing                  |
+| [Firebase](#firebase)   | Great for mobile; Lots of integrations    | Focus on mobile makes it harder to use on web; Database lock-in; Privacy concerns |
+| [Okta](#okta)           | Lots of integrations; Legacy support      | Expensive; A little dated; Focused on enterprise                                  |
+| [Cognito](#cognito)     | Great for granting access to AWS services | Poor integration for non-AWS applications; Limited access controls                |
+| [Userfront](#userfront) | Very easy to use; Less complex            | Focus on modern tech means limited support for legacy protocols                   |
+
+And if you want to skip the reviews and just get to the results, see the [final verdict](#verdict) at the end.
 
 ## Auth0
 
@@ -102,7 +104,7 @@ The default design of the Okta sign on experience is a little bit nicer and more
 
 ![Okta login screen](https://res.cloudinary.com/component/image/upload/w_420/v1611941722/permanent/okta-login.png)
 
-## AWS Cognito
+## Cognito
 
 ![Cognito logo](https://res.cloudinary.com/component/image/upload/w_70,e_trim/v1611773032/permanent/cognito.jpg)
 
