@@ -1,6 +1,6 @@
 module.exports = {
-  title: "Comparisons",
-  description: "Comparison of auth providers",
+  title: "Auth comparison",
+  description: "Comparison of authentication and authorization providers",
   base: "/vs/", // For deploying at userfront.com/vs/
   head: [
     [
@@ -9,13 +9,6 @@ module.exports = {
         rel: "icon",
         href:
           "https://res.cloudinary.com/component/image/upload/v1582652683/circle_400_light_jrgbjq.png",
-      },
-    ],
-    [
-      "link",
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css?family=Material+Icons",
       },
     ],
   ],
@@ -29,7 +22,7 @@ module.exports = {
   ],
   themeConfig: {
     smoothScroll: true,
-    nav: [{ text: "Userfront", link: "https://userfront.com" }],
+    // nav: [{ text: "Userfront", link: "https://userfront.com" }],
     // sidebar: {
     //   "/": [
     //     "/quickstart.html",
@@ -72,7 +65,7 @@ module.exports = {
     //     // "/messaging.html"
     //   ],
     // },
-    lastUpdated: "Last Updated", // string | boolean
+    // lastUpdated: "Last Updated", // string | boolean
     // https://vuepress.vuejs.org/default-theme-config/#algolia-search
     // algolia: {
     //   apiKey: "3d15a906f533dae762fe03ca79737fa5",
