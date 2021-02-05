@@ -32,7 +32,7 @@ module.exports = {
   themeConfig: {
     smoothScroll: false,
     nav: [
-      { text: "Guide", link: "/guide" },
+      { text: "Guide", link: "https://userfront.com/guide" },
       { text: "Dashboard", link: "https://userfront.com/projects" },
     ],
     sidebar: false,
