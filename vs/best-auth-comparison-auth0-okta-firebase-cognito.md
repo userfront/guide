@@ -144,7 +144,7 @@ Userfront is the newest entrant on our list, and it is focused on ease of use fo
 
 Rather than getting involved with how different auth flows work, Userfront handles all the handshakes and protocols for you, and it adds a token (JWT) to the user's browser that you can then send to your application.
 
-As the newest entrant, Userfront has the basics for integrations like SSO via the major providers (Google, Facebook, Azure, Office365, etc.), but it does not have the less common integrations or custom protocols that something like Okta would provide. It is also focused on modern protocols, so does not offer support for legacy technologies like LDAP or SAML.
+As the newest entrant, Userfront has the basics for integrations like SSO via the major providers (Google, Facebook, Azure, etc.), but it does not have the less common integrations or custom protocols that something like Okta would provide. It is also focused on modern protocols, so does not offer support for legacy technologies like LDAP or SAML.
 
 #### Userfront authentication
 
