@@ -8,7 +8,10 @@ export default {
     Redoc.init(
       "https://api.userfront.com/swagger.json",
       {
-        scrollYOffset: 50,
+        // scrollYOffset: 50,
+        hideDownloadButton: true,
+        hideSingleRequestSampleTab: true,
+        nativeScrollbars: true,
       },
       this.$refs["redoc-container"]
     );

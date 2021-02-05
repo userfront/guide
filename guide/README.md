@@ -27,7 +27,7 @@ footer: ©2020 Userfront
     <p>
       Technical documentation for making API requests to Userfront.
       <br>
-      <a href="https://userfront.readme.io/reference">API docs →</a>
+      <a href="https://userfront.com/docs">API docs →</a>
     </p>
   </div>
 </div>

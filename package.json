@@ -11,8 +11,8 @@
     "@vuepress/plugin-google-analytics": "^1.4.1"
   },
   "scripts": {
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "guide:dev": "vuepress dev guide",
+    "guide:build": "vuepress build guide"
   },
   "repository": {
     "type": "git",
