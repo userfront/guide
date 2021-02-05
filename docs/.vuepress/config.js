@@ -37,7 +37,7 @@ module.exports = {
     ],
     sidebar: false,
     search: false,
-    lastUpdated: "Last Updated", // string | boolean
+    lastUpdated: false, // string | boolean
     // https://vuepress.vuejs.org/default-theme-config/#algolia-search
     // algolia: {
     //   apiKey: "",
