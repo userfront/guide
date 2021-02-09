@@ -59,6 +59,11 @@ module.exports = {
         "/quickstart.html",
         "/",
         {
+          title: "Examples",
+          collapsable: true,
+          children: ["/examples/create-react-app"],
+        },
+        {
           title: "Toolkit",
           collapsable: false,
           children: [
