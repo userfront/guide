@@ -15,8 +15,7 @@ module.exports = {
     [
       "script",
       {
-        src:
-          "https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js",
+        src: "/redoc.standalone.js",
       },
       ,
     ],
@@ -39,10 +38,7 @@ module.exports = {
     search: false,
     lastUpdated: false, // string | boolean
     // https://vuepress.vuejs.org/default-theme-config/#algolia-search
-    // algolia: {
-    //   apiKey: "",
-    //   indexName: "userfront",
-    // },
+    // algolia: {},
 
     // Assumes GitHub. Can also be a full GitLab url.
     // repo: 'userfront/guide',
