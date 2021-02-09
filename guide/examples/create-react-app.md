@@ -1,5 +1,7 @@
 # Create React App
 
+The repo for this example is at https://github.com/userfront/create-react-app
+
 ## 1. Initial setup
 
 Follow the [setup instructions](https://create-react-app.dev/docs/getting-started/) for Create React App. In your terminal, enter:
