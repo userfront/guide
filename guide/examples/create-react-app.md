@@ -94,14 +94,16 @@ The result is a styled sign up page:
 
 ## 3. Sign up
 
-The signup form is now functional and is in "Test mode". Try adding some user information to the form to sign up. This will create a user in your dashboard:
+The signup form is now functional and is in "Test mode". Try adding some user information to the form to sign up. This will create a user in your dashboard, visible by toggling the "Test mode" on:
 
 ![Userfront dashboard test mode](https://res.cloudinary.com/component/image/upload/v1612980797/permanent/create-react-app-2.png)
 
-By default, the signup form also redirected the page to `http://localhost:3000/dashboard`. Create React App serves the same file for all pages by default, so you still see a signup page even though you just signed up.
+By default, the signup form also redirected the page to `http://localhost:3000/dashboard`.
+
+Create React App serves the same file for all pages by default, so you still see a signup page even though you just signed up.
 
 You can edit the redirect location by visiting `Toolkit > Signup` in the Userfront dashboard.
 
 ### Next steps
 
-To continue building this example for a Single Page App (SPA) using React Router, check out the [React Router example](/examples/react-router).
+To continue this example for a Single Page App (SPA) with proper routing using React Router, move on to the [React Router example](/guide/examples/react-router).
