@@ -61,7 +61,7 @@ module.exports = {
         {
           title: "Examples",
           collapsable: true,
-          children: ["/examples/create-react-app"],
+          children: ["/examples/create-react-app", "/examples/react-router"],
         },
         {
           title: "Toolkit",
