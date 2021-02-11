@@ -17,6 +17,7 @@ export default {
         // scrollYOffset: 50,
         hideDownloadButton: true,
         hideSingleRequestSampleTab: true,
+        pathInMiddlePanel: true,
       },
       this.$refs["redoc-container"]
     );
