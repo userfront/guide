@@ -5,15 +5,18 @@
   "main": "index.js",
   "dependencies": {
     "js-cookie": "^2.2.1",
-    "swagger-ui": "^3.43.0",
-    "vuepress": "^1.8.0"
+    "vuepress": "^1.8.1"
   },
   "devDependencies": {
     "@vuepress/plugin-google-analytics": "^1.4.1"
   },
   "scripts": {
     "guide:dev": "vuepress dev guide",
-    "guide:build": "vuepress build guide"
+    "guide:build": "vuepress build guide",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "vs:dev": "vuepress dev vs",
+    "vs:build": "vuepress build vs"
   },
   "repository": {
     "type": "git",
@@ -23,10 +26,11 @@
     "userfront",
     "guide",
     "auth",
-    "startup",
-    "growth",
-    "cohort analysis",
-    "email automation"
+    "authentication",
+    "authorization",
+    "access control",
+    "sso",
+    "multi-tenancy"
   ],
   "author": "Userfront",
   "license": "ISC",

@@ -11,14 +11,6 @@ module.exports = {
           "https://res.cloudinary.com/component/image/upload/v1582652683/circle_400_light_jrgbjq.png",
       },
     ],
-    /* Production scripts */
-    [
-      "script",
-      {
-        src: "/redoc.standalone.js",
-      },
-      ,
-    ],
   ],
   plugins: [
     [
@@ -29,12 +21,22 @@ module.exports = {
     ],
   ],
   themeConfig: {
-    smoothScroll: false,
+    smoothScroll: true,
     nav: [
       { text: "Guide", link: "https://userfront.com/guide" },
       { text: "Dashboard", link: "https://userfront.com/projects" },
     ],
-    sidebar: [],
+    sidebar: {
+      "/": [
+        "/api.html",
+        "/webhooks.html",
+        // {
+        //   title: "Examples",
+        //   collapsable: true,
+        //   children: ["/examples/create-react-app", "/examples/react-router"],
+        // },
+      ],
+    },
     search: false,
     lastUpdated: false, // string | boolean
     // https://vuepress.vuejs.org/default-theme-config/#algolia-search

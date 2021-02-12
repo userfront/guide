@@ -1,4 +1,0 @@
-Hello there
-<swagger/>
-
-<!-- <redoc/> -->
