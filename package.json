@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "js-cookie": "^2.2.1",
+    "swagger-ui": "^3.43.0",
     "vuepress": "^1.8.0"
   },
   "devDependencies": {

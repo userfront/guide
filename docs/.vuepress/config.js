@@ -34,7 +34,7 @@ module.exports = {
       { text: "Guide", link: "https://userfront.com/guide" },
       { text: "Dashboard", link: "https://userfront.com/projects" },
     ],
-    sidebar: false,
+    sidebar: [],
     search: false,
     lastUpdated: false, // string | boolean
     // https://vuepress.vuejs.org/default-theme-config/#algolia-search
