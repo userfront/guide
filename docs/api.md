@@ -1,9 +1,20 @@
 # API reference
 
-<columns/>
+:::: row
+::: left
 
-<br>
-<br>
+!!! include(docs/examples.md) !!!
+Something here
+
+:::
+::: right
+
+```js
+Some code
+```
+
+:::
+::::
 
 ## Users
 

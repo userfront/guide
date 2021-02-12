@@ -59,4 +59,12 @@ module.exports = {
     // custom text for edit link. Defaults to "Edit this page"
     // editLinkText: "Help us improve this page",
   },
+  markdown: {
+    extendMarkdown: (md) => {
+      md.use(require("markdown-it-container"), "left");
+      md.use(require("markdown-it-container"), "right");
+      md.use(require("markdown-it-container"), "row");
+      md.use(require("markdown-it-include"));
+    },
+  },
 };

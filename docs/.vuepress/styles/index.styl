@@ -6,3 +6,35 @@ main.home {
     height: auto;
   }
 }
+
+// Custom styles
+
+.row {
+  width: 100%;
+  display: flex;
+}
+.left {
+  width: 55%;
+  display: inline-block;
+  padding: 0 20px 0 0;
+  background-color: red;
+}
+.right {
+  width: 45%;
+  display: inline-block;
+  background-color: blue;
+}
+@media (max-width: 767px) {
+  .row {
+    flex-direction: column;
+  }
+  .left,
+  .right {
+    display: block;
+    width: 100%;
+    padding-right: 0;
+  }
+  .left {
+    margin-bottom: 20px;
+  }
+}
