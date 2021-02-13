@@ -37,7 +37,7 @@ module.exports = {
         // },
       ],
     },
-    search: false,
+    // search: false,
     lastUpdated: false, // string | boolean
     // https://vuepress.vuejs.org/default-theme-config/#algolia-search
     // algolia: {},
