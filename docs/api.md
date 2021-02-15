@@ -20,19 +20,7 @@ Check out our development quickstart guide.
 
 Use apps from our partners to get started with Stripe and to do more with your Stripe account—no code required.
 
-<code-group>
-<code-block title="Node">
-```js
-Some code
-```
-</code-block>
-
-<code-block title="PHP">
-```php
-Some code
-```
-</code-block>
-</code-group>
+!!! include(docs/code/users.get.md) !!!
 
 ::::
 :::::
@@ -102,5 +90,3 @@ Some `4xx` errors that could be handled programmatically (e.g. a token is expire
 :::::
 
 ## Users
-
-!!! include(docs/examples.md) !!!
