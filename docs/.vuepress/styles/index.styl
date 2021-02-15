@@ -9,17 +9,50 @@ main.home {
 
 // Custom styles
 
+.page {
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.card {
+  background: white;
+  border: 1px solid #eaecef;
+  border-radius: 8px;
+  background-color: #f7fafc;
+  font-weight: 400;
+  padding: 0 20px 20px;
+  h4 {
+    margin: 0 -20px;
+    padding: 10px 20px;
+    background-color: #eaecef;
+  }
+  table {
+    font-size: 13px;
+    thead {
+      display: none;
+    }
+    tr, th, td {
+      border: none;
+      vertical-align: top;
+    }
+    td:first-child {
+      min-width: 140px;
+      padding-left: 0;
+    }
+  }
+}
+
 .row {
   width: 100%;
   display: flex;
 }
 .left {
-  width: 55%;
+  width: calc(50% - 30px);
   display: inline-block;
-  padding: 0 60px 0 0;
+  margin-right: 60px;
 }
 .right {
-  width: calc(45% - 60px);
+  width: calc(50% - 30px);
   display: inline-block;
 }
 @media (max-width: 767px) {
@@ -30,7 +63,7 @@ main.home {
   .right {
     display: block;
     width: 100%;
-    padding-right: 0;
+    margin-right: 0;
   }
   .left {
     margin-bottom: 20px;

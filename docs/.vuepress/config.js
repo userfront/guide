@@ -64,6 +64,7 @@ module.exports = {
       md.use(require("markdown-it-container"), "left");
       md.use(require("markdown-it-container"), "right");
       md.use(require("markdown-it-container"), "row");
+      md.use(require("markdown-it-container"), "card");
       md.use(require("markdown-it-include"));
     },
   },
