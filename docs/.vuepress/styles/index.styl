@@ -20,7 +20,8 @@ main.home {
   border-radius: 8px;
   background-color: #f7fafc;
   font-weight: 400;
-  padding: 0 20px 20px;
+  padding: 0 20px 0 20px;
+  margin-top: 20px;
   h4 {
     margin: 0 -20px;
     padding: 10px 20px;
@@ -40,11 +41,25 @@ main.home {
       padding-left: 0;
     }
   }
+  .language-endpoints {
+    background-color: inherit;
+    .language-text {
+      padding: 0;
+    }
+    code {
+      color: #32325d !important;
+    }
+  }
+}
+
+.theme-code-group {
+  margin-top: 20px;
 }
 
 .row {
   width: 100%;
   display: flex;
+  margin: 20px 0;
 }
 .left {
   width: calc(50% - 30px);

@@ -4,7 +4,7 @@
 ```bash
 curl --request GET \
   --url https://api.userfront.com/v0/tenants/tenantId/users/userId \
-  --header 'Accept: */*'
+  --header 'Authorization: Bearer ...'
 ```
 </code-block>
 
