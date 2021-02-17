@@ -46,8 +46,8 @@ export default {
     },
     curlSample() {
       return Prism.highlight(
-        `curl --request ${this.verb.toUpperCase()} \ 
-  --url https://api.userfront.com${this.substitutedPath} \ 
+        `curl --request ${this.verb.toUpperCase()} \\ 
+  --url https://api.userfront.com${this.substitutedPath} \\ 
   --header 'Accept: */*'`,
         Prism.languages.bash,
         "bash"
