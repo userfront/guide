@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-show="responses.length > 0">
     <code-group>
       <code-block title="cURL">
         <pre><code>
@@ -15,8 +15,22 @@
         ```php Some PHP code ```
       </code-block>
     </code-group>
+    <!-- // TODO make a component that will accept a URL, payload, etc, and render a code
+block with tabs for each of the methods (e.g. Node, PHP, Ruby, etc) -->
   </div>
 </template>
 
-// TODO make a component that will accept a URL, payload, etc, and render a code
-block with tabs for each of the methods (e.g. Node, PHP, Ruby, etc)
+<script>
+export default {
+  props: ["path", "verb"],
+  computed: {
+    responses() {
+      try {
+        return this.$swagger.paths[this.path][this.verb].responses;
+      } catch (error) {
+        return [];
+      }
+    },
+  },
+};
+</script>

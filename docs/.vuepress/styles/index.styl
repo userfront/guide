@@ -9,6 +9,10 @@ main.home {
 
 // Custom styles
 
+h1,h2,h3,h4,h5,.navbar a .site-name {
+  color: darken($textColor, 20%)
+}
+
 .page {
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
@@ -41,9 +45,9 @@ main.home {
       padding-left: 0;
     }
   }
-  .language-endpoints {
+  .language-endpoints, .language-json {
     background-color: inherit;
-    .language-text {
+    pre {
       padding: 0;
     }
     code {
@@ -59,7 +63,7 @@ main.home {
 .row {
   width: 100%;
   display: flex;
-  margin: 20px 0;
+  margin: 0 0 20px;
 }
 .left {
   width: calc(50% - 30px);
