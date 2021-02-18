@@ -148,9 +148,9 @@ Creates a new user in an existing tenant.
 ::::
 :::: right
 
-<code-samples path="/v0/tenants/{tenantId}/users" verb="post" />
+`POST /v0/tenants/:tenantId/users`
 
-!!! include(docs/code/users.get.md) !!!
+<code-samples path="/v0/tenants/{tenantId}/users" verb="post" />
 
 ::: card
 

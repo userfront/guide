@@ -13,6 +13,7 @@ export default async ({ router, Vue }) => {
     } catch (err) {}
   });
 
+  // Load the swagger spec
   try {
     const { data } = await axios.get(swaggerUrl);
     Vue.prototype.$swagger = data;
@@ -20,4 +21,15 @@ export default async ({ router, Vue }) => {
     console.error("Problem fetching OpenAPI specification");
     console.error(error);
   }
+
+  // Scroll to an anchor on initial pageload
+  setTimeout(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.slice(1));
+
+      if (element) {
+        element.scrollIntoView();
+      }
+    }
+  }, 100);
 };
