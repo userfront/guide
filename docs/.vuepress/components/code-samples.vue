@@ -1,11 +1,18 @@
 <template>
   <div v-show="parameters.length > 0">
     <code-group-custom>
+      <template v-slot:copy="slotProps">
+        <div class="copy-button" @click="copyCode(slotProps.activeTab)">
+          <span class="material-icons">
+            content_copy
+          </span>
+        </div>
+      </template>
       <code-block title="cURL">
         <div class="language-bash extra-class">
           <pre
             class="language-bash"
-          ><code class="language-bash" v-html="curlSample"></code></pre>
+          ><code class="language-bash" v-html="highlight('bash', 'curl')"></code></pre>
         </div>
       </code-block>
 
@@ -13,7 +20,7 @@
         <div class="language-javascript extra-class">
           <pre
             class="language-javascript"
-          ><code class="language-javascript" v-html="nodeSample"></code></pre>
+          ><code class="language-javascript" v-html="highlight('javascript','node')"></code></pre>
         </div>
       </code-block>
 
@@ -21,7 +28,7 @@
         <div class="language-ruby extra-class">
           <pre
             class="language-ruby"
-          ><code class="language-ruby" v-html="rubySample"></code></pre>
+          ><code class="language-ruby" v-html="highlight('ruby')"></code></pre>
         </div>
       </code-block>
 
@@ -29,7 +36,7 @@
         <div class="language-python extra-class">
           <pre
             class="language-python"
-          ><code class="language-python" v-html="pythonSample"></code></pre>
+          ><code class="language-python" v-html="highlight('python')"></code></pre>
         </div>
       </code-block>
 
@@ -37,10 +44,12 @@
         <div class="language-javascript extra-class">
           <pre
             class="language-javascript"
-          ><code class="language-javascript" v-html="javascriptSample"></code></pre>
+          ><code class="language-javascript" v-html="highlight('javascript')"></code></pre>
         </div>
       </code-block>
     </code-group-custom>
+
+    <textarea ref="copyBox" :value="activeSample" />
   </div>
 </template>
 
@@ -49,9 +58,15 @@ import Prism from "prismjs";
 import "prismjs/components/prism-bash";
 import "prismjs/components/prism-ruby";
 import "prismjs/components/prism-python";
+import { copyToClipboard } from "../utils/utils.js";
 
 export default {
   props: ["path", "verb"],
+  data() {
+    return {
+      activeSample: "",
+    };
+  },
   computed: {
     url() {
       return `https://api.userfront.com${this.path
@@ -78,31 +93,22 @@ export default {
       return this.parameters.filter((param) => !param.required);
     },
     curlSample() {
-      return Prism.highlight(
-        `curl --request ${this.uppercaseVerb} \\
+      return `curl --request ${this.uppercaseVerb} \\
   --url ${this.url} \\
-  --header 'Accept: */*'`,
-        Prism.languages.bash,
-        "bash"
-      );
+  --header 'Accept: */*'`;
     },
     nodeSample() {
-      return Prism.highlight(
-        `const options = {
+      return `const options = {
   method: "${this.uppercaseVerb}",
   headers: { Accept: "*/*" },
 };
 
 fetch("${this.url}", options)
   .then((response) => console.log(response))
-  .catch((err) => console.error(err));`,
-        Prism.languages.javascript,
-        "javascript"
-      );
+  .catch((err) => console.error(err));`;
     },
     rubySample() {
-      return Prism.highlight(
-        `require 'uri'
+      return `require 'uri'
 require 'net/http'
 require 'openssl'
 
@@ -116,14 +122,10 @@ request = Net::HTTP::${this.titlecaseVerb}.new(url)
 request["Accept"] = '*/*'
 
 response = http.request(request)
-puts response.read_body`,
-        Prism.languages.ruby,
-        "ruby"
-      );
+puts response.read_body`;
     },
     pythonSample() {
-      return Prism.highlight(
-        `import requests
+      return `import requests
 
 url = "${this.url}"
 
@@ -134,14 +136,10 @@ headers = {
 
 response = requests.request("${this.uppercaseVerb}", url, headers=headers)
 
-print(response.text)`,
-        Prism.languages.python,
-        "python"
-      );
+print(response.text)`;
     },
     javascriptSample() {
-      return Prism.highlight(
-        `const options = {
+      return `const options = {
   method: '${this.uppercaseVerb}',
   headers: { Accept: '*/*', 'Content-Type': 'application/json' },
   body: 'false'
@@ -149,17 +147,24 @@ print(response.text)`,
 
 fetch('${this.url}', options)
   .then(response => console.log(response))
-  .catch(err => console.error(err));`,
-        Prism.languages.javascript,
-        "javascript"
+  .catch(err => console.error(err));`;
+    },
+  },
+  methods: {
+    highlight(language, framework) {
+      return Prism.highlight(
+        this[`${framework || language}Sample`],
+        Prism.languages[language],
+        language
       );
+    },
+    copyCode(tab) {
+      if (!tab || !tab.title) return;
+      const sampleName = `${tab.title.split(/\./)[0].toLowerCase()}Sample`;
+      this.activeSample = this[sampleName];
+      copyToClipboard(this.$refs.copyBox);
+      return;
     },
   },
 };
 </script>
-
-<style>
-/* .theme-code-block pre {
-  background-color: #4f566b;
-} */
-</style>

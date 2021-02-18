@@ -11,6 +11,13 @@ module.exports = {
           "https://res.cloudinary.com/component/image/upload/v1582652683/circle_400_light_jrgbjq.png",
       },
     ],
+    [
+      "link",
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Material+Icons",
+      },
+    ],
   ],
   plugins: [
     [
