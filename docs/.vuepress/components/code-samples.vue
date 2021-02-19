@@ -3,8 +3,14 @@
     <code-group-custom>
       <template v-slot:copy="slotProps">
         <div class="copy-button" @click="copyCode(slotProps.activeTab)">
-          <span class="material-icons">
+          <span class="material-icons" v-if="!copied">
             content_copy
+          </span>
+          <span v-if="copied">
+            <span style="font-size:14px; color:#7ec699;"
+              >copied
+              <i class="material-icons" style="font-size:14px;">check</i>
+            </span>
           </span>
         </div>
       </template>
@@ -64,6 +70,7 @@ export default {
   props: ["path", "verb"],
   data() {
     return {
+      copied: false,
       activeSample: "",
     };
   },
@@ -162,7 +169,13 @@ fetch('${this.url}', options)
       if (!tab || !tab.title) return;
       const sampleName = `${tab.title.split(/\./)[0].toLowerCase()}Sample`;
       this.activeSample = this[sampleName];
-      copyToClipboard(this.$refs.copyBox);
+      setTimeout(() => {
+        copyToClipboard(this.$refs.copyBox);
+        this.copied = true;
+        setTimeout(() => {
+          this.copied = false;
+        }, 3000);
+      }, 1);
       return;
     },
   },
