@@ -49,7 +49,7 @@
       </code-block>
     </code-group-custom>
 
-    <textarea ref="copyBox" :value="activeSample" />
+    <textarea ref="copyBox" class="code-copy-box" :value="activeSample" />
   </div>
 </template>
 
@@ -168,3 +168,14 @@ fetch('${this.url}', options)
   },
 };
 </script>
+
+<style lang="stylus" scoped>
+.code-copy-box {
+  width: 10px;
+  height: 10px;
+  border: none;
+  position: fixed;
+  right: -1000px;
+  bottom: -1000px;
+}
+</style>
