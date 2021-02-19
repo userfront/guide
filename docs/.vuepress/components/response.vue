@@ -1,36 +1,33 @@
 <template>
-  <div v-show="responses.length > 0">
-    <code-group>
-      <code-block title="cURL">
-        <pre><code>
-        bash curl --request DELETE \ --url
-        https://api.userfront.com/v0/tenants/tenantId \ --header 'Accept: */*'
-          </code></pre>
-      </code-block>
-      <code-block title="Node">
-        ```js Some node code ```
-      </code-block>
-
-      <code-block title="PHP">
-        ```php Some PHP code ```
-      </code-block>
-    </code-group>
-    <!-- // TODO make a component that will accept a URL, payload, etc, and render a code
-block with tabs for each of the methods (e.g. Node, PHP, Ruby, etc) -->
+  <div class="card">
+    <h4>Response</h4>
+    <pre class="response-json">{{ response }}</pre>
   </div>
 </template>
 
 <script>
+import { getResponseJson, getResponseModel } from "../utils/swagger.js";
+
 export default {
   props: ["path", "verb"],
   computed: {
-    responses() {
-      try {
-        return this.$swagger.paths[this.path][this.verb].responses;
-      } catch (error) {
-        return [];
-      }
+    modelName() {
+      return getResponseModel(this.$swagger, this.path, this.verb, "200");
     },
+    response() {
+      console.log(this.modelName);
+      return getResponseJson(this.$swagger, this.modelName);
+    },
+  },
+  mounted() {
+    console.log(this.$swagger);
   },
 };
 </script>
+
+<style lang="stylus">
+pre.response-json {
+  padding: 0;
+  background-color: inherit;
+}
+</style>

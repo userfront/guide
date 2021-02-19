@@ -16,13 +16,13 @@
 </template>
 
 <script>
-import { getModelName, getParamArray } from "../utils/swagger.js";
+import { getParamModel, getParamArray } from "../utils/swagger.js";
 
 export default {
   props: ["path", "verb"],
   computed: {
     modelName() {
-      return getModelName(this.$swagger, this.path, this.verb);
+      return getParamModel(this.$swagger, this.path, this.verb);
     },
     paramArray() {
       return getParamArray(this.$swagger, this.modelName);

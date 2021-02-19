@@ -152,6 +152,8 @@ Creates a new user in an existing tenant.
 
 <code-samples path="/v0/tenants/{tenantId}/users" verb="post" />
 
+<response path="/v0/tenants/{tenantId}/users" verb="post"/>
+
 ::: card
 
 #### Response
