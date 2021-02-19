@@ -1,11 +1,17 @@
 <template>
   <div class="card">
     <h4>Response</h4>
-    <pre class="response-json">{{ response }}</pre>
+    <div class="language-json extra-class">
+      <pre
+        class="language-json"
+      ><code class="language-json" v-html="highlight(responseSample, 'json')"></code></pre>
+    </div>
   </div>
 </template>
 
 <script>
+import Prism from "prismjs";
+import "prismjs/components/prism-json";
 import { getResponseJson, getResponseModel } from "../utils/swagger.js";
 
 export default {
@@ -15,8 +21,20 @@ export default {
       return getResponseModel(this.$swagger, this.path, this.verb, "200");
     },
     response() {
-      console.log(this.modelName);
-      return getResponseJson(this.$swagger, this.modelName);
+      return getResponseJson(
+        this.$swagger,
+        this.modelName,
+        "demo1234",
+        "Demo project"
+      );
+    },
+    responseSample() {
+      return JSON.stringify(this.response, null, " ");
+    },
+  },
+  methods: {
+    highlight(code, language) {
+      return Prism.highlight(code, Prism.languages[language], language);
     },
   },
   mounted() {

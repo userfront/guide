@@ -35,21 +35,29 @@ function getResponseModel(swagger, path, verb, code) {
  * @param {Object} swagger
  * @param {String} modelName
  */
-function getResponseJson(swagger, modelName) {
+function getResponseJson(swagger, modelName, tenantId, tenantName) {
   try {
     const obj = {};
     const properties = swagger.definitions[modelName].properties || {};
     Object.keys(properties).map((key) => {
       const prop = properties[key];
       obj[key] = prop.example === undefined ? prop.type : prop.example;
+      if (key === "tenantId") {
+        obj.tenantId = tenantId || prop.tenantId;
+      }
+      if (key === "data") {
+        obj.data = {
+          your: "custom",
+          user: "information",
+        };
+      }
       if (key === "authorization") {
-        obj[key] = {
-          tenantId: {
-            tenantId: "string",
-            name: "string",
-            roles: [],
-            permissions: [],
-          },
+        obj.authorization = {};
+        obj.authorization[tenantId] = {
+          tenantId,
+          name: tenantName,
+          roles: ["member"],
+          // permissions: [],
         };
       }
     });
