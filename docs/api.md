@@ -154,40 +154,7 @@ Creates a new user in an existing tenant.
 
 <response path="/v0/tenants/{tenantId}/users" verb="post"/>
 
-::: card
-
-#### Response
-
-```json
-{
-  "mode": "test"
-  "userId": 0
-  "tenantId": "string"
-  "uuid": "string"
-  "username": "string"
-  "email": "string"
-  "name": "string"
-  "image": "string"
-  "locked": true
-  "data": {}
-  "isConfirmed": true
-  "lastActiveAt": "2021-02-16"
-  "lastMessagedAt": "2021-02-16"
-  "confirmedAt": "2021-02-16"
-  "updatedAt": "2021-02-16"
-  "createdAt": "2021-02-16"
-  "tenant": {
-    "tenantId": "string"
-    "name": "string"
-    "image": "string"
-    "loginRedirectPath": "string"
-    "logoutRedirectPath": "string"
-  }
-  "authorization": {}
-}
-```
-
-:::
-
 ::::
 :::::
+
+---
