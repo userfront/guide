@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const swaggerUrl =
+const docsJsonUrl =
   process.env.NODE_ENV === "development"
-    ? "http://localhost:5001/swagger.json"
-    : "https://api.userfront.com/swagger.json";
+    ? "http://localhost:5001/v0/docs.json"
+    : "https://api.userfront.com/v0/docs.json";
 
 export default async ({ router, Vue }) => {
   // Render mod after each route change
@@ -13,12 +13,12 @@ export default async ({ router, Vue }) => {
     } catch (err) {}
   });
 
-  // Load the swagger spec
+  // Load the docs.json spec
   try {
-    const { data } = await axios.get(swaggerUrl);
-    Vue.prototype.$swagger = data;
+    const { data } = await axios.get(docsJsonUrl);
+    Vue.prototype.$docs = data;
   } catch (error) {
-    console.error("Problem fetching OpenAPI specification");
+    console.error("Problem fetching docs.json");
     console.error(error);
   }
 

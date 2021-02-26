@@ -76,9 +76,10 @@ export default {
   },
   computed: {
     url() {
-      return `https://api.userfront.com${this.path
-        .replace("{tenantId}", this.tenantId || "demo1234")
-        .replace("{userId}", this.userId || "1")}`;
+      return `https://api.userfront.com${this.path.replace(
+        "{userId}",
+        this.userId || "1"
+      )}`;
     },
     uppercaseVerb() {
       return this.verb.toUpperCase();
@@ -88,16 +89,10 @@ export default {
     },
     parameters() {
       try {
-        return this.$swagger.paths[this.path][this.verb].parameters;
+        return this.$docs.paths[this.path][this.verb].parameters;
       } catch (error) {
         return [];
       }
-    },
-    required() {
-      return this.parameters.filter((param) => param.required);
-    },
-    optional() {
-      return this.parameters.filter((param) => !param.required);
     },
     curlSample() {
       return `curl --request ${this.uppercaseVerb} \\

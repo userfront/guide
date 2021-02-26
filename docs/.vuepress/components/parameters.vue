@@ -2,8 +2,8 @@
   <div>
     <h4>Parameters</h4>
     <hr />
-    <div v-show="paramArray.length > 0">
-      <div v-for="param in paramArray">
+    <div v-show="parameters.length > 0">
+      <div v-for="param in parameters" :key="param.name">
         <div class="param-title">
           {{ param.name }}&nbsp;
           <span class="param-required" v-if="param.required">required</span>
@@ -12,20 +12,22 @@
         <hr />
       </div>
     </div>
+    {{ parameters }}
   </div>
 </template>
 
 <script>
-import { getParamModel, getParamArray } from "../utils/swagger.js";
+import { getParamModel, getParamArray } from "../utils/docs.js";
 
 export default {
   props: ["path", "verb"],
   computed: {
-    modelName() {
-      return getParamModel(this.$swagger, this.path, this.verb);
-    },
-    paramArray() {
-      return getParamArray(this.$swagger, this.modelName);
+    parameters() {
+      try {
+        return this.$docs.paths[this.path][this.verb].parameters || [];
+      } catch (error) {
+        return [];
+      }
     },
   },
 };

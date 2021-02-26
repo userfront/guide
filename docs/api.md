@@ -110,14 +110,14 @@ There are also 2 endpoints for searching all users in a tenant: one via GET and 
 #### Endpoints
 
 ```endpoints
-  POST  /v0/tenants/:tenantId/users
-   GET  /v0/tenants/:tenantId/users/:userId
-   PUT  /v0/tenants/:tenantId/users/:userId
-DELETE  /v0/tenants/:tenantId/users/:userId
+  POST  /v0/users
+   GET  /v0/users/:userId
+   PUT  /v0/users/:userId
+DELETE  /v0/users/:userId
 
-  POST  /v0/tenants/:tenantId/users/invite
-  POST  /v0/tenants/:tenantId/users/createOrUpdate
-  POST  /v0/tenants/:tenantId/users/:userId/active
+  POST  /v0/users/invite
+  POST  /v0/users/createOrUpdate
+  POST  /v0/users/:userId/active
 ```
 
 :::
@@ -127,8 +127,8 @@ DELETE  /v0/tenants/:tenantId/users/:userId
 #### Search endpoints
 
 ```endpoints
-   GET /v0/tenants/:tenantId/users
-  POST /v0/tenants/:tenantId/users/find
+   GET /v0/users
+  POST /v0/users/find
 ```
 
 :::
@@ -143,16 +143,16 @@ DELETE  /v0/tenants/:tenantId/users/:userId
 
 Creates a new user in an existing tenant.
 
-<parameters path="/v0/tenants/{tenantId}/users" verb="post" />
+<parameters path="/v0/users" verb="post" />
 
 ::::
 :::: right
 
-`POST /v0/tenants/:tenantId/users`
+`POST /v0/users`
 
-<code-samples path="/v0/tenants/{tenantId}/users" verb="post" />
+<code-samples path="/v0/users" verb="post" />
 
-<response path="/v0/tenants/{tenantId}/users" verb="post"/>
+<response path="/v0/users" verb="post"/>
 
 ::::
 :::::
