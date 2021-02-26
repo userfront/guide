@@ -4,7 +4,9 @@
     <div class="theme-code-group">
       <div class="theme-code-group__overnav" v-if="verb && path">
         <span class="overnav-verb">{{ verb }}</span>
-        <span class="overnav-path">{{ path }}</span>
+        <span class="overnav-path">{{
+          path.replace(/{/g, ":").replace(/}/g, "")
+        }}</span>
       </div>
       <div class="theme-code-group__nav">
         <div class="theme-code-group__select">

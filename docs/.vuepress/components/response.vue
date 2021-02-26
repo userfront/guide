@@ -42,7 +42,7 @@ export default {
     padding: 0;
     background-color: inherit;
   }
-  .token.property {
+  .token.property, .token.operator  {
     color: $codeGrayColor;
   }
   .token.string {

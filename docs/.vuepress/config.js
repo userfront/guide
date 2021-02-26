@@ -35,8 +35,8 @@ module.exports = {
     ],
     sidebar: {
       "/": [
-        "/api.html",
-        "/webhooks.html",
+        "/api",
+        "/webhooks",
         // {
         //   title: "Examples",
         //   collapsable: true,
@@ -65,6 +65,7 @@ module.exports = {
     editLinks: false,
     // custom text for edit link. Defaults to "Edit this page"
     // editLinkText: "Help us improve this page",
+    activeHeaderLinks: false,
   },
   markdown: {
     extendMarkdown: (md) => {

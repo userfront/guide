@@ -1,3 +1,7 @@
+---
+sidebarDepth: 2
+---
+
 # API reference
 
 ::::: row
@@ -105,43 +109,27 @@ There are also 2 endpoints for searching all users in a tenant: one via GET and 
 ::::
 :::: right
 
-::: card endpoints
-
-#### Endpoints
-
-```endpoints
-  POST  /v0/users
-   GET  /v0/users/:userId
-   PUT  /v0/users/:userId
-DELETE  /v0/users/:userId
-
-  POST  /v0/users/invite
-  POST  /v0/users/createOrUpdate
-  POST  /v0/users/:userId/active
-```
-
-:::
-
-::: card
-
-#### Search endpoints
-
-```endpoints
-   GET /v0/users
-  POST /v0/users/find
-```
-
-:::
+<endpoints :endpoints="[
+  { verb: 'post', path: '/v0/users', anchor: 'create-user' },
+  { verb: 'get', path: '/v0/users/:userId', anchor: 'read-user' },
+  { verb: 'put', path: '/v0/users/:userId', anchor: 'update-user' },
+  { verb: 'delete', path: '/v0/users/:userId', anchor: 'delete-user' },
+  {},
+  { verb: 'post', path: '/v0/users/find', anchor: 'search-users' },
+  { verb: 'post', path: '/v0/users/invite', anchor: 'invite-user' },
+  { verb: 'post', path: '/v0/users/createOrUpdate', anchor: 'create-or-update-user' },
+  { verb: 'post', path: '/v0/users/:userId/active', anchor: 'mark-user-active' },
+]"/>
 
 ::::
 :::::
 
-### Create a user
+### Create user
 
 ::::: row
 :::: left
 
-Creates a new user in an existing tenant.
+Creates a new user.
 
 <parameters path="/v0/users" verb="post" />
 
@@ -156,3 +144,169 @@ Creates a new user in an existing tenant.
 :::::
 
 ---
+
+### Read user
+
+::::: row
+:::: left
+
+Reads a user record by its `userId`.
+
+<parameters path="/v0/users/{userId}" verb="get" />
+
+::::
+:::: right
+
+<code-samples path="/v0/users/{userId}" verb="get" />
+
+<response path="/v0/users/{userId}" verb="get"/>
+
+::::
+:::::
+
+---
+
+### Update user
+
+::::: row
+:::: left
+
+Updates a user record.
+
+<parameters path="/v0/users/{userId}" verb="put" />
+
+::::
+:::: right
+
+<code-samples path="/v0/users/{userId}" verb="put" />
+
+<response path="/v0/users/{userId}" verb="put"/>
+
+::::
+:::::
+
+---
+
+### Delete user
+
+::::: row
+:::: left
+
+Deletes a user record.
+
+<parameters path="/v0/users/{userId}" verb="delete" />
+
+::::
+:::: right
+
+<code-samples path="/v0/users/{userId}" verb="delete" />
+
+<response path="/v0/users/{userId}" verb="delete"/>
+
+::::
+:::::
+
+---
+
+### Search users
+
+::::: row
+:::: left
+
+Search user records.
+
+<parameters path="/v0/users/find" verb="post" />
+
+::::
+:::: right
+
+<code-samples path="/v0/users/find" verb="post" />
+
+<response path="/v0/users/find" verb="post"/>
+
+::::
+:::::
+
+---
+
+### Invite user
+
+::::: row
+:::: left
+
+Invite a user by email address.
+
+<parameters path="/v0/users/invite" verb="post" />
+
+::::
+:::: right
+
+<code-samples path="/v0/users/invite" verb="post" />
+
+<response path="/v0/users/invite" verb="post"/>
+
+::::
+:::::
+
+---
+
+### Create or update user
+
+::::: row
+:::: left
+
+Create a user or, if the user already exists, update it.
+
+<parameters path="/v0/users/createOrUpdate" verb="post" />
+
+::::
+:::: right
+
+<code-samples path="/v0/users/createOrUpdate" verb="post" />
+
+<response path="/v0/users/createOrUpdate" verb="post"/>
+
+::::
+:::::
+
+---
+
+### Mark user active
+
+::::: row
+:::: left
+
+Mark a user as active. This updates a user's `lastActiveAt` timestamp to the current time.
+
+<parameters path="/v0/users/{userId}/active" verb="post" />
+
+::::
+:::: right
+
+<code-samples path="/v0/users/{userId}/active" verb="post" />
+
+<response path="/v0/users/{userId}/active" verb="post"/>
+
+::::
+:::::
+
+---
+
+## Tenants
+
+::::: row
+:::: left
+
+Tenants allow you to sub-divide your application so that certain users only have access to certain parts.
+
+For example, your project could have Tenant A and Tenant B. You could give some users access to Tenant A, some users access to Tenant B, some users access to both Tenants, and some users access to neither Tenant.
+
+You can create and read tenants with standard REST operations.
+
+::::
+:::: right
+
+<endpoints :endpoints="[
+  { verb: 'post', path: '/v0/tenants', anchor: 'create-tenant' },
+  { verb: 'get', path: '/v0/tenants/:tenantId', anchor: 'read-tenant' },
+]"/>

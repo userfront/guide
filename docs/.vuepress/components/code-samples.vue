@@ -1,5 +1,5 @@
 <template>
-  <div v-show="parameters.length > 0">
+  <div>
     <code-group-custom :verb="verb" :path="path">
       <code-block-custom title="cURL" language="bash" :code="curlSample">
       </code-block-custom>
