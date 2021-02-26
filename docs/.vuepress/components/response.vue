@@ -25,7 +25,7 @@ export default {
       }
     },
     responseSample() {
-      return JSON.stringify(this.response, null, " ");
+      return JSON.stringify(this.response, null, "  ");
     },
   },
   methods: {
@@ -37,8 +37,19 @@ export default {
 </script>
 
 <style lang="stylus">
-pre.response-json {
-  padding: 0;
-  background-color: inherit;
+.card .language-json {
+  pre.response-json {
+    padding: 0;
+    background-color: inherit;
+  }
+  .token.property {
+    color: $codeGrayColor;
+  }
+  .token.string {
+    color: $codeGreenColor;
+  }
+  .token.number, .token.boolean {
+    color: $codeBlueColor;
+  }
 }
 </style>

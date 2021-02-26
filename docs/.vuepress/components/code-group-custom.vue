@@ -2,6 +2,10 @@
   <!-- Adapted from https://github.com/vuejs/vuepress/blob/master/packages/@vuepress/theme-default/global-components/CodeGroup.vue -->
   <ClientOnly>
     <div class="theme-code-group">
+      <div class="theme-code-group__overnav" v-if="verb && path">
+        <span class="overnav-verb">{{ verb }}</span>
+        <span class="overnav-path">{{ path }}</span>
+      </div>
       <div class="theme-code-group__nav">
         <div class="theme-code-group__select">
           <select v-model="activeCodeTabIndex">
@@ -10,7 +14,6 @@
             }}</option>
           </select>
         </div>
-        <slot name="copy" :active-tab="activeTab"></slot>
       </div>
       <slot />
     </div>
@@ -19,7 +22,8 @@
 
 <script>
 export default {
-  name: "CodeGroup",
+  name: "CodeGroupCustom",
+  props: ["path", "verb"],
   data() {
     return {
       codeTabs: [],
@@ -100,7 +104,6 @@ select {
   grid-template-areas: "select";
   align-items: center;
   position: relative;
-  border-bottom: 1px dotted gray;
   margin-bottom: 8px;
   select,&::after {
     grid-area: select;
@@ -122,31 +125,33 @@ select {
     }
   }
 }
-.theme-code-group {
-  .copy-button span {
-    font-size: 20px;
-    padding: 2px 8px;
-    cursor: pointer;
-    color: gray;
-    transition: color 200ms;
-    user-select: none;
-    &:hover {
-      color: white;
-    }
+.theme-code-group__overnav {
+  background-color: $codeBgColor;
+  padding: 12px 12px 15px;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  color: white;
+  font-size: 12px;
+  margin-bottom: -6px;
+  .overnav-verb {
+    text-transform: uppercase;
+    color: #7ec699;
+  }
+  .overnav-path {
+    color: #ccc;
   }
 }
 .theme-code-group__nav {
-  margin-bottom: -35px;
   background-color: darken($codeBgColor, 25%);
-  padding-bottom: 22px;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   padding-left: 10px;
   padding-top: 10px;
-}
-.theme-code-group__nav {
+  padding-bottom: 12px;
   display: flex;
   justify-content: space-between;
+  margin-bottom: -25px;
 }
 .theme-code-group__ul {
   margin: auto 0;

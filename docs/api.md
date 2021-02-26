@@ -148,8 +148,6 @@ Creates a new user in an existing tenant.
 ::::
 :::: right
 
-`POST /v0/users`
-
 <code-samples path="/v0/users" verb="post" />
 
 <response path="/v0/users" verb="post"/>
