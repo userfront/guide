@@ -124,6 +124,8 @@ There are also 2 endpoints for searching all users in a tenant: one via GET and 
 ::::
 :::::
 
+---
+
 ### Create user
 
 ::::: row
@@ -310,3 +312,191 @@ You can create and read tenants with standard REST operations.
   { verb: 'post', path: '/v0/tenants', anchor: 'create-tenant' },
   { verb: 'get', path: '/v0/tenants/:tenantId', anchor: 'read-tenant' },
 ]"/>
+
+::::
+:::::
+
+---
+
+### Create tenant
+
+::::: row
+:::: left
+
+Creates a new tenant.
+
+<parameters path="/v0/tenants" verb="post" />
+
+::::
+:::: right
+
+<code-samples path="/v0/tenants" verb="post" />
+
+<response path="/v0/tenants" verb="post"/>
+
+::::
+:::::
+
+---
+
+### Read tenant
+
+::::: row
+:::: left
+
+Reads a tenant record by its `tenantId`.
+
+<parameters path="/v0/users/{tenantId}" verb="get" />
+
+::::
+:::: right
+
+<code-samples path="/v0/users/{tenantId}" verb="get" />
+
+<response path="/v0/users/{tenantId}" verb="get"/>
+
+::::
+:::::
+
+---
+
+## Roles
+
+::::: row
+:::: left
+
+Roles are labels you can use to determine each user's access control within your application.
+
+You can assign one or more roles to each user, and roles can apply to your entire application or to [tenants](#tenants) within your application.
+
+You can create, read, update, and delete roles with standard REST operations.
+
+::::
+:::: right
+
+<endpoints :endpoints="[
+  { verb: 'get', path: '/v0/roles', anchor: 'list-roles' },
+  { verb: 'post', path: '/v0/users/:userId/roles', anchor: 'set-user-roles' },
+  { verb: 'post', path: '/v0/roles/invite', anchor: 'invite-user-to-a-role' },
+  {},
+  { verb: 'post', path: '/v0/tenants/:tenantId/users/:userId/roles', anchor: 'set-user-roles-tenant-level' },
+  { verb: 'post', path: '/v0/tenants/:tenantId/roles/invite', anchor: 'invite-user-to-a-role-tenant-level' },
+]"/>
+
+::::
+:::::
+
+---
+
+### List roles
+
+::::: row
+:::: left
+
+Lists all the roles available in your project.
+
+<parameters path="/v0/roles" verb="get" />
+
+::::
+:::: right
+
+<code-samples path="/v0/roles" verb="get" />
+
+<response path="/v0/roles" verb="get"/>
+
+::::
+:::::
+
+---
+
+### Set user roles
+
+::::: row
+:::: left
+
+Sets the roles for a given user.
+
+The role(s) set with this route will be at the application-wide level. To set a user's role(s) within a specific tenant, see [Set user roles (tenant level)](#set-user-roles-tenant-level).
+
+To remove all roles for a user, pass an empty array for `roles`.
+
+<parameters path="/v0/users/{userId}/roles" verb="put" />
+
+::::
+:::: right
+
+<code-samples path="/v0/users/{userId}/roles" verb="put" />
+
+<response path="/v0/users/{userId}/roles" verb="put"/>
+
+::::
+:::::
+
+---
+
+### Invite user to a role
+
+::::: row
+:::: left
+
+Invite a user to join the application with the given role(s).
+
+The role(s) that is created will be at the application-wide level. To invite a user to a role within a specific tenant, see [Invite user to a role (tenant level)](#invite-user-to-a-role-tenant-level).
+
+<parameters path="/v0/roles/invite" verb="post" />
+
+::::
+:::: right
+
+<code-samples path="/v0/roles/invite" verb="post" />
+
+<response path="/v0/roles/invite" verb="post"/>
+
+::::
+:::::
+
+---
+
+### Set user roles (tenant level)
+
+::::: row
+:::: left
+
+Sets the roles for a given user within the specified tenant.
+
+To remove all roles for a user within the specified tenant, pass an empty array for `roles`.
+
+<parameters path="/v0/tenants/{tenantId}/users/{userId}/roles" verb="put" />
+
+::::
+:::: right
+
+<code-samples path="/v0/tenants/{tenantId}/users/{userId}/roles" verb="put" />
+
+<response path="/v0/tenants/{tenantId}/users/{userId}/roles" verb="put"/>
+
+::::
+:::::
+
+---
+
+### Invite user to a role (tenant level)
+
+::::: row
+:::: left
+
+Invite a user to join the application with the given role(s) in the specified tenant.
+
+<parameters path="/v0/tenants/{tenantId}/roles/invite" verb="post" />
+
+::::
+:::: right
+
+<code-samples path="/v0/tenants/{tenantId}/roles/invite" verb="post" />
+
+<response path="/v0/tenants/{tenantId}/roles/invite" verb="post"/>
+
+::::
+:::::
+
+---

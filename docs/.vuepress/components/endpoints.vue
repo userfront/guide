@@ -2,14 +2,16 @@
   <div class="card">
     <h4>Endpoints</h4>
     <br />
-    <p v-for="endpoint in endpoints" class="endpoint-row">
-      <a :href="`#${endpoint.anchor}`">
-        <span :class="`endpoint-verb ${endpoint.verb}`">
-          {{ endpoint.verb }}
-        </span>
-        {{ endpoint.path }}
-      </a>
-    </p>
+    <div class="endpoint-rows">
+      <p v-for="endpoint in endpoints" class="endpoint-row">
+        <a :href="`#${endpoint.anchor}`">
+          <span :class="`endpoint-verb ${endpoint.verb}`">
+            {{ endpoint.verb }}
+          </span>
+          {{ endpoint.path }}
+        </a>
+      </p>
+    </div>
     <br />
   </div>
 </template>
@@ -21,6 +23,15 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.card {
+  padding-right: 0;
+  overflow: hidden;
+}
+.endpoint-rows {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
 .endpoint-row {
   font-size: 13px;
   line-height: 1.4em;
