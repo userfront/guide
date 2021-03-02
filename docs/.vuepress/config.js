@@ -11,13 +11,12 @@ module.exports = {
           "https://res.cloudinary.com/component/image/upload/v1582652683/circle_400_light_jrgbjq.png",
       },
     ],
-    /* Production scripts */
     [
-      "script",
+      "link",
       {
-        src: "/redoc.standalone.js",
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Material+Icons",
       },
-      ,
     ],
   ],
   plugins: [
@@ -29,13 +28,23 @@ module.exports = {
     ],
   ],
   themeConfig: {
-    smoothScroll: false,
+    smoothScroll: true,
     nav: [
       { text: "Guide", link: "https://userfront.com/guide" },
       { text: "Dashboard", link: "https://userfront.com/projects" },
     ],
-    sidebar: false,
-    search: false,
+    sidebar: {
+      "/": [
+        "/api",
+        // "/webhooks",
+        // {
+        //   title: "Examples",
+        //   collapsable: true,
+        //   children: ["/examples/create-react-app", "/examples/react-router"],
+        // },
+      ],
+    },
+    // search: false,
     lastUpdated: false, // string | boolean
     // https://vuepress.vuejs.org/default-theme-config/#algolia-search
     // algolia: {},
@@ -56,5 +65,15 @@ module.exports = {
     editLinks: false,
     // custom text for edit link. Defaults to "Edit this page"
     // editLinkText: "Help us improve this page",
+    activeHeaderLinks: false,
+  },
+  markdown: {
+    extendMarkdown: (md) => {
+      md.use(require("markdown-it-container"), "left");
+      md.use(require("markdown-it-container"), "right");
+      md.use(require("markdown-it-container"), "row");
+      md.use(require("markdown-it-container"), "card");
+      md.use(require("markdown-it-include"));
+    },
   },
 };
