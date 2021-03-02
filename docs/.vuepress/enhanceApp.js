@@ -16,9 +16,9 @@ export default async ({ router, Vue }) => {
   // Load the docs.json spec
   try {
     const { data } = await axios.get(docsJsonUrl);
-    console.log(data);
+    // console.log(data);
     Vue.prototype.$docs = data;
-    scrollToAnchor();
+    // scrollToAnchor();
   } catch (error) {
     console.error("Problem fetching docs.json");
     console.error(error);
@@ -26,8 +26,8 @@ export default async ({ router, Vue }) => {
 
   function scrollToAnchor() {
     setTimeout(() => {
-      if (location.hash) {
-        const element = document.getElementById(location.hash.slice(1));
+      if (window.location.hash) {
+        const element = document.getElementById(window.location.hash.slice(1));
 
         if (element) {
           element.scrollIntoView();
