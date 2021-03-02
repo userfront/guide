@@ -346,14 +346,14 @@ Creates a new tenant.
 
 Reads a tenant record by its `tenantId`.
 
-<parameters path="/v0/users/{tenantId}" verb="get" />
+<parameters path="/v0/tenants/{tenantId}" verb="get" />
 
 ::::
 :::: right
 
-<code-samples path="/v0/users/{tenantId}" verb="get" />
+<code-samples path="/v0/tenants/{tenantId}" verb="get" />
 
-<response path="/v0/users/{tenantId}" verb="get"/>
+<response path="/v0/tenants/{tenantId}" verb="get"/>
 
 ::::
 :::::
