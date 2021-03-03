@@ -10,14 +10,13 @@ export default async ({ router, Vue }) => {
   router.afterEach(() => {
     try {
       if (window.Userfront) Userfront.render();
-      scrollToAnchor();
+      // scrollToAnchor();
     } catch (err) {}
   });
 
   // Load the docs.json spec
   try {
     const { data } = await axios.get(docsJsonUrl);
-    console.log(data);
     Vue.prototype.$docs = data;
     Vue.prototype.$docs.token =
       "uf_test_admin_demo1234_bafb3a74471f80993d18b1914d1d1160";
