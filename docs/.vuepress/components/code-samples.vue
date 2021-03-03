@@ -7,7 +7,7 @@
       <code-block-custom
         title="Node.js"
         language="javascript"
-        :code="nodeSample"
+        :code="javascriptSample"
       >
       </code-block-custom>
 
@@ -29,19 +29,12 @@
 
 <script>
 export default {
-  props: ["path", "verb"],
-  data() {
-    return {
-      copied: false,
-      activeSample: "",
-    };
-  },
+  props: ["path", "verb", "showOnly"],
   computed: {
     url() {
-      return `https://api.userfront.com${this.path.replace(
-        "{userId}",
-        this.userId || "1"
-      )}`;
+      return `https://api.userfront.com${this.path
+        .replace("{userId}", this.userId || "1")
+        .replace("{tenantId}", this.tenantId || "demo1234")}`;
     },
     uppercaseVerb() {
       return this.verb.toUpperCase();
@@ -56,65 +49,112 @@ export default {
         return [];
       }
     },
+    token() {
+      return this.$docs.token;
+    },
+    payload() {
+      const p = {};
+      this.parameters.map((param) => {
+        if (this.showOnly && !this.showOnly.includes(param.name)) return;
+        p[param.name] = param.examples[0];
+      });
+      return p;
+    },
+    showPayload() {
+      return this.verb === "post" || this.verb === "put";
+    },
+    // cUrl
     curlSample() {
+      const data = this.showPayload
+        ? `\\
+  --data '${JSON.stringify(this.payload)}'`
+        : "";
+
       return `curl --request ${this.uppercaseVerb} \\
   --url ${this.url} \\
-  --header 'Accept: */*'`;
+  --header 'Accept: */*' \\
+  --header 'Content-Type: application/json' \\
+  --header 'Bearer ${this.token}' ${data}`;
     },
-    nodeSample() {
-      return `const options = {
-  method: "${this.uppercaseVerb}",
+    // Node.js & JS
+    javascriptSample() {
+      const data = this.showPayload
+        ? `,
+  data: ${JSON.stringify(this.payload, null, "    ").replace(
+    /"([^"]+)":/g,
+    "$1:"
+  )}`
+        : "";
+      return `const axios = require('axios');
+      
+const options = {
   headers: { 
     Accept: "*/*",
-    Authorization: "Bearer "
-  },
+    Authorization: "Bearer ${this.token}"
+  }${data}
 };
 
-fetch("${this.url}", options)
+axios.${this.verb}("${this.url}", options)
   .then((response) => console.log(response))
   .catch((err) => console.error(err));`;
     },
+    // Ruby
     rubySample() {
-      return `require 'uri'
-require 'net/http'
-require 'openssl'
+      const data = this.showPayload
+        ? `
+data = ${JSON.stringify(this.payload, null, "  ").replace(
+            /"([^"]+)":/g,
+            "$1:"
+          )}`
+        : "";
 
-url = URI("${this.url}")
+      return `require 'net/http'
+require 'net/https'
+require 'uri'
+require 'json'
 
-http = Net::HTTP.new(url.host, url.port)
-http.use_ssl = true
-http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+uri = URI.parse("${this.url}")
 
-request = Net::HTTP::${this.titlecaseVerb}.new(url)
-request["Accept"] = '*/*'
+header = {
+  'Content-Type': 'text/json',
+  'Authorization': 'Bearer ${this.token}'
+}${data}
 
-response = http.request(request)
+https = Net::HTTP.new(uri.host, uri.port)
+https.use_ssl = true
+request = Net::HTTP::${this.titlecaseVerb}.new(uri.request_uri, header)
+${
+  !!data
+    ? `request.body = data.to_json
+`
+    : ""
+}
+response = https.request(request)
 puts response.read_body`;
     },
+    // Python
     pythonSample() {
+      const data = this.showPayload
+        ? `
+
+data = ${JSON.stringify(this.payload, null, "  ").replace(
+            /"([^"]+)":/g,
+            "$1:"
+          )}`
+        : "";
       return `import requests
 
 url = "${this.url}"
 
 headers = {
-    "Accept": "*/*",
-    "Content-Type": "application/json"
-}
+  "Accept": "*/*",
+  "Content-Type": "application/json",
+  "Authorization": "Bearer ${this.token}"
+}${data}
 
-response = requests.request("${this.uppercaseVerb}", url, headers=headers)
+response = requests.${this.verb}(url, data=data, headers=headers)
 
 print(response.text)`;
-    },
-    javascriptSample() {
-      return `const options = {
-  method: '${this.uppercaseVerb}',
-  headers: { Accept: '*/*', 'Content-Type': 'application/json' },
-  body: 'false'
-};
-
-fetch('${this.url}', options)
-  .then(response => console.log(response))
-  .catch(err => console.error(err));`;
     },
   },
 };

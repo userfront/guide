@@ -133,12 +133,12 @@ There are also 2 endpoints for searching all users in a tenant: one via GET and 
 
 Creates a new user.
 
-<parameters path="/v0/users" verb="post" />
+<parameters path="/v0/users" verb="post" :show-only="['email', 'username', 'name', 'image', 'data']"/>
 
 ::::
 :::: right
 
-<code-samples path="/v0/users" verb="post" />
+<code-samples path="/v0/users" verb="post" :show-only="['email', 'username', 'name', 'image', 'data']"/>
 
 <response path="/v0/users" verb="post"/>
 
@@ -173,7 +173,9 @@ Reads a user record by its `userId`.
 ::::: row
 :::: left
 
-Updates a user record.
+Updates the specified user by setting the values of the parameters passed. Any parameters not provided will be left unchanged. For example, if you pass the `name` parameter, that becomes the user's name to be used in the future.
+
+This request accepts mostly the same arguments as the user creation call.
 
 <parameters path="/v0/users/{userId}" verb="put" />
 
@@ -311,6 +313,8 @@ You can create and read tenants with standard REST operations.
 <endpoints :endpoints="[
   { verb: 'post', path: '/v0/tenants', anchor: 'create-tenant' },
   { verb: 'get', path: '/v0/tenants/:tenantId', anchor: 'read-tenant' },
+  { verb: 'put', path: '/v0/tenants/:tenantId', anchor: 'update-tenant' },
+  { verb: 'delete', path: '/v0/tenants/:tenantId', anchor: 'delete-tenant' },
 ]"/>
 
 ::::
@@ -325,7 +329,7 @@ You can create and read tenants with standard REST operations.
 
 Creates a new tenant.
 
-<parameters path="/v0/tenants" verb="post" />
+<parameters path="/v0/tenants" verb="post" :show-only="['name', 'image']"/>
 
 ::::
 :::: right
@@ -354,6 +358,48 @@ Reads a tenant record by its `tenantId`.
 <code-samples path="/v0/tenants/{tenantId}" verb="get" />
 
 <response path="/v0/tenants/{tenantId}" verb="get"/>
+
+::::
+:::::
+
+---
+
+### Update tenant
+
+::::: row
+:::: left
+
+Updates an existing tenant.
+
+<parameters path="/v0/tenants/{tenantId}" verb="put" :show-only="['name', 'image']"/>
+
+::::
+:::: right
+
+<code-samples path="/v0/tenants/{tenantId}" verb="put" />
+
+<response path="/v0/tenants/{tenantId}" verb="put"/>
+
+::::
+:::::
+
+---
+
+### Delete tenant
+
+::::: row
+:::: left
+
+Deletes an existing tenant.
+
+<parameters path="/v0/tenants/{tenantId}" verb="delete"/>
+
+::::
+:::: right
+
+<code-samples path="/v0/tenants/{tenantId}" verb="delete" />
+
+<response path="/v0/tenants/{tenantId}" verb="delete"/>
 
 ::::
 :::::

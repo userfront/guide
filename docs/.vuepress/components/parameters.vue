@@ -2,9 +2,9 @@
   <div>
     <h4>Parameters</h4>
     <hr />
-    <div v-show="parameters.length > 0">
+    <div v-show="visibleParameters.length > 0">
       <div
-        v-for="param in parameters"
+        v-for="param in visibleParameters"
         :key="param.name"
         :id="anchor(param.name)"
         class="param-container"
@@ -19,18 +19,32 @@
         <hr />
       </div>
     </div>
+    <div v-if="visibleParameters.length < 1" class="param-container">
+      No parameters
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["path", "verb"],
+  props: ["path", "verb", "showOnly"],
   computed: {
     parameters() {
       try {
         return this.$docs.paths[this.path][this.verb].parameters || [];
       } catch (error) {
         return [];
+      }
+    },
+    visibleParameters() {
+      try {
+        if (!this.showOnly) return this.parameters;
+        return this.parameters.filter((param) =>
+          this.showOnly.includes(param.name)
+        );
+      } catch (error) {
+        console.log(error);
+        return this.parameters;
       }
     },
   },
