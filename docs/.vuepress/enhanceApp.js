@@ -19,7 +19,7 @@ export default async ({ router, Vue }) => {
     const { data } = await axios.get(docsJsonUrl);
     Vue.prototype.$docs = data;
     Vue.prototype.$docs.token =
-      "uf_test_admin_demo1234_bafb3a74471f80993d18b1914d1d1160";
+      "uf_test_readonly_demo1234_2d87b3d230bda5685276b43efdac2852";
   } catch (error) {
     console.error("Problem fetching docs.json");
     console.error(error);
