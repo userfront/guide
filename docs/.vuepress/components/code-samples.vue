@@ -74,7 +74,7 @@ export default {
   --url ${this.url} \\
   --header 'Accept: */*' \\
   --header 'Content-Type: application/json' \\
-  --header 'Bearer ${this.token}' ${data}`;
+  --header 'Authorization: Bearer ${this.token}' ${data}`;
     },
     // Node.js & JS
     javascriptSample() {
