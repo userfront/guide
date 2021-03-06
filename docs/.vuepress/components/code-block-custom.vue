@@ -30,7 +30,7 @@ import Prism from "prismjs";
 import "prismjs/components/prism-bash";
 import "prismjs/components/prism-ruby";
 import "prismjs/components/prism-python";
-import { copyToClipboard } from "../utils/utils.js";
+import utils from "../utils/utils.js";
 
 export default {
   name: "CodeBlock",
@@ -63,7 +63,7 @@ export default {
     },
     copyCode() {
       setTimeout(() => {
-        copyToClipboard(this.$refs.copyBox);
+        utils.copyToClipboard(this.$refs.copyBox);
         this.copied = true;
         setTimeout(() => {
           this.copied = false;
