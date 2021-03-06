@@ -53,9 +53,7 @@ All API requests must be made over HTTPS. Calls made over plain HTTP will fail. 
 
 #### Your API Key
 
-A sample test API key is included in all the examples here, so you can test any example right away.
-
-To test requests using your account, replace the sample API key with your actual API key or sign in.
+<api-key/>
 
 :::
 

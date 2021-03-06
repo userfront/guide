@@ -1,4 +1,6 @@
-export const copyToClipboard = (el) => {
+const fns = {};
+
+fns.copyToClipboard = (el) => {
   try {
     el.select();
     return document.execCommand("copy");
@@ -6,3 +8,5 @@ export const copyToClipboard = (el) => {
     return false;
   }
 };
+
+export default fns;
