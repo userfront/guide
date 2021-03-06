@@ -1,3 +1,5 @@
+import Vuex from "vuex";
+import store from "./utils/store.js";
 import axios from "axios";
 
 const docsJsonUrl =
@@ -6,6 +8,10 @@ const docsJsonUrl =
     : "https://api.userfront.com/v0/docs.json";
 
 export default async ({ router, Vue }) => {
+  // Add vuex
+  Vue.use(Vuex);
+  Vue.mixin({ store });
+
   // Render mod after each route change
   router.afterEach(() => {
     try {
@@ -18,8 +24,9 @@ export default async ({ router, Vue }) => {
   try {
     const { data } = await axios.get(docsJsonUrl);
     Vue.prototype.$docs = data;
-    Vue.prototype.$docs.token =
+    Vue.prototype.$demoToken =
       "uf_test_readonly_demo1234_2d87b3d230bda5685276b43efdac2852";
+    store.dispatch("setActiveProject");
   } catch (error) {
     console.error("Problem fetching docs.json");
     console.error(error);

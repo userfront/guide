@@ -43,7 +43,6 @@ export default {
           this.showOnly.includes(param.name)
         );
       } catch (error) {
-        console.log(error);
         return this.parameters;
       }
     },

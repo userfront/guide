@@ -50,7 +50,7 @@ export default {
       }
     },
     token() {
-      return this.$docs.token;
+      return this.$store.state.projectToken || this.$demoToken;
     },
     payload() {
       const p = {};
