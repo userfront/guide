@@ -37,9 +37,9 @@ Check out our development [quickstart guide](https://userfront.com/guide/quickst
 
 The Userfront API uses API keys to authenticate requests. You can view and manage your API keys in the Userfront Dashboard.
 
-Test mode secret keys have the prefix `uf_test_` and live mode secret keys have the prefix `uf_live_`.
+Test mode keys have the prefix `uf_test_` and live mode keys have the prefix `uf_live_`.
 
-Your API keys carry many privileges, so be sure to keep them secure! Do not share your secret API keys in publicly accessible areas such as GitHub, client-side code, and so forth.
+Your API keys carry many privileges, so be sure to keep them secure! Do not share your API keys in publicly accessible areas such as GitHub, client-side code, and so forth.
 
 Authentication to the API is performed via HTTP [Bearer Auth](https://tools.ietf.org/html/rfc6750). Provide your API key in the header of each request as:
 `Authorization: Bearer your_api_key`.

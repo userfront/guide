@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div v-if="projectToken">
+    <div v-if="webhookToken">
       <p style="overflow-x:scroll;">
-        <code style="font-weight:600;">{{ projectToken }}</code>
+        <code style="font-weight:600;">{{ webhookToken }}</code>
       </p>
       <div class="select-container" v-if="filteredProjects.length > 1">
         <select v-model="project" @change="setProject">
@@ -15,33 +15,29 @@
         </select>
       </div>
       <p>
-        Your test API key is included in all the examples here, so you can test
-        the code samples right away.
-      </p>
-      <p>
-        In general, you should include your API key in the header of requests:
+        Your test webhook token is included in the examples here for
+        illustration purposes.
       </p>
       <div class="language-json">
         <pre><code>{
   headers: {
-    authorization: "Bearer {{ projectToken }}"
+    authorization: "Bearer {{ webhookToken }}"
   }
 }</code></pre>
       </div>
     </div>
-    <div v-if="!projectToken">
+    <div v-if="!webhookToken">
       <p>
-        A sample test API key is included in all the examples here, so you can
-        test any example right away.
+        A sample webhook token is included in all the examples here.
       </p>
       <p>
-        To test requests using your account, replace the sample API key with
-        your actual API key or sign in.
+        To test requests using your account, replace the sample webhook token
+        with your actual webhook token or sign in.
       </p>
       <p>
         <a
           class="action-button"
-          href="https://userfront.com/login?redirect=/docs/api"
+          href="https://userfront.com/login?redirect=/docs/webhooks"
           >Sign in</a
         >
       </p>
@@ -60,8 +56,8 @@ export default {
     demoToken() {
       return this.$demoToken;
     },
-    projectToken() {
-      return this.$store.state.projectToken;
+    webhookToken() {
+      return this.$store.state.webhookToken;
     },
     projects() {
       return this.$store.state.projects || [];
