@@ -28,19 +28,20 @@
     </div>
     <div v-if="!webhookToken">
       <p>
-        A sample webhook token is included in all the examples here.
+        Each webhook will contain an authorization header with your project's
+        webhook token.
       </p>
       <p>
-        To test requests using your account, replace the sample webhook token
-        with your actual webhook token or sign in.
+        Your server should read this header and verify that it matches the
+        webhook token found in your dashboard.
       </p>
-      <p>
-        <a
-          class="action-button"
-          href="https://userfront.com/login?redirect=/docs/webhooks"
-          >Sign in</a
-        >
-      </p>
+      <div class="language-json">
+        <pre><code>{
+  headers: {
+    authorization: "Bearer example3c5cc4491eb422d48c8f78c2f"
+  }
+}</code></pre>
+      </div>
     </div>
   </div>
 </template>

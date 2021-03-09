@@ -21,7 +21,7 @@ const store = new Vuex.Store({
     projects: [],
     activeProject: {},
     projectToken: "",
-    webhookToken: "",
+    // webhookToken: "",
   },
   mutations: {
     setProjects(state) {
@@ -41,9 +41,9 @@ const store = new Vuex.Store({
     setProjectToken(state, projectToken) {
       state.projectToken = projectToken;
     },
-    setWebhookToken(state, webhookToken) {
-      state.webhookToken = webhookToken;
-    },
+    // setWebhookToken(state, webhookToken) {
+    //   state.webhookToken = webhookToken;
+    // },
   },
   actions: {
     async setActiveProject({ commit, dispatch }, project) {
@@ -52,7 +52,6 @@ const store = new Vuex.Store({
       project = project || authorization[projectIds[0]];
       const tenantId = project.tenantId || projectIds[0];
       await dispatch("setProjectToken", tenantId);
-      await dispatch("setWebhookToken", tenantId);
       commit("setProjects");
       commit("setActiveProject", project);
     },
@@ -80,27 +79,27 @@ const store = new Vuex.Store({
       }
     },
 
-    async setWebhookToken({ commit, state }, tenantId) {
-      try {
-        const authorization = getAccessTokenObject().authorization;
-        tenantId = tenantId || Object.keys(authorization)[0];
-        const tokenLevel = authorization[tenantId].roles.includes("admin")
-          ? "admin"
-          : "readonly";
-        const { data } = await axios.get(
-          `https://api.userfront.com/v0/tenants/${tenantId}/tokens/webhook?test=true`,
-          {
-            headers: {
-              Authorization: `Bearer ${state.accessToken}`,
-            },
-          }
-        );
-        commit("setWebhookToken", data.liveWebhook);
-        return data.liveWebhook;
-      } catch (error) {
-        return;
-      }
-    },
+    // async setWebhookToken({ commit, state }, tenantId) {
+    //   try {
+    //     const authorization = getAccessTokenObject().authorization;
+    //     tenantId = tenantId || Object.keys(authorization)[0];
+    //     const tokenLevel = authorization[tenantId].roles.includes("admin")
+    //       ? "admin"
+    //       : "readonly";
+    //     const { data } = await axios.get(
+    //       `https://api.userfront.com/v0/tenants/${tenantId}/tokens/webhook?test=true`,
+    //       {
+    //         headers: {
+    //           Authorization: `Bearer ${state.accessToken}`,
+    //         },
+    //       }
+    //     );
+    //     commit("setWebhookToken", data.liveWebhook);
+    //     return data.liveWebhook;
+    //   } catch (error) {
+    //     return;
+    //   }
+    // },
   },
 });
 

@@ -88,3 +88,45 @@ h1,h2,h3,h4,h5,.navbar a .site-name {
     margin-bottom: 20px;
   }
 }
+
+.param-container {
+  margin-top: -60px;
+  padding-top: 60px;
+  position: relative;
+}
+.param-title {
+  position: relative;
+  font-family: monospace;
+  font-weight: bold;
+  margin-top: 12px;
+  margin-bottom: 0px;
+  margin-left: -18px;
+  padding-left: 18px;
+  .param-anchor {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    font-size: 16px;
+    display: none;
+  }
+  &:hover {
+    .param-anchor {
+      display: block;
+    }
+  }
+}
+.param-required,
+.param-optional {
+  font-size: 13px;
+  font-weight: normal;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.param-required {
+  color: $codeOrangeColor;
+}
+.param-optional {
+  color: $lightGrayColor;
+}
+.param-description {
+  margin-top: 4px;
+}
