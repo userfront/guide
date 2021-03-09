@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <h4>Response</h4>
+    <h4>Webhook request body</h4>
     <div class="language-json extra-class">
       <pre
         class="language-json"
@@ -14,14 +14,22 @@ import Prism from "prismjs";
 import "prismjs/components/prism-json";
 
 export default {
-  props: ["path", "verb"],
+  props: ["path", "verb", "model", "action"],
   computed: {
-    response() {
+    result() {
       try {
         return this.$docs.paths[this.path][this.verb].responses[200] || {};
       } catch (error) {
         return {};
       }
+    },
+    response() {
+      return {
+        action: this.action,
+        model: this.model,
+        mode: "test",
+        record: this.result,
+      };
     },
     responseSample() {
       return JSON.stringify(this.response, null, "  ");

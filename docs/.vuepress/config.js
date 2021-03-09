@@ -36,7 +36,7 @@ module.exports = {
     sidebar: {
       "/": [
         "/api",
-        // "/webhooks",
+        "/webhooks",
         // {
         //   title: "Examples",
         //   collapsable: true,

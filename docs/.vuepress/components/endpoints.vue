@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <h4>Endpoints</h4>
+    <h4>{{ title || "Endpoints" }}</h4>
     <br />
     <div class="endpoint-rows">
       <p v-for="endpoint in endpoints" class="endpoint-row">
@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  props: ["endpoints"],
+  props: ["title", "endpoints"],
 };
 </script>
 
@@ -52,10 +52,10 @@ export default {
   text-align: right;
   text-transform: uppercase;
   margin-right: 2px;
-  &.get {
+  &.get, &.created {
     color: $codeBlueColor;
   }
-  &.delete {
+  &.delete, &.deleted {
     color: $codeOrangeColor;
   }
 }

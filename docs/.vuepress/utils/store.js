@@ -21,6 +21,7 @@ const store = new Vuex.Store({
     projects: [],
     activeProject: {},
     projectToken: "",
+    // webhookToken: "",
   },
   mutations: {
     setProjects(state) {
@@ -40,6 +41,9 @@ const store = new Vuex.Store({
     setProjectToken(state, projectToken) {
       state.projectToken = projectToken;
     },
+    // setWebhookToken(state, webhookToken) {
+    //   state.webhookToken = webhookToken;
+    // },
   },
   actions: {
     async setActiveProject({ commit, dispatch }, project) {
@@ -74,6 +78,28 @@ const store = new Vuex.Store({
         return;
       }
     },
+
+    // async setWebhookToken({ commit, state }, tenantId) {
+    //   try {
+    //     const authorization = getAccessTokenObject().authorization;
+    //     tenantId = tenantId || Object.keys(authorization)[0];
+    //     const tokenLevel = authorization[tenantId].roles.includes("admin")
+    //       ? "admin"
+    //       : "readonly";
+    //     const { data } = await axios.get(
+    //       `https://api.userfront.com/v0/tenants/${tenantId}/tokens/webhook?test=true`,
+    //       {
+    //         headers: {
+    //           Authorization: `Bearer ${state.accessToken}`,
+    //         },
+    //       }
+    //     );
+    //     commit("setWebhookToken", data.liveWebhook);
+    //     return data.liveWebhook;
+    //   } catch (error) {
+    //     return;
+    //   }
+    // },
   },
 });
 

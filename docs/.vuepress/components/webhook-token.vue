@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div v-if="projectToken">
+    <div v-if="webhookToken">
       <p style="overflow-x:scroll;">
-        <code style="font-weight:600;">{{ projectToken }}</code>
+        <code style="font-weight:600;">{{ webhookToken }}</code>
       </p>
       <div class="select-container" v-if="filteredProjects.length > 1">
         <select v-model="project" @change="setProject">
@@ -15,36 +15,33 @@
         </select>
       </div>
       <p>
-        Your test API key is included in all the examples here, so you can test
-        the code samples right away.
-      </p>
-      <p>
-        In general, you should include your API key in the header of requests:
+        Your test webhook token is included in the examples here for
+        illustration purposes.
       </p>
       <div class="language-json">
         <pre><code>{
   headers: {
-    authorization: "Bearer {{ projectToken }}"
+    authorization: "Bearer {{ webhookToken }}"
   }
 }</code></pre>
       </div>
     </div>
-    <div v-if="!projectToken">
+    <div v-if="!webhookToken">
       <p>
-        A sample test API key is included in all the examples here, so you can
-        test any example right away.
+        Each webhook will contain an authorization header with your project's
+        webhook token.
       </p>
       <p>
-        To test requests using your account, replace the sample API key with
-        your actual API key or sign in.
+        Your server should read this header and verify that it matches the
+        webhook token found in your dashboard.
       </p>
-      <p>
-        <a
-          class="action-button"
-          href="https://userfront.com/login?redirect=/docs/api"
-          >Sign in</a
-        >
-      </p>
+      <div class="language-json">
+        <pre><code>{
+  headers: {
+    authorization: "Bearer example3c5cc4491eb422d48c8f78c2f"
+  }
+}</code></pre>
+      </div>
     </div>
   </div>
 </template>
@@ -60,8 +57,8 @@ export default {
     demoToken() {
       return this.$demoToken;
     },
-    projectToken() {
-      return this.$store.state.projectToken;
+    webhookToken() {
+      return this.$store.state.webhookToken;
     },
     projects() {
       return this.$store.state.projects || [];
