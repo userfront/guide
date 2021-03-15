@@ -1,1 +1,4 @@
+/examples/create-react-app*       /examples/react       301!
+/examples/react-router*           /examples/react       301!
+
 https://guide.userfront.com/*    https://userfront.com/guide/:splat  301!
