@@ -93,9 +93,13 @@ module.exports = {
           title: "Learning",
           collapsable: false,
           children: [
+            "/authentication.md",
             "/jwt-json-web-token.md",
             "/auth-landscape.md",
-            "/authentication.md",
+            [
+              "https://userfront.com/vs/best-auth-comparison-auth0-okta-firebase-cognito.html",
+              "Auth provider comparison",
+            ],
             "/cohort-analysis.md",
             "/cohort.md",
             // "/auth-token-types.md",
