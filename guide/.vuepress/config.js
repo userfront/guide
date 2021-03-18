@@ -87,7 +87,7 @@ module.exports = {
         {
           title: "Usage",
           collapsable: false,
-          children: ["test-mode.md", "/import-export.md"],
+          children: ["test-mode.md", "/multi-tenancy.md", "/import-export.md"],
         },
         {
           title: "Learning",
