@@ -28,7 +28,7 @@ Roles also map users onto tenants. Because a tenant does not "belong" to a given
 
 ### Access token
 
-On Userfront, a user's roles are represented in their [access token](https://userfront.com/guide/tokens.html#access-token), which has an `authorization` property:
+On Userfront, a user's roles are represented in their [access token](../guide/tokens.html#access-token), which has an `authorization` property:
 
 ```json
 "userId": 1,

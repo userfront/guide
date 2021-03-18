@@ -39,11 +39,7 @@
         your actual API key or sign in.
       </p>
       <p>
-        <a
-          class="action-button"
-          href="https://userfront.com/login?redirect=/docs/api"
-          >Sign in</a
-        >
+        <a class="action-button" href="../login?redirect=/docs/api">Sign in</a>
       </p>
     </div>
   </div>

@@ -52,7 +52,7 @@ module.exports = {
     smoothScroll: true,
     nav: [
       { text: "Dashboard", link: "https://userfront.com/projects" },
-      { text: "API docs", link: "https://userfront.com/docs" },
+      { text: "API docs", link: "https://userfront.com/docs/api" },
     ],
     sidebar: {
       "/": [

@@ -128,5 +128,5 @@ In this way, the OAuth flow lets a user first know what information is about to 
 OpenID Connect, the authenticaton protocol discussed above, is built on top of OAuth 2.0. In the case of OpenID Connect, the first server is an authentication server, and the user decides whether to share their identity information with the second server. If the user does share this information, then the second server can rely on the first server to provide authentication.
 
 :::tip
-To quickly set up auth for a web application, try the toolkit from [Userfront](https://userfront.com/auth-user-management).
+To quickly set up auth for a web application, try [Userfront](https://userfront.com).
 :::
