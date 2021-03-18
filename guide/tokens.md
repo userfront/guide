@@ -1,4 +1,4 @@
-# Tokens
+# Token types
 
 When a user logs into your application, they are issued 3 tokens:
 
@@ -44,9 +44,8 @@ When you decode the access token using a JWT library, the access token payload l
 {
   "mode": "live",
   "userId": 99,
+  "userUuid": "51a0d840-ffcd-457e-8676-0ab890008cc5",
   "tenantId": "nz569yb7",
-  "username": "your-user",
-  "email": "youruser@example.com",
   "isConfirmed": true,
   "authorization": {
     "nz569yb7": {

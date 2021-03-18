@@ -82,7 +82,7 @@ module.exports = {
         {
           title: "Tokens",
           collapsable: false,
-          children: ["/tokens.md"],
+          children: ["/token-flow.md", "/tokens.md"],
         },
         {
           title: "Usage",
