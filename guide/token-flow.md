@@ -22,8 +22,8 @@ The `ID token` is intended for use on the client, and the `Refresh token` is use
 
 Each time a user signs on, they receive 3 tokens.
 
-| Name                                              | Description                                                                   |
-| ------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [Access token](/guide/tokens.html#access-token)   | This token has information about the user's access levels.                    |
-| [ID token](/guide/tokens.html#id-token)           | This token has more detailed information about the user, such as their image. |
-| [Refresh token](/guide/tokens.html#refresh-token) | This token is used to obtain new Access & ID tokens.                          |
+| Name                                        | Description                                                                   |
+| ------------------------------------------- | ----------------------------------------------------------------------------- |
+| [Access token](/tokens.html#access-token)   | This token has information about the user's access levels.                    |
+| [ID token](/tokens.html#id-token)           | This token has more detailed information about the user, such as their image. |
+| [Refresh token](/tokens.html#refresh-token) | This token is used to obtain new Access & ID tokens.                          |
