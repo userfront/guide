@@ -75,6 +75,8 @@ export default {
   mounted() {
     if (this.$parent && this.$parent.loadTabs) {
       this.$parent.loadTabs();
+    } else {
+      this.active = true;
     }
   },
 };
