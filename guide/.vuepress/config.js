@@ -89,6 +89,7 @@ module.exports = {
           collapsable: false,
           children: ["test-mode.md", "/multi-tenancy.md", "/import-export.md"],
         },
+        "/glossary.html",
         {
           title: "Learning",
           collapsable: false,
