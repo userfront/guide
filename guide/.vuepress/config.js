@@ -65,6 +65,7 @@ module.exports = {
             // "/examples/create-react-app",
             // "/examples/react-router",
             "/examples/react",
+            "/examples/nodejs",
           ],
         },
         {
