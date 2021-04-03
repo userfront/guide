@@ -11,3 +11,105 @@ main.home {
   // Place above overlay els
   z-index: 2147483559!important;
 }
+
+// Card
+.card {
+  background: white;
+  border: 1px solid #eaecef;
+  border-radius: 8px;
+  background-color: #f7fafc;
+  font-weight: 400;
+  padding: 0 20px 0 20px;
+  margin-top: 20px;
+  h4 {
+    margin: 0 -20px;
+    padding: 10px 20px;
+    background-color: #eaecef;
+  }
+  table {
+    font-size: 13px;
+    thead {
+      display: none;
+    }
+    tr, th, td {
+      border: none;
+      vertical-align: top;
+    }
+    td:first-child {
+      min-width: 140px;
+      padding-left: 0;
+    }
+  }
+  .language-endpoints, .language-json {
+    background-color: inherit;
+    pre {
+      padding: 0;
+    }
+    code {
+      color: #32325d !important;
+    }
+  }
+}
+
+// Form
+
+.form {
+  margin: 20px 0;
+  input, textarea, select {
+    width: calc(100% - 20px);
+    border: 1px solid #ccc;
+    background: #FFF;
+    margin: 0 0 5px;
+    padding: 10px;
+    &:hover {
+      -webkit-transition: border-color 0.3s ease-in-out;
+      -moz-transition: border-color 0.3s ease-in-out;
+      transition: border-color 0.3s ease-in-out;
+      border: 1px solid #aaa;
+    }
+  }
+  input:focus, textarea:focus {
+    outline: 0;
+    border: 1px solid #aaa;
+  }
+  textarea {
+    height: 100px;
+    max-width: 100%;
+    resize: none;
+  }
+  select {
+    max-width: 180px;
+  }
+  button {
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    background: #4CAF50;
+    color: #FFF;
+    margin: 0 0 5px;
+    padding: 10px;
+    font-size: 15px;  
+    &:hover {
+      background: #43A047;
+      -webkit-transition: background 0.3s ease-in-out;
+      -moz-transition: background 0.3s ease-in-out;
+      transition: background-color 0.3s ease-in-out;
+    }
+    &:active {
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+  }
+  ::-webkit-input-placeholder {
+    color: #888;
+  }
+  :-moz-placeholder {
+    color: #888;
+  }
+  ::-moz-placeholder {
+    color: #888;
+  }
+  :-ms-input-placeholder {
+    color: #888;
+  }
+}
+

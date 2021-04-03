@@ -195,6 +195,8 @@ app.get("/admin", (req, res) => {
 
 The above routes are combined into a working sample below.
 
+<request-maker url="https://authentication-and-access-control.userfront.repl.co"/>
+
 `https://authentication-and-access-control.userfront.repl.co`
 
 <iframe height="1200px" width="100%" src="https://replit.com/@userfront/Nodejs-Authentication-and-Access-Control?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
