@@ -196,10 +196,9 @@ app.get("/admin", (req, res) => {
 The above routes are combined into a working sample below.
 
 <request-maker
-url-root="https://auth.userfront.repl.co"
-route-name="public"
-header-type="none"
-
-> </request-maker>
+  url-root="https://auth.userfront.repl.co"
+  route-name="public"
+  token-type="none">
+</request-maker>
 
 <iframe height="1200px" width="100%" src="https://replit.com/@userfront/Nodejs-Authentication-and-Access-Control?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
