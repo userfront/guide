@@ -197,7 +197,7 @@ The above routes are combined into a working sample below.
 
 <request-maker
   url-root="https://auth.userfront.repl.co"
-  route-name="public"
+  route-name="Public"
   token-type="none">
 </request-maker>
 

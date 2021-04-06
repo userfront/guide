@@ -2,56 +2,54 @@
   <div class="card">
     <h4>Example request</h4>
     <div class="card-body">
-      <label>JWT access token</label>
-      <el-button-group>
-        <el-button
-          size="small"
-          :type="isToken('none') ? 'primary' : ''"
-          @click="setToken('none')"
-          >No token</el-button
-        >
-        <el-button
-          size="small"
-          :type="isToken('user') ? 'primary' : ''"
-          @click="setToken('user')"
-          >Logged in user</el-button
-        >
-        <el-button
-          size="small"
-          :type="isToken('admin') ? 'primary' : ''"
-          @click="setToken('admin')"
-          >Admin user</el-button
-        >
-      </el-button-group>
-
-      <label>Route</label>
-      <el-button-group>
-        <el-button
-          v-for="route in routes"
-          :key="`route-${route.name}`"
-          size="small"
-          :type="isRoute(route) ? 'primary' : ''"
-          @click="setRoute(route)"
-          style="font-family:monospace"
-          >/{{ route.name }}</el-button
-        >
-      </el-button-group>
-
       <label for="url-input">URL</label>
       <el-input
         id="url-input"
         type="text"
         v-model="urlInput"
         prefix-icon="el-icon-link"
-      />
+      >
+        <template slot="append">
+          <el-button
+            v-for="route in routes"
+            :key="`route-${route.name}`"
+            size="small"
+            :type="isRoute(route) ? 'primary' : ''"
+            @click="setRoute(route)"
+            >{{ route.name }}</el-button
+          >
+        </template>
+      </el-input>
 
-      <label for="url-input">JWT access token</label>
+      <label for="token-input">JWT access token</label>
       <el-input
-        id="url-input"
+        id="token-input"
         type="text"
-        v-model="urlInput"
-        prefix-icon="el-icon-link"
-      />
+        v-model="tokenInput"
+        prefix-icon="el-icon-user"
+        placeholder="none"
+      >
+        <template slot="append">
+          <el-button
+            size="small"
+            :type="isToken('none') ? 'primary' : ''"
+            @click="setToken('none')"
+            >None</el-button
+          >
+          <el-button
+            size="small"
+            :type="isToken('user') ? 'primary' : ''"
+            @click="setToken('user')"
+            >Logged in</el-button
+          >
+          <el-button
+            size="small"
+            :type="isToken('admin') ? 'primary' : ''"
+            @click="setToken('admin')"
+            >Admin</el-button
+          >
+        </template>
+      </el-input>
 
       <div class="language-javascript">
         <pre
@@ -66,13 +64,14 @@
 
 <script>
 import Prism from "prismjs";
+import "prismjs/components/prism-javascript";
 
 export default {
   props: ["urlRoot", "tokenType", "routeName"],
   data() {
     return {
       urlInput: "",
-      jwtInput: "",
+      tokenInput: "",
       token: {},
       tokens: [
         {
@@ -96,16 +95,20 @@ export default {
   },
   computed: {
     payload() {
-      const payload = {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: this.token.value
-            ? `Bearer ${this.token.value}`
-            : undefined,
-        },
-      };
-      return payload;
+      try {
+        const payload = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: this.tokenInput
+              ? `Bearer ${this.tokenInput}`
+              : undefined,
+          },
+        };
+        return payload;
+      } catch (error) {
+        return {};
+      }
     },
     payloadDisplay() {
       const code = `fetch("${this.urlInput}", ${JSON.stringify(
@@ -117,9 +120,9 @@ export default {
     },
     routes() {
       return [
-        { url: `${this.urlRoot}/public`, name: "public" },
-        { url: `${this.urlRoot}/protected`, name: "protected" },
-        { url: `${this.urlRoot}/admin`, name: "admin" },
+        { url: `${this.urlRoot}/public`, name: "Public" },
+        { url: `${this.urlRoot}/protected`, name: "Protected" },
+        { url: `${this.urlRoot}/admin`, name: "Admin" },
       ];
     },
   },
@@ -128,7 +131,6 @@ export default {
       if (!route) return;
       this.route = route;
       this.urlInput = route.url;
-      Prism.highlight();
     },
     setRouteFromName(routeName) {
       this.routes.map((route) => {
@@ -144,6 +146,7 @@ export default {
       this.tokens.map((token) => {
         if (token.type === type) {
           this.token = token;
+          this.tokenInput = token.value;
         }
       });
     },
@@ -157,6 +160,7 @@ export default {
   },
   mounted() {
     this.setRouteFromName(this.routeName);
+    console.log(this.tokenType);
     this.setToken(this.tokenType);
   },
 };
@@ -175,6 +179,14 @@ export default {
   .el-button-group,
   .el-input {
     margin-bottom: 12px;
+    .el-button.el-button--primary {
+      color: white;
+      background-color: #409EFF;
+    }
+    /deep/ .el-input-group__append {
+      min-width: 180px;
+      padding-left: 22px;
+    }
   }
 }
 </style>
