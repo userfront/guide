@@ -1,55 +1,56 @@
 <template>
   <div class="card">
     <h4>Hello</h4>
-    <br />
-    <label>JWT access token</label>
-    <div style="margin-bottom:12px;">
-      <el-button-group>
-        <el-button
-          size="small"
-          :type="isHeader('none') ? 'primary' : ''"
-          @click="setHeader('none')"
-          >No token</el-button
-        >
-        <el-button
-          size="small"
-          :type="isHeader('user') ? 'primary' : ''"
-          @click="setHeader('user')"
-          >Logged in user</el-button
-        >
-        <el-button
-          size="small"
-          :type="isHeader('admin') ? 'primary' : ''"
-          @click="setHeader('admin')"
-          >Admin user</el-button
-        >
-      </el-button-group>
-    </div>
-    <label>Route</label>
-    <div style="margin-bottom:12px;">
-      <el-button-group>
-        <el-button
-          v-for="route in routes"
-          :key="`route-${route.name}`"
-          size="small"
-          :type="isRoute(route) ? 'primary' : ''"
-          @click="setRoute(route)"
-          style="font-family:monospace"
-          >/{{ route.name }}</el-button
-        >
-      </el-button-group>
-    </div>
-    <label for="url-input">URL</label>
-    <el-input
-      id="url-input"
-      type="text"
-      v-model="urlInput"
-      prefix-icon="el-icon-link"
-    />
+    <div style="padding: 20px 0">
+      <label>JWT access token</label>
+      <div style="margin-bottom:12px;">
+        <el-button-group>
+          <el-button
+            size="small"
+            :type="isHeader('none') ? 'primary' : ''"
+            @click="setHeader('none')"
+            >No token</el-button
+          >
+          <el-button
+            size="small"
+            :type="isHeader('user') ? 'primary' : ''"
+            @click="setHeader('user')"
+            >Logged in user</el-button
+          >
+          <el-button
+            size="small"
+            :type="isHeader('admin') ? 'primary' : ''"
+            @click="setHeader('admin')"
+            >Admin user</el-button
+          >
+        </el-button-group>
+      </div>
+      <label>Route</label>
+      <div style="margin-bottom:12px;">
+        <el-button-group>
+          <el-button
+            v-for="route in routes"
+            :key="`route-${route.name}`"
+            size="small"
+            :type="isRoute(route) ? 'primary' : ''"
+            @click="setRoute(route)"
+            style="font-family:monospace"
+            >/{{ route.name }}</el-button
+          >
+        </el-button-group>
+      </div>
+      <label for="url-input">URL</label>
+      <el-input
+        id="url-input"
+        type="text"
+        v-model="urlInput"
+        prefix-icon="el-icon-link"
+      />
 
-    <pre><code>fetch("{{ urlInput }}", {{ JSON.stringify(payload, null, 2) }})</code></pre>
+      <pre><code>fetch("{{ urlInput }}", {{ JSON.stringify(payload, null, 2) }})</code></pre>
 
-    <el-button @click="makeRequest" type="primary">Make request</el-button>
+      <el-button @click="makeRequest" type="primary">Make request</el-button>
+    </div>
   </div>
 </template>
 
