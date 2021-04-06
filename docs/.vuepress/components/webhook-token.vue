@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="light-code">
     <div v-if="webhookToken">
       <p style="overflow-x:scroll;">
         <code style="font-weight:600;">{{ webhookToken }}</code>

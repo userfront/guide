@@ -6,6 +6,8 @@
   "dependencies": {
     "@userfront/core": "^0.1.16",
     "axios": "^0.21.1",
+    "core-js": "^2.6",
+    "element-ui": "^2.15.1",
     "js-cookie": "^2.2.1",
     "vuepress": "^1.8.1",
     "vuex": "^3.6.2"

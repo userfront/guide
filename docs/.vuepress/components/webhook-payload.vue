@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card light-code">
     <h4>Webhook request body</h4>
     <div class="language-json extra-class">
       <pre
