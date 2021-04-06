@@ -31,22 +31,12 @@
       >
         <template slot="append">
           <el-button
+            v-for="token in tokens"
+            :key="`token-${token.value}`"
             size="small"
-            :type="isToken('none') ? 'primary' : ''"
-            @click="setToken('none')"
-            >None</el-button
-          >
-          <el-button
-            size="small"
-            :type="isToken('user') ? 'primary' : ''"
-            @click="setToken('user')"
-            >Logged in</el-button
-          >
-          <el-button
-            size="small"
-            :type="isToken('admin') ? 'primary' : ''"
-            @click="setToken('admin')"
-            >Admin</el-button
+            :type="isToken(token) ? 'primary' : ''"
+            @click="setToken(token)"
+            >{{ token.name }}</el-button
           >
         </template>
       </el-input>
@@ -58,6 +48,12 @@
       </div>
 
       <el-button @click="makeRequest" type="primary">Make request</el-button>
+
+      <div class="language-json" v-if="response">
+        <pre
+          class="language-json"
+        ><code class="language-json" v-html="response"></code></pre>
+      </div>
     </div>
   </div>
 </template>
@@ -65,6 +61,7 @@
 <script>
 import Prism from "prismjs";
 import "prismjs/components/prism-javascript";
+import "prismjs/components/prism-json";
 
 export default {
   props: ["urlRoot", "tokenType", "routeName"],
@@ -75,22 +72,25 @@ export default {
       token: {},
       tokens: [
         {
-          name: "No token",
+          name: "None",
           type: "none",
           value: "",
         },
         {
-          name: "Logged-in user",
+          name: "Logged-in",
           type: "user",
-          value: "eyreg",
+          value:
+            "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2RlIjoidGVzdCIsInRlbmFudElkIjoiZGVtbzEyMzQiLCJ1c2VySWQiOjIsInVzZXJVdWlkIjoiYTI3YzQyNDQtYjBjYy00ZWMzLWFjYzQtY2JjYzE5NTM1NDE2IiwiaXNDb25maXJtZWQiOnRydWUsImF1dGhvcml6YXRpb24iOnsiZGVtbzEyMzQiOnsidGVuYW50SWQiOiJkZW1vMTIzNCIsIm5hbWUiOiJFeGFtcGxlIHRlbmFudCIsInJvbGVzIjpbXSwicGVybWlzc2lvbnMiOltdfX0sInNlc3Npb25JZCI6ImV4YW1wbGUwLTg3MWEtMzhiYy05MThlLWNhYjgxZXhhbXBsZSIsImlhdCI6MTU5MjI5ODU1NSwiZXhwIjo5OTk5OTk5OTk5fQ.NFhDjUHc_SIh55w-yeFyVHUnh2ghe07i4Ky4aD0uoJkQPpSXfl0P9EPkjmaGf95mvWBGj5NjC5HvTfsYVfchK9g8fFUHk2iE3pNMzixGFn1ci1QIM-rxY3qCoPsaUlLSWbDxVtGK6_MNFeygPa8_6u2nQ8qVYFvHzN8-eQRoF5I",
         },
         {
-          name: "Admin user",
+          name: "Admin",
           type: "admin",
-          value: "eyadmin",
+          value:
+            "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2RlIjoidGVzdCIsInRlbmFudElkIjoiZGVtbzEyMzQiLCJ1c2VySWQiOjEsInVzZXJVdWlkIjoiYzYyZDZhM2UtMjhiMi00NmIwLWIwN2ItMzBmOGNlM2FlMGUzIiwiaXNDb25maXJtZWQiOnRydWUsImF1dGhvcml6YXRpb24iOnsiZGVtbzEyMzQiOnsidGVuYW50SWQiOiJkZW1vMTIzNCIsIm5hbWUiOiJFeGFtcGxlIHRlbmFudCIsInJvbGVzIjpbImFkbWluIl0sInBlcm1pc3Npb25zIjpbXX19LCJzZXNzaW9uSWQiOiJleGFtcGxlNy05MjdkLTQ2YjMtOGUwMC0wNDM0OGV4YW1wbGUiLCJpYXQiOjE1OTIyOTg1NTUsImV4cCI6OTk5OTk5OTk5OX0.NJzvR_6fD8fHumQXqIjAjtNsG2d8x9UkDieU9A86BYB8p6LLTbIJ1Goeo0FkmgZLYNY9ClZEVDKdNYVERY5R-Rzp9Ka_uAaQeMR510vRb3zkzB2b_qUXbzo3d4gbK9WdKmuBHkCp51iiXQlvpRfKRR5PQvzEiEe-LkjndD0zPj8",
         },
       ],
       route: {},
+      response: undefined,
     };
   },
   computed: {
@@ -141,27 +141,33 @@ export default {
       if (!route) return;
       return this.urlInput === route.url;
     },
-    setToken(type) {
-      if (!type) return;
+    setToken(token) {
+      if (!token) return;
+      this.token = token;
+      this.tokenInput = token.value;
+    },
+    setTokenFromType(type) {
       this.tokens.map((token) => {
-        if (token.type === type) {
-          this.token = token;
-          this.tokenInput = token.value;
-        }
+        if (token.type === type) this.setToken(token);
       });
     },
-    isToken(type) {
-      return this.token.type === type;
+    isToken(token) {
+      if (!token) return;
+      return token.value === this.tokenInput;
     },
     async makeRequest() {
       const response = await fetch(this.urlInput, this.payload);
-      console.log(response);
+      const data = await response.json();
+      this.response = Prism.highlight(
+        JSON.stringify(data, null, 2),
+        Prism.languages.json,
+        "json"
+      );
     },
   },
   mounted() {
     this.setRouteFromName(this.routeName);
-    console.log(this.tokenType);
-    this.setToken(this.tokenType);
+    this.setTokenFromType(this.tokenType);
   },
 };
 </script>

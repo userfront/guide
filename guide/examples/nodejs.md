@@ -2,17 +2,17 @@
 
 In this example, we show how to add authentication and access control to a basic Node.js application.
 
-We use Express.js for the routing, but other frameworks work in the same manner.
-
 To use Userfront with a Node.js application, your backend server needs to read and verify JWT access tokens. After that, your code can determine how to respond to each request.
 
 In this example, we have a server with 3 `GET` routes:
 
-| Route        | Description                                                                                         |
-| :----------- | :-------------------------------------------------------------------------------------------------- |
-| `/public`    | This route is accessible by anyone, whether they are logged in or not. It only returns a timestamp. |
-| `/protected` | This route is accessible by any user who is logged in. It returns data specific to the user.        |
-| `/admin`     | This route is only accessible by users with an `admin` role. It returns data for admins only.       |
+| Route        | Description                                                                                    |
+| :----------- | :--------------------------------------------------------------------------------------------- |
+| `/public`    | This route is accessible by anyone, whether they are logged in or not. It returns public data. |
+| `/protected` | This route is accessible by any user who is logged in. It returns data specific to the user.   |
+| `/admin`     | This route is only accessible by users with an `admin` role. It returns data for admins only.  |
+
+We'll use Express.js for the routing, but other frameworks work in the same manner.
 
 We cover each route below, along with an [interactive sample](#interactive-sample) at the end.
 
@@ -24,6 +24,7 @@ No authentication or access controls are needed for the public route. Thus, the 
 // Public route
 app.get("/public", (req, res) => {
   res.send({
+    data: "Public data",
     timestamp: new Date(),
   });
 });
@@ -33,13 +34,14 @@ Response:
 
 ```json
 {
+  "data": "Public data",
   "timestamp": "2021-04-01T00:00:00.000Z"
 }
 ```
 
 ## Protected route
 
-To build a route that only logged-in users can view, we need the client (frontend) to include the user's JWT access token in the `authorization` header for the request.
+To build a route that only logged-in users can view, we need the client (frontend) to include the user's [JWT access token](/guide/tokens.html#access-token) in the `authorization` header for the request.
 
 Our server can then read the header and reject any requests without a valid JWT access token.
 
@@ -47,8 +49,15 @@ Our server can then read the header and reject any requests without a valid JWT 
 
 The client should include the user's JWT access token in the `authorization` header of the request:
 
-```
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2RlIjoidGVzdCIsImlzQ29uZmlybWVkIjp0cnVlLCJ1c2VySWQiOjEsInVzZXJVdWlkIjoiYWI1M2RiZGMtYmIxYS00ZDRkLTllZGYtNjgzYTZjYTNmNjA5IiwidGVuYW50SWQiOiJkZW1vMTIzNCIsInNlc3Npb25JZCI6IjBhZTI3NjI3LWEyMjYtNGQxMS04Yzk0LTMyYjliYmEzZjI4NSIsImF1dGhvcml6YXRpb24iOnsiZGVtbzEyMzQiOnsidGVuYW50SWQiOiJkZW1vMTIzNCIsIm5hbWUiOiJEZW1vIFByb2plY3QiLCJyb2xlcyI6WyJ2aWV3ZXIiLCJtZW1iZXIiLCJhZG1pbiJdLCJwZXJtaXNzaW9ucyI6W119fSwiaWF0IjoxNjE3MzIwMTAzLCJleHAiOjE2MTk5MTIxMDN9.SS-aBsyOsafVzlaM5k8-3bUk7jzKdhg8-fcAYbb_WZeAJFL7KwdIXCJy8JCmqHmyvG851GXBJDJCms6VutYmY4RpuFzoarXe-ZAfukfEg2nFRvGLzZAM5nF_6NZfzWU1vb2jFLlYhjUp8_hAmvr8hrSdSsYRpbAc6OHvg9XV7Scft4MjMV38_d52a9AT_6GR-60PkXbQmlUIqG2PtDcU9ngklv-f2q1oYUBWGQR7jCGr0AGkoE9rDutpw489ZviTHxzi9nMgn5o-CDx9ewTF9uu8TjqaiZiK-rATvUhXMDboun2W9XoRNVSFiQMLCcSMbgI-oW1HhUt7NzVnd5SDCA
+```js
+fetch("https://auth.userfront.repl.co/protected", {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2RlIjoidGVzdCIsInRlbmFudElkIjoiZGVtbzEyMzQiLCJ1c2VySWQiOjIsInVzZXJVdWlkIjoiYTI3YzQyNDQtYjBjYy00ZWMzLWFjYzQtY2JjYzE5NTM1NDE2IiwiaXNDb25maXJtZWQiOnRydWUsImF1dGhvcml6YXRpb24iOnsiZGVtbzEyMzQiOnsidGVuYW50SWQiOiJkZW1vMTIzNCIsIm5hbWUiOiJFeGFtcGxlIHRlbmFudCIsInJvbGVzIjpbXSwicGVybWlzc2lvbnMiOltdfX0sInNlc3Npb25JZCI6ImV4YW1wbGUwLTg3MWEtMzhiYy05MThlLWNhYjgxZXhhbXBsZSIsImlhdCI6MTU5MjI5ODU1NSwiZXhwIjo5OTk5OTk5OTk5fQ.NFhDjUHc_SIh55w-yeFyVHUnh2ghe07i4Ky4aD0uoJkQPpSXfl0P9EPkjmaGf95mvWBGj5NjC5HvTfsYVfchK9g8fFUHk2iE3pNMzixGFn1ci1QIM-rxY3qCoPsaUlLSWbDxVtGK6_MNFeygPa8_6u2nQ8qVYFvHzN8-eQRoF5I",
+  },
+});
 ```
 
 ### Server (backend)
@@ -60,14 +69,12 @@ If the JWT access token is invalid or expired, we throw an error and return `Una
 ```js
 const jwt = require("jsonwebtoken");
 
-process.env.USERFRONT_JWT_PUBLIC_KEY = `-----BEGIN RSA PUBLIC KEY-----
-MIIBCgKCAQEAodD/IEagav7wlBX+k30YOSFpYT0u7AtV3ljwC52ShCFFGVvw86T5
-VTbg5Q/L/dgQT0+OZi+Fe/aAIL6j+3d8+Md5nGg7zqTv33GE7tN4ZoSkYnPMAm1I
-PjkOevpia98u8n1jWE/OnDnQqgozcy2zssGcJ1+QwJWuZWVObbFiA6ppFlyb9Hm8
-2wEgvBqjuTqCvLdJO5CtY5ya5OpGLpnqlsXTRgJEEFk0VTdH56ztcLFMDMxm4OVW
-aWy+i4YieTRRKnbyT7fzDPiZupkcg2jwVF49CtyB9UWtE/+/BAKtJtBLfdZ5X1dK
-RqesE10ysVdGxeyeRpyFltEfF5QWAzn99wIDAQAB
------END RSA PUBLIC KEY-----`;
+process.env.USERFRONT_JWT_PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----
+MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgHmYqcLIIZ6G9aleXAWFm6rYEy8m
+jbxGkXA23pMgd7lYwwgaTyh/V3RlHosS0Tp3a7rywulki7iYhN7NVmHSTPjm+4a9
+C+ADVj+sMZnloa9hk0oBz+SN/i3CG/8LTN+ToR5j0CowF0Yl/Tze2Pm/qswgCVul
+4ghWDVHmM4j/9T7RAgMBAAE=
+-----END PUBLIC KEY-----`;
 
 // Protected route
 app.get("/protected", (req, res) => {
@@ -100,14 +107,14 @@ Response:
 
 ```json
 {
-  "data": "Data specific to user 5 (dd7392a-cba2-a40b-0ff8-793a6ca3fcda).",
+  "data": "Data specific to user 2 (a27c4244-b0cc-4ec3-acc4-cbcc19535416).",
   "timestamp": "2021-04-01T00:00:00.000Z"
 }
 ```
 
 ## Admin route
 
-To build a route that only admin users can view, we need the client (frontend) to include the user's JWT access token in the `authorization` header for the request.
+To build a route that only admin users can view, we need the client (frontend) to include the user's [JWT access token](/guide/tokens.html#access-token) in the `authorization` header for the request.
 
 Our server can then read the header and reject any JWT access tokens that don't have the `admin` role.
 
@@ -115,28 +122,41 @@ Our server can then read the header and reject any JWT access tokens that don't 
 
 The client should include the user's JWT access token in the `authorization` header of the request:
 
-```
-Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2RlIjoidGVzdCIsImlzQ29uZmlybWVkIjp0cnVlLCJ1c2VySWQiOjEsInVzZXJVdWlkIjoiYWI1M2RiZGMtYmIxYS00ZDRkLTllZGYtNjgzYTZjYTNmNjA5IiwidGVuYW50SWQiOiJkZW1vMTIzNCIsInNlc3Npb25JZCI6IjBhZTI3NjI3LWEyMjYtNGQxMS04Yzk0LTMyYjliYmEzZjI4NSIsImF1dGhvcml6YXRpb24iOnsiZGVtbzEyMzQiOnsidGVuYW50SWQiOiJkZW1vMTIzNCIsIm5hbWUiOiJEZW1vIFByb2plY3QiLCJyb2xlcyI6WyJ2aWV3ZXIiLCJtZW1iZXIiLCJhZG1pbiJdLCJwZXJtaXNzaW9ucyI6W119fSwiaWF0IjoxNjE3MzIwMTAzLCJleHAiOjE2MTk5MTIxMDN9.SS-aBsyOsafVzlaM5k8-3bUk7jzKdhg8-fcAYbb_WZeAJFL7KwdIXCJy8JCmqHmyvG851GXBJDJCms6VutYmY4RpuFzoarXe-ZAfukfEg2nFRvGLzZAM5nF_6NZfzWU1vb2jFLlYhjUp8_hAmvr8hrSdSsYRpbAc6OHvg9XV7Scft4MjMV38_d52a9AT_6GR-60PkXbQmlUIqG2PtDcU9ngklv-f2q1oYUBWGQR7jCGr0AGkoE9rDutpw489ZviTHxzi9nMgn5o-CDx9ewTF9uu8TjqaiZiK-rATvUhXMDboun2W9XoRNVSFiQMLCcSMbgI-oW1HhUt7NzVnd5SDCA
+```js
+fetch("https://auth.userfront.repl.co/admin", {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2RlIjoidGVzdCIsInRlbmFudElkIjoiZGVtbzEyMzQiLCJ1c2VySWQiOjEsInVzZXJVdWlkIjoiYzYyZDZhM2UtMjhiMi00NmIwLWIwN2ItMzBmOGNlM2FlMGUzIiwiaXNDb25maXJtZWQiOnRydWUsImF1dGhvcml6YXRpb24iOnsiZGVtbzEyMzQiOnsidGVuYW50SWQiOiJkZW1vMTIzNCIsIm5hbWUiOiJFeGFtcGxlIHRlbmFudCIsInJvbGVzIjpbImFkbWluIl0sInBlcm1pc3Npb25zIjpbXX19LCJzZXNzaW9uSWQiOiJleGFtcGxlNy05MjdkLTQ2YjMtOGUwMC0wNDM0OGV4YW1wbGUiLCJpYXQiOjE1OTIyOTg1NTUsImV4cCI6OTk5OTk5OTk5OX0.NJzvR_6fD8fHumQXqIjAjtNsG2d8x9UkDieU9A86BYB8p6LLTbIJ1Goeo0FkmgZLYNY9ClZEVDKdNYVERY5R-Rzp9Ka_uAaQeMR510vRb3zkzB2b_qUXbzo3d4gbK9WdKmuBHkCp51iiXQlvpRfKRR5PQvzEiEe-LkjndD0zPj8",
+  },
+});
 ```
 
 ### Server (backend)
 
 To restrict the route to admins only, we need to check that the JWT access token has the `admin` role.
 
-Userfront's JWT access token payloads look like this when decoded:
+Userfront's JWT access token look like this encoded:
+
+```
+eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2RlIjoidGVzdCIsInRlbmFudElkIjoiZGVtbzEyMzQiLCJ1c2VySWQiOjEsInVzZXJVdWlkIjoiYzYyZDZhM2UtMjhiMi00NmIwLWIwN2ItMzBmOGNlM2FlMGUzIiwiaXNDb25maXJtZWQiOnRydWUsImF1dGhvcml6YXRpb24iOnsiZGVtbzEyMzQiOnsidGVuYW50SWQiOiJkZW1vMTIzNCIsIm5hbWUiOiJFeGFtcGxlIHRlbmFudCIsInJvbGVzIjpbImFkbWluIl0sInBlcm1pc3Npb25zIjpbXX19LCJzZXNzaW9uSWQiOiJleGFtcGxlNy05MjdkLTQ2YjMtOGUwMC0wNDM0OGV4YW1wbGUiLCJpYXQiOjE1OTIyOTg1NTUsImV4cCI6OTk5OTk5OTk5OX0.NJzvR_6fD8fHumQXqIjAjtNsG2d8x9UkDieU9A86BYB8p6LLTbIJ1Goeo0FkmgZLYNY9ClZEVDKdNYVERY5R-Rzp9Ka_uAaQeMR510vRb3zkzB2b_qUXbzo3d4gbK9WdKmuBHkCp51iiXQlvpRfKRR5PQvzEiEe-LkjndD0zPj8
+```
+
+And the JWT access token's payload looks like this decoded:
 
 ```json
 {
   "mode": "test",
   "tenantId": "demo1234",
   "userId": 1,
-  ...
   "authorization": {
     "demo1234": {
+      "roles": ["admin"],
       ...
-      "roles": ["admin"]
     }
-  }
+  },
+  ...
 }
 ```
 
@@ -149,14 +169,12 @@ If the JWT access token is invalid, expired, or missing the `admin` role, we thr
 ```js
 const jwt = require("jsonwebtoken");
 
-process.env.USERFRONT_JWT_PUBLIC_KEY = `-----BEGIN RSA PUBLIC KEY-----
-MIIBCgKCAQEAodD/IEagav7wlBX+k30YOSFpYT0u7AtV3ljwC52ShCFFGVvw86T5
-VTbg5Q/L/dgQT0+OZi+Fe/aAIL6j+3d8+Md5nGg7zqTv33GE7tN4ZoSkYnPMAm1I
-PjkOevpia98u8n1jWE/OnDnQqgozcy2zssGcJ1+QwJWuZWVObbFiA6ppFlyb9Hm8
-2wEgvBqjuTqCvLdJO5CtY5ya5OpGLpnqlsXTRgJEEFk0VTdH56ztcLFMDMxm4OVW
-aWy+i4YieTRRKnbyT7fzDPiZupkcg2jwVF49CtyB9UWtE/+/BAKtJtBLfdZ5X1dK
-RqesE10ysVdGxeyeRpyFltEfF5QWAzn99wIDAQAB
------END RSA PUBLIC KEY-----`;
+process.env.USERFRONT_JWT_PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----
+MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgHmYqcLIIZ6G9aleXAWFm6rYEy8m
+jbxGkXA23pMgd7lYwwgaTyh/V3RlHosS0Tp3a7rywulki7iYhN7NVmHSTPjm+4a9
+C+ADVj+sMZnloa9hk0oBz+SN/i3CG/8LTN+ToR5j0CowF0Yl/Tze2Pm/qswgCVul
+4ghWDVHmM4j/9T7RAgMBAAE=
+-----END PUBLIC KEY-----`;
 
 // Admin-only route
 app.get("/admin", (req, res) => {
@@ -191,14 +209,27 @@ app.get("/admin", (req, res) => {
 });
 ```
 
+Response:
+
+```json
+{
+  "data": "Data for admins only. Requestor has roles: admin.",
+  "timestamp": "2021-04-01T00:00:00.000Z"
+}
+```
+
 ## Interactive sample
 
-The above routes are combined into a working sample below.
+The above routes are combined into a working sample.
+
+Here you can make a request to a server running live code, which is shown below.
 
 <request-maker
   url-root="https://auth.userfront.repl.co"
   route-name="Public"
   token-type="none">
 </request-maker>
+
+The live code for the server is available to clone:
 
 <iframe height="1200px" width="100%" src="https://replit.com/@userfront/Nodejs-Authentication-and-Access-Control?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
