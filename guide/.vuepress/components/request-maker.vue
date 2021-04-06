@@ -1,25 +1,8 @@
 <template>
   <div class="card">
     <h4>Hello</h4>
-    <form class="form">
-      <input type="url" :value="urlValue" />
-      <select v-model="headerValue">
-        <option
-          v-for="(hv, i) in headerValues"
-          :key="`header-${i}`"
-          :value="hv.value"
-          >{{ hv.name }}</option
-        >
-      </select>
-      <select v-model="routeValue">
-        <option
-          v-for="(rv, i) in routeValues"
-          :key="`route-${i}`"
-          :value="rv"
-          >{{ rv }}</option
-        >
-      </select>
-    </form>
+    <br />
+    <label>JWT access token</label>
     <div style="margin-bottom:12px;">
       <el-button-group>
         <el-button
@@ -42,29 +25,42 @@
         >
       </el-button-group>
     </div>
-    <div>
+    <label>Route</label>
+    <div style="margin-bottom:12px;">
       <el-button-group>
-        <el-button type="primary" size="small">/public</el-button>
-        <el-button type="primary" size="small" plain>/protected</el-button>
-        <el-button type="primary" size="small" plain>/admin</el-button>
+        <el-button
+          v-for="route in routes"
+          :key="`route-${route.name}`"
+          size="small"
+          :type="isRoute(route) ? 'primary' : ''"
+          @click="setRoute(route)"
+          style="font-family:monospace"
+          >/{{ route.name }}</el-button
+        >
       </el-button-group>
     </div>
+    <label for="url-input">URL</label>
+    <el-input
+      id="url-input"
+      type="text"
+      v-model="urlInput"
+      prefix-icon="el-icon-link"
+    />
 
-    <pre><code>fetch({
-  header: "{{ headerValue.value }}",
-  route: "{{ routeValue }}"    
-})</code></pre>
+    <pre><code>fetch("{{ urlInput }}", {{ JSON.stringify(payload, null, 2) }})</code></pre>
+
+    <el-button @click="makeRequest" type="primary">Make request</el-button>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["url", "headerType"],
+  props: ["urlRoot", "headerType", "routeName"],
   data() {
     return {
-      urlValue: "",
-      headerValue: {},
-      headerValues: [
+      urlInput: "",
+      header: {},
+      headers: [
         {
           name: "No token",
           type: "none",
@@ -81,27 +77,77 @@ export default {
           value: "eyadmin",
         },
       ],
-      routeValue: "/public",
-      routeValues: ["/public", "/protected", "/admin"],
+      route: {},
     };
   },
+  computed: {
+    payload() {
+      const payload = {
+        method: "GET",
+      };
+      if (this.header.value) {
+        payload.headers = {
+          Authorization: this.header.value,
+        };
+      }
+      return payload;
+    },
+    routes() {
+      return [
+        { url: `${this.urlRoot}/public`, name: "public" },
+        { url: `${this.urlRoot}/protected`, name: "protected" },
+        { url: `${this.urlRoot}/admin`, name: "admin" },
+      ];
+    },
+  },
   methods: {
+    setRoute(route) {
+      if (!route) return;
+      this.route = route;
+      this.urlInput = route.url;
+    },
+    setRouteFromName(routeName) {
+      this.routes.map((route) => {
+        if (route.name === routeName) this.setRoute(route);
+      });
+    },
+    isRoute(route) {
+      if (!route) return;
+      return this.urlInput === route.url;
+    },
     setHeader(type) {
       if (!type) return;
-      this.headerValues.map((hv) => {
+      this.headers.map((hv) => {
         if (hv.type === type) {
-          this.headerValue = hv;
+          this.header = hv;
         }
       });
     },
     isHeader(type) {
-      console.log(this.headerValue.type, type);
-      return this.headerValue.type === type;
+      return this.header.type === type;
+    },
+    async makeRequest() {
+      const response = await fetch(this.urlInput, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(response);
     },
   },
   mounted() {
-    this.urlValue = this.url || "";
+    // this.urlInput =
+    //   (this.urlRoot || "https://api.userfront.com/v0") + "/public";
+    this.setRouteFromName(this.routeName);
     this.setHeader(this.headerType);
   },
 };
 </script>
+
+<style lang="stylus" scoped>
+.card {
+  margin-bottom: 20px;
+}
+</style>
