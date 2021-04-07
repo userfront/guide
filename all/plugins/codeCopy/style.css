@@ -1,0 +1,7 @@
+.code-copy-added:hover>.code-copy svg {
+    opacity: .75;
+}
+
+div div[class*="language-"]::before {
+    right: 40px;
+}

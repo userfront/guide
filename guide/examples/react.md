@@ -56,7 +56,12 @@ Just like it says, we can now edit the `src/App.js` file to start working.
 ::::
 ::::right
 
+:::card
+
+#### Preview
+
 ![Create React App authentication](https://res.cloudinary.com/component/image/upload/v1612896738/permanent/create-react-app.gif)
+:::
 
 ::::
 :::::
@@ -176,7 +181,7 @@ npm start
 
 Add the signup form to your home page by importing and initializing Userfront, and then updating the `Home()` function to render the form.
 
-```js
+```jsx
 // src/App.js
 
 import React from "react";
@@ -261,7 +266,7 @@ The form is in "Test mode" by default, which will create user records in a test 
 
 Continue by adding your login and password reset forms in the same way that you added your signup form:
 
-```js
+```jsx
 // src/App.js
 
 import React from "react";
@@ -370,7 +375,7 @@ When a user is logged in, they will have an access token available as `Userfront
 
 Add the `Redirect` component to the `import` statement for React Router, and then update the `Dashboard` component to redirect if no access token is present.
 
-```js
+```jsx
 // src/App.js
 
 import React from "react";

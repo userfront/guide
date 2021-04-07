@@ -47,6 +47,7 @@ module.exports = {
         ga: "UA-164523904-2",
       },
     ],
+    require("../../all/plugins/codeCopy/index.js"),
   ],
   themeConfig: {
     smoothScroll: true,
