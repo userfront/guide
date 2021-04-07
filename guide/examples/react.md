@@ -10,7 +10,10 @@ We will use Create React App for setup, along with React Router for client-side 
 ::::
 ::::right
 
-::: tip GitHub repo for this example
+:::card
+
+#### GitHub repo for this example
+
 [https://github.com/userfront/react-example](https://github.com/userfront/react-example)
 :::
 
@@ -80,8 +83,12 @@ We'll set up a simple app with routing. This is all we need to start adding auth
 | `/reset`     | Password reset page                      |
 | `/dashboard` | User dashboard, for logged in users only |
 
-Replace the contents of `src/App.js` with the following, based on the React Router quickstart:
+::::
+:::::
 
+:::::row
+::::left
+Replace the contents of `src/App.js` with the following, based on the React Router quickstart:
 ::::
 :::::
 
@@ -296,13 +303,36 @@ function Dashboard() {
 ::::
 :::::
 
+:::::row
+::::left
+
 Now the home page has your signup form. Try signing up a user.
+
+::::
+:::::
+
+:::::row
+
+::::left
+
+#### Test mode
 
 The form is in "Test mode" by default, which will create user records in a test environment you can view separately in your Userfront dashboard.
 
+::::
+:::::
+
 ![Userfront test mode](https://res.cloudinary.com/component/image/upload/v1612980797/permanent/create-react-app-2.png)
 
+:::::row
+::::left
+
 Continue by adding your login and password reset forms in the same way that you added your signup form:
+::::
+:::::
+
+:::::row
+::::left
 
 ```jsx
 // src/App.js
@@ -395,13 +425,27 @@ function Dashboard() {
 }
 ```
 
+::::
+::::right
+
+:::card
+
+#### Preview
+
+![React signup, login, password reset](https://res.cloudinary.com/component/image/upload/v1614095875/permanent/react-router-3.gif)
+:::
+::::
+
+:::::
+
 At this point, your signup, login, and password reset should all be functional.
 
 Your users can sign up, log in, and reset their password.
 
-![React signup, login, password reset](https://res.cloudinary.com/component/image/upload/v1614095875/permanent/react-router-3.gif)
-
 ## Protected route in React
+
+:::::row
+::::left
 
 Usually, we don't want users to be able to view the dashboard unless they are logged in. This is known as protecting a route.
 
@@ -412,6 +456,11 @@ We can accomplish this by updating the `Dashboard` component in `src/App.js` to 
 When a user is logged in, they will have an access token available as `Userfront.accessToken()`. We can check for this token to determine if the user is logged in.
 
 Add the `Redirect` component to the `import` statement for React Router, and then update the `Dashboard` component to redirect if no access token is present.
+::::
+:::::
+
+:::::row
+::::left
 
 ```jsx
 // src/App.js
@@ -464,17 +513,51 @@ Notice also that we've added a logout button by calling `Userfront.logout()` dir
 
 Now, when a user is logged in, they can view the dashboard. If the user is not logged in, they will be redirected to the login page.
 
+::::
+::::right
+
+:::card
+
+#### Preview
+
 ![React protected route](https://res.cloudinary.com/component/image/upload/v1614104770/permanent/react-router-4.png)
+:::
+::::
+:::::
 
 ## React authentication with an API
+
+:::::row
+::::left
 
 You will probably want to retrieve user-specific information from your backend. In order to protect these API endpoints, your server should check that incoming JWTs are valid.
 
 There are many libraries to read and verify JWTs across various languages; here are a few popular libraries for handling JWTs:
 
-|                                                       |                                           |                                              |                                           |
-| ----------------------------------------------------- | ----------------------------------------- | -------------------------------------------- | ----------------------------------------- |
-| [Node.js](https://github.com/auth0/node-jsonwebtoken) | [.NET](https://github.com/jwt-dotnet/jwt) | [Python](https://github.com/jpadilla/pyjwt/) | [Java](https://github.com/auth0/java-jwt) |
+::::
+::::right
+
+:::card
+
+#### JWT libraries
+
+<p>
+  <a href="https://github.com/auth0/node-jsonwebtoken" target="_blank">Node.js</a>
+  <br/>
+  <a href="https://github.com/jpadilla/pyjwt/" target="_blank">Python</a>
+  <br/>
+  <a href="https://github.com/auth0/java-jwt" target="_blank">Java</a>
+  <br/>
+  <a href="https://github.com/firebase/php-jwt" target="_blank">PHP</a>
+  <br/>
+  <a href="https://github.com/jwt-dotnet/jwt" target="_blank">.NET</a>
+</p>
+
+:::
+::::
+:::::
+:::::row
+::::left
 
 For Userfront, the access token is available in your React application as `Userfront.accessToken()`.
 
@@ -566,12 +649,23 @@ app.get("/users", (req, res) => {
 });
 ```
 
+::::
+:::::
+
 ## React SSO (Single Sign On)
+
+:::::row
+::::left
 
 From here, you can add social identity providers like Google, Facebook, and LinkedIn to your React application, or business identity providers like Azure AD, Office365, and more.
 
-You do this by creating an application with the identity provider (e.g. Google), and then adding that application's credentials to the Userfront dashboard. The result is a modified sign on experience:
+You do this by creating an application with the identity provider (e.g. Google), and then adding that application's credentials to the Userfront dashboard. The result is a modified sign on experience.
+
+No additional code is needed to implement Single Sign On using this approach: you can add and remove providers without updating your forms or the way you handle JWTs.
+::::
+::::right
 
 ![React SSO form](https://res.cloudinary.com/component/image/upload/v1612378383/permanent/userfront-login.png)
 
-No additional code is needed to implement Single Sign On using this approach: you can add and remove providers without updating your forms or the way you handle JWTs.
+::::
+:::::
