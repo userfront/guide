@@ -1,4 +1,4 @@
-import CodeCopy from "./CodeCopy.vue";
+import CodeCopy from "./codeCopy.vue";
 import Vue from "vue";
 import "./style.css";
 
