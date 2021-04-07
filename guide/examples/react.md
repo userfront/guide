@@ -69,10 +69,24 @@ Just like it says, we can now edit the `src/App.js` file to start working.
 :::::row
 ::::left
 
+### Routing
+
+We'll set up a simple app with routing. This is all we need to start adding authentication.
+
+| Route        | Description                              |
+| :----------- | :--------------------------------------- |
+| `/`          | Home page                                |
+| `/login`     | Login page                               |
+| `/reset`     | Password reset page                      |
+| `/dashboard` | User dashboard, for logged in users only |
+
 Replace the contents of `src/App.js` with the following, based on the React Router quickstart:
 
 ::::
 :::::
+
+:::::row
+::::left
 
 ```jsx
 // src/App.js
@@ -137,40 +151,42 @@ function Dashboard() {
 }
 ```
 
-:::::row
-::::left
-
-Now we have a very simple app with routing. This is all we need to start adding authentication.
-
-| Route        | Description                              |
-| :----------- | :--------------------------------------- |
-| `/`          | Home page                                |
-| `/login`     | Login page                               |
-| `/reset`     | Password reset page                      |
-| `/dashboard` | User dashboard, for logged in users only |
-
 ::::
 ::::right
 
+:::card
+
+#### Preview
+
 ![React Router authentication](https://res.cloudinary.com/component/image/upload/v1614094607/permanent/react-router-basic.gif)
+:::
 
 ::::
 :::::
+
+With our routes in place, we are ready to add authentication.
 
 ## Signup, login, and password reset
 
 :::::row
 ::::left
 
-In the Toolkit section of your dashboard, locate the instructions for installing your signup form:
+In the Toolkit section of your dashboard, locate the instructions for installing your signup form.
 
-::::
-::::right
+It will look like this:
 
-![Userfront installation instructions](https://res.cloudinary.com/component/image/upload/v1614094834/permanent/instructions-react.png)
+:::card
+
+#### Userfront Toolkit
+
+![Userfront installation instructions](https://res.cloudinary.com/component/image/upload/v1617818640/permanent/installation-instructions-react.png)
+:::
 
 ::::
 :::::
+
+:::::row
+::::left
 
 Follow the instructions by installing the Userfront react package with:
 
@@ -179,7 +195,18 @@ npm install @userfront/react --save
 npm start
 ```
 
+::::
+:::::
+
+:::::row
+::::left
+
 Add the signup form to your home page by importing and initializing Userfront, and then updating the `Home()` function to render the form.
+::::
+:::::
+
+:::::row
+::::left
 
 ```jsx
 // src/App.js
@@ -256,11 +283,22 @@ function Dashboard() {
 }
 ```
 
-Now the home page has your signup form. Try signing up a user:
+::::
+::::right
+
+:::card
+
+#### Preview
 
 ![React signup form](https://res.cloudinary.com/component/image/upload/v1614095453/permanent/react-router-signup.png)
+:::
 
-The form is in "Test mode" by default, which will create user records in a test environment you can view separately in your Userfront dashboard:
+::::
+:::::
+
+Now the home page has your signup form. Try signing up a user.
+
+The form is in "Test mode" by default, which will create user records in a test environment you can view separately in your Userfront dashboard.
 
 ![Userfront test mode](https://res.cloudinary.com/component/image/upload/v1612980797/permanent/create-react-app-2.png)
 
