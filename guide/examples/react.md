@@ -1,24 +1,47 @@
 # React example
 
+:::::row
+::::left
+
 In this example, we will add authentication and access control to a React application.
 
 We will use Create React App for setup, along with React Router for client-side routing.
 
-## React authentication
-
-At a high level, React’s responsibility in authentication is to:
-
-1. Send an initial request to Userfront to get the access token. This is what the signup and login forms do.
-
-2. Send the access token to your server with each subsequent request.
-
-## Set up Create React App
+::::
+::::right
 
 ::: tip GitHub repo for this example
 [https://github.com/userfront/react-example](https://github.com/userfront/react-example)
 :::
 
-Start by installing [Create React App](https://reactjs.org/docs/create-a-new-react-app.html) and [React Router](https://reactrouter.com/web/guides/quick-start):
+::::
+:::::
+
+## React authentication
+
+:::::row
+::::left
+
+At a high level, React’s responsibility in authentication is to:
+
+1. Send an initial request to Userfront to get the JWT access token. This is what the signup and login forms do.
+
+2. Send the JWT access token to your server with each subsequent request.
+
+::::
+::::right
+
+![](https://res.cloudinary.com/component/image/upload/v1616013076/permanent/userfront-diagram.png)
+
+::::
+:::::
+
+## Set up Create React App
+
+:::::row
+::::left
+
+To get React up and running, start by installing [Create React App](https://reactjs.org/docs/create-a-new-react-app.html) and [React Router](https://reactrouter.com/web/guides/quick-start)
 
 ```js
 npx create-react-app my-app
@@ -29,11 +52,22 @@ npm start
 
 Now our React application is available at http://localhost:3000
 
+Just like it says, we can now edit the `src/App.js` file to start working.
+::::
+::::right
+
 ![Create React App authentication](https://res.cloudinary.com/component/image/upload/v1612896738/permanent/create-react-app.gif)
 
-Just like it says, we can now edit the `src/App.js` file to start working.
+::::
+:::::
+
+:::::row
+::::left
 
 Replace the contents of `src/App.js` with the following, based on the React Router quickstart:
+
+::::
+:::::
 
 ```jsx
 // src/App.js
@@ -98,7 +132,10 @@ function Dashboard() {
 }
 ```
 
-Now we have a very simple app with routing:
+:::::row
+::::left
+
+Now we have a very simple app with routing. This is all we need to start adding authentication.
 
 | Route        | Description                              |
 | :----------- | :--------------------------------------- |
@@ -107,15 +144,28 @@ Now we have a very simple app with routing:
 | `/reset`     | Password reset page                      |
 | `/dashboard` | User dashboard, for logged in users only |
 
+::::
+::::right
+
 ![React Router authentication](https://res.cloudinary.com/component/image/upload/v1614094607/permanent/react-router-basic.gif)
 
-This is all the structure we need to start adding authentication.
+::::
+:::::
 
 ## Signup, login, and password reset
 
+:::::row
+::::left
+
 In the Toolkit section of your dashboard, locate the instructions for installing your signup form:
 
+::::
+::::right
+
 ![Userfront installation instructions](https://res.cloudinary.com/component/image/upload/v1614094834/permanent/instructions-react.png)
+
+::::
+:::::
 
 Follow the instructions by installing the Userfront react package with:
 

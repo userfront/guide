@@ -1,20 +1,20 @@
 # Introduction
 
-### Auth designed to be simple.
+## Auth designed to be simple.
 
-Install, manage, and maintain your auth with far less complexity.
+Install and maintain your auth with far less complexity.
 
 The topics below help you get up and running quickly.
 
-| Topic                                     |                                                                                                             |
-| :---------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| [**Quickstart**](/quickstart.html)        | Get up and running in 10 minutes.                                                                           |
-| [**Toolkit**](/toolkit.html)              | View the tools for signup, login, password reset, and more.                                                 |
-| [**Tokens**](/token-flow.html)            | Learn which tokens are created when a user authenticates, how they're stored, and how you can use each one. |
-| [**Multi-tenancy**](/multi-tenancy.html)  | Create custom divisions in your application for things like teams, projects, or organizations.              |
-| [**API reference**](../docs/api)          | Documentation for the Userfront API.                                                                        |
-| [**Webhook reference**](../docs/webhooks) | Callback requests made to the server of your choice for user & tenant actions.                              |
-| [**Metrics**](/cohort-analysis.html)      | Discover user & tenant analytics you can use to grow your project.                                          |
+| Topic                                     |                                                                                        |
+| :---------------------------------------- | -------------------------------------------------------------------------------------- |
+| [**Quickstart**](/quickstart.html)        | Up and running in 10 minutes.                                                          |
+| [**Toolkit**](/toolkit.html)              | Tools for signup, login, password reset, and more.                                     |
+| [**Tokens**](/token-flow.html)            | Learn how tokens are stored and how you can use each one.                              |
+| [**Multi-tenancy**](/multi-tenancy.html)  | Group users within your application for things like teams, projects, or organizations. |
+| [**API reference**](../docs/api)          | Documentation for the Userfront API.                                                   |
+| [**Webhook reference**](../docs/webhooks) | Documentation for Userfront webhooks.                                                  |
+| [**Metrics**](/cohort-analysis.html)      | User & tenant analytics you can use to grow your project.                              |
 
 <!-- | [**Security**](/security.html)                        | Understand the built-in best practices that protect your data.                                              | -->
 
