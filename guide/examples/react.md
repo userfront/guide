@@ -34,7 +34,7 @@ At a high level, React’s responsibility in authentication is to:
 ::::
 ::::right
 
-![](https://res.cloudinary.com/component/image/upload/v1616013076/permanent/userfront-diagram.png)
+![React authentication diagram](https://res.cloudinary.com/component/image/upload/v1616013076/permanent/userfront-diagram.png)
 
 ::::
 :::::

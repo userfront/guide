@@ -67,6 +67,7 @@ module.exports = {
             // "/examples/react-router",
             "/examples/react",
             "/examples/nodejs",
+            "/examples/php",
           ],
         },
         {
