@@ -3,17 +3,17 @@
 :::::row
 ::::left
 
-In this example, we will add authentication and access control to a PHP application.
+In this example, we add authentication and access control to a PHP application.
 
 ::::
 ::::right
 
-:::card
+<!-- :::card
 
 #### GitHub repo for this example
 
 [https://github.com/userfront/php-example](https://github.com/userfront/php-example)
-:::
+::: -->
 
 ::::
 :::::
@@ -23,7 +23,7 @@ In this example, we will add authentication and access control to a PHP applicat
 :::::row
 ::::left
 
-At a high level, PHP authentication works like so:
+At a high level, PHP authentication is structured in 2 parts:
 
 1. Send an initial request to Userfront to get the JWT access token and save it as a cookie. This is what the signup and login forms do.
 
@@ -37,10 +37,24 @@ At a high level, PHP authentication works like so:
 ::::
 :::::
 
+## Setup
+
+Our application will have several routes:
+
+| Route            | Description                              |
+| :--------------- | :--------------------------------------- |
+| `/`              | Home page                                |
+| `/login.php`     | Login page                               |
+| `/reset.php`     | Password reset page                      |
+| `/dashboard.php` | User dashboard, for logged in users only |
+| `/admin.php`     | Admin dashboard, for admins only         |
+
+The home page will have navigation and a signup form, while the other pages are as described.
+
 ## Code
 
 The following code runs a site hosted at [https://oaqaa.ciroue.com/](https://oaqaa.ciroue.com/).
 
 This site has fully implemented signup, login, logout, and password reset.
 
-<!-- <iframe src="https://phpsandbox.io/e/x/oaqaa?&layout=Editor&iframeId=a4jdeyc3nl&theme=dark&defaultPath=/&showExplorer=no&openedFiles=/index.php,/login.php,/reset.php,/dashboard.php" style="display: block; min-height: 1200px;" loading="lazy" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" height="100%" width="100%"></iframe> -->
+<iframe src="https://phpsandbox.io/e/x/oaqaa?&layout=Editor&iframeId=a4jdeyc3nl&theme=dark&defaultPath=/&showExplorer=no&openedFiles=/index.php,/login.php,/reset.php,/dashboard.php" style="display: block; min-height: 1200px;" loading="lazy" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" height="100%" width="100%"></iframe>
