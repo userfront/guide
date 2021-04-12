@@ -86,7 +86,7 @@ app.get("/protected", (req, res) => {
     const verifiedPayload = jwt.verify(
       accessToken,
       process.env.USERFRONT_JWT_PUBLIC_KEY,
-      { algorithm: "RS256" }
+      { algorithms: ["RS256"] }
     );
 
     // Respond to the request
@@ -186,7 +186,7 @@ app.get("/admin", (req, res) => {
     const verifiedPayload = jwt.verify(
       accessToken,
       process.env.USERFRONT_JWT_PUBLIC_KEY,
-      { algorithm: "RS256" }
+      { algorithms: ["RS256"] }
     );
 
     // Make sure the token has the 'admin' role
