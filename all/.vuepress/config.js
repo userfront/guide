@@ -1,7 +1,7 @@
 module.exports = {
   title: "Userfront guide",
   description: "Guide and examples for Userfront",
-  base: "/guide/", // For deploying at userfront.com/guide/
+  // base: "/guide/", // For deploying at userfront.com/guide/
   head: [
     [
       "link",
@@ -47,18 +47,20 @@ module.exports = {
         ga: "UA-164523904-2",
       },
     ],
-    require("../../all/plugins/codeCopy/index.js"),
+    require("./plugins/codeCopy/index.js"),
   ],
   themeConfig: {
     smoothScroll: true,
     nav: [
+      { text: "Guide", link: "/guide/" },
+      { text: "Examples", link: "/examples/" },
+      { text: "API docs", link: "/docs/" },
       { text: "Dashboard", link: "https://userfront.com/projects" },
-      { text: "API docs", link: "https://userfront.com/docs/api" },
     ],
     sidebar: {
       "/": [
-        "/quickstart.html",
-        "/",
+        "/guide/quickstart.html",
+        "/guide/",
         {
           title: "Examples",
           collapsable: true,
@@ -74,38 +76,42 @@ module.exports = {
           title: "Toolkit",
           collapsable: false,
           children: [
-            "/toolkit.md",
-            "/signup.md",
-            "/login.md",
-            "/reset.md",
-            "/logout.md",
+            "/guide/toolkit.md",
+            "/guide/signup.md",
+            "/guide/login.md",
+            "/guide/reset.md",
+            "/guide/logout.md",
             // "/profile.md",
           ],
         },
         {
           title: "Tokens",
           collapsable: false,
-          children: ["/token-flow.md", "/tokens.md"],
+          children: ["/guide/token-flow.md", "/guide/tokens.md"],
         },
         {
           title: "Usage",
           collapsable: false,
-          children: ["test-mode.md", "/multi-tenancy.md", "/import-export.md"],
+          children: [
+            "/guide/test-mode.md",
+            "/guide/multi-tenancy.md",
+            "/guide/import-export.md",
+          ],
         },
-        "/glossary.html",
+        "/guide/glossary.html",
         {
           title: "Learning",
           collapsable: false,
           children: [
-            "/authentication.md",
-            "/jwt-json-web-token.md",
-            "/auth-landscape.md",
+            "/guide/authentication.md",
+            "/guide/jwt-json-web-token.md",
+            "/guide/auth-landscape.md",
             [
               "https://userfront.com/vs/best-auth-comparison-auth0-okta-firebase-cognito.html",
               "Auth provider comparison",
             ],
-            "/cohort-analysis.md",
-            "/cohort.md",
+            "/guide/cohort-analysis.md",
+            "/guide/cohort.md",
             // "/auth-token-types.md",
           ],
         },
