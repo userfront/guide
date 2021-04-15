@@ -31,9 +31,9 @@ We cover each route below, along with an [interactive sample](#sample-code) at t
 
 #### Sample on PHP sandbox
 
-[Sandbox](https://phpsandbox.io/n/userfront-php-auth-oaqaa)
+[Sandbox with code](https://phpsandbox.io/n/userfront-php-auth-oaqaa)
 
-[Demo](https://oaqaa.ciroue.com/) (may need to be started by viewing sandbox)
+[Live demo](https://oaqaa.ciroue.com/) (you may need to visit the sandbox first to "wake up" the demo server)
 :::
 
 ::::
@@ -58,10 +58,10 @@ At a high level, PHP authentication is structured in 2 parts:
 ::::
 :::::
 
+### Logged in vs. logged out
+
 :::::row
 ::::left
-
-### Logged in vs. logged out
 
 When someone new visits the Home page, they should see a signup form.
 
@@ -92,6 +92,11 @@ In this example, we use `access.pn4qwpby`
 ::::left
 
 For showing and hiding simple things that are not sensitive, we can check whether the user has a JWT access token.
+
+::::
+:::::
+:::::row
+::::left
 
 ```php
 <!-- /index.php -->
@@ -124,6 +129,12 @@ Checking for the presence of the JWT access token should only be used for showin
 ::::left
 
 For this site, we show a link to the dashboard if logged in, and we show the signup form if logged out.
+
+::::
+:::::
+
+:::::row
+::::left
 
 ```php
 <!-- /index.php -->
@@ -168,18 +179,32 @@ Logged out home page:
 
 To protect a route in PHP, we need to verify that the JWT access token is valid and has not expired.
 
-To verify our JWT access token, we can use the open source [PHP-JWT](https://github.com/firebase/php-jwt) library, which we install with composer:
+To verify our JWT access token, we can use the project's JWT public key.
+
+We will use the open source [PHP-JWT](https://github.com/firebase/php-jwt) library to verify our JWT access tokens. We can install this library with composer:
 
 ```bash
 composer require firebase/php-jwt
 ```
 
 ::::
+::::right
+:::tip
+You can find your JWT public key in the `Settings` section of your dashboard.
+
+Be sure to use your test mode key when in test mode, and your live mode key when in live mode.
+:::
+::::
 :::::
 :::::row
 ::::left
 
 If the JWT access token is not present or is invalid, we redirect to `/login.php`. Otherwise, we display the dashboard page.
+
+::::
+:::::
+:::::row
+::::left
 
 ```php
 <!-- /protected.php -->
@@ -290,6 +315,7 @@ try {
 
 ::::
 ::::right
+
 :::card
 
 #### Preview
@@ -313,6 +339,11 @@ composer require firebase/php-jwt
 ```
 
 The admin route is similar to the protected route, except in addition to verifying the JWT access token, we also check that the JWT access token has an admin role.
+
+::::
+:::::
+:::::row
+::::left
 
 ```php
 <!-- /admin.php -->
@@ -398,6 +429,15 @@ echo print_r(implode(', ',(array) $roles), true);
 ::::
 ::::right
 
+:::card
+
+#### Preview
+
+Logged in admin page:
+
+![](https://res.cloudinary.com/component/image/upload/v1618500911/permanent/php-example/admin-logged-in.png)
+:::
+
 ::::
 :::::
 
@@ -405,6 +445,12 @@ echo print_r(implode(', ',(array) $roles), true);
 ::::left
 
 Here is the an additional check to make sure the JWT access token has the admin role:
+
+::::
+:::::
+
+:::::row
+::::left
 
 ```php
 <!-- From /admin.php -->
@@ -450,8 +496,21 @@ try {
 
 ## Sample code
 
-The following code runs a site hosted at [https://oaqaa.ciroue.com/](https://oaqaa.ciroue.com/).
+:::::row
+::::left
 
-This site has fully implemented signup, login, logout, and password reset.
+The above routes are combined into a working sample below, where you can navigate a website running the live code.
+
+The website is hosted at [https://oaqaa.ciroue.com/](https://oaqaa.ciroue.com/) and may require you to visit the [PHP sandbox editor](https://phpsandbox.io/n/userfront-php-auth-oaqaa) first before the website works.
+::::
+::::right
+:::card
+
+#### Live site
+
+[https://oaqaa.ciroue.com/](https://oaqaa.ciroue.com/)
+:::
+::::
+:::::
 
 <iframe src="https://phpsandbox.io/e/x/oaqaa?&layout=Editor&iframeId=a4jdeyc3nl&theme=dark&defaultPath=/&showExplorer=yes&openedFiles=/index.php,/protected.php,/admin.php" style="display: block; min-height: 1200px;" loading="lazy" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" height="100%" width="100%"></iframe>
