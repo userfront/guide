@@ -3,4 +3,4 @@
 
 https://docs.userfront.com/*      https://userfront.com/docs/:splat  301!
 https://guide.userfront.com/*     https://userfront.com/guide/:splat  301!
-https://vs.userfront.com/*        https://userfront.com/vs/:splat  301!
+https://vs.userfront.com/*        https://userfront.com/:splat  301!
