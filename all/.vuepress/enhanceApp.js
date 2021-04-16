@@ -2,7 +2,8 @@ import Vuex from "vuex";
 import store from "./utils/store.js";
 import axios from "axios";
 import { Button, ButtonGroup, Input } from "element-ui";
-import "element-ui/lib/theme-chalk/index.css";
+
+import "./styles/element-ui.scss";
 
 const docsJsonUrl =
   process.env.NODE_ENV === "development"
@@ -18,6 +19,9 @@ export default async ({ router, Vue }) => {
   Vue.use(Button);
   Vue.use(ButtonGroup);
   Vue.use(Input);
+
+  // Assign router because Vuepress doesn't accept $router in markdown
+  Vue.prototype.router = router;
 
   router.beforeEach((to, from, next) => {
     if (to && to.path === "/") {

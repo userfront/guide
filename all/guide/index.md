@@ -1,19 +1,40 @@
 # Introduction
 
-## Auth designed to be simple.
+## Auth without complexity
 
-Install and maintain your auth with far less complexity.
+Userfront focuses on simple setup, testability, and administration.
 
-The topics below help you get up and running quickly.
+<router-link :to="{ path: '/guide/quickstart.html' }" class="el-button el-button--primary" style="min-width: 120px">Quickstart
+</router-link>
+<router-link :to="{ path: '/examples/' }" class="el-button el-button--primary" style="min-width: 120px">Examples</router-link>
+<router-link :to="{ path: '/docs/api.html' }" class="el-button el-button--primary" style="min-width: 120px">API docs</router-link>
+
+This guide is designed to get you up and running. It focuses on the following:
+
+### Userfront features
+
+- Toolkit
+- Build your own forms
+- Test mode
+- Import or export users
+
+### Reference materials
+
+- Core JS library
+- Webhooks
+- Glossary of terms
+
+### General learning
+
+- JWT (JSON Web Tokens)
+- Multi-tenancy
+- Metrics
 
 | Topic                                          |                                                                                        |
 | :--------------------------------------------- | -------------------------------------------------------------------------------------- |
-| [**Quickstart**](/guide/quickstart.html)       | Up and running in 10 minutes.                                                          |
-| [**Examples**](/examples/)                     | Sample code for different frameworks.                                                  |
 | [**Toolkit**](/guide/toolkit.html)             | Tools for signup, login, password reset, and more.                                     |
 | [**Tokens**](/guide/token-flow.html)           | Learn how tokens are stored and how you can use each one.                              |
 | [**Multi-tenancy**](/guide/multi-tenancy.html) | Group users within your application for things like teams, projects, or organizations. |
-| [**API reference**](/docs/api.html)            | Documentation for the Userfront API.                                                   |
 | [**Webhook reference**](/docs/webhooks.html)   | Documentation for Userfront webhooks.                                                  |
 | [**Metrics**](/guide/cohort-analysis.html)     | User & tenant analytics you can use to grow your project.                              |
 

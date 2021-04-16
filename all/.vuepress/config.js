@@ -1,7 +1,6 @@
 module.exports = {
   title: "Userfront guide",
   description: "Guide and examples for Userfront",
-  // base: "/guide/", // For deploying at userfront.com/guide/
   head: [
     [
       "link",
@@ -28,6 +27,22 @@ module.exports = {
   e=[d+"/page/"+o+"/"+j(r.pathname)+"/"+j(r.host)+"?t="+Date.now(),d];e.map(function(w){i=l.createElement(a);i.defer=1;i.src=w;z.parentNode.insertBefore(i,z);});u.amvartem=m;
 })("Userfront","n8bjqqx7","https://mod.userfront.com/v2",window,document,"script");
  `,
+    ],
+    [
+      "script",
+      { id: "chatwoot-script" },
+      `(function(d,t) {
+    var BASE_URL="https://app.chatwoot.com";
+    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=BASE_URL+"/packs/js/sdk.js";
+    s.parentNode.insertBefore(g,s);
+    g.onload=function(){
+      window.chatwootSDK.run({
+        websiteToken: '7XyQSCgsKvpygFg7zYsKKV7q',
+        baseUrl: BASE_URL
+      })
+    }
+  })(document,"script");`,
     ],
     /* Local scripts */
     //     [
