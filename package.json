@@ -17,12 +17,8 @@
     "markdown-it-include": "^2.0.0"
   },
   "scripts": {
-    "guide:dev": "vuepress dev guide",
-    "guide:build": "vuepress build guide",
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
-    "vs:dev": "vuepress dev vs",
-    "vs:build": "vuepress build vs"
+    "serve": "vuepress dev all",
+    "build": "vuepress build all"
   },
   "repository": {
     "type": "git",

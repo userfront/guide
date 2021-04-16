@@ -19,10 +19,18 @@ export default async ({ router, Vue }) => {
   Vue.use(ButtonGroup);
   Vue.use(Input);
 
+  router.beforeEach((to, from, next) => {
+    if (to && to.path === "/") {
+      return next({ path: "/guide/" });
+    }
+    next();
+  });
+
   // Render mod after each route change
   router.afterEach(() => {
     try {
       if (window.Userfront) Userfront.render();
+      setPrimaryAnchor();
       // scrollToAnchor();
     } catch (err) {}
   });
@@ -51,3 +59,12 @@ export default async ({ router, Vue }) => {
   //   }, 500);
   // }
 };
+
+function setPrimaryAnchor() {
+  try {
+    setTimeout(() => {
+      const el = document.getElementsByClassName("home-link")[0];
+      el.href = "/guide/";
+    }, 100);
+  } catch (error) {}
+}
