@@ -58,20 +58,9 @@ module.exports = {
       { text: "Dashboard", link: "https://userfront.com/projects" },
     ],
     sidebar: {
-      "/": [
+      "/guide/": [
         "/guide/quickstart.html",
         "/guide/",
-        {
-          title: "Examples",
-          collapsable: true,
-          children: [
-            // "/examples/create-react-app",
-            // "/examples/react-router",
-            "/examples/react",
-            "/examples/nodejs",
-            "/examples/php",
-          ],
-        },
         {
           title: "Toolkit",
           collapsable: false,
@@ -107,16 +96,23 @@ module.exports = {
             "/guide/jwt-json-web-token.md",
             "/guide/auth-landscape.md",
             [
-              "https://userfront.com/vs/best-auth-comparison-auth0-okta-firebase-cognito.html",
+              "/vs/best-auth-comparison-auth0-okta-firebase-cognito.md",
               "Auth provider comparison",
             ],
             "/guide/cohort-analysis.md",
             "/guide/cohort.md",
-            // "/auth-token-types.md",
           ],
         },
-        // "/dashboard.html",
-        // "/messaging.html"
+      ],
+      "/examples/": [
+        ["/examples/react", "React"],
+        ["/examples/nodejs", "Node.js"],
+        ["/examples/php", "PHP"],
+      ],
+      "/docs/": [
+        "/docs/api.md",
+        ["/docs/js.md", "Core JS library"],
+        "/docs/webhooks.md",
       ],
     },
     lastUpdated: "Last Updated", // string | boolean
