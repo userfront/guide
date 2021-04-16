@@ -2,8 +2,12 @@
 
 ## Official examples
 
-[Create React App](/examples/create-react-app)
+[React](/examples/react.html)
+
+[Node.js](/examples/nodejs.html)
+
+[PHP](/examples/php.html)
 
 ## Unofficial examples
 
-[React, Node, Postgres](https://github.com/tyrw/survey-dev-tutorial)
+[Tutorial with React, Node, and Postgres](https://github.com/tyrw/survey-dev-tutorial)
