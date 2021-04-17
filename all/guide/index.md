@@ -1,9 +1,8 @@
-# Introduction
+# Documentation
 
-## Auth without complexity
+### Explore our guides and examples to integrate Userfront.
 
-Userfront focuses on simple setup, testability, and administration.
-
+<br>
 <router-link :to="{ path: '/guide/quickstart.html' }" class="el-button el-button--primary" style="min-width: 120px">Quickstart
 </router-link>
 <router-link :to="{ path: '/examples/' }" class="el-button el-button--primary" style="min-width: 120px">Examples</router-link>
@@ -15,7 +14,7 @@ This guide is designed to get you up and running. It focuses on the following:
 
 - Toolkit
 - Build your own forms
-- Test mode
+- Activating your account
 - Import or export users
 
 ### Reference materials
