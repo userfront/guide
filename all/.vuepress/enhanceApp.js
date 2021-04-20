@@ -33,12 +33,6 @@ export default async ({ isServer, router, Vue }) => {
   });
 
   if (!isServer) {
-    // Add the project picker
-    // var el = document.createElement("project-picker");
-    // var app = document.getElementById("app");
-    // app.appendChild(el);
-    // console.log("A", `${el} ${app.innerHTML}`);
-
     // Render mod after each route change
     router.afterEach(() => {
       try {
