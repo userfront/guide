@@ -1,4 +1,4 @@
-# Documentation
+# Guide
 
 ### Explore our guides and examples to integrate Userfront.
 

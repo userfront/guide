@@ -10,7 +10,7 @@ const docsJsonUrl =
     ? "http://localhost:5001/v0/docs.json"
     : "https://api.userfront.com/v0/docs.json";
 
-export default async ({ router, Vue }) => {
+export default async ({ isServer, router, Vue }) => {
   // Add vuex
   Vue.use(Vuex);
   Vue.mixin({ store });
@@ -19,6 +19,8 @@ export default async ({ router, Vue }) => {
   Vue.use(Button);
   Vue.use(ButtonGroup);
   Vue.use(Input);
+
+  Vue.prototype.mounted = () => console.log("mounted");
 
   // Assign router because Vuepress doesn't accept $router in markdown
   Vue.prototype.router = router;
@@ -30,25 +32,33 @@ export default async ({ router, Vue }) => {
     next();
   });
 
-  // Render mod after each route change
-  router.afterEach(() => {
-    try {
-      if (window.Userfront) Userfront.render();
-      setPrimaryAnchor();
-      // scrollToAnchor();
-    } catch (err) {}
-  });
+  if (!isServer) {
+    // Add the project picker
+    // var el = document.createElement("project-picker");
+    // var app = document.getElementById("app");
+    // app.appendChild(el);
+    // console.log("A", `${el} ${app.innerHTML}`);
 
-  // Load the docs.json spec
-  try {
-    const { data } = await axios.get(docsJsonUrl);
-    Vue.prototype.$docs = data;
-    Vue.prototype.$demoToken =
-      "uf_test_readonly_demo1234_2d87b3d230bda5685276b43efdac2852";
-    store.dispatch("setActiveProject");
-  } catch (error) {
-    console.error("Problem fetching docs.json");
-    console.error(error);
+    // Render mod after each route change
+    router.afterEach(() => {
+      try {
+        if (window.Userfront) Userfront.render();
+        setPrimaryAnchor();
+        // scrollToAnchor();
+      } catch (err) {}
+    });
+
+    // Load the docs.json spec
+    try {
+      const { data } = await axios.get(docsJsonUrl);
+      Vue.prototype.$docs = data;
+      Vue.prototype.$demoToken =
+        "uf_test_readonly_demo1234_2d87b3d230bda5685276b43efdac2852";
+      store.dispatch("setActiveProject");
+    } catch (error) {
+      console.error("Problem fetching docs.json");
+      console.error(error);
+    }
   }
 
   // function scrollToAnchor() {

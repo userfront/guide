@@ -8,40 +8,47 @@ main.home {
 }
 
 // Custom navbar
-
-header.navbar {
-  height: 100px;
-  background-color: #fafafa;
-  #search-form {
-    position: fixed;
-    left: 200px;
-    #algolia-search-input {
-      width: 300px;
-      border-radius: 6px;
-      border-color: #eaecef;
-      cursor: inherit;
-      &::placeholder {
-        color: #8d93a4;  
+@media (min-width: 960px) {
+  header.navbar {
+    height: 100px;
+    background-color: #fafafa;
+    #search-form {
+      position: fixed;
+      left: 200px;
+      #algolia-search-input {
+        width: 300px;
+        border-radius: 6px;
+        border-color: #eaecef;
+        cursor: inherit;
+        &::placeholder {
+          color: #8d93a4;  
+        }
+      }
+    }
+    .nav-links {
+      position: fixed;
+      left: 24px;
+      top: 62px;
+      a {
+        padding: 0 0 6px;
       }
     }
   }
-  .nav-links {
-    position: fixed;
-    left: 24px;
-    top: 62px;
-    a {
-      padding: 0 0 6px;
-    }
+
+  aside.sidebar {
+    top: 100px;
+  }
+    
+  .theme-default-content:not(.custom) > h1:first-child {
+    padding-top: 128px;  
   }
 }
-
-aside.sidebar {
-  top: 100px;
+@media (max-width: 959px) {
+  div.links {
+    display: none !important;
+  }  
 }
 
-.theme-default-content:not(.custom) > h1:first-child {
-  padding-top: 128px;  
-}
 
 // Custom styles
 

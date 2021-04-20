@@ -68,7 +68,7 @@ module.exports = {
     smoothScroll: true,
     searchPlaceholder: "Search the guide...",
     nav: [
-      { text: "Guide", link: "/guide/" },
+      { text: "Home", link: "/guide/" },
       { text: "Examples", link: "/examples/" },
       { text: "API docs", link: "/docs/" },
       { text: "Dashboard", link: "https://userfront.com/projects" },
@@ -76,7 +76,6 @@ module.exports = {
     sidebar: {
       "/guide/": [
         "/guide/quickstart.html",
-        "/guide/",
         {
           title: "Toolkit",
           collapsable: false,
