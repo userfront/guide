@@ -66,6 +66,7 @@ module.exports = {
   ],
   themeConfig: {
     smoothScroll: true,
+    searchPlaceholder: "Search the guide...",
     nav: [
       { text: "Guide", link: "/guide/" },
       { text: "Examples", link: "/examples/" },
