@@ -1,14 +1,14 @@
 <template>
   <div class="light-code">
-    <div v-if="isLoggedIn">
+    <div v-show="isLoggedIn">
       <div
-        v-if="projectToken === demoToken"
+        v-show="!loading && projectToken === demoToken"
         class="el-alert el-alert--error is-light"
         style="margin-top:20px"
       >
         Unable to fetch your API key, so a demo API key is shown instead.
       </div>
-      <div class="language-json">
+      <div class="language-json" :key="`bare-${projectToken}`">
         <pre
           style="padding: 30px 0 10px;"
         ><code style="font-weight:600;">{{ projectToken }}</code></pre>
@@ -21,7 +21,7 @@
       <p>
         In general, you should include your API key in the header of requests:
       </p>
-      <div class="language-json">
+      <div class="language-json" :key="`header-${projectToken}`">
         <pre><code>{
   headers: {
     authorization: "Bearer {{ projectToken }}"
@@ -53,6 +53,9 @@ export default {
     ProjectPicker,
   },
   computed: {
+    loading() {
+      return this.$store.state.loadingToken;
+    },
     demoToken() {
       return this.$demoToken;
     },

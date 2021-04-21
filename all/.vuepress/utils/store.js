@@ -12,6 +12,7 @@ const store = new Vuex.Store({
     usableProjects: [], // admin or member role
     activeProject: {},
     projectToken: "",
+    loadingToken: false,
     // webhookToken: "",
   },
   mutations: {
@@ -41,7 +42,7 @@ const store = new Vuex.Store({
       Vue.set(state, "usableProjects", usableProjects);
     },
     setProjectToken(state, projectToken) {
-      state.projectToken = projectToken;
+      Vue.set(state, "projectToken", projectToken);
     },
     // setWebhookToken(state, webhookToken) {
     //   state.webhookToken = webhookToken;
@@ -70,6 +71,7 @@ const store = new Vuex.Store({
         const tokenLevel = authorization[tenantId].roles.includes("admin")
           ? "admin"
           : "readonly";
+        state.loadingToken = true;
         const { data } = await axios.get(
           `https://api.userfront.com/v0/tenants/${tenantId}/tokens/${tokenLevel}?test=true`,
           {
@@ -80,8 +82,10 @@ const store = new Vuex.Store({
         );
         const tokenName = tokenLevel === "admin" ? "liveAdmin" : "liveReadonly";
         commit("setProjectToken", data[tokenName]);
+        state.loadingToken = false;
         return data[tokenName];
       } catch (error) {
+        state.loadingToken = false;
         return;
       }
     },
