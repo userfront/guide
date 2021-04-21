@@ -24,9 +24,6 @@ export default {
     activeProject() {
       return this.$store.state.activeProject || {};
     },
-    demoToken() {
-      return this.$demoToken;
-    },
     projects() {
       return this.$store.state.projects || [];
     },

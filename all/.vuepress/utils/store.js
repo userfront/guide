@@ -52,7 +52,9 @@ const store = new Vuex.Store({
       try {
         const authorization = getAuthorizationObject();
         const projectIds = Object.keys(authorization);
+        if (!projectIds || projectIds.length < 1) return;
         project = project || authorization[projectIds[0]];
+        if (!project) return;
         const tenantId = project.tenantId || projectIds[0];
         await dispatch("setProjectToken", tenantId);
         commit("setProjects");

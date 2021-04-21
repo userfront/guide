@@ -1,6 +1,13 @@
 <template>
   <div class="light-code">
-    <div v-if="projectToken">
+    <div v-if="isLoggedIn">
+      <div
+        v-if="projectToken === demoToken"
+        class="el-alert el-alert--error is-light"
+        style="margin-top:20px"
+      >
+        Unable to fetch your API key, so a demo API key is shown instead.
+      </div>
       <div class="language-json">
         <pre
           style="padding: 30px 0 10px;"
@@ -22,7 +29,7 @@
 }</code></pre>
       </div>
     </div>
-    <div v-if="!projectToken">
+    <div v-if="!isLoggedIn">
       <p>
         A sample test API key is included in all the examples here, so you can
         test any example right away.
@@ -50,7 +57,10 @@ export default {
       return this.$demoToken;
     },
     projectToken() {
-      return this.$store.state.projectToken;
+      return this.$store.state.projectToken || this.demoToken;
+    },
+    isLoggedIn() {
+      return !!this.$store.state.accessToken;
     },
   },
 };
