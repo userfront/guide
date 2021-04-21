@@ -27,7 +27,7 @@ export default {
           instance.parent = el;
           instance.$mount();
           el.classList.add("code-copy-added");
-          el.appendChild(instance.$el);
+          el.parentNode.insertBefore(instance.$el, instance.$el.nextSibling);
         });
       }, 100);
     },

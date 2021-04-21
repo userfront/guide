@@ -6,7 +6,7 @@
     @touchend="onTouchEnd"
   >
     <Navbar v-if="shouldShowNavbar" @toggle-sidebar="toggleSidebar" />
-    <Picker />
+    <TopRight />
 
     <div class="sidebar-mask" @click="toggleSidebar(false)" />
 
@@ -37,7 +37,7 @@ import Home from "@theme/components/Home.vue";
 import Navbar from "@theme/components/Navbar.vue";
 import Page from "@theme/components/Page.vue";
 import Sidebar from "@theme/components/Sidebar.vue";
-import Picker from "../../components/project-picker.vue";
+import TopRight from "../../components/top-right.vue";
 import { resolveSidebarItems } from "../util";
 
 export default {
@@ -48,7 +48,7 @@ export default {
     Page,
     Sidebar,
     Navbar,
-    Picker,
+    TopRight,
   },
 
   data() {

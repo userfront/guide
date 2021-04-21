@@ -5,20 +5,11 @@ import Userfront from "@userfront/core";
 Vue.use(Vuex);
 Userfront.init("p9ny8bdj");
 
-const getAccessTokenObject = () => {
-  try {
-    const accessToken = Userfront.accessToken();
-    if (!accessToken) return;
-    return JSON.parse(atob(accessToken.split(".")[1]));
-  } catch (error) {
-    return;
-  }
-};
-
 const store = new Vuex.Store({
   state: {
     accessToken: Userfront.accessToken(),
     projects: [],
+    usableProjects: [], // admin or member role
     activeProject: {},
     projectToken: "",
     // webhookToken: "",
@@ -26,7 +17,7 @@ const store = new Vuex.Store({
   mutations: {
     setProjects(state) {
       try {
-        const authorization = getAccessTokenObject().authorization;
+        const authorization = getAuthorizationObject();
         const projects = Object.keys(authorization).map(
           (key) => authorization[key]
         );
@@ -38,6 +29,17 @@ const store = new Vuex.Store({
     setActiveProject(state, project) {
       Vue.set(state, "activeProject", project);
     },
+    /**
+     * Usable projects have an admin or member role.
+     */
+    setUsableProjects(state) {
+      const usableProjects = state.projects.filter(
+        (project) =>
+          project.roles &&
+          (project.roles.includes("admin") || project.roles.includes("member"))
+      );
+      Vue.set(state, "usableProjects", usableProjects);
+    },
     setProjectToken(state, projectToken) {
       state.projectToken = projectToken;
     },
@@ -47,18 +49,21 @@ const store = new Vuex.Store({
   },
   actions: {
     async setActiveProject({ commit, dispatch }, project) {
-      const authorization = getAccessTokenObject().authorization;
-      const projectIds = Object.keys(authorization);
-      project = project || authorization[projectIds[0]];
-      const tenantId = project.tenantId || projectIds[0];
-      await dispatch("setProjectToken", tenantId);
-      commit("setProjects");
-      commit("setActiveProject", project);
+      try {
+        const authorization = getAuthorizationObject();
+        const projectIds = Object.keys(authorization);
+        project = project || authorization[projectIds[0]];
+        const tenantId = project.tenantId || projectIds[0];
+        await dispatch("setProjectToken", tenantId);
+        commit("setProjects");
+        commit("setUsableProjects");
+        commit("setActiveProject", project);
+      } catch (error) {}
     },
 
     async setProjectToken({ commit, state }, tenantId) {
       try {
-        const authorization = getAccessTokenObject().authorization;
+        const authorization = getAuthorizationObject();
         tenantId = tenantId || Object.keys(authorization)[0];
         const tokenLevel = authorization[tenantId].roles.includes("admin")
           ? "admin"
@@ -102,5 +107,20 @@ const store = new Vuex.Store({
     // },
   },
 });
+
+const getAccessTokenObject = () => {
+  try {
+    const accessToken = Userfront.accessToken();
+    if (!accessToken) return;
+    return JSON.parse(atob(accessToken.split(".")[1]));
+  } catch (error) {
+    return;
+  }
+};
+
+const getAuthorizationObject = () => {
+  const accessTokenObject = getAccessTokenObject();
+  return accessTokenObject ? accessTokenObject.authorization : {};
+};
 
 export default store;

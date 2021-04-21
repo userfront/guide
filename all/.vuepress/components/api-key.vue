@@ -1,19 +1,12 @@
 <template>
-  <div>
+  <div class="light-code">
     <div v-if="projectToken">
-      <p style="overflow-x:scroll;">
-        <code style="font-weight:600;">{{ projectToken }}</code>
-      </p>
-      <div class="select-container" v-if="filteredProjects.length > 1">
-        <select v-model="project" @change="setProject">
-          <option
-            v-for="project in filteredProjects"
-            :key="project.tenantId"
-            :value="project"
-            >{{ project.name }} ({{ project.tenantId }})</option
-          >
-        </select>
+      <div class="language-json">
+        <pre
+          style="padding: 30px 0 10px;"
+        ><code style="font-weight:600;">{{ projectToken }}</code></pre>
       </div>
+      <project-picker></project-picker>
       <p>
         Your test API key is included in all the examples here, so you can test
         the code samples right away.
@@ -46,11 +39,11 @@
 </template>
 
 <script>
+import ProjectPicker from "./project-picker.vue";
+
 export default {
-  data() {
-    return {
-      project: {},
-    };
+  components: {
+    ProjectPicker,
   },
   computed: {
     demoToken() {
@@ -59,29 +52,6 @@ export default {
     projectToken() {
       return this.$store.state.projectToken;
     },
-    projects() {
-      return this.$store.state.projects || [];
-    },
-    filteredProjects() {
-      return this.projects.filter(
-        (project) =>
-          project.roles &&
-          (project.roles.includes("admin") || project.roles.includes("member"))
-      );
-    },
-  },
-  methods: {
-    setProject() {
-      this.$store.dispatch("setActiveProject", this.project);
-    },
-  },
-  watch: {
-    "$store.state.activeProject": function(newVal, oldVal) {
-      this.project = newVal;
-    },
-  },
-  mounted() {
-    this.project = this.$store.state.activeProject;
   },
 };
 </script>

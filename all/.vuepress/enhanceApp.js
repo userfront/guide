@@ -1,7 +1,15 @@
 import Vuex from "vuex";
 import store from "./utils/store.js";
 import axios from "axios";
-import { Button, ButtonGroup, Input } from "element-ui";
+import {
+  Button,
+  ButtonGroup,
+  Dropdown,
+  DropdownMenu,
+  DropdownItem,
+  Input,
+  Link,
+} from "element-ui";
 
 import "./styles/element-ui.scss";
 
@@ -18,21 +26,24 @@ export default async ({ isServer, router, Vue }) => {
   // Add Element UI components
   Vue.use(Button);
   Vue.use(ButtonGroup);
+  Vue.use(Dropdown);
+  Vue.use(DropdownMenu);
+  Vue.use(DropdownItem);
   Vue.use(Input);
-
-  Vue.prototype.mounted = () => console.log("mounted");
+  Vue.use(Link);
 
   // Assign router because Vuepress doesn't accept $router in markdown
   Vue.prototype.router = router;
 
-  router.beforeEach((to, from, next) => {
-    if (to && to.path === "/") {
-      return next({ path: "/guide/" });
-    }
-    next();
-  });
-
   if (!isServer) {
+    // Update the brand link
+    router.beforeEach((to, from, next) => {
+      if (to && to.path === "/") {
+        return next({ path: "/guide/" });
+      }
+      next();
+    });
+
     // Render mod after each route change
     router.afterEach(() => {
       try {
@@ -54,18 +65,6 @@ export default async ({ isServer, router, Vue }) => {
       console.error(error);
     }
   }
-
-  // function scrollToAnchor() {
-  //   setTimeout(() => {
-  //     if (window.location.hash) {
-  //       const element = document.getElementById(window.location.hash.slice(1));
-
-  //       if (element) {
-  //         element.scrollIntoView();
-  //       }
-  //     }
-  //   }, 500);
-  // }
 };
 
 function setPrimaryAnchor() {
@@ -75,4 +74,16 @@ function setPrimaryAnchor() {
       el.href = "/guide/";
     }, 100);
   } catch (error) {}
+}
+
+function scrollToAnchor() {
+  setTimeout(() => {
+    if (window.location.hash) {
+      const element = document.getElementById(window.location.hash.slice(1));
+
+      if (element) {
+        element.scrollIntoView();
+      }
+    }
+  }, 500);
 }

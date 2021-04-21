@@ -1,55 +1,49 @@
 <template>
-  <div id="project-picker">
-    {{ projects }}
+  <div v-if="activeProject.tenantId">
+    <el-dropdown>
+      <el-button size="medium">
+        {{ activeProject.name
+        }}<i class="el-icon-office-building el-icon--right"></i>
+      </el-button>
+      <el-dropdown-menu slot="dropdown" v-if="projects.length > 1">
+        <el-dropdown-item
+          v-for="proj in projects"
+          :key="proj.tenantId"
+          @click.native="setProject(proj)"
+        >
+          {{ proj.name }}
+        </el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      project: {},
-    };
-  },
   computed: {
+    activeProject() {
+      return this.$store.state.activeProject || {};
+    },
     demoToken() {
       return this.$demoToken;
-    },
-    projectToken() {
-      return this.$store.state.projectToken;
     },
     projects() {
       return this.$store.state.projects || [];
     },
-    filteredProjects() {
-      return this.projects.filter(
-        (project) =>
-          project.roles &&
-          (project.roles.includes("admin") || project.roles.includes("member"))
-      );
-    },
   },
   methods: {
-    setProject() {
-      this.$store.dispatch("setActiveProject", this.project);
+    setProject(project) {
+      this.$store.dispatch("setActiveProject", project);
     },
-  },
-  watch: {
-    "$store.state.activeProject": function(newVal, oldVal) {
-      this.project = newVal;
-    },
-  },
-  mounted() {
-    this.project = this.$store.state.activeProject;
   },
 };
 </script>
 
 <style lang="scss" scoped>
-#project-picker {
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 20;
+.el-button {
+  max-width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 </style>

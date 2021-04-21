@@ -1,11 +1,19 @@
 .code-copy {
-    max-height: 0px;
+  max-height: 0px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
 }
 
 .code-copy-added:hover>.code-copy svg {
-    opacity: .75;
+  opacity: .75;
+}
+
+.light-code .code-copy i {
+  color: #777;
 }
 
 div div[class*="language-"]::before {
-    right: 40px;
+  right: 40px;
 }

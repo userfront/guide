@@ -10,7 +10,7 @@
 
 This guide is designed to get you up and running. It focuses on the following:
 
-### Userfront features
+<!-- ### Userfront features
 
 - Toolkit
 - Build your own forms
@@ -27,7 +27,7 @@ This guide is designed to get you up and running. It focuses on the following:
 
 - JWT (JSON Web Tokens)
 - Multi-tenancy
-- Metrics
+- Metrics -->
 
 | Topic                                          |                                                                                        |
 | :--------------------------------------------- | -------------------------------------------------------------------------------------- |
