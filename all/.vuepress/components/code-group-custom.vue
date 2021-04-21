@@ -66,16 +66,18 @@ export default {
       this.activateCodeTab(0);
     },
     activateCodeTab(index) {
-      this.codeTabs.forEach((tab) => {
-        if (tab.elm) {
-          tab.elm.classList.remove("theme-code-block__active");
-        }
-      });
+      try {
+        this.codeTabs.forEach((tab) => {
+          if (tab.elm) {
+            tab.elm.classList.remove("theme-code-block__active");
+          }
+        });
 
-      if (this.codeTabs[index].elm) {
-        this.codeTabs[index].elm.classList.add("theme-code-block__active");
-      }
-      this.activeTab = this.codeTabs[index];
+        if (this.codeTabs[index].elm) {
+          this.codeTabs[index].elm.classList.add("theme-code-block__active");
+        }
+        this.activeTab = this.codeTabs[index];
+      } catch (error) {}
     },
   },
 };
