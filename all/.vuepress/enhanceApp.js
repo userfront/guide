@@ -59,10 +59,10 @@ export default async ({ isServer, router, Vue }) => {
       Vue.prototype.$demoToken =
         "uf_test_readonly_demo1234_2d87b3d230bda5685276b43efdac2852";
       store.dispatch("setActiveProject");
-      // If on the API docs, wait 500ms then scroll to anchor
+      // If on the API docs, wait and then scroll to anchor
       if (window.location.pathname === "/docs/api.html") {
         Vue.nextTick(() => {
-          setTimeout(scrollToAnchor, 500);
+          setTimeout(scrollToAnchor, 1000);
         });
       }
     } catch (error) {
