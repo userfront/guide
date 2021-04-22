@@ -64,6 +64,9 @@ export default async ({ isServer, router, Vue }) => {
       console.error("Problem fetching docs.json");
       console.error(error);
     }
+
+    // Wait 200ms then scroll to anchor
+    setTimeout(scrollToAnchor, 200);
   }
 };
 
