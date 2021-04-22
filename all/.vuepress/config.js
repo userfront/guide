@@ -70,8 +70,7 @@ module.exports = {
     nav: [
       { text: "Home", link: "/guide/" },
       { text: "Toolkit", link: "/guide/toolkit/" },
-      { text: "Access Control", link: "/guide/authorization/" },
-      { text: "Tokens", link: "/guide/tokens/" },
+      { text: "Tokens & Access", link: "/guide/auth/" },
       { text: "Examples", link: "/examples/" },
       {
         text: "···",
@@ -94,8 +93,6 @@ module.exports = {
                 link: "/vs/best-auth-comparison-auth0-okta-firebase-cognito.md",
               },
               { text: "Cohort analysis", link: "/guide/cohort-analysis.md" },
-
-              "/guide/cohort.md",
             ],
           },
         ],
@@ -119,8 +116,10 @@ module.exports = {
         "/guide/toolkit/reset.md",
         "/guide/toolkit/logout.md",
       ],
-      "/guide/tokens/": ["/guide/tokens/", "/guide/tokens/token-flow.md"],
-      "/guide/authorization/": ["/guide/authorization/multi-tenancy.md"],
+      "/guide/auth/": [
+        "/guide/auth/token-flow.md",
+        "/guide/auth/multi-tenancy.md",
+      ],
       "/examples/": [
         ["/examples/react", "React"],
         ["/examples/nodejs", "Node.js"],
