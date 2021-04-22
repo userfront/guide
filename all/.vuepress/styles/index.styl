@@ -38,17 +38,22 @@ header.navbar {
       }
     }
   }
+
+  .nav-item > a[href$="/guide/"]:not(.router-link-exact-active) {
+    margin-bottom: 0 !important;
+    border-bottom: none !important;
+  }
     
   .theme-default-content:not(.custom) > h1:first-child {
     padding-top: 128px;  
   }
 }
 @media (max-width: 959px) {
-  div.links {
-    display: none !important;
-  }
   header.navbar {
     height: 3.6rem;
+  }
+  div.links {
+    display: none !important;
   }
 }
 

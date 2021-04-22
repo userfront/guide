@@ -69,66 +69,66 @@ module.exports = {
     searchPlaceholder: "Search the guide...",
     nav: [
       { text: "Home", link: "/guide/" },
+      { text: "Toolkit", link: "/guide/toolkit/" },
+      { text: "Access Control", link: "/guide/authorization/" },
+      { text: "Tokens", link: "/guide/tokens/" },
       { text: "Examples", link: "/examples/" },
-      { text: "API docs", link: "/docs/" },
+      {
+        text: "···",
+        ariaLabel: "More resources",
+        items: [
+          { text: "Test mode", link: "/guide/test-mode.md" },
+          { text: "Import and export users", link: "/guide/import-export.md" },
+          { text: "Glossary of terms", link: "/guide/glossary.md" },
+          {
+            text: "Learn more about",
+            items: [
+              { text: "Authentication", link: "/guide/authentication.md" },
+              {
+                text: "JSON Web Tokens (JWTs)",
+                link: "/guide/jwt-json-web-token.md",
+              },
+              { text: "Auth landscape", link: "/guide/auth-landscape.md" },
+              {
+                text: "Auth provider comparison",
+                link: "/vs/best-auth-comparison-auth0-okta-firebase-cognito.md",
+              },
+              { text: "Cohort analysis", link: "/guide/cohort-analysis.md" },
+
+              "/guide/cohort.md",
+            ],
+          },
+        ],
+      },
+      {
+        text: "APIs & SDKs",
+        ariaLabel: "APIs and SDKs",
+        items: [
+          { text: "API reference", link: "/docs/api.html" },
+          { text: "Webhook reference", link: "/docs/webhooks.html" },
+          { text: "Core JS library", link: "/docs/js.html" },
+        ],
+      },
       { text: "Dashboard", link: "https://userfront.com/projects" },
     ],
     sidebar: {
-      "/guide/": [
-        "/guide/quickstart.html",
-        {
-          title: "Toolkit",
-          collapsable: false,
-          children: [
-            "/guide/toolkit.md",
-            "/guide/signup.md",
-            "/guide/login.md",
-            "/guide/reset.md",
-            "/guide/logout.md",
-            // "/profile.md",
-          ],
-        },
-        {
-          title: "Tokens",
-          collapsable: false,
-          children: ["/guide/token-flow.md", "/guide/tokens.md"],
-        },
-        {
-          title: "Usage",
-          collapsable: false,
-          children: [
-            "/guide/test-mode.md",
-            "/guide/multi-tenancy.md",
-            "/guide/import-export.md",
-          ],
-        },
-        "/guide/glossary.html",
-        {
-          title: "Learning",
-          collapsable: false,
-          children: [
-            "/guide/authentication.md",
-            "/guide/jwt-json-web-token.md",
-            "/guide/auth-landscape.md",
-            [
-              "/vs/best-auth-comparison-auth0-okta-firebase-cognito.md",
-              "Auth provider comparison",
-            ],
-            "/guide/cohort-analysis.md",
-            "/guide/cohort.md",
-          ],
-        },
+      "/guide/toolkit/": [
+        "/guide/toolkit/",
+        "/guide/toolkit/signup.md",
+        "/guide/toolkit/login.md",
+        "/guide/toolkit/reset.md",
+        "/guide/toolkit/logout.md",
       ],
+      "/guide/tokens/": ["/guide/tokens/", "/guide/tokens/token-flow.md"],
+      "/guide/authorization/": ["/guide/authorization/multi-tenancy.md"],
       "/examples/": [
         ["/examples/react", "React"],
         ["/examples/nodejs", "Node.js"],
         ["/examples/php", "PHP"],
       ],
-      "/docs/": [
-        "/docs/api.md",
-        ["/docs/js.md", "Core JS library"],
-        "/docs/webhooks.md",
-      ],
+      "/docs/api": ["/docs/api.md"],
+      "/docs/webhooks": ["/docs/webhooks.md"],
+      "/docs/js": [["/docs/js.md", "Core JS library"]],
     },
     lastUpdated: "Last Updated", // string | boolean
     // https://vuepress.vuejs.org/default-theme-config/#algolia-search
