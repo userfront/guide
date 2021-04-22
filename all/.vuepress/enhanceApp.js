@@ -76,7 +76,7 @@ function setPrimaryAnchor() {
   try {
     setTimeout(() => {
       const el = document.getElementsByClassName("home-link")[0];
-      el.href = "/guide/";
+      if (el) el.href = "/guide/";
     }, 100);
   } catch (error) {}
 }

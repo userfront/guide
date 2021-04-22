@@ -6,7 +6,7 @@ Access tokens define what a user can access on your server.
 
 When a user signs up or logs into your application, they receive an access token in their browser as a cookie. Your frontend should send this access token to your server, and your server should verify and decode the access token to determine which user is making the request along with what they are allowed to do.
 
-For more information about how to use access tokens, see [Token types](/guide/tokens.html#access-token).
+For more information about how to use access tokens, see [Tokens & Access](/guide/auth/#access-token).
 
 ### After-login path
 
@@ -32,7 +32,7 @@ ID tokens have information about the user for frontend display purposes.
 
 When a user signs up or logs into your application, they receive an ID token in their browser as a cookie. Your frontend can read this cookie for information such as the user's email address, image, name, and more.
 
-For more information about how to use ID tokens, see [Token types](/guide/tokens.html#id-token).
+For more information about how to use ID tokens, see [Tokens & Access](/guide/auth/#id-token).
 
 ### JSON Web Token
 

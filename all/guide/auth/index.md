@@ -1,4 +1,4 @@
-# Token types
+# Tokens and Access Control
 
 When a user logs into your application, they are issued 3 tokens:
 

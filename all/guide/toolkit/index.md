@@ -1,4 +1,4 @@
-# Overview
+# Toolkit
 
 Userfront has ready-to-use forms for signup, login, password reset, and more. These are copy/pasted into your website's HTML and don't require any backend to work.
 
@@ -7,7 +7,7 @@ Userfront has ready-to-use forms for signup, login, password reset, and more. Th
 - [Password reset form](/reset.html) lets your users reset their password.
 - [Logout button](/logout.html) logs a user out of your site.
 
-## Your Toolkit
+## Location
 
 You can view all of your project's tools in the Toolkit section of the dashboard. Each section has an example of the tool, along with information on where you should put it, how it behaves, and how to install it.
 
