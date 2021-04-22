@@ -8,9 +8,12 @@ main.home {
 }
 
 // Custom navbar
+header.navbar {
+  line-height: 2.25rem;
+}
+
 @media (min-width: 960px) {
   header.navbar {
-    height: 100px;
     background-color: #fafafa;
     #search-form {
       position: fixed;
@@ -29,15 +32,11 @@ main.home {
     .nav-links {
       position: fixed;
       left: 24px;
-      top: 62px;
+      top: 63px;
       a {
         padding: 0 0 6px;
       }
     }
-  }
-
-  aside.sidebar {
-    top: 100px;
   }
     
   .theme-default-content:not(.custom) > h1:first-child {
@@ -47,7 +46,10 @@ main.home {
 @media (max-width: 959px) {
   div.links {
     display: none !important;
-  }  
+  }
+  header.navbar {
+    height: 3.6rem;
+  }
 }
 
 
