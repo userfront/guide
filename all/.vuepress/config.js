@@ -65,7 +65,7 @@ module.exports = {
     require("./plugins/codeCopy/index.js"),
   ],
   themeConfig: {
-    smoothScroll: true,
+    smoothScroll: false,
     searchPlaceholder: "Search the guide...",
     nav: [
       { text: "Home", link: "/guide/" },
