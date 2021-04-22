@@ -49,7 +49,6 @@ export default async ({ isServer, router, Vue }) => {
       try {
         if (window.Userfront) Userfront.render();
         setPrimaryAnchor();
-        // scrollToAnchor();
       } catch (err) {}
     });
 
@@ -65,8 +64,8 @@ export default async ({ isServer, router, Vue }) => {
       console.error(error);
     }
 
-    // Wait 200ms then scroll to anchor
-    setTimeout(scrollToAnchor, 200);
+    // Wait 500ms then scroll to anchor
+    setTimeout(scrollToAnchor, 500);
   }
 };
 
@@ -80,13 +79,11 @@ function setPrimaryAnchor() {
 }
 
 function scrollToAnchor() {
-  setTimeout(() => {
-    if (window.location.hash) {
-      const element = document.getElementById(window.location.hash.slice(1));
+  if (window.location.hash) {
+    const element = document.getElementById(window.location.hash.slice(1));
 
-      if (element) {
-        element.scrollIntoView();
-      }
+    if (element) {
+      element.scrollIntoView();
     }
-  }, 500);
+  }
 }
