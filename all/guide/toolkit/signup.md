@@ -3,7 +3,7 @@
 The purpose of the signup form is to allow new users to register for your service.
 
 <iframe
-  :src="`https://test-demo1234.userfront.dev/signup`"
+  :src="`https://test-${ $store.state.activeTenant.tenantId }.userfront.dev/signup`"
   frameborder="0"
   style="width:100%;min-height:500px;border:1px solid #eee;"
 ></iframe>
@@ -43,4 +43,4 @@ This request will have your project's Webhook Token in the header, which you can
 
 ![Webhook token](https://res.cloudinary.com/component/image/upload/v1583364091/guide/webhook_token.png)
 
-For more information about webhooks, see the [Webhook reference](../docs/webhooks).
+For more information about webhooks, see the [Webhook reference](/docs/webhooks/).

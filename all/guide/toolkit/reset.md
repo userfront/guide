@@ -4,13 +4,15 @@
 
 The purpose of the Password Reset Form is to allow existing users to reset their password.
 
-![Password Reset Form](https://res.cloudinary.com/component/image/upload/w_300/v1597168270/permanent/reset-mod.png)
+<iframe
+  :src="`https://test-${ $store.state.activeTenant.tenantId }.userfront.dev/reset`"
+  frameborder="0"
+  style="width:100%;min-height:360px;border:1px solid #eee;"
+></iframe>
 
 When a user wants to reset their password, they enter their email and recieve a link to the URL of your choice (default is `/reset`). This page should have your Password Reset Form on it.
 
-When the user visits the link, your Password Reset Form will change to allow for resetting the password:
-
-![Password inputs](https://res.cloudinary.com/component/image/upload/w_300/v1583444599/guide/reset_inputs.png)
+When the user visits the link, your Password Reset Form will change to allow for resetting the password.
 
 This is the same tool as above, and it should be installed at the Redirection URL listed below.
 

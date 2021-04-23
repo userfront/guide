@@ -4,13 +4,13 @@
       <p style="overflow-x:scroll;">
         <code style="font-weight:600;">{{ webhookToken }}</code>
       </p>
-      <div class="select-container" v-if="filteredProjects.length > 1">
-        <select v-model="project" @change="setProject">
+      <div class="select-container" v-if="filteredTenants.length > 1">
+        <select v-model="tenant" @change="setTenant">
           <option
-            v-for="project in filteredProjects"
-            :key="project.tenantId"
-            :value="project"
-            >{{ project.name }} ({{ project.tenantId }})</option
+            v-for="tenant in filteredTenants"
+            :key="tenant.tenantId"
+            :value="tenant"
+            >{{ tenant.name }} ({{ tenant.tenantId }})</option
           >
         </select>
       </div>
@@ -50,7 +50,7 @@
 export default {
   data() {
     return {
-      project: {},
+      tenant: {},
     };
   },
   computed: {
@@ -60,29 +60,29 @@ export default {
     webhookToken() {
       return this.$store.state.webhookToken;
     },
-    projects() {
-      return this.$store.state.projects || [];
+    tenants() {
+      return this.$store.state.tenants || [];
     },
-    filteredProjects() {
-      return this.projects.filter(
-        (project) =>
-          project.roles &&
-          (project.roles.includes("admin") || project.roles.includes("member"))
+    filteredTenants() {
+      return this.tenants.filter(
+        (tenant) =>
+          tenant.roles &&
+          (tenant.roles.includes("admin") || tenant.roles.includes("member"))
       );
     },
   },
   methods: {
-    setProject() {
-      this.$store.dispatch("setActiveProject", this.project);
+    setTenant() {
+      this.$store.dispatch("setActiveTenant", this.tenant);
     },
   },
   watch: {
-    "$store.state.activeProject": function(newVal, oldVal) {
-      this.project = newVal;
+    "$store.state.activeTenant": function(newVal, oldVal) {
+      this.tenant = newVal;
     },
   },
   mounted() {
-    this.project = this.$store.state.activeProject;
+    this.tenant = this.$store.state.activeTenant;
   },
 };
 </script>

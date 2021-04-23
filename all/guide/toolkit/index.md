@@ -1,17 +1,43 @@
 # Toolkit
 
-Userfront has ready-to-use forms for signup, login, password reset, and more. These are copy/pasted into your website's HTML and don't require any backend to work.
+:::::row
+::::left
 
-- [Signup form](/signup.html) lets your users sign up.
-- [Login form](/login.html) lets your users log in.
-- [Password reset form](/reset.html) lets your users reset their password.
-- [Logout button](/logout.html) logs a user out of your site.
+Userfront has ready-to-use forms for signup, login, password reset, and more.
+
+These do not require any backend setup to work.
+
+| Tool                                             |                                       |
+| ------------------------------------------------ | ------------------------------------- |
+| [Signup form](/guide/toolkit/signup.html)        | Lets your users sign up.              |
+| [Login form](/guide/toolkit/login.html)          | Lets your users log in.               |
+| [Password reset form](/guide/toolkit/reset.html) | Lets your users reset their password. |
+| [Logout button](/guide/toolkit/logout.html)      | Logs a user out of your site.         |
+
+::::
+:::::
 
 ## Location
 
-You can view all of your project's tools in the Toolkit section of the dashboard. Each section has an example of the tool, along with information on where you should put it, how it behaves, and how to install it.
+:::::row
+::::left
+
+You can view all of your project's tools in the Toolkit section of the dashboard.
+
+Each section has an example of the tool, along with information on where you should put it, how it behaves, and how to install it.
+
+::::
+::::right
+
+:::card
+
+#### Toolkit in sidebar
 
 ![Userfront Toolkit](https://res.cloudinary.com/component/image/upload/v1602535900/permanent/toolkit-sidebar.png)
+:::
+
+::::
+:::::
 
 ## Installation
 

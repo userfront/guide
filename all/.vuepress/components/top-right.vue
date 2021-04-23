@@ -1,6 +1,6 @@
 <template>
   <div id="top-right">
-    <project-picker v-if="isLoggedIn"></project-picker>
+    <tenant-picker v-if="isLoggedIn"></tenant-picker>
 
     <div v-show="!isLoggedIn">
       <el-link type="primary" href="/signup" target="_blank"
@@ -14,22 +14,22 @@
 </template>
 
 <script>
-import ProjectPicker from "./project-picker.vue";
+import TenantPicker from "./tenant-picker.vue";
 
 export default {
   computed: {
     isLoggedIn() {
       return !!this.$store.state.accessToken;
     },
-    activeProject() {
-      return this.$store.state.activeProject || {};
+    activeTenant() {
+      return this.$store.state.activeTenant || {};
     },
     loginPath() {
       return `/login?redirect=${this.$route.path}`;
     },
   },
   components: {
-    ProjectPicker,
+    TenantPicker,
   },
 };
 </script>

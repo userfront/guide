@@ -35,7 +35,7 @@ In a subsequent Login, the user submits their password and identifier again. The
 Password Reset is usually done by sending a link to the user's email address that allows the user to set a new password. This is essentially pushing the authentication burden onto the user's email provider, with the theory being: if the user knows the password for their email service, then they are who they say they are.
 
 :::tip
-Add Signup, Login, and Password Reset forms easily with the Userfront [toolkit](./toolkit).
+Add Signup, Login, and Password Reset forms easily with the Userfront [toolkit](/guide/toolkit/).
 :::
 
 ## Single-factor Authentication

@@ -18,7 +18,7 @@ You can use the Userfront API in test mode, which does not affect your live data
 
 #### Just getting started?
 
-Check out our development [quickstart guide](../guide/quickstart).
+Check out our development [quickstart guide](/guide/quickstart/).
 
 ::: card
 

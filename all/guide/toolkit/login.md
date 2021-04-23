@@ -4,7 +4,11 @@
 
 The purpose of the Login Form is to allow existing users to log into your service.
 
-![Login Form](https://res.cloudinary.com/component/image/upload/w_300/v1597168270/permanent/login-mod.png)
+<iframe
+  :src="`https://test-${ $store.state.activeTenant.tenantId }.userfront.dev/login`"
+  frameborder="0"
+  style="width:100%;min-height:500px;border:1px solid #eee;"
+></iframe>
 
 When a user logs in, they are redirected to the URL of your choice (default is `/dashboard`). They can also choose to generate a login link or reset their password if they have forgotten it.
 

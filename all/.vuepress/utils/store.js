@@ -5,66 +5,74 @@ import Userfront from "@userfront/core";
 Vue.use(Vuex);
 Userfront.init("p9ny8bdj");
 
+const demoTenant = {
+  tenantId: "demo1234",
+  name: "Demo account",
+  roles: [],
+  permissions: [],
+};
+
 const store = new Vuex.Store({
   state: {
     accessToken: Userfront.accessToken(),
-    projects: [],
-    usableProjects: [], // admin or member role
-    activeProject: {},
-    projectToken: "",
+    tenants: [],
+    usableTenants: [], // admin or member role
+    demoTenant,
+    activeTenant: JSON.parse(JSON.stringify(demoTenant)),
+    tenantToken: "",
     loadingToken: false,
     // webhookToken: "",
   },
   mutations: {
-    setProjects(state) {
+    setTenants(state) {
       try {
         const authorization = getAuthorizationObject();
-        const projects = Object.keys(authorization).map(
-          (key) => authorization[key]
-        );
-        Vue.set(state, "projects", projects);
+        const tenants = Object.keys(authorization)
+          .map((key) => authorization[key])
+          .filter((obj) => obj.tenantId !== "p9ny8bdj");
+        Vue.set(state, "tenants", tenants);
       } catch (error) {
-        Vue.set(state, "projects", []);
+        Vue.set(state, "tenants", []);
       }
     },
-    setActiveProject(state, project) {
-      Vue.set(state, "activeProject", project);
+    setActiveTenant(state, tenant) {
+      Vue.set(state, "activeTenant", tenant);
     },
     /**
-     * Usable projects have an admin or member role.
+     * Usable tenants have an admin or member role.
      */
-    setUsableProjects(state) {
-      const usableProjects = state.projects.filter(
-        (project) =>
-          project.roles &&
-          (project.roles.includes("admin") || project.roles.includes("member"))
+    setUsableTenants(state) {
+      const usableTenants = state.tenants.filter(
+        (tenant) =>
+          tenant.roles &&
+          (tenant.roles.includes("admin") || tenant.roles.includes("member"))
       );
-      Vue.set(state, "usableProjects", usableProjects);
+      Vue.set(state, "usableTenants", usableTenants);
     },
-    setProjectToken(state, projectToken) {
-      Vue.set(state, "projectToken", projectToken);
+    setTenantToken(state, tenantToken) {
+      Vue.set(state, "tenantToken", tenantToken);
     },
     // setWebhookToken(state, webhookToken) {
     //   state.webhookToken = webhookToken;
     // },
   },
   actions: {
-    async setActiveProject({ commit, dispatch }, project) {
+    async setActiveTenant({ commit, dispatch }, tenant) {
       try {
         const authorization = getAuthorizationObject();
-        const projectIds = Object.keys(authorization);
-        if (!projectIds || projectIds.length < 1) return;
-        project = project || authorization[projectIds[0]];
-        if (!project) return;
-        const tenantId = project.tenantId || projectIds[0];
-        await dispatch("setProjectToken", tenantId);
-        commit("setProjects");
-        commit("setUsableProjects");
-        commit("setActiveProject", project);
+        const tenantIds = Object.keys(authorization);
+        if (!tenantIds || tenantIds.length < 1) return;
+        tenant = tenant || authorization[tenantIds[0]];
+        if (!tenant) return;
+        const tenantId = tenant.tenantId || tenantIds[0];
+        await dispatch("setTenantToken", tenantId);
+        commit("setTenants");
+        commit("setUsableTenants");
+        commit("setActiveTenant", tenant);
       } catch (error) {}
     },
 
-    async setProjectToken({ commit, state }, tenantId) {
+    async setTenantToken({ commit, state }, tenantId) {
       try {
         const authorization = getAuthorizationObject();
         tenantId = tenantId || Object.keys(authorization)[0];
@@ -81,7 +89,7 @@ const store = new Vuex.Store({
           }
         );
         const tokenName = tokenLevel === "admin" ? "liveAdmin" : "liveReadonly";
-        commit("setProjectToken", data[tokenName]);
+        commit("setTenantToken", data[tokenName]);
         state.loadingToken = false;
         return data[tokenName];
       } catch (error) {

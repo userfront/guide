@@ -58,7 +58,7 @@ export default async ({ isServer, router, Vue }) => {
       Vue.prototype.$docs = data;
       Vue.prototype.$demoToken =
         "uf_test_readonly_demo1234_2d87b3d230bda5685276b43efdac2852";
-      store.dispatch("setActiveProject");
+      store.dispatch("setActiveTenant");
       // If on the API docs, wait and then scroll to anchor
       if (window.location.pathname === "/docs/api.html") {
         setTimeout(() => {
