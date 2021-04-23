@@ -154,7 +154,7 @@ Unlike other providers on this list, the default installation for Userfront is t
 
 The default sign on forms are attractive and modern without being overbearing. They have modern touches like working with password managers' autofill, the ability to show/hide passwords, and helpful error messages if the user enters incorrect information.
 
-![Userfront login form](https://res.cloudinary.com/component/image/upload/v1612378383/permanent/userfront-login.png)
+![Userfront signup form](https://res.cloudinary.com/component/image/upload/v1619211711/guide/signup-form-google.png)
 
 Overall, Userfront is the most pure-play web auth solution on our list, and probably executes it the best for projects where simplicity and modern protocols are a focus.
 

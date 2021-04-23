@@ -1,9 +1,133 @@
-# React example
+# React authentication, simplified
+
+:::::row
+::::left
+Authentication is one of those things that just always seems to take a lot more effort than we want it to.
+
+To set up auth, you have to re-research topics you haven’t thought about since the last time you did authentication, and the fast-paced nature of the space means things have often changed in the meantime. New threats, new options, and new updates may have kept you guessing and digging through docs in your past projects.
+
+In this tutorial, we lay out a different approach to authentication (and access control, SSO, and more) in React applications. Rather than add a static library that you have to keep up to date or re-research each time you want to implement auth, we’ll use a service that stays up to date automatically and is a much simpler alternative to Auth0, Okta, and others.
+::::
+:::::
+
+## React authentication
 
 :::::row
 ::::left
 
-In this example, we will add authentication and access control to a React application.
+We typically use a similar approach when writing authentication in React: our React app makes a request to our authentication server, which then returns an access token. That token is saved in the browser and can be used in subsequent requests to your server (or other servers, if needed).
+
+Whether writing standard email & password authentication or using magic links or single sign on (SSO) logins like Google, Azure, or Facebook, we want our React app to send an initial request to an authentication server and have that server handle all the complexity of generating a token.
+
+::::
+::::right
+
+:::card
+
+#### React's responsibility
+
+1. Send the initial request to the authentication server
+2. Receive and store the access token
+3. Send the access token to your server with each subsequent request
+
+:::
+::::
+:::::
+
+## JWTs (JSON Web Tokens)
+
+:::::row
+::::left
+
+JSON Web Tokens (JWTs) are compact, URL-safe tokens that can be used for authentication and access control in React applications.
+
+Each JWT has a simple JSON-object as its “payload” and is signed such that your server can verify that the payload is authentic.
+
+It’s important to note that this payload is readable by anyone with the JWT, including your React application or a third party.
+
+::::
+::::right
+:::card
+
+#### Example JWT
+
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImF1dGhvcml6YXRpb24iOiJhZG1pbiJ9.f7iKN-xi24qrQ5NQtOe0jiriotT-rve3ru6sskbQXnA
+```
+
+The payload for this JWT is the middle section (separated by periods):
+
+```
+eyJ1c2VySWQiOjEsImF1dGhvcml6YXRpb24iOiJhZG1pbiJ9
+```
+
+The JWT payload can be decoded from base64 to yield the JSON object:
+
+```js
+JSON.parse(atob("eyJ1c2VySWQiOjEsImF1dGhvcml6YXRpb24iOiJhZG1pbiJ9"));
+
+// =>
+{
+  “userId”: 1,
+  “authorization”: “admin”
+}
+```
+
+:::
+::::
+:::::
+
+## JWT access tokens
+
+:::::row
+::::left
+
+With modern cryptography like RSA, an authentication server can generate secure JWTs that any other machine can read and verify as authentic using a public key. This means that JWTs can be used as access tokens to allow users to log in.
+
+Using this kind of JWT access token, your backend server can verify a JWT access token as authentic by checking it against the public key. This allows your backend server to reject any JWT access tokens that were not created by the authentication server (or that have expired).
+
+::::
+::::right
+
+:::card
+
+#### JWTs in a React app
+
+1. Your React app requests a JWT access token whenever the user wants to sign on.
+2. The authentication server generates a JWT access token using a private key and then sends the JWT access token back to your React app.
+3. Your React app stores this JWT access token and sends it to your backend server whenever your user needs to make a request.
+4. Your backend server verifies the JWT access token using a public key and then read the payload to determine which user is making the request.
+
+:::
+
+:::warning NOTE
+Each of these steps is simple to write down, but each step has its own pitfalls when you actually want to implement it and keep it secure. Especially over time, as new threat vectors emerge and new platforms need to be patched or supported, the security overhead can add up quickly.
+:::
+::::
+:::::
+
+## Userfront removes auth complexity in React apps
+
+:::::row
+::::left
+
+Userfront is a framework that abstracts away auth complexity.
+
+This makes it much easier for you to work with authentication in a React application and, perhaps most importantly, keeps all the auth protocols updated for you automatically over time.
+
+The underlying philosophy with Userfront is that world-class auth should not take effort – it should be easy to set up, and security updates should happen for you automatically.
+
+Userfront has all the bells and whistles of authentication, Single Sign On (SSO), access control, and multi-tenancy, with a production-ready free tier up to 10,000 monthly active users. For most modern React applications, it’s a great solution.
+
+::::
+:::::
+
+## Setting up authentication in React
+
+:::::row
+::::left
+
+Now we will go through building all the main aspects of authentication in a React application.
 
 We will use Create React App for setup, along with React Router for client-side routing.
 
@@ -20,7 +144,7 @@ We will use Create React App for setup, along with React Router for client-side 
 ::::
 :::::
 
-## React authentication
+## JWT access token flow
 
 :::::row
 ::::left
@@ -666,6 +790,31 @@ No additional code is needed to implement Single Sign On using this approach: yo
 ::::right
 
 ![React SSO form](https://res.cloudinary.com/component/image/upload/v1619211588/guide/sso-signup.png)
+
+::::
+:::::
+
+## Final notes
+
+:::::row
+::::left
+
+Adding authentication and access control to your React application doesn't have to be a hassle. Both the setup step and, more importantly, the maintenance over time, are handled with modern platforms like Userfront.
+
+JSON Web Tokens allow you to cleanly separate your auth token generation layer from the rest of your application, making it easier to reason about and more modular for future needs. This architecture also allows you to focus your efforts on your core application, where you are likely to create much more value for yourself or your clients.
+
+For more details on adding auth to your React application, visit the [Userfront guide](/guide/), which covers everything from setting up your auth forms to API documentation, example repositories, working with different languages and frameworks, and more.
+::::
+::::right
+
+:::card
+
+#### Create a free Userfront account
+
+<div style="padding: 20px 0">
+  <a href="/signup" target="_blank" class="el-button el-button--primary">Create account</a>
+</div>
+:::
 
 ::::
 :::::
