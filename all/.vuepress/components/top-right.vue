@@ -38,7 +38,7 @@ export default {
 #top-right {
   position: fixed;
   top: 12px;
-  right: 12px;
+  right: 24px;
   z-index: 20;
   .el-button--small {
     font-size: 13px;

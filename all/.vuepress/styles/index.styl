@@ -32,10 +32,22 @@ header.navbar {
     .nav-links {
       position: fixed;
       left: 24px;
-      top: 63px;
+      top: 64px;
+      right: 24px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
       a {
         padding: 0 0 6px;
       }
+      .nav-item:nth-child(6) {
+        margin-left: auto;
+      }
+    }
+    .nav-dropdown {
+      .dropdown-item {
+        line-height: 2.2rem !important;  
+      }  
     }
   }
 
@@ -54,6 +66,9 @@ header.navbar {
   }
   div.links {
     display: none !important;
+  }
+  .sidebar {
+    width: 220px;
   }
 }
 
@@ -121,28 +136,28 @@ h1,h2,h3,h4,h5,.navbar a .site-name {
   width: 100%;
   display: flex;
   margin: 0 0 6px;
-}
-.left {
-  width: calc(50% - 30px);
-  display: inline-block;
-  margin-right: 60px;
-}
-.right {
-  width: calc(50% - 30px);
-  display: inline-block;
+  .left {
+    width: calc(50% - 30px);
+    display: inline-block;
+    margin-right: 60px;
+  }
+  .right {
+    width: calc(50% - 30px);
+    display: inline-block;
+  }
 }
 @media (max-width: 959px) {
   .row {
     flex-direction: column;
-  }
-  .left,
-  .right {
-    display: block;
-    width: 100%;
-    margin-right: 0;
-  }
-  .left {
-    margin-bottom: 20px;
+    .left,
+    .right {
+      display: block;
+      width: 100%;
+      margin-right: 0;
+    }
+    .left {
+      margin-bottom: 20px;
+    }
   }
 }
 
