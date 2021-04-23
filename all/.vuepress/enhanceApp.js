@@ -72,6 +72,7 @@ export default async ({ isServer, router, Vue }) => {
   }
 };
 
+// Set the anchor for the primary "brand" link (top left)
 function setPrimaryAnchor() {
   try {
     setTimeout(() => {
