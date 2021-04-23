@@ -62,7 +62,6 @@ export default async ({ isServer, router, Vue }) => {
       // If on the API docs, wait and then scroll to anchor
       if (window.location.pathname === "/docs/api.html") {
         setTimeout(() => {
-          console.log("scroll");
           Vue.nextTick(scrollToAnchor);
         }, 1000);
       }
@@ -73,6 +72,7 @@ export default async ({ isServer, router, Vue }) => {
   }
 };
 
+// Set the anchor for the primary "brand" link (top left)
 function setPrimaryAnchor() {
   try {
     setTimeout(() => {
