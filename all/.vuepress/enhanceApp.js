@@ -61,9 +61,9 @@ export default async ({ isServer, router, Vue }) => {
       store.dispatch("setActiveProject");
       // If on the API docs, wait and then scroll to anchor
       if (window.location.pathname === "/docs/api.html") {
-        Vue.nextTick(() => {
-          setTimeout(scrollToAnchor, 1000);
-        });
+        setTimeout(() => {
+          Vue.nextTick(scrollToAnchor);
+        }, 500);
       }
     } catch (error) {
       console.error("Problem fetching docs.json");

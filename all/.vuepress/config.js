@@ -65,8 +65,9 @@ module.exports = {
     require("./plugins/codeCopy/index.js"),
   ],
   themeConfig: {
-    smoothScroll: false, // true causes problems with linking to API docs
+    smoothScroll: true, // true causes problems with linking to API docs
     searchPlaceholder: "Search the guide...",
+    activeHeaderLinks: false, // true causes problems with linking to API docs
     nav: [
       { text: "Home", link: "/guide/" },
       { text: "Toolkit", link: "/guide/toolkit/" },
