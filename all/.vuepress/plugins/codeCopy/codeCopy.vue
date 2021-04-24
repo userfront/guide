@@ -1,11 +1,13 @@
 <template>
-  <div class="code-copy">
-    <!-- Adapted from https://github.com/znicholasbrown/vuepress-plugin-code-copy -->
-    <i class="material-icons" @click="copyToClipboard">content_copy</i>
-    <span :class="success ? 'success' : ''">
-      {{ options.successText }}
-    </span>
-  </div>
+  <ClientOnly>
+    <div class="code-copy">
+      <!-- Adapted from https://github.com/znicholasbrown/vuepress-plugin-code-copy -->
+      <i class="material-icons" @click="copyToClipboard">content_copy</i>
+      <span :class="success ? 'success' : ''">
+        {{ options.successText }}
+      </span>
+    </div>
+  </ClientOnly>
 </template>
 
 <script>

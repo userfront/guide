@@ -1,110 +1,112 @@
 <template>
-  <div class="installation">
-    <el-tabs v-model="activeName" v-loading="loading">
-      <div v-if="showScriptHtml">
-        <p class="text-quiet">
-          Paste this script inside your HTML
-          <span class="code">&lt;head&gt;</span> and above any other scripts.
-        </p>
-        <code-block :content="scriptHtml()" language="html"></code-block>
-
-        <br />
-      </div>
-
-      <!-- HTML -->
-      <el-tab-pane label="HTML" name="html">
-        <div v-show="mod.eid">
+  <ClientOnly>
+    <div class="installation">
+      <el-tabs v-model="activeName" v-loading="loading">
+        <div v-if="showScriptHtml">
           <p class="text-quiet">
-            Paste this div inside your HTML
-            <span class="code">&lt;body&gt;</span>
-            wherever you want the
-            {{ mod.displayTitle }} to show:
+            Paste this script inside your HTML
+            <span class="code">&lt;head&gt;</span> and above any other scripts.
           </p>
-          <code-block
-            :content="modHtml(mod)"
-            language="html"
-            example="https://codepen.io/userfront/pen/MWyjXXq"
-          ></code-block>
+          <code-block :content="scriptHtml()" language="html"></code-block>
+
+          <br />
         </div>
-      </el-tab-pane>
-      <!-- /HTML -->
 
-      <!-- React -->
-      <el-tab-pane label="React" name="react">
-        <p class="text-quiet">
-          Install <code>@userfront/react</code> in your project:
-        </p>
-        <code-block :content="npmReact()" language="bash"></code-block>
-        <br />
-        <div v-show="mod.eid">
+        <!-- HTML -->
+        <el-tab-pane label="HTML" name="html">
+          <div v-show="mod.eid">
+            <p class="text-quiet">
+              Paste this div inside your HTML
+              <span class="code">&lt;body&gt;</span>
+              wherever you want the
+              {{ mod.displayTitle }} to show:
+            </p>
+            <code-block
+              :content="modHtml(mod)"
+              language="html"
+              example="https://codepen.io/userfront/pen/MWyjXXq"
+            ></code-block>
+          </div>
+        </el-tab-pane>
+        <!-- /HTML -->
+
+        <!-- React -->
+        <el-tab-pane label="React" name="react">
           <p class="text-quiet">
-            Initialize Userfront and any tools you want to use, then render
-            them.
+            Install <code>@userfront/react</code> in your project:
           </p>
-          <code-block
-            :content="modReact(mod)"
-            language="javascript"
-            example="https://codesandbox.io/s/userfront-react-example-rhbyl"
-          ></code-block>
-        </div>
-      </el-tab-pane>
-      <!-- /React -->
+          <code-block :content="npmReact()" language="bash"></code-block>
+          <br />
+          <div v-show="mod.eid">
+            <p class="text-quiet">
+              Initialize Userfront and any tools you want to use, then render
+              them.
+            </p>
+            <code-block
+              :content="modReact(mod)"
+              language="javascript"
+              example="https://codesandbox.io/s/userfront-react-example-rhbyl"
+            ></code-block>
+          </div>
+        </el-tab-pane>
+        <!-- /React -->
 
-      <!-- Vue -->
-      <el-tab-pane label="Vue" name="vue">
-        <div v-show="mod.eid">
-          <p class="text-quiet">
-            Add the
-            <span class="code">div</span> inside your Vue app:
-          </p>
-          <code-block
-            :content="modVueHtml(mod)"
-            language="html"
-            example="https://codesandbox.io/s/userfront-vue-example-hxuuw"
-          ></code-block>
+        <!-- Vue -->
+        <el-tab-pane label="Vue" name="vue">
+          <div v-show="mod.eid">
+            <p class="text-quiet">
+              Add the
+              <span class="code">div</span> inside your Vue app:
+            </p>
+            <code-block
+              :content="modVueHtml(mod)"
+              language="html"
+              example="https://codesandbox.io/s/userfront-vue-example-hxuuw"
+            ></code-block>
 
-          <p>
-            Call
-            <span class="code">Userfront.render()</span> once your component has
-            mounted:
-          </p>
-          <code-block
-            :content="modVueJs()"
-            language="javascript"
-            example="https://codesandbox.io/s/userfront-vue-example-hxuuw"
-          ></code-block>
-        </div>
-      </el-tab-pane>
-      <!-- /Vue -->
+            <p>
+              Call
+              <span class="code">Userfront.render()</span> once your component
+              has mounted:
+            </p>
+            <code-block
+              :content="modVueJs()"
+              language="javascript"
+              example="https://codesandbox.io/s/userfront-vue-example-hxuuw"
+            ></code-block>
+          </div>
+        </el-tab-pane>
+        <!-- /Vue -->
 
-      <!-- Angular -->
-      <el-tab-pane label="Angular" name="angular">
-        <div v-show="mod.eid">
-          <p class="text-quiet">
-            Make
-            <span class="code">Userfront</span> available in your
-            <span class="code">.ts</span> file:
-          </p>
-          <code-block
-            :content="'declare var Userfront: any;'"
-            example="https://codesandbox.io/s/userfront-angular-example-wrwn9?file=/src/app/app.component.ts"
-            language="javascript"
-          ></code-block>
-          <p class="text-quiet">
-            Call
-            <span class="code">Userfront.render()</span> in your component:
-          </p>
+        <!-- Angular -->
+        <el-tab-pane label="Angular" name="angular">
+          <div v-show="mod.eid">
+            <p class="text-quiet">
+              Make
+              <span class="code">Userfront</span> available in your
+              <span class="code">.ts</span> file:
+            </p>
+            <code-block
+              :content="'declare var Userfront: any;'"
+              example="https://codesandbox.io/s/userfront-angular-example-wrwn9?file=/src/app/app.component.ts"
+              language="javascript"
+            ></code-block>
+            <p class="text-quiet">
+              Call
+              <span class="code">Userfront.render()</span> in your component:
+            </p>
 
-          <code-block
-            :content="modAngular(mod)"
-            language="javascript"
-            example="https://codesandbox.io/s/userfront-angular-example-wrwn9?file=/src/app/app.component.ts"
-          ></code-block>
-        </div>
-      </el-tab-pane>
-      <!-- /Angular -->
-    </el-tabs>
-  </div>
+            <code-block
+              :content="modAngular(mod)"
+              language="javascript"
+              example="https://codesandbox.io/s/userfront-angular-example-wrwn9?file=/src/app/app.component.ts"
+            ></code-block>
+          </div>
+        </el-tab-pane>
+        <!-- /Angular -->
+      </el-tabs>
+    </div>
+  </ClientOnly>
 </template>
 
 <script>
