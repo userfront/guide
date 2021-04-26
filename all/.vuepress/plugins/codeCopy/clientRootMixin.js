@@ -2,13 +2,16 @@ import CodeCopy from "./codeCopy.vue";
 import Vue from "vue";
 import "./style.css";
 
+let interval;
+
 export default {
   updated() {
     this.update();
   },
   methods: {
     update() {
-      setTimeout(() => {
+      clearInterval(interval);
+      interval = setInterval(() => {
         document.querySelectorAll(selector).forEach((el) => {
           if (el.classList.contains("code-copy-added")) return;
           let ComponentClass = Vue.extend(CodeCopy);
@@ -29,7 +32,7 @@ export default {
           el.classList.add("code-copy-added");
           el.parentNode.append(instance.$el);
         });
-      }, 100);
+      }, 3000);
     },
   },
 };

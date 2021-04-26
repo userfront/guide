@@ -113,12 +113,16 @@ i {
 
 span {
   position: absolute;
-  top: 42px;
-  right: 12px;
+  top: 10px;
+  right: 40px;
   font-size: 0.85rem;
   line-height: 0.425rem;
+  z-index: 1;
   opacity: 0;
   color: white;
+  background: $codeGreenColor;
+  padding: 8px;
+  border-radius: 4px;
   transition: opacity 500ms;
 }
 

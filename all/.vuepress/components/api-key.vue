@@ -10,7 +10,7 @@
       </div>
       <div class="language-json" :key="`bare-${tokenToShow}`">
         <pre
-          style="padding: 30px 0 10px;"
+          style="padding: 40px 0 10px; font-size: 16px;"
         ><code style="font-weight:600;">{{ tokenToShow }}</code></pre>
       </div>
       <tenant-picker></tenant-picker>
