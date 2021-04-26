@@ -62,24 +62,36 @@ const store = new Vuex.Store({
         const authorization = getAuthorizationObject();
         const tenantIds = Object.keys(authorization);
         if (!tenantIds || tenantIds.length < 1) return;
-        tenant = tenant || authorization[tenantIds[0]];
+        if (!tenant && localStorage.activeTenant) {
+          try {
+            tenant = JSON.parse(localStorage.activeTenant);
+          } catch (error) {
+            tenant = undefined;
+          }
+        }
+        tenant ||= authorization[tenantIds[0]];
         if (!tenant) return;
         const tenantId = tenant.tenantId || tenantIds[0];
         await dispatch("setTenantToken", tenantId);
         commit("setTenants");
         commit("setUsableTenants");
         commit("setActiveTenant", tenant);
-      } catch (error) {}
+        localStorage.activeTenant = JSON.stringify(tenant);
+      } catch (error) {
+        delete localStorage.activeTenant;
+      }
     },
 
     async setTenantToken({ commit, state }, tenantId) {
       try {
+        if (state.tenantToken.includes(tenantId) || state.loadingToken) return;
         const authorization = getAuthorizationObject();
         tenantId = tenantId || Object.keys(authorization)[0];
         const tokenLevel = authorization[tenantId].roles.includes("admin")
           ? "admin"
           : "readonly";
         state.loadingToken = true;
+        // Return if the tenant token is already set
         const { data } = await axios.get(
           `https://api.userfront.com/v0/tenants/${tenantId}/tokens/${tokenLevel}?test=true`,
           {

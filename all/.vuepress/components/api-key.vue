@@ -2,16 +2,16 @@
   <div class="light-code">
     <div v-show="isLoggedIn">
       <div
-        v-show="!loading && projectToken === demoToken"
+        v-show="showWarning"
         class="el-alert el-alert--error is-light"
         style="margin-top:20px"
       >
         Unable to fetch your API key, so a demo API key is shown instead.
       </div>
-      <div class="language-json" :key="`bare-${projectToken}`">
+      <div class="language-json" :key="`bare-${tokenToShow}`">
         <pre
           style="padding: 30px 0 10px;"
-        ><code style="font-weight:600;">{{ projectToken }}</code></pre>
+        ><code style="font-weight:600;">{{ tokenToShow }}</code></pre>
       </div>
       <tenant-picker></tenant-picker>
       <p>
@@ -21,10 +21,10 @@
       <p>
         In general, you should include your API key in the header of requests:
       </p>
-      <div class="language-json" :key="`header-${projectToken}`">
+      <div class="language-json" :key="`header-${tokenToShow}`">
         <pre><code>{
   headers: {
-    authorization: "Bearer {{ projectToken }}"
+    authorization: "Bearer {{ tokenToShow }}"
   }
 }</code></pre>
       </div>
@@ -56,11 +56,30 @@ export default {
     loading() {
       return this.$store.state.loadingToken;
     },
+    showWarning() {
+      return (
+        !this.loading &&
+        this.tokenToShow === this.demoToken &&
+        this.activeTenant.tenantId !== "demo1234"
+      );
+    },
     demoToken() {
       return this.$demoToken;
     },
-    projectToken() {
-      return this.$store.state.projectToken || this.demoToken;
+    activeTenant() {
+      return this.$store.state.activeTenant;
+    },
+    // Display the tenantToken if it matches the tenant,
+    // otherwise display the demo token
+    tokenToShow() {
+      const tenantToken = this.$store.state.tenantToken;
+      try {
+        return tenantToken.indexOf(this.activeTenant.tenantId) > 0
+          ? tenantToken
+          : this.demoToken;
+      } catch (error) {
+        return this.demoToken;
+      }
     },
     isLoggedIn() {
       return !!this.$store.state.accessToken;

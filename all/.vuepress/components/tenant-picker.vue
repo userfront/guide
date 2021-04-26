@@ -31,14 +31,26 @@ export default {
     tenants() {
       return this.$store.state.tenants || [];
     },
-    setDemoTenantActive() {
-      return this.setTenant(this.$store.state.demoTenant);
-    },
   },
   methods: {
     setTenant(tenant) {
       this.$store.dispatch("setActiveTenant", tenant);
     },
+    setDemoTenantActive() {
+      this.setTenant(this.$store.state.demoTenant);
+    },
+  },
+  mounted() {
+    if (localStorage.activeTenant) {
+      try {
+        this.$store.dispatch(
+          "setActiveTenant",
+          JSON.parse(localStorage.activeTenant)
+        );
+      } catch (error) {
+        delete localStorage.activeTenant;
+      }
+    }
   },
 };
 </script>
