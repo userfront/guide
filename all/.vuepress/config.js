@@ -62,7 +62,7 @@ module.exports = {
         ga: "UA-164523904-2",
       },
     ],
-    // require("./plugins/codeCopy/index.js"),
+    require("./plugins/codeCopy/index.js"),
   ],
   themeConfig: {
     smoothScroll: true, // true causes problems with linking to API docs

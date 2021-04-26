@@ -13,7 +13,7 @@
           style="padding: 30px 0 10px;"
         ><code style="font-weight:600;">{{ projectToken }}</code></pre>
       </div>
-      <tenant-picker></tenant-picker>
+      <!-- <tenant-picker></tenant-picker> -->
       <p>
         Your test API key is included in all the examples here, so you can test
         the code samples right away.
@@ -46,11 +46,11 @@
 </template>
 
 <script>
-import TenantPicker from "./tenant-picker.vue";
+// import TenantPicker from "./tenant-picker.vue";
 
 export default {
   components: {
-    TenantPicker,
+    // TenantPicker,
   },
   computed: {
     loading() {
