@@ -1,6 +1,6 @@
 <template>
   <div id="top-right">
-    <!-- <tenant-picker v-if="isLoggedIn"></tenant-picker> -->
+    <tenant-picker v-show="isLoggedIn"></tenant-picker>
 
     <div v-show="!isLoggedIn">
       <el-link type="primary" href="/signup" target="_blank"
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-// import TenantPicker from "./tenant-picker.vue";
+import TenantPicker from "./tenant-picker.vue";
 
 export default {
   computed: {
@@ -29,7 +29,7 @@ export default {
     },
   },
   components: {
-    // TenantPicker,
+    TenantPicker,
   },
 };
 </script>
