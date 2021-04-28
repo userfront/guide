@@ -24,6 +24,8 @@ These do not require any backend setup to work.
 
 You can view all of your project's tools in the Toolkit section of the dashboard.
 
+<if-logged-in v-slot="{ tenantId }"><a :href="`/projects/${ tenantId }/toolkit`">Toolkit</a></if-logged-in>
+
 Each section has an example of the tool, along with information on where you should put it, how it behaves, and how to install it.
 
 ::::
