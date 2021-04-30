@@ -26,7 +26,7 @@ If you want to build a custom User Profile, you can do so by using the same endp
 GET https://api.userfront.com/v0/users/self
 ```
 
-The request should contain the user's access token in the `Authorization` header. The access token is found in a cookie named `access.${projectId}`; for example, if your project ID was `abcdefg`, the token would be `access.abcdefg`.
+The request should contain the user's access token in the `Authorization` header. The access token is found in a cookie named `access.${accountId}`; for example, if your account ID was `abcdefg`, the token would be `access.abcdefg`.
 
 ```
 Authorization: Bearer e2yvjua9p39ojup29j2j1k2lkjs.ol3ao3e8il3e3epo0a9u32a.ao8i3eao
@@ -66,7 +66,7 @@ Your custom JS code can use this response to display information about the user.
 PUT https://api.userfront.com/v0/users/self
 ```
 
-The JSON request should contain the user's access token in the `Authorization` header. The access token is found in a cookie named `access.${projectId}`; for example, if your project ID was `abcdefg`, the token would be `access.abcdefg`.
+The JSON request should contain the user's access token in the `Authorization` header. The access token is found in a cookie named `access.${accountId}`; for example, if your account ID was `abcdefg`, the token would be `access.abcdefg`.
 
 ```
 Authorization: Bearer e2yvjua9p39ojup29j2j1k2lkjs.ol3ao3e8il3e3epo0a9u32a.ao8i3eao

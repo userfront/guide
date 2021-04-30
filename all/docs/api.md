@@ -96,7 +96,7 @@ Some `4xx` errors that could be handled programmatically (e.g. a token is expire
 ::::: row
 :::: left
 
-Users are the user records within your project or within your project's tenants.
+Users are the user records within your account or within your account's tenants.
 
 You can create, read, update, and delete a user with standard REST operations.
 
@@ -301,7 +301,7 @@ Mark a user as active. This updates a user's `lastActiveAt` timestamp to the cur
 
 Tenants allow you to sub-divide your application so that certain users only have access to certain parts.
 
-For example, your project could have Tenant A and Tenant B. You could give some users access to Tenant A, some users access to Tenant B, some users access to both Tenants, and some users access to neither Tenant.
+For example, your account could have Tenant A and Tenant B. You could give some users access to Tenant A, some users access to Tenant B, some users access to both Tenants, and some users access to neither Tenant.
 
 You can create and read tenants with standard REST operations.
 
@@ -353,7 +353,7 @@ Reads a tenant record by its `tenantId`.
 ::::
 :::: right
 
-<code-samples path="/v0/tenants/{tenantId}" verb="get" />
+<code-samples path="/v0/tenants/{tenantId}" verb="get" :tenant="store.state.activeTenant" />
 
 <response path="/v0/tenants/{tenantId}" verb="get"/>
 
@@ -374,7 +374,7 @@ Updates an existing tenant.
 ::::
 :::: right
 
-<code-samples path="/v0/tenants/{tenantId}" verb="put" />
+<code-samples path="/v0/tenants/{tenantId}" verb="put" :tenant="store.state.activeTenant" />
 
 <response path="/v0/tenants/{tenantId}" verb="put"/>
 
@@ -437,7 +437,7 @@ You can create, read, update, and delete roles with standard REST operations.
 ::::: row
 :::: left
 
-Lists all the roles available in your project.
+Lists all the roles available in your account.
 
 <parameters path="/v0/roles" verb="get" />
 

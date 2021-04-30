@@ -8,7 +8,7 @@ When a user logs into your application, they are issued 3 tokens:
 | [ID token](#id-token)           | This token has more detailed information about the user, such as their image. |
 | [Refresh token](#refresh-token) | This token is used to obtain new Access & ID tokens.                          |
 
-These tokens are all [JWTs](/jwt-json-web-token.html) (JSON Web Tokens) signed using the RSA algorithm, with signing keys specific to your project.
+These tokens are all [JWTs](/jwt-json-web-token.html) (JSON Web Tokens) signed using the RSA algorithm, with signing keys specific to your account.
 
 ## Access token
 
@@ -18,7 +18,7 @@ Your application should send this token to your server, which will verify and de
 
 #### In the user's browser
 
-Userfront tools automatically add the access token to the browser as a cookie named `access.PROJECT_ID`.
+Userfront tools automatically add the access token to the browser as a cookie named `access.ACCOUNT_ID`.
 
 Your application code can read and send this access token the same way it would read any other cookie.
 
@@ -65,7 +65,7 @@ You can use this information to look up additional tables asssociated with the u
 
 #### Usage on your server
 
-When you send the access token to your server, your backend should verify that the JWT is valid by using the JWT Public Key (found in your dashboard under project settings).
+When you send the access token to your server, your backend should verify that the JWT is valid by using the JWT Public Key (found in your dashboard under account Settings).
 
 If the access token is valid and not expired, your server can trust that it was signed by Userfront and contains accurate information.
 
@@ -96,7 +96,7 @@ Your application should read the ID token from the browser's cookies, decode its
 
 #### In the user's browser
 
-Userfront tools automatically add the ID token to the browser as a cookie named `id.PROJECT_ID`.
+Userfront tools automatically add the ID token to the browser as a cookie named `id.ACCOUNT_ID`.
 
 Your application code can read this ID token the same way it would read any other cookie.
 
@@ -144,7 +144,7 @@ The ID token is intended for use directly in the browser. To authenticate the us
 
 ## Refresh token
 
-The refresh token is used by the Userfront script to obtain new access and ID tokens. Userfront tools automatically add the refresh token to the browser as a cookie named `refresh.PROJECT_ID`.
+The refresh token is used by the Userfront script to obtain new access and ID tokens. Userfront tools automatically add the refresh token to the browser as a cookie named `refresh.ACCOUNT_ID`.
 
 :::tip
 You do not need to use the refresh token directly.

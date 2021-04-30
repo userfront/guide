@@ -28,7 +28,7 @@
     </div>
     <div v-if="!webhookToken">
       <p>
-        Each webhook will contain an authorization header with your project's
+        Each webhook will have an authorization header containing your account's
         webhook token.
       </p>
       <p>

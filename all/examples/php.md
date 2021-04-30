@@ -79,7 +79,7 @@ In the event that the user does not have access to a page, we want to redirect t
 ::::
 ::::right
 :::tip
-With Userfront, a logged in user will have a JWT access token saved in their cookies as `access.PROJECT_ID`.
+With Userfront, a logged in user will have a JWT access token saved in their cookies as `access.ACCOUNT_ID`.
 
 In this example, we use `access.pn4qwpby`
 :::
@@ -179,7 +179,7 @@ Logged out home page:
 
 To protect a route in PHP, we need to verify that the JWT access token is valid and has not expired.
 
-To verify our JWT access token, we can use the project's JWT public key.
+To verify our JWT access token, we can use the account's JWT public key.
 
 We will use the open source [PHP-JWT](https://github.com/firebase/php-jwt) library to verify our JWT access tokens. We can install this library with composer:
 

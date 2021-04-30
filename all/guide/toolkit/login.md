@@ -25,7 +25,7 @@ In order for the Login Form to work properly, it should be on a page with the sa
 
 ## Redirection
 
-When a user logs in, they are redirected to the URL of your choice. The default is `/dashboard`, but you can change it in your project's settings:
+When a user logs in, they are redirected to the URL of your choice. The default is `/dashboard`, but you can change it in your account's Settings:
 
 ![Login URL](https://res.cloudinary.com/component/image/upload/v1583361090/guide/login_url.png)
 
@@ -33,43 +33,17 @@ When defined as a relative path like `/dashboard`, the user will be redirected w
 
 For example, if the Login Form is at `https://example.com/login`, then the user will be redirected to `https://example.com/dashboard` upon login.
 
-## API interaction (optional)
+## Core JS library
 
-If you want to build a custom login form, you can do so by using the same endpoints as the Login Form in your Toolkit:
+You can also log in a user with the Userfront Core JavaScript library, which has the `login()` method.
 
-### Log in a user with password
-
-```
-POST https://api.userfront.com/v0/auth/basic
-```
-
-#### Request
-
-```json
-{
-  "project": "n8bjqqx7",
-  "emailOrUsername": "janedoe",
-  "password": "my-long-password"
-}
-```
-
-#### Response
-
-```json
-{
-  "token": "abcde",
-  "redirectTo": "https://example.com/dashboard"
-}
-```
-
-Your custom JS code should add the `token` contained in the response to the cookie `access.${projectId}` and then redirect to the `redirectTo` URL. In this example, the cookie would be:
-
-```
-access.n8bjqqx7 = 'Bearer abcde'
-```
-
-And your custom JS code should redirect the page once the token has been added to the cookies.
+[Userfront.login() method](/docs/js.html#login-options)
 
 ```js
-window.location.href = "https://example.com/dashboard";
+// Example with email
+Userfront.login({
+  method: "password",
+  email: "admin@example.com",
+  password: "testmodepassword",
+});
 ```

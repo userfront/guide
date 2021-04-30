@@ -4,7 +4,7 @@ The Userfront core JavaScript library is intended for use in frontend applicatio
 
 <code-block-custom title="Bash" language="bash" code="npm install --save @userfront-core"></code-block-custom>
 
-The core library must always be initialized with a project or tenant ID, after which it can be used for the following:
+The core library must always be initialized with an account or tenant ID, after which it can be used for the following:
 
 - **Authentication**: These are useful for building your own custom forms and auth flows.
 
@@ -22,11 +22,11 @@ The core library must always be initialized with a project or tenant ID, after w
 
 # Setup
 
-The core library must always be initialized with a project or tenant ID.
+The core library must always be initialized with an account or tenant ID.
 
 ## init (tenantId)
 
-Initializes the Userfront core library with your project or tenant ID.
+Initializes the Userfront core library with your account or tenant ID.
 
 ```js
 import Userfront from "@userfront/core";

@@ -62,7 +62,7 @@ fetch("https://auth.userfront.repl.co/protected", {
 
 ### Server (backend)
 
-Our server route should read the `authorization` header for the request, then verify the JWT access token with the project's public key before responding. We are using the open source [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) library to verify the token.
+Our server route should read the `authorization` header for the request, then verify the JWT access token with the account's public key before responding. We are using the open source [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) library to verify the token.
 
 If the JWT access token is invalid or expired, we throw an error and return `Unauthorized`.
 
@@ -82,7 +82,7 @@ app.get("/protected", (req, res) => {
     // Read the JWT access token from the authorization header
     const accessToken = req.headers.authorization.replace("Bearer ", "");
 
-    // Verify the token using the project's JWT public key
+    // Verify the token using the account's JWT public key
     const verifiedPayload = jwt.verify(
       accessToken,
       process.env.USERFRONT_JWT_PUBLIC_KEY,
@@ -162,7 +162,7 @@ And the JWT access token's payload looks like this decoded:
 
 So we want to check that the `payload.authorization[tenantId].roles` array contains the `admin` role.
 
-As with the protected route, our server should read the `authorization` header for the request, then verify the JWT access token with the project's public key before responding. We are using the open source [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) library to verify the token.
+As with the protected route, our server should read the `authorization` header for the request, then verify the JWT access token with the account's public key before responding. We are using the open source [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) library to verify the token.
 
 If the JWT access token is invalid, expired, or missing the `admin` role, we throw an error and return `Unauthorized`.
 

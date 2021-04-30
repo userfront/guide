@@ -49,7 +49,7 @@ All live webhooks must be made over HTTPS. Webhooks configured for plain HTTP wi
 ::::: row
 :::: left
 
-Users are the user records within your project or within your project's tenants.
+Users are the user records within your account or within your account's tenants.
 
 There are webhooks available for user creation, update, and deletion.
 

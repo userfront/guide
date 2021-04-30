@@ -29,12 +29,15 @@
 
 <script>
 export default {
-  props: ["path", "verb", "showOnly"],
+  props: ["path", "verb", "showOnly", "tenant"],
   computed: {
+    tenantId() {
+      return this.tenant ? this.tenant.tenantId : "demo1234";
+    },
     url() {
       return `https://api.userfront.com${this.path
         .replace("{userId}", this.userId || "1")
-        .replace("{tenantId}", this.tenantId || "demo1234")}`;
+        .replace("{tenantId}", this.tenantId)}`;
     },
     uppercaseVerb() {
       return this.verb.toUpperCase();

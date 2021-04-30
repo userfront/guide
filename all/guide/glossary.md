@@ -12,19 +12,19 @@ For more information about how to use access tokens, see [Tokens & Access](/guid
 
 Where users should be redirected upon logging in.
 
-Can be edited in your project's Settings tab.
+Can be edited in your account's Settings tab.
 
 ### After-logout path
 
 Where users should be redirected upon logging out.
 
-Can be edited in your project's Settings tab.
+Can be edited in your account's Settings tab.
 
 ### After-signup path
 
 Where users should be redirected upon signing up.
 
-Can be edited in your project's Settings tab.
+Can be edited in your account's Settings tab.
 
 ### ID token
 
@@ -48,15 +48,15 @@ Acronym for [JSON Web Token](#json-web-token). JWT is pronounced "jot".
 
 Where users should be redirected to reset their password after clicking the link in the reset email.
 
-Can be edited in your project's Settings tab.
+Can be edited in your account's Settings tab.
 
-### Project ID
+### Account ID
 
-The ID for your project. The project token can be found in the URL when you are logged into the Userfront dashboard:
+The ID for your account. The account token can be found in the URL when you are logged into the Userfront dashboard:
 
-`https://userfront.com/projects/ { projectId } /users`
+`https://userfront.com/projects/ { accountId } /users`
 
-Project IDs are a type of [tenant ID](#tenant-id), which are 8-character alphanumeric IDs, like `a1b2c3d4`.
+Account IDs are a type of [tenant ID](#tenant-id), which are 8-character alphanumeric IDs, like `a1b2c3d4`.
 
 ### Refresh token
 
@@ -74,6 +74,6 @@ You can find your public RSA key(s) in the Settings section of the Userfront das
 
 ### Tenant ID
 
-The ID for a tenant within your project. Your tenants can be found in the Access Control tab of the Userfront dashboard.
+The ID for a tenant within your account. Your tenants can be found in the Access Control tab of the Userfront dashboard.
 
 Tenant IDs are 8-character alphanumeric IDs, like `a1b2c3d4`.

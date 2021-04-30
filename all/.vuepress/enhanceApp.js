@@ -32,7 +32,9 @@ export default async ({ isServer, router, Vue }) => {
   Vue.use(Input);
   Vue.use(Link);
 
-  // Assign router because Vuepress doesn't accept $router in markdown
+  // Assign store and router because Vuepress doesn't accept
+  // $store or $router in markdown
+  Vue.prototype.store = store;
   Vue.prototype.router = router;
 
   if (!isServer) {

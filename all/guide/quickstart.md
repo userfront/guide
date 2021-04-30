@@ -28,7 +28,7 @@ Your form is in [test mode](/test-mode.html), which means it goes through the si
 Upon successful signup, the form does 2 things:
 
 - Redirects you to `/dashboard`. We'll edit this next.
-- Adds a secure access token named `access.PROJECT_ID` to your browser's cookies (with your project ID). This token is a JWT with the user's identity and authorization information, which you can send to your own backend.
+- Adds a secure access token named `access.ACCOUNT_ID` to your browser's cookies (with your account ID). This token is a JWT with the user's identity and authorization information, which you can send to your own backend.
 
 ## 3. Set your redirect & domain
 

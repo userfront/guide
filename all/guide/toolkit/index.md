@@ -22,7 +22,7 @@ These do not require any backend setup to work.
 :::::row
 ::::left
 
-You can view all of your project's tools in the Toolkit section of the dashboard.
+You can view all of your account's tools in the Toolkit section of the dashboard.
 
 Each section has an example of the tool, along with information on where you should put it, how it behaves, and how to install it.
 
@@ -41,7 +41,7 @@ Each section has an example of the tool, along with information on where you sho
 
 ## Installation
 
-Follow the installation instructions for each tool, which have IDs that are specific to your project.
+Follow the installation instructions for each tool, which have IDs that are specific to your account.
 
 ![Toolkit installation](https://res.cloudinary.com/component/image/upload/v1602536076/permanent/toolkit-installation.png)
 

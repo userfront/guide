@@ -29,7 +29,7 @@ In order for the Password Reset Form to work properly, it should be on a page wi
 
 ## Redirection
 
-When a user submits the Password Reset Form, they are redirected to the URL of your choice. The default is `/reset`, but you can change it in your project's settings:
+When a user submits the Password Reset Form, they are redirected to the URL of your choice. The default is `/reset`, but you can change it in your account's settings:
 
 ![Password Reset URL](https://res.cloudinary.com/component/image/upload/v1583361091/guide/reset_url.png)
 
@@ -41,32 +41,21 @@ For example, placing the Password Reset Form at `https://example.com/random`, an
 Adding the Password Reset Form to a single page like `/reset` is often easiest.
 :::
 
-## API interaction (optional)
+## Core JS library
 
-If you want to generate a password reset link from somewhere else on your site, you can do so by using the same endpoints as the Password Reset Form in your Toolkit:
+You can also reset a user's password with the Userfront Core JavaScript library, which has the `sendResetLink()` and `resetPassword()` methods.
 
-### Generate a password reset link
+[Userfront.sendResetLink() method](/docs/js.html#sendresetlink-email)
 
+[Userfront.resetPassword() method](/docs/js.html#resetpassword-options)
+
+```js
+// Send the user a password reset link
+Userfront.sendResetLink("admin@example.com");
+
+// Once the user visits the link, you can call resetPassword(),
+// which reads the reset token & uuid from the URL that was sent.
+Userfront.resetPassword({
+  password: "myshinynewpassword",
+});
 ```
-POST https://api.userfront.com/v0/auth/reset/link
-```
-
-#### Request
-
-```json
-{
-  "project": "g48xypb9",
-  "email": "jane@doe.co"
-}
-```
-
-#### Response
-
-```json
-{
-  "To": "jane@doe.co",
-  "Message": "OK"
-}
-```
-
-This will generate the password reset email, which will then direct your user to your password reset URL (default is `/reset). You should add the Password Reset Form at this URL so that users can reset their password.

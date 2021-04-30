@@ -24,23 +24,37 @@ For your live sites, always use `https://` (also called SSL).
 
 ## Redirection
 
-When a user signs up, they are redirected to the URL of your choice. The default is `/dashboard`, but you can change it in your project's settings.
+When a user signs up, they are redirected to the URL of your choice. The default is `/dashboard`, but you can change it in your account's settings.
 
 When defined as a relative path like `/dashboard`, the user will be redirected whatever domain the form is on, plus that path.
 
 For example, if the signup form is at `https://example.com/features`, then the user will be redirected to `https://example.com/dashboard` upon sign up.
 
+## Core JS library
+
+You can also register a user with the Userfront Core JavaScript library, which has the `signup()` method.
+
+[Userfront.signup() method](/docs/js.html#signup-options)
+
+```js
+// Example with email
+Userfront.signup({
+  method: "password",
+  email: "admin@example.com",
+  password: "testmodepassword",
+});
+
+// Example with Google
+Userfront.signup({ method: "google" });
+```
+
 ## Signup webhook (optional)
 
 If you want to be notified when a new user is created, you can add a URL to the
-User Created Webhook in your project settings.
+User Created Webhook in your account settings.
 
 ![Signup webhook](https://res.cloudinary.com/component/image/upload/v1582764381/webhook_url_qcmvkl.png)
 
-Userfront will send a JSON `POST` request to your Webhook URL whenever a user is created.
-
-This request will have your project's Webhook Token in the header, which you can use to verify the request in your app.
-
-![Webhook token](https://res.cloudinary.com/component/image/upload/v1583364091/guide/webhook_token.png)
+Userfront will send a JSON `POST` request to your Webhook URL whenever a user is created. This request will have your account's Webhook Token in the header, which you can use to verify the request in your app.
 
 For more information about webhooks, see the [Webhook reference](/docs/webhooks/).

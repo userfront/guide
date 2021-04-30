@@ -1,6 +1,6 @@
 # Multi-tenancy
 
-Multi-tenancy allows you to sub-divide your application so that your users can have their own projects, teams, and organizations. The term "tenant" refers to one of these projects, teams, or organizations.
+Multi-tenancy allows you to sub-divide your application so that your users can have their own accounts, teams, and organizations. The term "tenant" refers to one of these accounts, teams, or organizations.
 
 Within a tenant, you can assign roles to your users.
 
@@ -12,12 +12,12 @@ Users can have multiple roles within a tenant, and users can also have roles in 
 
 Use tenants in your application when you want specific users to have access to specific resources or actions.
 
-If you will want more than one user to be able to access a project within your application, multi-tenancy allows you to give access to multiple users.
+If you will want more than one user to be able to access an account within your application, multi-tenancy allows you to give access to multiple users.
 
-Similarly, if you will want some users to have access to more than one project, multi-tenancy allows you to add a user to many projects.
+Similarly, if you will want some users to have access to more than one account, multi-tenancy allows you to add a user to many accounts.
 
 :::tip
-If you want more than one user per project, or more than one project per user, multi-tenancy is a good solution.
+If you want more than one user per account, or more than one account per user, multi-tenancy is a good solution.
 :::
 
 ### Roles

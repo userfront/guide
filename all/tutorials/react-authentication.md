@@ -744,7 +744,7 @@ console.log(req.auth);
   authorization: {
     demo1234: {
       tenantId: 'demo1234',
-      name: 'Demo project',
+      name: 'Demo account',
       roles: ["admin"],
       permissions: []
     },
