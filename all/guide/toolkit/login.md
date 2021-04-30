@@ -14,22 +14,19 @@ When a user logs in, they are redirected to the URL of your choice (default is `
 
 ## Usage
 
-:::warning
-For your live sites, always use `https://` (also called SSL).<br>
-If your URL begins with `http://`, it is not secure.
-:::
-
 Add your Login Form to any page where you want a user to be able to log in. For example, you may want your Login Form on a page at `/login` and also in the footer of your landing page.
 
 In order for the Login Form to work properly, it should be on a page with the same domain as your "logged in" pages.
 
+:::tip
+For your live website, always use `https://` (also called SSL).
+:::
+
 ## Redirection
 
-When a user logs in, they are redirected to the URL of your choice. The default is `/dashboard`, but you can change it in your account's Settings:
+When a user logs in, they are redirected to the URL of your choice. The default is `/dashboard`, but you can change it in your account's Settings > **After-login path**.
 
-![Login URL](https://res.cloudinary.com/component/image/upload/v1583361090/guide/login_url.png)
-
-When defined as a relative path like `/dashboard`, the user will be redirected whatever domain the form is on, plus that path.
+Upon logging in, the user will be redirected whatever domain the form is on, plus the After-login path path.
 
 For example, if the Login Form is at `https://example.com/login`, then the user will be redirected to `https://example.com/dashboard` upon login.
 

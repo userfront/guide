@@ -23,11 +23,6 @@ When a user logs out, they are redirected to the URL of your choice (default is 
 
 ## Usage
 
-:::warning
-For your live sites, always use `https://` (also called SSL).<br>
-If your URL begins with `http://`, it is not secure.
-:::
-
 The Logout Button does the following when clicked:
 
 1. Invalidates the user's access token with Userfront, so that it is no longer valid.
@@ -36,12 +31,14 @@ The Logout Button does the following when clicked:
 
 Add your Logout Button to pages where you want your users to be able to log out. You can add multiple Logout Buttons to the same page, and can also add the Logout Button to many different pages if desired.
 
+:::tip
+For your live website, always use `https://` (also called SSL).
+:::
+
 ## Redirection
 
-When a user clicks the Logout Button, they are redirected to the URL of your choice. The default is `/login`, but you can change it in your account's Settings:
+When a user clicks the Logout Button, they are redirected to the URL of your choice. The default is `/login`, but you can change it in your account's Settings > **After-logout path**.
 
-![Logout URL](https://res.cloudinary.com/component/image/upload/v1583361090/guide/logout_url.png)
+Upon logging out, the user will be redirected whatever domain the button is on, plus that path.
 
-When defined as a relative path like `/login`, the user will be redirected whatever domain the button is on, plus that path.
-
-For example, placing the Logout Button at `https://example.com/random`, and defining the redirection path to be `/login` will redirect the user to `https://example.com/login` once the button is clicked.
+For example, placing the Logout Button at `https://example.com/home`, and defining the redirection path to be `/login` will redirect the user to `https://example.com/login` once the user logs out.

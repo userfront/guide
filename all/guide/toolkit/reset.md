@@ -18,24 +18,23 @@ This is the same tool as above, and it should be installed at the Redirection UR
 
 ## Usage
 
-:::warning
-For your live sites, always use `https://` (also called SSL).<br>
-If your URL begins with `http://`, it is not secure.
-:::
-
 Add your Password Reset Form to a page where you want your users to be able to reset their password.
 
 In order for the Password Reset Form to work properly, it should be on a page with the same domain as your "logged in" pages.
 
-## Redirection
+:::tip
+For your live website, always use `https://` (also called SSL).
+:::
 
-When a user submits the Password Reset Form, they are redirected to the URL of your choice. The default is `/reset`, but you can change it in your account's settings:
+## Location & redirection
 
-![Password Reset URL](https://res.cloudinary.com/component/image/upload/v1583361091/guide/reset_url.png)
+When a user submits the Password Reset Form to request a password reset, they are sent an email link to the path of your choice. The default is `/reset`, but you can change it in your account's Settings > **Password reset path**.
 
-When defined as a relative path like `/reset`, the user will be redirected whatever domain the form is on, plus that path.
+The Password Reset Form can be placed anywhere, but it should also be placed at the the Password reset path for your website.
 
-For example, placing the Password Reset Form at `https://example.com/random`, and defining the redirection path to be `/reset` will send the user a link to `https://example.com/reset`, and the Password Reset Form would need to be on this page as well.
+For example, you could place a Password Reset Form at `https://example.com/support`, with the Password reset path set to `/reset`. This would email the user a link to `https://example.com/reset`, so the Password Reset Form would need to be on the `/reset` page as well.
+
+When a user submits the Password Reset Form to change their password, they are redirected to whatever domain the form is on, plus the After-login path.
 
 :::tip
 Adding the Password Reset Form to a single page like `/reset` is often easiest.

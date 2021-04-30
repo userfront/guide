@@ -29,11 +29,8 @@
 
 <script>
 export default {
-  props: ["path", "verb", "showOnly", "tenant"],
+  props: ["path", "verb", "showOnly"],
   computed: {
-    tenantId() {
-      return this.tenant ? this.tenant.tenantId : "demo1234";
-    },
     url() {
       return `https://api.userfront.com${this.path
         .replace("{userId}", this.userId || "1")
@@ -53,7 +50,7 @@ export default {
       }
     },
     token() {
-      return this.$store.state.tenantToken || this.$demoToken;
+      return this.$store.state.tenantToken || this.$store.state.demoToken;
     },
     payload() {
       const p = {};

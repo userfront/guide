@@ -64,7 +64,7 @@ export default {
       );
     },
     demoToken() {
-      return this.$demoToken;
+      return this.$store.state.demoToken;
     },
     activeTenant() {
       return this.$store.state.activeTenant;

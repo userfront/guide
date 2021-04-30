@@ -55,7 +55,7 @@ export default {
   },
   computed: {
     demoToken() {
-      return this.$demoToken;
+      return this.$store.state.demoToken;
     },
     webhookToken() {
       return this.$store.state.webhookToken;

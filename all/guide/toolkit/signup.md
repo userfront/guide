@@ -19,14 +19,14 @@ Add your signup form to any page where you want a user to sign up. For example, 
 In order for the signup form to work properly, it should be located at the same domain as your "logged in" pages.
 
 :::tip
-For your live sites, always use `https://` (also called SSL).
+For your live website, always use `https://` (also called SSL).
 :::
 
 ## Redirection
 
-When a user signs up, they are redirected to the URL of your choice. The default is `/dashboard`, but you can change it in your account's settings.
+When a user signs up, they are redirected to the URL of your choice. The default is `/dashboard`, but you can change it in your account's Settings > **After-signup path**.
 
-When defined as a relative path like `/dashboard`, the user will be redirected whatever domain the form is on, plus that path.
+Upon signing up, the user will be redirected whatever domain the form is on, plus the After-signup path.
 
 For example, if the signup form is at `https://example.com/features`, then the user will be redirected to `https://example.com/dashboard` upon sign up.
 
