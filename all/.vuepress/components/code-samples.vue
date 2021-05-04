@@ -1,7 +1,12 @@
 <template>
   <div>
     <code-group-custom :verb="verb" :path="path">
-      <code-block-custom title="cURL" language="bash" :code="curlSample">
+      <code-block-custom
+        title="cURL"
+        language="bash"
+        :code="curlSample"
+        :ref="`bash-${ref}`"
+      >
       </code-block-custom>
 
       <code-block-custom
@@ -31,6 +36,12 @@
 export default {
   props: ["path", "verb", "showOnly"],
   computed: {
+    tenantId() {
+      return this.$store.state.activeTenant.tenantId;
+    },
+    ref() {
+      return `group-${this.verb}-${this.path}-${this.tenantId}`;
+    },
     url() {
       return `https://api.userfront.com${this.path
         .replace("{userId}", this.userId || "1")
