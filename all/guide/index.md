@@ -1,5 +1,6 @@
 ---
 sidebar: false
+pageClass: home-page
 ---
 
 # Guide
