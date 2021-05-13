@@ -57,10 +57,7 @@ Your server should decode and verify the access token JWT, and then it can check
 ```js
 var tenantAccess = token.authorization[route.tenantId];
 // => {
-//      "tenantId": "nz569yb7",
-//      "name": "Tenant A",
 //      "roles": ["admin"],
-//      "permissions": []
 //    }
 
 if (tenantAccess.roles.includes["admin"]) {
