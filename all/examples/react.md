@@ -619,10 +619,7 @@ console.log(req.auth);
   isConfirmed: false,
   authorization: {
     demo1234: {
-      tenantId: 'demo1234',
-      name: 'Demo account',
-      roles: ["admin"],
-      permissions: []
+      roles: ["admin"]
     },
   },
   sessionId: '35d0bf4a-912c-4429-9886-cd65a4844a4f',

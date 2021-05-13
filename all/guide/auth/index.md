@@ -74,10 +74,7 @@ To determine a user's level of access, your application can inspect the `authori
 ```js
 authorization: {
   nz569yb7: {
-    tenantId: "nz569yb7",
-    name: "Your application",
-    roles: ["admin"],
-    permissions: []
+    roles: ["admin"];
   }
 }
 ```
