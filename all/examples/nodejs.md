@@ -152,8 +152,7 @@ And the JWT access token's payload looks like this decoded:
   "userId": 1,
   "authorization": {
     "demo1234": {
-      "roles": ["admin"],
-      ...
+      "roles": ["admin"]
     }
   },
   ...

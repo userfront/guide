@@ -49,10 +49,7 @@ When you decode the access token using a JWT library, the access token payload l
   "isConfirmed": true,
   "authorization": {
     "nz569yb7": {
-      "tenantId": "nz569yb7",
-      "name": "Your application",
-      "roles": ["admin"],
-      "permissions": []
+      "roles": ["admin"]
     }
   },
   "sessionId": "9cd533f8-0a4c-43a3-9b9d-a9382231a7f2",
@@ -71,13 +68,10 @@ If the access token is valid and not expired, your server can trust that it was 
 
 To determine a user's level of access, your application can inspect the `authorization` object in the access token payload, which looks like:
 
-```js
-authorization: {
-  nz569yb7: {
-    tenantId: "nz569yb7",
-    name: "Your application",
-    roles: ["admin"],
-    permissions: []
+```json
+"authorization": {
+  "nz569yb7": {
+    "roles": ["admin"]
   }
 }
 ```
