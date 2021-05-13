@@ -34,21 +34,15 @@ On Userfront, a user's roles are represented in their [access token](/guide/auth
 "userId": 1,
 "authorization": {
   "nz569yb7": {
-    "tenantId": "nz569yb7",
-    "name": "Tenant A",
-    "roles": ["admin"],
-    "permissions": []
+    "roles": ["admin"]
   },
   "a5h281k8": {
-    "tenantId": "a5h281k8",
-    "name": "Tenant B",
-    "roles": ["member"],
-    "permissions": []
+    "roles": ["member"]
   }
 }
 ```
 
-In this example, the user is an `admin` of Tenant A and a `member` of Tenant B.
+In this example, the user is an `admin` of Tenant A (`nz569yb7`) and a `member` of Tenant B (`a5h281k8`).
 
 ### Usage in your application
 
