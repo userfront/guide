@@ -22,7 +22,7 @@ In order for the signup form to work properly, it should be located at the same 
 For your live website, always use `https://` (also called SSL).
 :::
 
-## Redirection
+## Redirect
 
 When a user signs up, they are redirected to the URL of your choice. The default is `/dashboard`, but you can change it in your account's Settings > **After-signup path**.
 

@@ -13,7 +13,7 @@ Users should be saved in CSV format, with a header row denoting what each column
 Whenever a `userId` is not already in your account, a user will be created in your account based on the information in the CSV. If an existing user in your account has the `userId` given, then the user in your account will be updated based on the information in the CSV.
 
 :::tip
-At a minimum, the header row must contain a column for `id` or `userId`. This value is used to identify the user.
+At a minimum, the header row must contain a column for `id` or `userId` and a column for `email`.
 :::
 
 ### How to import
