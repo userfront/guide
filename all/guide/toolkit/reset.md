@@ -26,7 +26,7 @@ In order for the Password Reset Form to work properly, it should be on a page wi
 For your live website, always use `https://` (also called SSL).
 :::
 
-## Location & redirection
+## Location & redirect
 
 When a user submits the Password Reset Form to request a password reset, they are sent an email link to the path of your choice. The default is `/reset`, but you can change it in your account's Settings > **Password reset path**.
 

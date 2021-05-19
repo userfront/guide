@@ -22,13 +22,23 @@ In order for the Login Form to work properly, it should be on a page with the sa
 For your live website, always use `https://` (also called SSL).
 :::
 
-## Redirection
+## Redirect
 
 When a user logs in, they are redirected to the URL of your choice. The default is `/dashboard`, but you can change it in your account's Settings > **After-login path**.
 
-Upon logging in, the user will be redirected whatever domain the form is on, plus the After-login path path.
+Upon logging in, the user will be redirected whatever domain the form is on, plus the After-login path.
 
 For example, if the Login Form is at `https://example.com/login`, then the user will be redirected to `https://example.com/dashboard` upon login.
+
+### Client-side redirect
+
+You can also set a redirect with the URL, which will override the After-login path. To do so, set the `redirect` query parameter.
+
+For example, the following URL would redirect to `example.com/path` upon login:
+
+```
+https://example.com/login?redirect=/path
+```
 
 ## Core JS library
 

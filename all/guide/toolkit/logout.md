@@ -35,7 +35,7 @@ Add your Logout Button to pages where you want your users to be able to log out.
 For your live website, always use `https://` (also called SSL).
 :::
 
-## Redirection
+## Redirect
 
 When a user clicks the Logout Button, they are redirected to the URL of your choice. The default is `/login`, but you can change it in your account's Settings > **After-logout path**.
 
