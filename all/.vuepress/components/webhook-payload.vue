@@ -15,10 +15,27 @@ import "prismjs/components/prism-json";
 
 export default {
   props: ["path", "verb", "model", "action"],
+  data() {
+    return {
+      // Hide these fields even though they are included in docs.json
+      excludeUserFields: [
+        "lastActiveAt",
+        "lastMessagedAt",
+        "tenant",
+        "updatedAt",
+      ],
+      excludeTenantFields: ["testTenantId"],
+    };
+  },
   computed: {
-    result() {
+    record() {
       try {
-        return this.$docs.paths[this.path][this.verb].responses[200] || {};
+        const record = JSON.parse(
+          JSON.stringify(
+            this.$docs.paths[this.path][this.verb].responses[200] || {}
+          )
+        );
+        return this.excludeRecordAttributes(record);
       } catch (error) {
         return {};
       }
@@ -28,7 +45,7 @@ export default {
         action: this.action,
         model: this.model,
         mode: "test",
-        record: this.result,
+        record: this.record,
       };
     },
     responseSample() {
@@ -38,6 +55,20 @@ export default {
   methods: {
     highlight(code, language) {
       return Prism.highlight(code, Prism.languages[language], language);
+    },
+    excludeRecordAttributes(record) {
+      if (!record) return {};
+      if (this.model === "user") {
+        this.excludeUserFields.map((field) => {
+          delete record[field];
+        });
+      }
+      if (this.model === "tenant") {
+        this.excludeTenantFields.map((field) => {
+          delete record[field];
+        });
+      }
+      return record;
     },
   },
 };
