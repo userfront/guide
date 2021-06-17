@@ -110,13 +110,13 @@ module.exports = {
       { text: "Dashboard", link: "https://userfront.com/projects" },
     ],
     sidebar: {
-      "/guide/toolkit/": [
-        "/guide/toolkit/",
-        "/guide/toolkit/signup.md",
-        "/guide/toolkit/login.md",
-        "/guide/toolkit/reset.md",
-        "/guide/toolkit/logout.md",
-      ],
+      // "/guide/toolkit/": [
+      //   "/guide/toolkit/",
+      //   "/guide/toolkit/signup.md",
+      //   "/guide/toolkit/login.md",
+      //   "/guide/toolkit/reset.md",
+      //   "/guide/toolkit/logout.md",
+      // ],
       "/guide/auth/": [
         "/guide/auth/token-flow.md",
         "/guide/auth/multi-tenancy.md",

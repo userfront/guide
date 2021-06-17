@@ -2,6 +2,8 @@ import Vuex from "vuex";
 import store from "./utils/store.js";
 import axios from "axios";
 import {
+  Breadcrumb,
+  BreadcrumbItem,
   Button,
   ButtonGroup,
   Dropdown,
@@ -24,6 +26,8 @@ export default async ({ isServer, router, Vue }) => {
   Vue.mixin({ store });
 
   // Add Element UI components
+  Vue.use(Breadcrumb);
+  Vue.use(BreadcrumbItem);
   Vue.use(Button);
   Vue.use(ButtonGroup);
   Vue.use(Dropdown);
