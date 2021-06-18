@@ -63,12 +63,14 @@ export default async ({ isServer, router, Vue }) => {
       const { data } = await axios.get(docsJsonUrl);
       Vue.prototype.$docs = data;
       store.dispatch("setActiveTenant");
-      // If on the API docs, wait and then scroll to anchor
+      // Wait and then scroll to anchor
+      let time = 500;
       if (window.location.pathname === "/docs/api.html") {
-        setTimeout(() => {
-          Vue.nextTick(scrollToAnchor);
-        }, 1000);
+        time = 1000;
       }
+      setTimeout(() => {
+        Vue.nextTick(scrollToAnchor);
+      }, time);
     } catch (error) {
       console.error("Problem fetching docs.json");
       console.error(error);
