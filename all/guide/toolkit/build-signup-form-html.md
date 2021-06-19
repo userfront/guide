@@ -7,10 +7,10 @@
 
 In this section, we create a custom signup form with email and password that includes:
 
-- [A custom field](#example-javascript)
-- [Password verification](#example-javascript)
-- [Error messages](#example-javascript)
-- [Single-sign on](#single-sign-on) (SSO) with Google
+- [A custom field](#custom-fields)
+- [Password verification](#password-verification)
+- [Error messages](#error-handling)
+- [Single sign-on](#single-sign-on) (SSO) with Google
 
 ::::
 :::::
@@ -173,8 +173,6 @@ In the example code here, we do the following:
 2. Define a custom `formSignup()` method that calls `Userfront.signup()` with the form values
 3. Add an event listener to call `formSignup()` when the form is submitted
 
-### Errors
-
 ::::
 :::: right
 
@@ -225,6 +223,111 @@ function setAlert(message) {
 
 // 3. Add an event listener for the signup for submit
 signupFormEl.addEventListener("submit", formSignup);
+```
+
+::::
+:::::
+
+### Custom fields
+
+::::: row
+:::: left
+
+The form has a field for `Account Name`, which is a custom field.
+
+When we pass this to the `Userfront.signup()` method under the `data` object, it is saved to the user's record as `user.data.accountName`.
+
+::::
+:::: right
+
+```js
+Userfront.signup({
+  ...
+  data: {
+    accountName: accountNameEl.value,
+  },
+});
+```
+
+::::
+:::::
+
+### Password verification
+
+::::: row
+:::: left
+
+Userfront will verify that the password is the correct length and format, and we can additionally verify that the user has typed what they intended by having them type it twice.
+
+This "passwords match" verification is performed before sending the information to Userfront.
+
+::::
+:::: right
+
+```js
+var password = passwordEl.value;
+var passwordVerify = passwordVerifyEl.value;
+if (password !== passwordVerify) {
+  return setAlert("Password verification must match.");
+}
+```
+
+::::
+:::::
+
+### Error handling
+
+::::: row
+:::: left
+
+Whenever the `Userfront.signup()` method fails, we can `catch` its error in the promise chain.
+
+This error will contain a `message` property with what went wrong.
+
+In this example, we use the `setAlert()` method to display the error message inside of our alert element.
+
+::::
+:::: right
+
+```js
+// Catch the error
+Userfront.signup(...)
+.catch(function(error) {
+  setAlert(error.message);
+});
+
+// Add the error message to the alert element
+function setAlert(message) {
+  alertEl.innerText = message;
+  alertEl.style.display = message ? "block" : "none";
+}
+```
+
+::::
+:::::
+
+## Single sign-on
+
+::::: row
+:::: left
+
+To configure Single sign-on (SSO), first add the provider you want to use in the Userfront dashboard in the **SSO** tab.
+
+In this example, we add an event listener to call `Userfront.signon()` with `"google"` as the signup method whenever the Google button is clicked. You can style the button however you like, or initate the signon programmatically.
+
+You can find more provider options like GitHub, LinkedIn, and Facebook in the docs for [signup()](/docs/js.html#signup-options).
+
+::::
+:::: right
+
+```js
+Userfront.init("demo1234");
+var googleButtonEl = document.getElementById("signup-google");
+
+// 4. Add an event listener for the google button click
+googleButtonEl.addEventListener("click", function() {
+  Userfront.signup({ method: "google" });
+});
 ```
 
 ::::
