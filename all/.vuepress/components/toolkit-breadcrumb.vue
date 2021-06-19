@@ -4,7 +4,7 @@
       <el-breadcrumb-item :to="{ path: '/' }">Toolkit</el-breadcrumb-item>
       <!-- Type -->
       <el-breadcrumb-item>
-        <el-dropdown>
+        <el-dropdown trigger="click">
           <span class="el-dropdown-link">
             {{ currentType }}<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
@@ -18,7 +18,7 @@
       <!-- /Type -->
       <!-- Mod -->
       <el-breadcrumb-item>
-        <el-dropdown>
+        <el-dropdown trigger="click">
           <span class="el-dropdown-link">
             {{ currentMod }}<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
@@ -32,7 +32,7 @@
       <!-- /Mod -->
       <!-- Tech -->
       <el-breadcrumb-item>
-        <el-dropdown>
+        <el-dropdown trigger="click">
           <span class="el-dropdown-link">
             {{ currentTech }}<i class="el-icon-arrow-down el-icon--right"></i>
           </span>

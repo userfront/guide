@@ -185,7 +185,6 @@ var signupFormEl = document.getElementById("signup-form");
 var alertEl = document.getElementById("alert");
 var emailEl = document.getElementById("email");
 var accountNameEl = document.getElementById("account-name");
-var pastaEl = document.getElementById("pasta");
 var passwordEl = document.getElementById("password");
 var passwordVerifyEl = document.getElementById("password-verify");
 var googleButtonEl = document.getElementById("signup-google");
