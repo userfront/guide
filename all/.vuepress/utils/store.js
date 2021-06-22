@@ -12,6 +12,13 @@ const demoTenant = {
   permissions: [],
 };
 
+const demoMods = {
+  "Signup form": "nkmbbm",
+  "Login form": "alnkkd",
+  "Password reset form": "dkbmmo",
+  "Logout button": "kdbooo",
+};
+
 const store = new Vuex.Store({
   state: {
     accessToken: Userfront.accessToken(),
@@ -22,6 +29,11 @@ const store = new Vuex.Store({
     activeTenant: JSON.parse(JSON.stringify(demoTenant)),
     tenantToken: "",
     loadingToken: false,
+    installation: {
+      tenantId: demoTenant.tenantId,
+      mods: JSON.parse(JSON.stringify(demoMods)),
+    },
+    loadingInstallation: false,
     // webhookToken: "",
   },
   mutations: {
@@ -56,6 +68,33 @@ const store = new Vuex.Store({
     setTenantToken(state, tenantToken) {
       Vue.set(state, "tenantToken", tenantToken);
     },
+    setInstallation(state, { tenantId, mods }) {
+      if (!tenantId || !mods) return;
+      const modNames = [
+        "Signup form",
+        "Login form",
+        "Password reset form",
+        "Logout button",
+      ];
+      // Require all the mods to be present in order for the
+      // installation object to be updated.
+      const modsToAdd = {};
+      for (let i = 0; i < modNames.length; i++) {
+        let modMatch;
+        mods.map((mod) => {
+          if (mod.displayTitle === modNames[i]) {
+            modMatch = mod;
+          }
+        });
+        if (!modMatch) return;
+        modsToAdd[modName] = modMatch.eid;
+      }
+
+      Vue.set(state, "installation", {
+        tenantId,
+        mods: modsToAdd,
+      });
+    },
     // setWebhookToken(state, webhookToken) {
     //   state.webhookToken = webhookToken;
     // },
@@ -80,6 +119,7 @@ const store = new Vuex.Store({
         commit("setTenants");
         commit("setUsableTenants");
         commit("setActiveTenant", tenant);
+        await dispatch("setInstallationTenant", tenantId);
         localStorage.activeTenant = JSON.stringify(tenant);
       } catch (error) {
         delete localStorage.activeTenant;
@@ -111,6 +151,36 @@ const store = new Vuex.Store({
       } catch (error) {
         state.loadingToken = false;
         return;
+      }
+    },
+
+    /**
+     * Set the installation object based on tenantId, unless the tenantId
+     * is the one already in use.
+     *
+     * @param {String} tenantId
+     */
+    async setInstallationTenant({ commit, state }, tenantId) {
+      if (
+        state.installation.tenantId === tenantId ||
+        state.loadingInstallation
+      ) {
+        return;
+      }
+      state.loadingInstallation = true;
+      try {
+        const { data } = await axios.get(
+          `https://api.userfront.com/v0/tenants/${tenantId}/mods`,
+          {
+            headers: {
+              Authorization: `Bearer ${state.accessToken}`,
+            },
+          }
+        );
+        commit("setInstallation", { tenantId, mods: data.results });
+        state.loadingInstallation = false;
+      } catch (error) {
+        state.loadingInstallation = false;
       }
     },
 
