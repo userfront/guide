@@ -23,14 +23,14 @@ In this section, we create a custom signup form with email and password that inc
 You can clone the example signup form on [CodePen](https://codepen.io/userfront/pen/ZEePYqb) and make edits, or follow along below.
 
 ::: tip NOTE
-The example form has the Userfront Core JS script added to the document, as described in the next section.
+The example form has the Userfront Core JS library added to the document, as described in the next section.
 :::
 
 ::::
 :::: right
 
 <br/>
-<codepen title="Build signup form HTML" slug="ZEePYqb"/>
+<codepen title="Build a signup form with HTML" slug="ZEePYqb"/>
 
 ::::
 :::::
@@ -40,7 +40,7 @@ The example form has the Userfront Core JS script added to the document, as desc
 ::::: row
 :::: left
 
-You can add the Userfront Core JS script by CDN or using npm.
+You can add the Userfront Core JS library by CDN or using npm.
 
 You only need to do one of these.
 
@@ -49,8 +49,6 @@ You only need to do one of these.
 
 ### CDN
 
-Add the script to your project with the following snippet:
-
 ```html
 <script src="https://cdn.userfront.com/core.js"></script>
 ```
@@ -58,8 +56,6 @@ Add the script to your project with the following snippet:
 <br>
 
 ### NPM
-
-Install the library with `npm` (or `yarn`)
 
 ```sh
 npm install @userfront/core
@@ -152,7 +148,7 @@ Userfront.init("demo1234");
 Userfront.signup({
   method: "password",
   email: "jane@example.com",
-  password: "mysillypassword",
+  password: "testmodepassword",
   data: {
     customData: "Some custom information",
   },
@@ -169,7 +165,7 @@ Userfront.signup({
 
 In the example code here, we do the following:
 
-1. Define all the elements on the page
+1. Reference all the elements on the page
 2. Define a custom `formSignup()` method that calls `Userfront.signup()` with the form values
 3. Add an event listener to call `formSignup()` when the form is submitted
 
@@ -312,7 +308,7 @@ function setAlert(message) {
 
 To configure Single sign-on (SSO), first add the provider you want to use in the Userfront dashboard in the **SSO** tab.
 
-In this example, we add an event listener to call `Userfront.signon()` with `"google"` as the signup method whenever the Google button is clicked. You can style the button however you like, or initate the signon programmatically.
+In this example, we add an event listener to call `Userfront.signup()` with `"google"` as the signup method whenever the Google button is clicked. You can style the button however you like, or initate the signon programmatically.
 
 You can find more provider options like GitHub, LinkedIn, and Facebook in the docs for [signup()](/docs/js.html#signup-options).
 

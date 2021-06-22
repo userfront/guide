@@ -69,10 +69,10 @@ Registers a new user with one of the available methods.
 | option     | description                                                                                                                                 |
 | :--------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
 | _method_   | The method for registering. Options are: `password`, `azure`, `facebook`, `github`,`google`,`linkedin`. See below for more info on methods. |
-| _email_    | The user's email, which is required for the `password` method. Usable with the `password` method only.                                      |
-| _username_ | The user's username (optional). Usable with the `password` method only.                                                                     |
-| _name_     | The user's name (optional). Usable with the `password` method only.                                                                         |
-| _password_ | The user's password. Usable with the `password` method only.                                                                                |
+| _email_    | The user's email, which is required for the `password` method. Used only with the `password` method.                                        |
+| _username_ | The user's username (optional). Used only with the `password` method.                                                                       |
+| _name_     | The user's name (optional). Used only with the `password` method.                                                                           |
+| _password_ | The user's password. Used only with the `password` method.                                                                                  |
 
 ### Signup via `password` method:
 
@@ -123,12 +123,12 @@ Initiates a login for a user with one of the available methods.
 | option            | description                                                                                                                                        |
 | :---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------- |
 | _method_          | The method for logging in. Options are: `password`, `link`, `azure`, `facebook`, `github`,`google`,`linkedin`. See below for more info on methods. |
-| _email_           | The user's email. Usable with the `password` method only.                                                                                          |
-| _username_        | The user's username. Usable with the `password` method only.                                                                                       |
-| _emailOrUsername_ | The user's email or username. Usable with the `password` method only.                                                                              |
-| _password_        | The user's password. Usable with the `password` method only.                                                                                       |
-| _token_           | The `token=` URL parameter sent in a login link. Usable with the `link` method only.                                                               |
-| _uuid_            | The `uuid=` URL parameter sent in a login link. Usable with the `link` method only.                                                                |
+| _email_           | The user's email. Used only with the `password` method.                                                                                            |
+| _username_        | The user's username. Used only with the `password` method.                                                                                         |
+| _emailOrUsername_ | The user's email or username. Used only with the `password` method.                                                                                |
+| _password_        | The user's password. Used only with the `password` method.                                                                                         |
+| _token_           | The `token=` URL parameter sent in a login link. Used only with the `link` method.                                                                 |
+| _uuid_            | The `uuid=` URL parameter sent in a login link. Used only with the `link` method.                                                                  |
 
 ### Login via `password` method:
 
