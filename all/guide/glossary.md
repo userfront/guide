@@ -12,17 +12,23 @@ For more information about how to use access tokens, see [Tokens & Access](/guid
 
 Where users should be redirected upon logging in.
 
+Defaults to `/dashboard`.
+
 Can be edited in your account's Settings tab.
 
 ### After-logout path
 
 Where users should be redirected upon logging out.
 
+Defaults to `/login`.
+
 Can be edited in your account's Settings tab.
 
 ### After-signup path
 
 Where users should be redirected upon signing up.
+
+Defaults to your [After-login path](#after-login-path).
 
 Can be edited in your account's Settings tab.
 
@@ -47,6 +53,8 @@ Acronym for [JSON Web Token](#json-web-token). JWT is pronounced "jot".
 ### Password reset path
 
 Where users should be redirected to reset their password after clicking the link in the reset email.
+
+Defaults to `/reset`.
 
 Can be edited in your account's Settings tab.
 

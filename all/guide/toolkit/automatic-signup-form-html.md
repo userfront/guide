@@ -5,13 +5,13 @@
 ::::: row
 :::: left
 
-In this section, we add an automatic signup form that does the following:
+In this section, we add an automatic signup form that can do the following:
 
-- [Registers a user](#register-a-user)
-- [Redirects](#redirection) to a URL of your choice
-- [Sends a welcome email](#welcome-email)
-- [Sends a webhook](#signup-webhook) with user information
-- [Has Single Sign-on](#single-sign-on) (SSO) with Google
+- [Register a user](#register-a-user)
+- [Redirect](#redirection) to a URL of your choice
+- [Send a welcome email](#welcome-email)
+- [Send a webhook](#signup-webhook) with user information
+- [Single Sign-on](#single-sign-on) (SSO) with Google & others
 
 ::::
 :::: right
@@ -100,7 +100,7 @@ For example, if the signup form is at `https://example.com/features`, then the u
 
 When a user signs up with their email and password, Userfront sends them a welcome email.
 
-This email confirms that they have signed up for your project and asks the user to verify their email address by clicking on a link.
+This email says that they have signed up for your project and asks the user to verify their email address by clicking on a link.
 
 When the user clicks on the link, their email address is verified, and they are redirected to your After-login path.
 
