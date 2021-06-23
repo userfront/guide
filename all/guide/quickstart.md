@@ -4,37 +4,48 @@ This quickstart will get you up and running with auth in about 10 minutes.
 
 ## 1. Add your signup form
 
-Select your signup form below, then do the following:
+::::: row
+:::: left
 
 1. Paste the `<script>` inside the `<head>` of your HTML
 2. Paste the `<div>` inside the `<body>` of your HTML (or follow the React / Vue / Angular instructions)
 
-<!-- Quickstart mod -->
-<div id="userfront-baboon"></div>
+::::
+:::: right
 
-<style>
-[baboon] pre {
-  padding: inherit;
-  background-color: #f8f8f8;
-}
-</style>
+<install-html display-title="Signup form"/>
+
+::::
+:::::
 
 ## 2. Use your signup form
 
+::::: row
+:::: left
+
 Give it a try: fill out your signup form and submit it.
 
-Your form is in [test mode](/test-mode.html), which means it goes through the signup flow without creating a new user each time.
+Your form is in [test mode](/guide/test-mode.html), which means it goes through the signup flow without creating a new user each time.
 
 Upon successful signup, the form does 2 things:
 
 - Redirects you to `/dashboard`. We'll edit this next.
-- Adds a secure access token named `access.ACCOUNT_ID` to your browser's cookies (with your account ID). This token is a JWT with the user's identity and authorization information, which you can send to your own backend.
+- Adds a secure access token named <code>access.ACCOUNT_ID</code> to your browser's cookies. This token is a JWT with the user's identity and authorization information, which you can send to your own backend.
+
+::::
+:::: right
+
+<iframe-demo display-title="Signup form"></iframe-demo>
+
+::::
+:::::
 
 ## 3. Set your redirect & domain
 
-Visit the `Settings` section of the Userfront dashboard.
+::::: row
+:::: left
 
-![Userfront settings](https://res.cloudinary.com/component/image/upload/v1593131793/permanent/settings-nav.png)
+Visit the `Settings` section of the Userfront dashboard.
 
 Add your website to the list of **Live domains**. Whenever your signup form loads at this domain, it will automatically be in production mode.
 
@@ -42,7 +53,13 @@ Similarly, in the **Auth redirects** section, you can tell Userfront where to re
 
 Try updating the "Signup path" to `/home`, then re-submit your signup form. You should be redirected to `/home` this time.
 
+::::
+:::::
+
 ## 4. Add login and others
+
+::::: row
+:::: left
 
 Follow the same process for your other tools:
 
@@ -52,16 +69,12 @@ Follow the same process for your other tools:
 
 Your tools will all work in test mode until you deploy them to your live domain; then they will work in live mode automatically.
 
+::::
+:::::
+
 ### Finished
 
 Congratulations, you've added auth to your site.
-
-Learn more about your auth tools:
-
-- [Signup form](/signup.html)
-- [Login form](/login.html)
-- [Password reset form](/reset.html)
-- [Logout button](/logout.html)
 
 Learn more about the JWT access token:
 

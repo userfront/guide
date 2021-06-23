@@ -52,7 +52,6 @@ ${this.scriptHtml}
 
 </head>
 <body>
-
 ${this.modHtml}
 
 </body>`;
