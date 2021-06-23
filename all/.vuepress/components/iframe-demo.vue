@@ -3,13 +3,14 @@
     v-if="tenantId && modId"
     :src="`https://test-${tenantId}.userfront.dev/iframe/${modId}`"
     frameborder="0"
-    style="width:100%;min-height:500px;border:1px solid #eee; margin-top:10px;"
+    style="width:100%;border:1px solid #eee; margin-top:10px;"
+    :style="`min-height: ${height ? height : 500}px`"
   ></iframe>
 </template>
 
 <script>
 export default {
-  props: ["displayTitle"],
+  props: ["displayTitle", "height"],
   computed: {
     tenantId() {
       return this.$store.state.installation.tenantId;
