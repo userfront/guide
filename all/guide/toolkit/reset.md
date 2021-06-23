@@ -4,11 +4,7 @@
 
 The purpose of the Password Reset Form is to allow existing users to reset their password.
 
-<iframe
-  :src="`https://test-${ $store.state.activeTenant.tenantId }.userfront.dev/reset`"
-  frameborder="0"
-  style="width:100%;min-height:360px;border:1px solid #eee;"
-></iframe>
+<iframe-demo display-title="Password reset form"></iframe-demo>
 
 When a user wants to reset their password, they enter their email and recieve a link to the URL of your choice (default is `/reset`). This page should have your Password Reset Form on it.
 

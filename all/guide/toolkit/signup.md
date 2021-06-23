@@ -2,11 +2,7 @@
 
 The purpose of the signup form is to allow new users to register for your service.
 
-<iframe
-  :src="`https://test-${ $store.state.activeTenant.tenantId }.userfront.dev/signup`"
-  frameborder="0"
-  style="width:100%;min-height:500px;border:1px solid #eee;"
-></iframe>
+<iframe-demo display-title="Signup form"></iframe-demo>
 
 When a new user signs up, they are redirected to the URL of your choice (default is `/dashboard`).
 
