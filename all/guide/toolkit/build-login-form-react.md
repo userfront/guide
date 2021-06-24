@@ -81,25 +81,91 @@ In this case, we've added:
 - `email or username` - the user's email address or username
 - `password` - required for login with password (obviously)
 
+### Login form React code
+
+#### constructor()
+
+Here we set up our state variables with `emailOrUsername` and `password`.
+
+We also bind our functions so that `this.setState` will update the state variables.
+
+#### handleInputChange()
+
+Whenever an input changes value, this function will the corresponding state variable.
+
+#### handleSubmit()
+
+When the form is submitted, this function will call `Userfront.login()` with the current `emailOrUsername` and `password`.
+
+#### render()
+
+Adds the login form with 2 inputs and a button, and connects them to the `handleInputChange()` and `handleSubmit()` functions.
+
 ::::
 :::: right
 
-```html
-<form id="login-form">
-  <div id="alert"></div>
+```jsx
+// Initialize Userfront Core JS
+Userfront.init("demo1234");
 
-  <label for="email-or-username">Email address or Username</label>
-  <input type="text" id="email-or-username" />
+// Define the Login form component
+class LoginForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      emailOrUsername: "",
+      password: "",
+    };
 
-  <label for="password">Password</label>
-  <input type="password" id="password" />
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-  <button type="submit">Log in</button>
-</form>
+  handleInputChange(event) {
+    const target = event.target;
+    this.setState({
+      [target.name]: target.value,
+    });
+    event.preventDefault();
+  }
 
-<p>or</p>
+  handleSubmit(event) {
+    Userfront.login({
+      method: "password",
+      emailOrUsername: this.state.emailOrUsername,
+      password: this.state.password,
+    });
+    event.preventDefault();
+  }
 
-<button id="login-google">Login with Google</button>
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Email or username
+            <input
+              name="emailOrUsername"
+              type="text"
+              value={this.state.emailOrUsername}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <label>
+            Password
+            <input
+              name="password"
+              type="password"
+              value={this.state.password}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <button type="submit">Log in</button>
+        </form>
+      </div>
+    );
+  }
+}
 ```
 
 ```css
@@ -110,94 +176,9 @@ input {
 }
 
 #alert {
-  display: none;
   color: red;
   margin-bottom: 10px;
 }
-```
-
-::::
-:::::
-
-## Pass form data to Userfront.login()
-
-::::: row
-:::: left
-
-The [login()](/docs/js.html#login-options) method allows you to pass in data to log in a user.
-
-Our JavaScript needs to pass our form data into this method.
-
-Userfront will then do the following:
-
-1. Verify the user's credentials
-2. Add the user's access token as a cookie named `access.demo1234`
-3. Redirect the page to the [After-login path](/guide/glossary.html#after-login-path)
-
-::::
-:::: right
-
-```js
-// Sample: how to use Userfront.login()
-Userfront.init("demo1234");
-Userfront.login({
-  method: "password",
-  emailOrUsername: "member@example.com",
-  password: "testmodepassword",
-});
-```
-
-::::
-:::::
-
-### Example JavaScript
-
-::::: row
-:::: left
-
-In the example code here, we do the following:
-
-1. Reference all the elements on the page
-2. Define a custom `formLogin()` method that calls `Userfront.login()` with the form values
-3. Add an event listener to call `formLogin()` when the form is submitted
-
-::::
-:::: right
-
-```js
-// Initialize Userfront
-Userfront.init("demo1234");
-
-// 1. Reference the elements on the page
-var loginFormEl = document.getElementById("login-form");
-var alertEl = document.getElementById("alert");
-var emailOrUsernameEl = document.getElementById("email-or-username");
-var passwordEl = document.getElementById("password");
-
-// 2. Login with an email/username and password
-function formLogin(e) {
-  // Prevent the form's default behavior
-  e.preventDefault();
-  // Reset the alert to empty
-  setAlert();
-  // Call Userfront.login()
-  Userfront.login({
-    method: "password",
-    emailOrUsername: emailOrUsernameEl.value,
-    password: passwordEl.value,
-  }).catch(function(error) {
-    setAlert(error.message);
-  });
-}
-
-// Set the alert element to show the message
-function setAlert(message) {
-  alertEl.innerText = message;
-  alertEl.style.display = message ? "block" : "none";
-}
-
-// 3. Add an event listener for the login for submit
-loginFormEl.addEventListener("submit", formLogin);
 ```
 
 ::::
