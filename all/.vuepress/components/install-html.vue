@@ -59,15 +59,3 @@ ${this.modHtml}
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.installation-html {
-  position: relative;
-  .code {
-    background: #f8f8f8;
-    display: inline-block;
-    padding: 1px 3px;
-    margin: 0 2px;
-  }
-}
-</style>

@@ -76,7 +76,7 @@ export default {
         { name: "HTML", pathPart: "html" },
         { name: "React", pathPart: "react" },
         { name: "Vue", pathPart: "vue" },
-        { name: "Angular", pathPart: "angular" },
+        // { name: "Angular", pathPart: "angular" },
       ],
     };
   },

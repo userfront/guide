@@ -8,6 +8,14 @@ When a user signs up or logs into your application, they receive an access token
 
 For more information about how to use access tokens, see [Tokens & Access](/guide/auth/#access-token).
 
+### Account ID
+
+The ID for your account. The account token can be found in the URL when you are logged into the Userfront dashboard:
+
+`https://userfront.com/projects/ { accountId } /users`
+
+Account IDs are a type of [tenant ID](#tenant-id), which are 8-character alphanumeric IDs, like `a1b2c3d4`.
+
 ### After-login path
 
 Where users should be redirected upon logging in.
@@ -57,14 +65,6 @@ Where users should be redirected to reset their password after clicking the link
 Defaults to `/reset`.
 
 Can be edited in your account's Settings tab.
-
-### Account ID
-
-The ID for your account. The account token can be found in the URL when you are logged into the Userfront dashboard:
-
-`https://userfront.com/projects/ { accountId } /users`
-
-Account IDs are a type of [tenant ID](#tenant-id), which are 8-character alphanumeric IDs, like `a1b2c3d4`.
 
 ### Refresh token
 
