@@ -5,7 +5,7 @@
 ::::: row
 :::: left
 
-In this section, we create a custom login button that will:
+In this section, we create a custom logout button that will:
 
 - [Show a disabled state](#disabled-state) when not logged in
 - [Clear the user's tokens](#clearing-tokens)
@@ -19,7 +19,7 @@ In this section, we create a custom login button that will:
 ::::: row
 ::::left
 
-You can clone the example signup form on [CodePen](https://codepen.io/userfront/pen/poemNpo) and make edits, or follow along below.
+You can clone the example logout button on [CodePen](https://codepen.io/userfront/pen/poemNpo) and make edits, or follow along below.
 
 ::: tip NOTE
 The example form has the Userfront Core JS library added to the document, as described in the next section.
@@ -74,7 +74,7 @@ import Userfront from "@userfront/core";
 ::::: row
 ::::left
 
-Create your logout button whatever HTML elements you want.
+Create your logout button with whatever HTML elements you want.
 
 In this case, we're using a custom-styled `<button>` element that is red when active and gray if the user is not logged in.
 

@@ -22,7 +22,7 @@ For your live website, always use `https://` (also called SSL).
 
 When a user signs up, they are redirected to the URL of your choice. The default is `/dashboard`, but you can change it in your account's Settings > **After-signup path**.
 
-Upon signing up, the user will be redirected whatever domain the form is on, plus the After-signup path.
+Upon signing up, the user will be redirected to whatever domain the form is on, plus the After-signup path.
 
 For example, if the signup form is at `https://example.com/features`, then the user will be redirected to `https://example.com/dashboard` upon sign up.
 

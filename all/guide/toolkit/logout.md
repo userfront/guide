@@ -39,6 +39,6 @@ For your live website, always use `https://` (also called SSL).
 
 When a user clicks the Logout Button, they are redirected to the URL of your choice. The default is `/login`, but you can change it in your account's Settings > **After-logout path**.
 
-Upon logging out, the user will be redirected whatever domain the button is on, plus that path.
+Upon logging out, the user will be redirected to whatever domain the button is on, plus that path.
 
 For example, placing the Logout Button at `https://example.com/home`, and defining the redirection path to be `/login` will redirect the user to `https://example.com/login` once the user logs out.
