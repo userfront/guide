@@ -1,11 +1,16 @@
 <template>
   <div v-if="activeTenant.tenantId">
-    <el-dropdown>
+    <el-button size="medium" v-if="tenants.length == 1">
+      {{ activeTenant.name
+      }}<i class="el-icon-office-building el-icon--right"></i>
+    </el-button>
+
+    <el-dropdown v-if="tenants.length > 1">
       <el-button size="medium">
         {{ activeTenant.name
         }}<i class="el-icon-office-building el-icon--right"></i>
       </el-button>
-      <el-dropdown-menu slot="dropdown" v-show="tenants.length > 1">
+      <el-dropdown-menu slot="dropdown">
         <el-dropdown-item
           v-for="tenant in tenants"
           :key="tenant.tenantId"
