@@ -8,8 +8,8 @@
 In this section, we create a custom signup form with email and password that includes:
 
 - [A custom field](#custom-fields)
-- [Password verification](#password-verification)
 - [Error messages](#error-handling)
+- [Password verification](#password-verification)
 - [Single sign-on](#single-sign-on) (SSO) with Google
 
 ::::
@@ -84,140 +84,119 @@ In this case, we've added:
 - `password` - required for signup with password (obviously)
 - `password verify` - optional, for checking the password before registering the user
 
+### Signup form React code
+
+#### constructor()
+
+Here we set up our state variables with `email`, `accountName`, `password`, and `passwordVerify`.
+
+We also bind our functions so that `this.setState` will update the state variables.
+
+#### handleInputChange()
+
+Whenever an input changes value, this function will set the corresponding state variable.
+
+#### handleSubmit()
+
+When the form is submitted, this function will call `Userfront.signup()` with the current `email` and `password`.
+
+For custom fields like `accountName`, we use the `data` object. We can add any custom fields we like to this object, and they will be saved upon signup.
+
+#### render()
+
+Adds the signup form with 4 inputs and a button, and connects them to the `handleInputChange()` and `handleSubmit()` functions.
+
 ::::
 ::::right
 
-```html
-<form id="signup-form">
-  <div id="alert"></div>
-
-  <label for="email">Email address</label>
-  <input type="email" id="email" />
-
-  <label for="account-name">Account name (custom field)</label>
-  <input type="text" id="account-name" />
-
-  <label for="password">Password</label>
-  <input type="password" id="password" />
-
-  <label for="password-verify">Verify password</label>
-  <input type="password" id="password-verify" />
-
-  <button type="submit">Sign up</button>
-</form>
-```
-
-```css
-button,
-input {
-  display: block;
-  margin-bottom: 10px;
-}
-
-#alert {
-  display: none;
-  color: red;
-  margin-bottom: 10px;
-}
-```
-
-::::
-:::::
-
-## Pass form data to Userfront.signup()
-
-::::: row
-:::: left
-
-The [signup()](/docs/js.html#signup-options) method allows you to pass in data to sign up a user.
-
-Our JavaScript needs to pass our form data into this method.
-
-Userfront will then do the following:
-
-1. Create a user record
-2. Add the user's access token as a cookie named `access.demo1234`
-3. Redirect the page to the [After-signup path](/guide/glossary.html#after-signup-path)
-
-::::
-:::: right
-
-```js
-// Sample: how to use Userfront.signup()
-Userfront.init("demo1234");
-Userfront.signup({
-  method: "password",
-  email: "jane@example.com",
-  password: "testmodepassword",
-  data: {
-    customData: "Some custom information",
-  },
-});
-```
-
-::::
-:::::
-
-### Example JavaScript
-
-::::: row
-:::: left
-
-In the example code here, we do the following:
-
-1. Reference all the elements on the page
-2. Define a custom `formSignup()` method that calls `Userfront.signup()` with the form values
-3. Add an event listener to call `formSignup()` when the form is submitted
-
-::::
-:::: right
-
-```js
-// Initialize Userfront
+```jsx
+// Initialize Userfront Core JS
 Userfront.init("demo1234");
 
-// 1. Reference the elements on the page
-var signupFormEl = document.getElementById("signup-form");
-var alertEl = document.getElementById("alert");
-var emailEl = document.getElementById("email");
-var accountNameEl = document.getElementById("account-name");
-var passwordEl = document.getElementById("password");
-var passwordVerifyEl = document.getElementById("password-verify");
-var googleButtonEl = document.getElementById("signup-google");
+// Define the Signup form component
+class SignupForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      accountName: "",
+      password: "",
+      passwordVerify: "",
+    };
 
-// 2. Signup with a username/email and password
-function formSignup(e) {
-  // Prevent the form's default behavior
-  e.preventDefault();
-  // Reset the alert to empty
-  setAlert();
-  // Verify that the passwords match
-  var password = passwordEl.value;
-  var passwordVerify = passwordVerifyEl.value;
-  if (password !== passwordVerify) {
-    return setAlert("Password verification must match.");
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  // Call Userfront.signup()
-  Userfront.signup({
-    method: "password",
-    email: emailEl.value,
-    password: password,
-    data: {
-      accountName: accountNameEl.value,
-    },
-  }).catch(function(error) {
-    setAlert(error.message);
-  });
-}
 
-// Set the alert element to show the message
-function setAlert(message) {
-  alertEl.innerText = message;
-  alertEl.style.display = message ? "block" : "none";
-}
+  // Whenever an input changes value, change the corresponding state variable
+  handleInputChange(event) {
+    event.preventDefault();
+    const target = event.target;
+    this.setState({
+      [target.name]: target.value,
+    });
+  }
 
-// 3. Add an event listener for the signup for submit
-signupFormEl.addEventListener("submit", formSignup);
+  // Handle the form submission by calling Userfront.signup()
+  handleSubmit(event) {
+    event.preventDefault();
+    // Call Userfront.signup()
+    Userfront.signup({
+      method: "password",
+      email: this.state.email,
+      password: this.state.password,
+      data: {
+        accountName: this.state.accountName,
+      },
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Email address
+            <input
+              name="email"
+              type="email"
+              value={this.state.email}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <label>
+            Account name (custom field)
+            <input
+              name="accountName"
+              type="text"
+              value={this.state.accountName}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <label>
+            Password
+            <input
+              name="password"
+              type="password"
+              value={this.state.password}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <label>
+            Verify password
+            <input
+              name="passwordVerify"
+              type="password"
+              value={this.state.passwordVerify}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <button type="submit">Sign up</button>
+        </form>
+      </div>
+    );
+  }
+}
 ```
 
 ::::
@@ -235,13 +214,108 @@ When we pass this to the `Userfront.signup()` method under the `data` object, it
 ::::
 :::: right
 
-```js
+```js {5-7}
 Userfront.signup({
-  ...
+  method: "password",
+  email: this.state.email,
+  password: this.state.password,
   data: {
-    accountName: accountNameEl.value,
+    accountName: this.state.accountName,
   },
 });
+```
+
+::::
+:::::
+
+### Error handling
+
+::::: row
+:::: left
+
+Whenever the `Userfront.signup()` method fails, we can `catch` its error in the promise chain.
+
+This error will contain a `message` property with what went wrong.
+
+In this example, we use an `<Alert />` component to display the error message inside.
+
+::::
+:::: right
+
+```jsx
+class Alert extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    if (!this.props.message) return "";
+    return <div id="alert">{this.props.message}</div>;
+  }
+}
+```
+
+::::
+:::::
+
+::::: row
+:::: left
+
+Our signup form can use this component by including an `alertMessage` variable in the state, and then setting it whenever we want to update the message.
+
+Now the `handleSubmit()` method clears the alert message whenever the button is clicked. Then if there is an error with `Userfront.signup()`, it catches the error and displays the error message.
+
+The alert component is rendered above the form as:
+
+`<Alert message={this.state.alertMessage} />`
+
+::::
+:::: right
+
+```jsx {6,10,17-18,28,32-34,39}
+class SignupForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // ...
+      alertMessage: "",
+    };
+
+    // ...
+    this.setAlertMessage = this.setAlertMessage.bind(this);
+  }
+
+  // ...
+
+  handleSubmit(event) {
+    event.preventDefault();
+    // Reset the alert to empty
+    this.setAlertMessage();
+    // Call Userfront.signup()
+    Userfront.signup({
+      method: "password",
+      email: this.state.email,
+      password: this.state.password,
+      data: {
+        accountName: this.state.accountName,
+      },
+    }).catch((error) => {
+      this.setAlertMessage(error.message);
+    });
+  }
+
+  setAlertMessage(message) {
+    this.setState({ alertMessage: message });
+  }
+
+  render() {
+    return (
+      <div>
+        <Alert message={this.state.alertMessage} />
+        {/* <form> element */}
+      </div>
+    );
+  }
+}
 ```
 
 ::::
@@ -259,42 +333,21 @@ This "passwords match" verification is performed before sending the information 
 ::::
 :::: right
 
-```js
-var password = passwordEl.value;
-var passwordVerify = passwordVerifyEl.value;
-if (password !== passwordVerify) {
-  return setAlert("Password verification must match.");
-}
-```
-
-::::
-:::::
-
-### Error handling
-
-::::: row
-:::: left
-
-Whenever the `Userfront.signup()` method fails, we can `catch` its error in the promise chain.
-
-This error will contain a `message` property with what went wrong.
-
-In this example, we use the `setAlert()` method to display the error message inside of our alert element.
-
-::::
-:::: right
-
-```js
-// Catch the error
-Userfront.signup(...)
-.catch(function(error) {
-  setAlert(error.message);
-});
-
-// Add the error message to the alert element
-function setAlert(message) {
-  alertEl.innerText = message;
-  alertEl.style.display = message ? "block" : "none";
+```js {5-8}
+handleSubmit(event) {
+  event.preventDefault();
+  // Reset the alert to empty
+  this.setAlertMessage();
+  // Verify that the passwords match
+  if (this.state.password !== this.state.passwordVerify) {
+    return this.setAlertMessage('Passwords must match');
+  }
+  // Call Userfront.signup()
+  Userfront.signup({
+    // ...
+  }).catch((error) => {
+    this.setAlertMessage(error.message);
+  });
 }
 ```
 
@@ -308,21 +361,66 @@ function setAlert(message) {
 
 To configure Single sign-on (SSO), first add the provider you want to use in the Userfront dashboard in the **SSO** tab.
 
-In this example, we add an event listener to call `Userfront.signup()` with `"google"` as the signup method whenever the Google button is clicked. You can style the button however you like, or initate the signon programmatically.
+In this example, we add an `<SSOButton />` component to allow signup with Google.
+
+Ultimately, we need to call `Userfront.signup({ method: "google" })` whenever the button is clicked. You can style the button however you like.
 
 You can find more provider options like GitHub, LinkedIn, and Facebook in the docs for [signup()](/docs/js.html#signup-options).
 
 ::::
 :::: right
 
-```js
+```jsx
 Userfront.init("demo1234");
-var googleButtonEl = document.getElementById("signup-google");
 
-// 4. Add an event listener for the google button click
-googleButtonEl.addEventListener("click", function() {
-  Userfront.signup({ method: "google" });
-});
+class SSOButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(event) {
+    Userfront.signup({ method: this.props.provider });
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        Sign up with {this.props.provider}
+      </button>
+    );
+  }
+}
+```
+
+::::
+:::::
+
+::::: row
+:::: left
+
+To render the `<SSOButton />` component into the signup form, we can add it below the `<form>` element.
+
+::::
+:::: right
+
+```jsx {11}
+class SignupForm extends React.Component {
+  // ...
+  render() {
+    return (
+      <div>
+        {/* <Alert /> component */}
+        {/* <form> component */}
+
+        <p>or</p>
+
+        <SSOButton provider="google" />
+      </div>
+    );
+  }
+}
 ```
 
 ::::

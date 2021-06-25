@@ -1,56 +1,56 @@
 <template>
   <div>
-    <!-- Mod -->
-    <el-dropdown>
-      <el-button>
-        {{ selectedMod.name }}<i class="el-icon-arrow-down el-icon--right"></i>
+    <div style="min-height: 40px">
+      <el-button @click="step = 1" type="text" v-if="selectedMod.name">{{
+        selectedMod.name
+      }}</el-button>
+      <span v-if="selectedType.name">/</span>
+      <el-button @click="step = 2" type="text" v-if="selectedType.name">{{
+        selectedType.name
+      }}</el-button>
+    </div>
+    <div v-show="this.step == 1">
+      <el-button
+        v-for="mod in mods"
+        :key="mod.pathName"
+        class="btn-square"
+        :type="mod.name === selectedMod.name ? 'primary' : ''"
+        @click="setSelectedMod(mod)"
+        plain
+      >
+        {{ mod.name }}
       </el-button>
-      <el-dropdown-menu slot="dropdown" class="toolkit-breadcrumb">
-        <el-dropdown-item
-          v-for="mod in mods"
-          :key="mod.pathPart"
-          @click.native="setSelectedMod(mod)"
-        >
-          {{ mod.name }}
-        </el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
-    <!-- /Mod -->
-    <!-- Type -->
-    <el-dropdown>
-      <el-button>
-        {{ selectedType.name }}<i class="el-icon-arrow-down el-icon--right"></i>
+    </div>
+    <div v-show="this.step == 2">
+      <el-button
+        class="btn-square"
+        :type="selectedType.pathName === 'automatic' ? 'primary' : ''"
+        @click="setSelectedType(types[0])"
+        plain
+      >
+        Ready to use
       </el-button>
-      <el-dropdown-menu slot="dropdown" class="toolkit-breadcrumb">
-        <el-dropdown-item
-          v-for="type in types"
-          :key="type.pathPart"
-          @click.native="setSelectedType(type)"
-        >
-          {{ type.name }}
-        </el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
-    <!-- /Type -->
-    <!-- Tech -->
-    <el-dropdown>
-      <el-button>
-        {{ selectedTech.name }}<i class="el-icon-arrow-down el-icon--right"></i>
+      <el-button
+        class="btn-square"
+        :type="selectedType.pathName === 'build' ? 'primary' : ''"
+        @click="setSelectedType(types[1])"
+        plain
+      >
+        Build your own
       </el-button>
-      <el-dropdown-menu slot="dropdown" class="toolkit-breadcrumb">
-        <el-dropdown-item
-          v-for="tech in techs"
-          :key="tech.pathPart"
-          @click.native="setSelectedTech(tech)"
-        >
-          {{ tech.name }}
-        </el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
-    <!-- /Tech -->
-    <p>
-      {{ destinationPath }}
-    </p>
+    </div>
+    <div v-show="this.step == 3">
+      <el-button
+        v-for="tech in techs"
+        :key="tech.pathName"
+        class="btn-square"
+        :type="tech.name === selectedTech.name ? 'primary' : ''"
+        @click="setSelectedTech(tech)"
+        plain
+      >
+        {{ tech.name }}
+      </el-button>
+    </div>
   </div>
 </template>
 
@@ -60,13 +60,13 @@ import { toolkitOptions } from "../constants.js";
 export default {
   data() {
     return {
+      step: 1,
       types: toolkitOptions.types,
       mods: toolkitOptions.mods,
       techs: toolkitOptions.techs,
-      selectedType: toolkitOptions.types[0],
-      selectedMod: toolkitOptions.mods[0],
-      selectedTech: toolkitOptions.techs[0],
-      selectedTypePathPart: toolkitOptions.types[0].pathPart,
+      selectedType: {},
+      selectedMod: {},
+      selectedTech: {},
     };
   },
   computed: {
@@ -75,15 +75,35 @@ export default {
     },
   },
   methods: {
-    setSelectedType(type) {
-      this.selectedType = type;
-    },
     setSelectedMod(mod) {
       this.selectedMod = mod;
+      this.step = 2;
+    },
+    setSelectedType(type) {
+      this.selectedType = type;
+      this.step = 3;
     },
     setSelectedTech(tech) {
       this.selectedTech = tech;
+      this.$router.push({ path: this.destinationPath });
     },
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import "../styles/_variables.scss";
+.btn-square {
+  width: 150px;
+  height: 80px;
+  font-weight: bold;
+  color: $primary-color !important;
+  margin: 0 20px 10px 0;
+}
+.el-button--primary {
+  &:hover,
+  &:focus {
+    background: #eff1fc !important;
+  }
+}
+</style>

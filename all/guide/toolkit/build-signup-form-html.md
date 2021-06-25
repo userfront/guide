@@ -237,7 +237,7 @@ When we pass this to the `Userfront.signup()` method under the `data` object, it
 
 ```js
 Userfront.signup({
-  ...
+  // ...
   data: {
     accountName: accountNameEl.value,
   },

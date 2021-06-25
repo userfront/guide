@@ -3,45 +3,51 @@
 :::::row
 ::::left
 
-Userfront has ready-to-use tools for signup, login, password reset, logout, and more.
+Userfront has ready-to-use tools for signup, login, password reset, and logout. These do not require any backend setup to work.
 
-These do not require any backend setup to work.
+You can also build your own tools to include custom fields, multi-language support (i18n), or any other requirements you may have.
 
-For each tool, you can use a pre-made option, or you can build your own. Start by choosing which tool you want to work on:
+::::
+:::::
+
+<p style="margin-bottom:0">Start by selecting a tool below:</p>
 
 <toolkit-initial-picker />
 
-::::
-:::::
+<br>
 
-## Location
+## Installation guides
 
-:::::row
-::::left
+### Building custom tools
 
-You can view all of your account's tools in the Toolkit section of the dashboard.
+#### HTML
 
-Each section has an example of the tool, along with information on where you should put it, how it behaves, and how to install it.
+- [Signup form using plain HTML](/guide/toolkit/build-signup-form-html.html)
+- [Login form using plain HTML](/guide/toolkit/build-login-form-html.html)
+- [Password reset form using plain HTML](/guide/toolkit/build-password-reset-form-html.html)
+- [Logout button using plain HTML](/guide/toolkit/build-logout-button-html.html)
 
-::::
-::::right
+#### React
 
-:::card
+- [Signup form using React](/guide/toolkit/build-signup-form-react.html)
+- [Login form using React](/guide/toolkit/build-login-form-react.html)
+- [Password reset form using React](/guide/toolkit/build-password-reset-form-react.html)
+- [Logout button using React](/guide/toolkit/build-logout-button-react.html)
 
-#### Toolkit in sidebar
+### Ready to use tools
 
-![Userfront Toolkit](https://res.cloudinary.com/component/image/upload/v1602535900/permanent/toolkit-sidebar.png)
-:::
+#### HTML
 
-::::
-:::::
+- [Signup form using plain HTML](/guide/toolkit/automatic-signup-form-html.html)
+- [Login form using plain HTML](/guide/toolkit/automatic-login-form-html.html)
+- [Password reset form using plain HTML](/guide/toolkit/automatic-password-reset-form-html.html)
+- [Logout button using plain HTML](/guide/toolkit/automatic-logout-button-html.html)
 
-## Installation
+#### React
 
-Follow the installation instructions for each tool, which have IDs that are specific to your account.
+- [Signup form using React](/guide/toolkit/automatic-signup-form-react.html)
+- [Login form using React](/guide/toolkit/automatic-login-form-react.html)
+- [Password reset form using React](/guide/toolkit/automatic-password-reset-form-react.html)
+- [Logout button using React](/guide/toolkit/automatic-logout-button-react.html)
 
-![Toolkit installation](https://res.cloudinary.com/component/image/upload/v1602536076/permanent/toolkit-installation.png)
-
-:::tip
-If you want to add more than one tool to a page, you only need to include the `<script>` one time.
-:::
+<div style="min-height:300px;"></div>

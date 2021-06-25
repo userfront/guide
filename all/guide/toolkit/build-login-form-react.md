@@ -91,7 +91,7 @@ We also bind our functions so that `this.setState` will update the state variabl
 
 #### handleInputChange()
 
-Whenever an input changes value, this function will the corresponding state variable.
+Whenever an input changes value, this function will set the corresponding state variable.
 
 #### handleSubmit()
 
@@ -168,14 +168,6 @@ class LoginForm extends React.Component {
 }
 ```
 
-```css
-button,
-input {
-  display: block;
-  margin-bottom: 10px;
-}
-```
-
 ::::
 :::::
 
@@ -193,22 +185,22 @@ If you want email only, or username only, you can use the `email` or `username` 
 
 ```js
 Userfront.login({
-  ...
-  emailOrUsername: "member@example.com"
+  // ...
+  emailOrUsername: "member@example.com",
 });
 
 // Is the same as
 
 Userfront.login({
-  ...
-  email: "member@example.com"
+  // ...
+  email: "member@example.com",
 });
 
 // Or you can use "username"
 
 Userfront.login({
-  ...
-  username: "member1234"
+  // ...
+  username: "member1234",
 });
 ```
 
@@ -243,6 +235,7 @@ class Alert extends React.Component {
 
 ::::
 :::::
+
 ::::: row
 :::: left
 
@@ -257,7 +250,7 @@ The alert component is rendered above the form as:
 ::::
 :::: right
 
-```jsx
+```jsx {6,10,16-17,24,29-31,36}
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -355,7 +348,7 @@ To render the `<SSOButton />` component into the login form, we can add it below
 ::::
 :::: right
 
-```jsx
+```jsx {11}
 class LoginForm extends React.Component {
   // ...
   render() {
