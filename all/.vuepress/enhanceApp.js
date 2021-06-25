@@ -10,7 +10,9 @@ import {
   DropdownMenu,
   DropdownItem,
   Input,
+  Option,
   Link,
+  Select,
 } from "element-ui";
 
 import "./styles/element-ui.scss";
@@ -35,6 +37,8 @@ export default async ({ isServer, router, Vue }) => {
   Vue.use(DropdownItem);
   Vue.use(Input);
   Vue.use(Link);
+  Vue.use(Option);
+  Vue.use(Select);
 
   // Assign store and router because Vuepress doesn't accept
   // $store or $router in markdown

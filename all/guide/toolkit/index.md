@@ -3,16 +3,13 @@
 :::::row
 ::::left
 
-Userfront has ready-to-use forms for signup, login, password reset, and more.
+Userfront has ready-to-use tools for signup, login, password reset, logout, and more.
 
 These do not require any backend setup to work.
 
-| Tool                                             |                                       |
-| ------------------------------------------------ | ------------------------------------- |
-| [Signup form](/guide/toolkit/signup.html)        | Lets your users sign up.              |
-| [Login form](/guide/toolkit/login.html)          | Lets your users log in.               |
-| [Password reset form](/guide/toolkit/reset.html) | Lets your users reset their password. |
-| [Logout button](/guide/toolkit/logout.html)      | Logs a user out of your site.         |
+For each tool, you can use a pre-made option, or you can build your own. Start by choosing which tool you want to work on:
+
+<toolkit-initial-picker />
 
 ::::
 :::::

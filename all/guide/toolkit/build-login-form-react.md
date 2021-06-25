@@ -174,11 +174,6 @@ input {
   display: block;
   margin-bottom: 10px;
 }
-
-#alert {
-  color: red;
-  margin-bottom: 10px;
-}
 ```
 
 ::::
@@ -229,22 +224,80 @@ Whenever the `Userfront.login()` method fails, we can `catch` its error in the p
 
 This error will contain a `message` property with what went wrong.
 
-In this example, we use the `setAlert()` method to display the error message inside of our alert element.
+In this example, we use an `<Alert />` component to display the error message inside.
 
 ::::
 :::: right
 
-```js
-// Catch the error
-Userfront.login(...)
-.catch(function(error) {
-  setAlert(error.message);
-});
+```jsx
+class Alert extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    if (!this.props.message) return "";
+    return <div id="alert">{this.props.message}</div>;
+  }
+}
+```
 
-// Add the error message to the alert element
-function setAlert(message) {
-  alertEl.innerText = message;
-  alertEl.style.display = message ? "block" : "none";
+::::
+:::::
+::::: row
+:::: left
+
+Our login form can use this component by including an `alertMessage` variable in the state, and then setting it whenever we want to update the message.
+
+Now the `handleSubmit()` method clears the alert message whenever the button is clicked. Then if there is an error with `Userfront.login()`, it catches the error and displays the error message.
+
+The alert component is rendered above the form as:
+
+`<Alert message={this.state.alertMessage} />`
+
+::::
+:::: right
+
+```jsx
+class LoginForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // ...
+      alertMessage: "",
+    };
+
+    // ...
+    this.setAlertMessage = this.setAlertMessage.bind(this);
+  }
+
+  // ...
+
+  handleSubmit(event) {
+    // Reset the alert to empty
+    this.setAlertMessage();
+    // Call Userfront.login()
+    Userfront.login({
+      method: "password",
+      emailOrUsername: this.state.emailOrUsername,
+      password: this.state.password,
+    }).catch((error) => {
+      this.setAlertMessage(error.message);
+    });
+    event.preventDefault();
+  }
+
+  setAlertMessage(message) {
+    this.setState({ alertMessage: message });
+  }
+
+  render() {
+    return (
+      <div>
+        <Alert message={this.state.alertMessage} />
+        {/* <form> element */}
+      </div>
+    );
+  }
 }
 ```
 
@@ -258,21 +311,66 @@ function setAlert(message) {
 
 To configure Single sign-on (SSO), first add the provider you want to use in the Userfront dashboard in the **SSO** tab.
 
-In this example, we add an event listener to call `Userfront.login()` with `"google"` as the login method whenever the Google button is clicked. You can style the button however you like, or initate the login programmatically.
+In this example, we add an `<SSOButton />` component to allow login with Google.
+
+Ultimately, we need to call `Userfront.login({ method: "google" })` whenever the button is clicked. You can style the button however you like.
 
 You can find more provider options like GitHub, LinkedIn, and Facebook in the docs for [login()](/docs/js.html#login-options).
 
 ::::
 :::: right
 
-```js
+```jsx
 Userfront.init("demo1234");
-var googleButtonEl = document.getElementById("login-google");
 
-// 4. Add an event listener for the google button click
-googleButtonEl.addEventListener("click", function() {
-  Userfront.login({ method: "google" });
-});
+class SSOButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(event) {
+    Userfront.login({ method: this.props.provider });
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        Log in with {this.props.provider}
+      </button>
+    );
+  }
+}
+```
+
+::::
+:::::
+
+::::: row
+:::: left
+
+To render the `<SSOButton />` component into the login form, we can add it below the `<form>` element.
+
+::::
+:::: right
+
+```jsx
+class LoginForm extends React.Component {
+  // ...
+  render() {
+    return (
+      <div>
+        {/* <Alert /> component */}
+        {/* <form> component */}
+
+        <p>or</p>
+
+        <SSOButton provider="google" />
+      </div>
+    );
+  }
+}
 ```
 
 ::::

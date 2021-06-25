@@ -59,25 +59,14 @@
 </template>
 
 <script>
+import { toolkitOptions } from "../constants.js";
+
 export default {
   data() {
     return {
-      types: [
-        { name: "Automatic", pathPart: "automatic" },
-        { name: "Build your own", pathPart: "build" },
-      ],
-      mods: [
-        { name: "Signup form", pathPart: "signup-form" },
-        { name: "Login form", pathPart: "login-form" },
-        { name: "Password reset", pathPart: "password-reset-form" },
-        { name: "Logout button", pathPart: "logout-button" },
-      ],
-      techs: [
-        { name: "HTML", pathPart: "html" },
-        { name: "React", pathPart: "react" },
-        { name: "Vue", pathPart: "vue" },
-        // { name: "Angular", pathPart: "angular" },
-      ],
+      types: toolkitOptions.types,
+      mods: toolkitOptions.mods,
+      techs: toolkitOptions.techs,
     };
   },
   computed: {

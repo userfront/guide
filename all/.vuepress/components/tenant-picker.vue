@@ -5,7 +5,7 @@
         {{ activeTenant.name
         }}<i class="el-icon-office-building el-icon--right"></i>
       </el-button>
-      <el-dropdown-menu slot="dropdown" v-if="tenants.length > 1">
+      <el-dropdown-menu slot="dropdown" v-show="tenants.length > 1">
         <el-dropdown-item
           v-for="tenant in tenants"
           :key="tenant.tenantId"
