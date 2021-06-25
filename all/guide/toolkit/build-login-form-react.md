@@ -122,20 +122,20 @@ class LoginForm extends React.Component {
   }
 
   handleInputChange(event) {
+    event.preventDefault();
     const target = event.target;
     this.setState({
       [target.name]: target.value,
     });
-    event.preventDefault();
   }
 
   handleSubmit(event) {
+    event.preventDefault();
     Userfront.login({
       method: "password",
       emailOrUsername: this.state.emailOrUsername,
       password: this.state.password,
     });
-    event.preventDefault();
   }
 
   render() {
@@ -250,7 +250,7 @@ The alert component is rendered above the form as:
 ::::
 :::: right
 
-```jsx {6,10,16-17,24,29-31,36}
+```jsx {6,10,17-18,25,29-31,36}
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -266,6 +266,7 @@ class LoginForm extends React.Component {
   // ...
 
   handleSubmit(event) {
+    event.preventDefault();
     // Reset the alert to empty
     this.setAlertMessage();
     // Call Userfront.login()
@@ -276,7 +277,6 @@ class LoginForm extends React.Component {
     }).catch((error) => {
       this.setAlertMessage(error.message);
     });
-    event.preventDefault();
   }
 
   setAlertMessage(message) {
@@ -323,8 +323,8 @@ class SSOButton extends React.Component {
   }
 
   handleClick(event) {
-    Userfront.login({ method: this.props.provider });
     event.preventDefault();
+    Userfront.login({ method: this.props.provider });
   }
 
   render() {

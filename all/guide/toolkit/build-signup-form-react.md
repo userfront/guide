@@ -380,8 +380,8 @@ class SSOButton extends React.Component {
   }
 
   handleClick(event) {
-    Userfront.signup({ method: this.props.provider });
     event.preventDefault();
+    Userfront.signup({ method: this.props.provider });
   }
 
   render() {
