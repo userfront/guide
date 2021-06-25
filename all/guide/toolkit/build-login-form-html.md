@@ -217,22 +217,22 @@ If you want email only, or username only, you can use the `email` or `username` 
 
 ```js
 Userfront.login({
-  ...
-  emailOrUsername: "member@example.com"
+  // ...
+  emailOrUsername: "member@example.com",
 });
 
 // Is the same as
 
 Userfront.login({
-  ...
-  email: "member@example.com"
+  // ...
+  email: "member@example.com",
 });
 
 // Or you can use "username"
 
 Userfront.login({
-  ...
-  username: "member1234"
+  // ...
+  username: "member1234",
 });
 ```
 

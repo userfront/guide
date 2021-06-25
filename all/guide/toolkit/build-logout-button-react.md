@@ -1,6 +1,6 @@
 <toolkit-breadcrumb />
 
-# Build a logout button with HTML
+# Build a logout button with React
 
 ::::: row
 :::: left
@@ -19,7 +19,7 @@ In this section, we create a custom logout button that will:
 ::::: row
 ::::left
 
-You can clone the example logout button on [CodePen](https://codepen.io/userfront/pen/poemNpo) and make edits, or follow along below.
+You can clone the example logout button on [CodePen](https://codepen.io/userfront/pen/yLbBBeq) and make edits, or follow along below.
 
 ::: tip NOTE
 The example form has the Userfront Core JS library added to the document, as described in the next section.
@@ -29,7 +29,7 @@ The example form has the Userfront Core JS library added to the document, as des
 :::: right
 
 <br/>
-<codepen title="Build a logout button with HTML" slug="poemNpo"/>
+<codepen title="Build a logout button with React" slug="yLbBBeq"/>
 
 ::::
 :::::
@@ -78,13 +78,57 @@ Create your logout button with whatever HTML elements you want.
 
 In this case, we're using a custom-styled `<button>` element that is red when active and gray if the user is not logged in.
 
+### Logout button React code
+
+#### constructor()
+
+Here we set up our state variable `disabled` to determine whether to disable the button.
+
+We also bind our `handleClick` function so that `this.setState` will update the state variables.
+
+#### handleClick()
+
+When the button is clicked, this function will call `Userfront.logout()`.
+
+#### render()
+
+Adds the logout button and connects it to the `handleClick()` function.
+
 ::::
 :::: right
 
-```html
-<button id="logout-button" disabled>
-  Logout
-</button>
+```jsx
+// Initialize Userfront Core JS
+Userfront.init("demo1234");
+
+// Define the logout button component
+class LogoutButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      disabled: !Userfront.accessToken(),
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(event) {
+    event.preventDefault();
+    Userfront.logout();
+  }
+
+  render() {
+    return (
+      <button
+        id="logout-button"
+        onClick={this.handleClick}
+        disabled={this.state.disabled}
+      >
+        Log out
+      </button>
+    );
+  }
+}
 ```
 
 ```css
@@ -104,7 +148,7 @@ In this case, we're using a custom-styled `<button>` element that is red when ac
 ::::
 :::::
 
-## Call Userfront.logout() when clicked
+### Userfront.logout()
 
 ::::: row
 :::: left
@@ -133,48 +177,6 @@ Userfront.logout();
 ::::
 :::::
 
-### Example JavaScript
-
-::::: row
-:::: left
-
-In the example code here, we do the following:
-
-1. Reference all the button with a variable
-2. Enable the button if the user is logged in by calling `Userfront.accessToken()`. If the user is logged in, this will return a value and the `if` statement will evaluate to `true`.
-3. Add a `buttonLogout()` function we can call to handle the button click
-4. Add an event listener to call `buttonLogout()` when the form is submitted
-
-::::
-:::: right
-
-```js
-// Initialize Userfront
-Userfront.init("demo1234");
-
-// 1. Reference the button
-var buttonEl = document.getElementById("logout-button");
-
-// 2. Enable the button if the user is logged in
-if (Userfront.accessToken()) {
-  buttonEl.disabled = false;
-}
-
-// 3. Log out the user
-function logout(e) {
-  // Prevent the form's default behavior
-  e.preventDefault();
-  // Call Userfront.logout()
-  Userfront.logout();
-}
-
-// 4. Add an event listener for the button click
-buttonEl.addEventListener("click", logout);
-```
-
-::::
-:::::
-
 ### Disabled state
 
 ::::: row
@@ -182,24 +184,36 @@ buttonEl.addEventListener("click", logout);
 
 You are not required to show a disabled button when the user is not logged in; usually the logout button is only shown on pages where the user must be logged in.
 
-You can show a disabled state by adding the `disabled` property to the button's HTML.
+You can show a disabled state by adding the `disabled` property to the button.
 
-If the user is logged in, `Userfront.accessToken()` will return a value, so we can test against this and enable the button by setting `buttonEl.disabled = false`. This removes the `disabled` property from the button.
+If the user is logged in, `Userfront.accessToken()` will return a value, so we can test against this and enable the button by setting `state.disabled = !Userfront.accessToken()`.
+
+We can then map the `disabled` state to the `<button>` element.
 
 ::::
 :::: right
 
-```html
-<button class="logout-button" disabled>
-  Logout
-</button>
-```
-
-```js
-var buttonEl = document.getElementById("logout-button");
-
-if (Userfront.accessToken()) {
-  buttonEl.disabled = false;
+```jsx {5,15}
+class LogoutButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      disabled: !Userfront.accessToken(),
+    };
+    // ...
+  }
+  // ...
+  render() {
+    return (
+      <button
+        id="logout-button"
+        onClick={this.handleClick}
+        disabled={this.state.disabled}
+      >
+        Log out
+      </button>
+    );
+  }
 }
 ```
 

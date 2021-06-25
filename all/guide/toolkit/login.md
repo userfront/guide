@@ -22,7 +22,7 @@ For your live website, always use `https://` (also called SSL).
 
 When a user logs in, they are redirected to the URL of your choice. The default is `/dashboard`, but you can change it in your account's Settings > **After-login path**.
 
-Upon logging in, the user will be redirected whatever domain the form is on, plus the After-login path.
+Upon logging in, the user will be redirected to whatever domain the form is on, plus the After-login path.
 
 For example, if the Login Form is at `https://example.com/login`, then the user will be redirected to `https://example.com/dashboard` upon login.
 
