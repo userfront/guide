@@ -12,7 +12,7 @@ export const toolkitOptions = {
   techs: [
     { name: "HTML", pathPart: "html" },
     { name: "React", pathPart: "react" },
-    { name: "Vue", pathPart: "vue" },
+    // { name: "Vue", pathPart: "vue" },
     // { name: "Angular", pathPart: "angular" },
   ],
 };
