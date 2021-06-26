@@ -1,3 +1,7 @@
+---
+title: Pre-made login form for HTML embed
+---
+
 <toolkit-breadcrumb />
 
 # Ready-to-use login form

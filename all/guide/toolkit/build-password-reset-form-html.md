@@ -1,3 +1,7 @@
+---
+title: Build a password reset form with HTML
+---
+
 <toolkit-breadcrumb />
 
 # Build a password reset form with HTML

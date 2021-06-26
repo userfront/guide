@@ -1,3 +1,7 @@
+---
+title: Pre-made logout button for HTML embed
+---
+
 <toolkit-breadcrumb />
 
 # Ready-to-use logout button

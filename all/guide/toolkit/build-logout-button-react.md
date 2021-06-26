@@ -1,3 +1,7 @@
+---
+title: Build a logout button with React
+---
+
 <toolkit-breadcrumb />
 
 # Build a logout button with React

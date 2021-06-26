@@ -1,3 +1,7 @@
+---
+title: Pre-made logout button with React
+---
+
 <toolkit-breadcrumb />
 
 # Ready-to-use logout button with React

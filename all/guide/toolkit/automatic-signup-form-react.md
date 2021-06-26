@@ -1,3 +1,7 @@
+---
+title: Pre-made signup form with React
+---
+
 <toolkit-breadcrumb />
 
 # Ready-to-use signup form with React
