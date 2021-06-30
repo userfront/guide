@@ -8,7 +8,7 @@ When a user logs into your application, they are issued 3 tokens:
 | [ID token](#id-token)           | This token has more detailed information about the user, such as their image. |
 | [Refresh token](#refresh-token) | This token is used to obtain new Access & ID tokens.                          |
 
-These tokens are all [JWTs](/jwt-json-web-token.html) (JSON Web Tokens) signed using the RSA algorithm, with signing keys specific to your account.
+These tokens are all [JWTs](/guide/jwt-json-web-token.html) (JSON Web Tokens) signed using the RSA algorithm, with signing keys specific to your account.
 
 ## Access token
 
@@ -36,7 +36,7 @@ M2NDk2MDcsImV4cCI6MTU5NjI0MTYwN30.QQPTMEDrJ6FFuBJ8sCZCZZIjDZvpA
 85dI-EImILTG5g
 ```
 
-This is a signed JWT; you can learn about the signing process [here](/jwt-json-web-token.html).
+This is a signed JWT; you can learn about the signing process [here](/guide/jwt-json-web-token.html).
 
 When you decode the access token using a JWT library, the access token payload looks like:
 
@@ -108,7 +108,7 @@ M2NDk2MDcsImV4cCI6MTU5NjI0MTYwN30.QQPTMEDrJ6FFuBJ8sCZCZZIjDZvpA
 85dI-EImILTG5g
 ```
 
-This is a signed JWT; you can learn about the signing process [here](/jwt-json-web-token.html).
+This is a signed JWT; you can learn about the signing process [here](/guide/jwt-json-web-token.html).
 
 When you decode the ID token using a JWT library, the ID token payload looks like:
 
