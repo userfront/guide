@@ -17,3 +17,23 @@ $contentWidth = 1400px
 $MQNarrow = 1119px
 $MQMobile = 959px
 $MQMobileNarrow = 419px
+
+.btn-square {
+  width: 150px;
+  height: 80px;
+  font-weight: bold;
+  color: $accentColor !important;
+  margin: 0 10px 10px 0;
+  padding: 32px 0;
+  vertical-align: middle;
+  &.el-button--primary.is-plain {
+    &:hover,
+    &:focus {
+      background: #eff1fc !important;
+    }
+  }
+  @media (max-width 520px) {
+    width: 100%;
+    margin: 0 0 10px 0 !important;  
+  }
+}

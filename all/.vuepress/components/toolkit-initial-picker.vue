@@ -90,20 +90,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-@import "../styles/_variables.scss";
-.btn-square {
-  width: 150px;
-  height: 80px;
-  font-weight: bold;
-  color: $primary-color !important;
-  margin: 0 20px 10px 0;
-}
-.el-button--primary {
-  &:hover,
-  &:focus {
-    background: #eff1fc !important;
-  }
-}
-</style>
