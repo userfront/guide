@@ -89,6 +89,10 @@ module.exports = {
           {
             text: "Learn more about",
             items: [
+              {
+                text: "Default-Secure Software",
+                link: "/guide/default-secure-software.md",
+              },
               { text: "Authentication", link: "/guide/authentication.md" },
               {
                 text: "JSON Web Tokens (JWTs)",

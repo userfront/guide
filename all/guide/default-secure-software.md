@@ -22,7 +22,7 @@ Any downstream entity, whether a software developer or end user, should not have
 
 In particular, developers relying on Default-Secure Software should not need to run any update commands or incorporate security updates into their workflow in any way. The degree to which this is possible in a given system is the degree to which the system is default-secure.
 
-Some ecosystems may require that the end user approve of security updates before they are applied. These ecosystems are not considered default-secure, but a software supplier within such an ecosystem can still adopt Default-Secure Software practices up to that point in order to improve overall security.
+Some ecosystems may require that the end user approve of security updates before the updates are applied. These ecosystems are not considered default-secure, but a software supplier within such an ecosystem can still adopt Default-Secure Software practices up to that point in order to improve overall security.
 
 ### 2. The software provider should be explicit about their domain
 
@@ -38,19 +38,24 @@ Default-Secure Software providers should always consider new threats as they eme
 
 Once a provider has stated explicitly the domain for which they provide DSS (#2 above), the provider is responsible for any newly discovered security threats within their domain.
 
-- Encryption
-- Storage
-- Browser
+It is incumbent upon the provider to proactively research and determine when new security threats have emerged, to patch or otherwise mitigate these threats as soon as the provider is able, and to push these updates downstream automatically as soon as the updates are ready.
 
 ### 4. Configurations should have clear, well-defined descriptions
 
-- Should not use abbreviations or jargon in configuration settings
-  - E.g. do not use "JWT" if "access token" is more appropriate
-- An intelligent non-expert should be able to understand the configuration
+In Default-Secure Software, the provider is considered to be an expert in the domain at hand, while all downstream developers and users are considered to be non-experts.
 
-### 4. Systems should be configured for base level access by default
+For this reason, all configurations available to downstream developers or users should be sufficiently descriptive that an intelligent non-expert is able to understand the security implications for any given configuration.
 
-- User identity only
-- Should either prevent access, or keep a record of access, by default
-- Roles and permissions should be added explicitly
-- "Guest" access should be added explicitly
+The provider should include instructions with all configurations and should take care to avoid abbreviations, jargon, or other expert-focused references.
+
+In this manner, downstream developers and users can make informed decisions about how the software will behave.
+
+### 5. Systems should be configured for security by default
+
+For any configurations available to downstream developers or users, Default-Secure Software should be designed to provide maximum security by default.
+
+The system should begin at its most secure usable level, and, if desired, include configuration settings that downstream users can change to increase access.
+
+For systems that cannot prevent access by default, Default-Secure Software should keep a record of access by default.
+
+For systems that include access controls, downstream users should grant access to resources explicitly.
