@@ -57,7 +57,7 @@ npm install @userfront/react --save
 ::::: row
 :::: left
 
-First, initialize the Userfront react library with your [account ID](/guide/glossary.html#account-id) using `Userfront.init()`.
+First, initialize the Userfront React library with your [account ID](/guide/glossary.html#account-id) using `Userfront.init()`.
 
 Build the `LogoutButton` component with `Userfront.build()` using the tool ID corresponding to your logout button. This can be found in the **Toolkit** section of the Userfront dashboard.
 
@@ -66,9 +66,9 @@ Render the `<LogoutButton />` component in your React app.
 ::::
 :::: right
 
-<install-react display-title="Logout button"/>
+See a [demo on CodeSandbox](https://codesandbox.io/s/userfront-react-example-d6t0d)
 
-See a [demo on CodeSandbox](https://codesandbox.io/s/userfront-react-example-rhbyl)
+<install-react display-title="Logout button"/>
 
 ::::
 :::::

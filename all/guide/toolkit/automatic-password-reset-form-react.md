@@ -46,7 +46,7 @@ npm install @userfront/react --save
 ::::: row
 :::: left
 
-First, initialize the Userfront react library with your [account ID](/guide/glossary.html#account-id) using `Userfront.init()`.
+First, initialize the Userfront React library with your [account ID](/guide/glossary.html#account-id) using `Userfront.init()`.
 
 Build the `PasswordResetForm` component with `Userfront.build()` using the tool ID corresponding to your password reset form. This can be found in the **Toolkit** section of the Userfront dashboard.
 
@@ -55,9 +55,9 @@ Render the `<PasswordResetForm />` component in your React app.
 ::::
 :::: right
 
-<install-react display-title="Password reset form"/>
+See a [demo on CodeSandbox](https://codesandbox.io/s/userfront-react-example-d6t0d)
 
-See a [demo on CodeSandbox](https://codesandbox.io/s/userfront-react-example-rhbyl)
+<install-react display-title="Password reset form"/>
 
 ::::
 :::::

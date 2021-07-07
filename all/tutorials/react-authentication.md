@@ -319,7 +319,7 @@ It will look like this:
 :::::row
 ::::left
 
-Follow the instructions by installing the Userfront react package with:
+Follow the instructions by installing the Userfront React package with:
 
 ```js
 npm install @userfront/react --save
