@@ -1,5 +1,5 @@
 ---
-title: Pre-made password reset form with React
+title: Install a pre-made password reset form with React
 ---
 
 <toolkit-breadcrumb />

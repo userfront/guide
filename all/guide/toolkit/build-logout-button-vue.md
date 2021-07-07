@@ -1,5 +1,5 @@
 ---
-title: Build a logout button with Vue.js
+title: Create a Vue.js logout button
 ---
 
 <toolkit-breadcrumb />

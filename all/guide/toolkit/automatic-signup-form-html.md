@@ -1,5 +1,5 @@
 ---
-title: Pre-made signup form for HTML embed
+title: Install a pre-made signup form for HTML embed
 ---
 
 <toolkit-breadcrumb />

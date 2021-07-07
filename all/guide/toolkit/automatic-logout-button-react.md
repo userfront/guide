@@ -1,5 +1,5 @@
 ---
-title: Pre-made logout button with React
+title: Install a pre-made logout button with React
 ---
 
 <toolkit-breadcrumb />
@@ -80,7 +80,7 @@ See a [demo on CodeSandbox](https://codesandbox.io/s/userfront-react-example-d6t
 
 If the user is not logged in, the logout button will show in a disabled state.
 
-You are not required to show a disabled button when the user is not logged in; usually the logout button is only shown on pages where the user must be logged in.
+You are not required to show the button when the user is not logged in; usually the logout button is only shown on pages where the user must be logged in.
 
 Whenever the user is logged in, the logout button will be clickable.
 

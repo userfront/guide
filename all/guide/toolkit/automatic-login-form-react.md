@@ -1,5 +1,5 @@
 ---
-title: Pre-made login form with React
+title: Install a pre-made login form with React
 ---
 
 <toolkit-breadcrumb />

@@ -1,5 +1,5 @@
 ---
-title: Build a signup form with React
+title: Create a React signup form
 ---
 
 <toolkit-breadcrumb />

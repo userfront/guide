@@ -1,5 +1,5 @@
 ---
-title: Build a logout button with HTML
+title: Create an HTML logout button
 ---
 
 <toolkit-breadcrumb />
@@ -184,7 +184,7 @@ buttonEl.addEventListener("click", logout);
 ::::: row
 :::: left
 
-You are not required to show a disabled button when the user is not logged in; usually the logout button is only shown on pages where the user must be logged in.
+You are not required to show the button when the user is not logged in; usually the logout button is only shown on pages where the user must be logged in.
 
 You can show a disabled state by adding the `disabled` property to the button's HTML.
 

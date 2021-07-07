@@ -1,5 +1,5 @@
 ---
-title: Build a login form with Vue.js
+title: Create a Vue.js login form
 ---
 
 <toolkit-breadcrumb />

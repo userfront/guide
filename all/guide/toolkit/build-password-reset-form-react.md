@@ -1,5 +1,5 @@
 ---
-title: Build a password reset form with React
+title: Create a React password reset form
 ---
 
 <toolkit-breadcrumb />

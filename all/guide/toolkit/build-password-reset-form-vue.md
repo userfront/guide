@@ -1,5 +1,5 @@
 ---
-title: Build a password reset form with Vue.js
+title: Create a Vue.js password reset form
 ---
 
 <toolkit-breadcrumb />

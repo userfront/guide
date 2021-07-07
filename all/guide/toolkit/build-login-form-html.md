@@ -1,5 +1,5 @@
 ---
-title: Build a login form with HTML
+title: Create an HTML login form
 ---
 
 <toolkit-breadcrumb />

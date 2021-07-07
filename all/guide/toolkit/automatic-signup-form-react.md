@@ -1,5 +1,5 @@
 ---
-title: Pre-made signup form with React
+title: Install a pre-made signup form with React
 ---
 
 <toolkit-breadcrumb />

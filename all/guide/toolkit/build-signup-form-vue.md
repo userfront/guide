@@ -1,5 +1,5 @@
 ---
-title: Build a signup form with Vue.js
+title: Create a Vue.js signup form
 ---
 
 <toolkit-breadcrumb />

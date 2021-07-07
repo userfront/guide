@@ -1,5 +1,5 @@
 ---
-title: Build a login form with React
+title: Create a React login form
 ---
 
 <toolkit-breadcrumb />

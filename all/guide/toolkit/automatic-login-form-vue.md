@@ -1,5 +1,5 @@
 ---
-title: Pre-made login form with Vue.js
+title: Install a pre-made login form with Vue.js
 ---
 
 <toolkit-breadcrumb />
@@ -53,7 +53,7 @@ See a [demo on CodeSandbox](https://codesandbox.io/s/userfront-vue-example-5xf85
 
 First, initialize the Userfront Vue library with your [account ID](/guide/glossary.html#account-id) using `Userfront.init()`.
 
-You can do this in a component file, or, as in this example, in the main file. If you do this in the main file, you only need to do it once.
+You can do this in the main file (as shown here) or in a component file. If you do this in the main file, you only need to do it once.
 
 ::::
 :::: right

@@ -1,5 +1,5 @@
 ---
-title: Build a signup form with HTML
+title: Create an HTML signup form
 ---
 
 <toolkit-breadcrumb />
