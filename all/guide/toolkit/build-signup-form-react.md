@@ -241,7 +241,7 @@ Whenever the `Userfront.signup()` method fails, we can `catch` its error in the 
 
 This error will contain a `message` property with what went wrong.
 
-In this example, we use an `<Alert />` component to display the error message inside.
+In this example, we use an `<Alert />` component to display the error message.
 
 ::::
 :::: right
