@@ -34,6 +34,13 @@ You can also build your own tools to include custom fields, multi-language suppo
 - [Password reset form using React](/guide/toolkit/build-password-reset-form-react.html)
 - [Logout button using React](/guide/toolkit/build-logout-button-react.html)
 
+#### Vue.js
+
+- [Signup form using Vue.js](/guide/toolkit/build-signup-form-vue.html)
+- [Login form using Vue.js](/guide/toolkit/build-login-form-vue.html)
+- [Password reset form using Vue.js](/guide/toolkit/build-password-reset-form-vue.html)
+- [Logout button using Vue.js](/guide/toolkit/build-logout-button-vue.html)
+
 ### Ready to use tools
 
 #### HTML
@@ -49,5 +56,12 @@ You can also build your own tools to include custom fields, multi-language suppo
 - [Login form using React](/guide/toolkit/automatic-login-form-react.html)
 - [Password reset form using React](/guide/toolkit/automatic-password-reset-form-react.html)
 - [Logout button using React](/guide/toolkit/automatic-logout-button-react.html)
+
+#### Vue.js
+
+- [Signup form using Vue.js](/guide/toolkit/automatic-signup-form-vue.html)
+- [Login form using Vue.js](/guide/toolkit/automatic-login-form-vue.html)
+- [Password reset form using Vue.js](/guide/toolkit/automatic-password-reset-form-vue.html)
+- [Logout button using Vue.js](/guide/toolkit/automatic-logout-button-vue.html)
 
 <div style="min-height:300px;"></div>
