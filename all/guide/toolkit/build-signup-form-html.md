@@ -1,5 +1,5 @@
 ---
-title: Build a signup form with HTML
+title: Create an HTML signup form
 ---
 
 <toolkit-breadcrumb />
@@ -79,7 +79,7 @@ import Userfront from "@userfront/core";
 ::::: row
 ::::left
 
-Create your signup form with whatever HTML elements you want.
+Create your signup form with the elements you want to use.
 
 In this case, we've added:
 
@@ -137,11 +137,11 @@ The [signup()](/docs/js.html#signup-options) method allows you to pass in data t
 
 Our JavaScript needs to pass our form data into this method.
 
-Userfront will then do the following:
+Userfront then does the following:
 
-1. Create a user record
-2. Add the user's access token as a cookie named `access.demo1234`
-3. Redirect the page to the [After-signup path](/guide/glossary.html#after-signup-path)
+1. Creates a user record
+2. Adds the user's access token as a cookie named `access.demo1234`
+3. Redirects the page to the [After-signup path](/guide/glossary.html#after-signup-path)
 
 ::::
 :::: right
@@ -281,7 +281,7 @@ if (password !== passwordVerify) {
 
 Whenever the `Userfront.signup()` method fails, we can `catch` its error in the promise chain.
 
-This error will contain a `message` property with what went wrong.
+This error contains a `message` property with what went wrong.
 
 In this example, we use the `setAlert()` method to display the error message inside of our alert element.
 

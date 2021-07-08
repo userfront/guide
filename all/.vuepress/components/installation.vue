@@ -45,7 +45,7 @@
             <code-block
               :content="modReact(mod)"
               language="javascript"
-              example="https://codesandbox.io/s/userfront-react-example-rhbyl"
+              example="https://codesandbox.io/s/userfront-react-example-d6t0d"
             ></code-block>
           </div>
         </el-tab-pane>

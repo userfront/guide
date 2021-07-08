@@ -1,5 +1,5 @@
 ---
-title: Pre-made login form for HTML embed
+title: Install a pre-made login form for HTML embed
 ---
 
 <toolkit-breadcrumb />

@@ -1,5 +1,5 @@
 ---
-title: Pre-made password reset form for HTML embed
+title: Install a pre-made password reset form for HTML embed
 ---
 
 <toolkit-breadcrumb />

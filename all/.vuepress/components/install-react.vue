@@ -3,7 +3,7 @@
     <div v-if="tenantId && modId">
       <code-block-custom
         :title="displayTitle"
-        :code="modReact"
+        :code="installationCode"
         language="javascript"
         :active="true"
       ></code-block-custom>
@@ -29,10 +29,7 @@ export default {
     modId() {
       return this.installation.mods[this.displayTitle];
     },
-    npmReact() {
-      return `npm install @userfront/react --save`;
-    },
-    modReact() {
+    installationCode() {
       const componentName = this.titleCase(this.displayTitle);
       return `import React from "react";
 import Userfront from "@userfront/react";
