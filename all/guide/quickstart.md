@@ -8,7 +8,11 @@ This quickstart will get you up and running with auth in about 10 minutes.
 :::: left
 
 1. Paste the `<script>` inside the `<head>` of your HTML
-2. Paste the `<div>` inside the `<body>` of your HTML (or follow the React / Vue / Angular instructions)
+2. Paste the `<div>` inside the `<body>` of your HTML (or follow the [React](/guide/toolkit/automatic-signup-form-react.html) or [Vue.js](/guide/toolkit/automatic-signup-form-vue.html) instructions)
+
+View a working example:
+
+[https://codepen.io/userfront/pen/MWyjXXq](https://codepen.io/userfront/pen/MWyjXXq)
 
 ::::
 :::: right
@@ -47,11 +51,11 @@ Upon successful signup, the form does 2 things:
 
 Visit the `Settings` section of the Userfront dashboard.
 
-Add your website to the list of **Live domains**. Whenever your signup form loads at this domain, it will automatically be in production mode.
-
-Similarly, in the **Auth redirects** section, you can tell Userfront where to redirect the user after they log in, log out, sign up, or need to reset their password.
+In the **Auth redirects** section, you can tell Userfront where to redirect the user after they log in, log out, sign up, or need to reset their password.
 
 Try updating the "Signup path" to `/home`, then re-submit your signup form. You should be redirected to `/home` this time.
+
+You can also activate your account and add your website to the list of **Live domains**. Whenever your signup form loads at this domain, it will automatically be in production mode.
 
 ::::
 :::::
@@ -63,11 +67,13 @@ Try updating the "Signup path" to `/home`, then re-submit your signup form. You 
 
 Follow the same process for your other tools:
 
-- Add a login form to your `/login` page
-- Add a password reset form to your `/reset` page
-- Add a logout button anywhere you need it
+- [Add a login form](/guide/toolkit/automatic-login-form-html.html) to your `/login` page
+- [Add a password reset form](/guide/toolkit/automatic-password-reset-form-html.html) to your `/reset` page
+- [Add a logout button](/guide/toolkit/automatic-logout-button-html.html) anywhere you need it
 
-Your tools will all work in test mode until you deploy them to your live domain; then they will work in live mode automatically.
+Your tools will all work in test mode.
+
+When you deploy your tools to any of your live domains, they will work in live mode automatically.
 
 ::::
 :::::

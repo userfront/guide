@@ -4,7 +4,7 @@
 
 A JSON Web Token (JWT, pronounced "jot") is a token that has some information about the user included. This information is "signed" rather than "encrypted", which means that it can be read by the browser, but not edited. Because a JWT contains information that is readable by the browser, it is referred to as "non-opaque".
 
-A JWT is signed using an algorithm designed to make data readable by a 3rd party like the browser, but not editable. The most commonly used algorithm for this is called HMACSHA256, or HS256.
+A JWT is signed using an algorithm designed to make data readable by a 3rd party like the browser, but not editable. Userfront uses an algorithm for this is called `RS256`, which uses RSA signing with SHA-256 hashing.
 
 JWTs consist of 3 parts: a header, a signature, and a payload. The final token is written with dots separating each part:
 
@@ -18,12 +18,12 @@ The header has information about the signing algorithm, written in JSON format. 
 
 ```js
 var header = {
-  "alg": "HS256",
+  "alg": "RS256",
   "typ": "JWT"
 }
 btoa(encodeURIComponent(header))
 
--> "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+-> "JTVCb2JqZWN0JTIwT2JqZWN0JTVE"
 ```
 
 ## Payload
@@ -44,10 +44,10 @@ Here, `iat` means "issued at" and represents a Unix timestamp of when the token 
 
 ## Signature
 
-The signature is formed by combining the encoded header and payload, and then signing with a signature algorithm like HS256.
+The signature is formed by combining the encoded header and payload, and then signing with a signature algorithm like RS256.
 
 ```
-HS256(encodedHeader + "." + encodedPayload, secret)
+RS256(encodedHeader + "." + encodedPayload, secret)
 ```
 
 ## Result
