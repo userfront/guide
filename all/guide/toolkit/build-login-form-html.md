@@ -78,7 +78,7 @@ import Userfront from "@userfront/core";
 ::::: row
 ::::left
 
-Create your login form with whatever HTML elements you want.
+Create your login form with the elements you want to use.
 
 In this case, we've added:
 
@@ -132,11 +132,11 @@ The [login()](/docs/js.html#login-options) method allows you to pass in data to 
 
 Our JavaScript needs to pass our form data into this method.
 
-Userfront will then do the following:
+Userfront then does the following:
 
-1. Verify the user's credentials
-2. Add the user's access token as a cookie named `access.demo1234`
-3. Redirect the page to the [After-login path](/guide/glossary.html#after-login-path)
+1. Verifies the user's credentials
+2. Adds the user's access token as a cookie named `access.demo1234`
+3. Redirects the page to the [After-login path](/guide/glossary.html#after-login-path)
 
 ::::
 :::: right
@@ -250,7 +250,7 @@ Userfront.login({
 
 Whenever the `Userfront.login()` method fails, we can `catch` its error in the promise chain.
 
-This error will contain a `message` property with what went wrong.
+This error contains a `message` property with what went wrong.
 
 In this example, we use the `setAlert()` method to display the error message inside of our alert element.
 

@@ -78,7 +78,7 @@ import Userfront from "@userfront/core";
 ::::: row
 ::::left
 
-Create your logout button with whatever HTML elements you want.
+Create your logout button with the elements you want to use.
 
 In this case, we're using a custom-styled `<button>` element that is red when active and gray if the user is not logged in.
 
@@ -159,11 +159,11 @@ class LogoutButton extends React.Component {
 
 The [logout()](/docs/js.html#logout) method allows you to log out a user.
 
-Userfront will then do the following:
+Userfront then does the following:
 
-1. Invalidate the user's current session
-2. Clear any access, ID, and refresh tokens from the browser
-3. Redirect the page to the [After-logout path](/guide/glossary.html#after-logout-path)
+1. Invalidates the user's current session
+2. Clears any access, ID, and refresh tokens from the browser
+3. Redirects the page to the [After-logout path](/guide/glossary.html#after-logout-path)
 
 ::: tip NOTE
 If the user is not logged in, calling `Userfront.logout()` will not do anything.

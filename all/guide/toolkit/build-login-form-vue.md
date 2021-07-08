@@ -223,22 +223,23 @@ Userfront.login({
 ::::: row
 :::: left
 
-Whenever the `Userfront.login()` method fails, we can `catch` its error in the promise chain.
+::: v-pre
+In this example, we use a `<div>{{ alert }}</div>` element to display the alert message.
+:::
 
-This error will contain a `message` property with what went wrong.
+We first clear the alert message whenever the form is submitted.
 
-In this example, we use an alert component to display the error message.
+Whenever the `Userfront.login()` method fails, we `catch` its error in the promise chain. This error contains a `message` property with what went wrong, and we set that as the alert message.
 
 ::::
 :::: right
 
-```js
+```js {2,7}
 loginWithPassword() {
   this.alert = "";
+
   Userfront.login({
-    method: "password",
-    emailOrUsername: this.emailOrUsername,
-    password: this.password,
+    // ...
   }).catch((error) => {
     this.alert = error.message;
   });

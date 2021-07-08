@@ -24,25 +24,27 @@ In this section, we create a custom password reset form that allows a user to re
 
 You can clone the example password reset form on [CodePen](https://codepen.io/userfront/pen/GRWaZvB) and make edits, or follow along below.
 
-::: tip NOTE
-The example form has the Userfront Core JS library added to the document, as described in the section below.
-:::
-
-The password reset flow is as follows:
+### The password reset flow is as follows:
 
 1. **A user requests a password reset email.** Userfront sends the user an email. This email contains a link to reset the user's password.
 2. **The user clicks the link.** The link has a special `token` and `uuid` in the URL.
 3. **The user submits their new password.** The user submits their new password with the password reset form on the page. The form updates the user's password and then logs in the user.
+
+<br>
+
+::: tip NOTE
+The example form has the Userfront Core JS library added to the document, as described in the section below.
+
+**AND**
+
+The `token` and `uuid` from the password reset email must be present in the URL. Thus, this example form does not reset an actual password.
+:::
 
 ::::
 :::: right
 
 <br/>
 <codepen title="Build a password reset form HTML" slug="GRWaZvB"/>
-
-::: warning NOTE
-The `token` and `uuid` from the password reset email must be present in the URL. Thus, this example form does not reset an actual password.
-:::
 
 ::::
 :::::
@@ -93,7 +95,7 @@ Userfront will email the user with a link to your account's [Password reset path
 
 The link will look something like:
 
-`https://www.example.com/reset?token=...&uuid=...`
+<code>https://www.example.com/reset?<strong>token=</strong>...&<strong>uuid=</strong>...</code>
 
 ::::
 :::: right
@@ -112,7 +114,7 @@ Userfront.sendResetLink("viewer@example.com");
 ::::: row
 ::::left
 
-Create your password reset form with whatever HTML elements you want.
+Create your password reset form with the elements you want to use.
 
 In this case, we've added:
 
@@ -162,12 +164,12 @@ The [resetPassword()](/docs/js.html#resetpassword-options) method allows the use
 
 Our JavaScript needs to call this method with the new password.
 
-Userfront will then do the following:
+Userfront then does the following:
 
-1. Verify the user's credentials
-2. Update the user's password
-3. Add the user's access token as a cookie named `access.demo1234`
-4. Redirect the page to the [After-login path](/guide/glossary.html#after-login-path)
+1. Verifies the user's credentials
+2. Updates the user's password
+3. Adds the user's access token as a cookie named `access.demo1234`
+4. Redirects the page to the [After-login path](/guide/glossary.html#after-login-path)
 
 ::::
 :::: right
@@ -270,7 +272,7 @@ if (password !== passwordVerify) {
 
 Whenever the `Userfront.resetPassword()` method fails, we can `catch` its error in the promise chain.
 
-This error will contain a `message` property with what went wrong.
+This error contains a `message` property with what went wrong.
 
 In this example, we use the `setAlert()` method to display the error message inside of our alert element.
 

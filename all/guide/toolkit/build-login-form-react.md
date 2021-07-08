@@ -78,7 +78,7 @@ import Userfront from "@userfront/core";
 ::::: row
 ::::left
 
-Create your login form with whatever HTML elements you want.
+Create your login form with the elements you want to use.
 
 In this case, we've added:
 
@@ -218,7 +218,7 @@ Userfront.login({
 
 Whenever the `Userfront.login()` method fails, we can `catch` its error in the promise chain.
 
-This error will contain a `message` property with what went wrong.
+This error contains a `message` property with what went wrong.
 
 In this example, we use an `<Alert />` component to display the error message.
 
