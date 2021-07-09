@@ -131,11 +131,11 @@ module.exports = {
         "/guide/auth/token-flow.md",
         "/guide/auth/multi-tenancy.md",
       ],
-      "/examples/": [
-        ["/examples/react", "React"],
-        ["/examples/nodejs", "Node.js"],
-        ["/examples/php", "PHP"],
-      ],
+      // "/examples/": [
+      //   ["/examples/react", "React"],
+      //   ["/examples/nodejs", "Node.js"],
+      //   ["/examples/php", "PHP"],
+      // ],
       "/docs/api": ["/docs/api.md"],
       "/docs/webhooks": ["/docs/webhooks.md"],
       "/docs/js": [["/docs/js.md", "Core JS library"]],

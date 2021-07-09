@@ -1,4 +1,4 @@
-# React example
+# React auth example
 
 :::::row
 ::::left
@@ -46,7 +46,7 @@ At a high level, React’s responsibility in authentication is to:
 
 To get React up and running, start by installing [Create React App](https://reactjs.org/docs/create-a-new-react-app.html) and [React Router](https://reactrouter.com/web/guides/quick-start)
 
-```js
+```sh
 npx create-react-app my-app
 cd my-app
 npm install react-router-dom --save
@@ -177,6 +177,8 @@ With our routes in place, we are ready to add authentication.
 
 :::::row
 ::::left
+
+We'll start by adding a signup form to the home page.
 
 In the Toolkit section of your dashboard, locate the instructions for installing your signup form.
 
