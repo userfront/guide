@@ -34,7 +34,7 @@ At a high level, Vue's responsibility in authentication is to:
 ::::
 ::::right
 
-![React authentication diagram](https://res.cloudinary.com/component/image/upload/v1616013076/permanent/userfront-diagram.png)
+![Vue.js authentication diagram](https://res.cloudinary.com/component/image/upload/v1616013076/permanent/userfront-diagram.png)
 
 ::::
 :::::
@@ -94,7 +94,6 @@ We'll set up a simple app with routing. This is all we need to start adding auth
 | `/login`     | Login page                               |
 | `/reset`     | Password reset page                      |
 | `/dashboard` | User dashboard, for logged in users only |
-| `/admin`     | Admin page, for logged in admins only    |
 
 ::::
 :::::
@@ -109,7 +108,7 @@ Replace the contents of `src/router/index.js` with the following to set up the r
 ::::: row
 :::: left
 
-```js {6-9,19-38}
+```js {6-8,18-32}
 // src/router/index.js
 
 import Vue from "vue";
@@ -118,7 +117,6 @@ import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Reset from "../views/Reset.vue";
 import Dashboard from "../views/Dashboard.vue";
-import Admin from "../views/Admin.vue";
 
 Vue.use(VueRouter);
 
@@ -142,11 +140,6 @@ const routes = [
     path: "/dashboard",
     name: "Dashboard",
     component: Dashboard,
-  },
-  {
-    path: "/admin",
-    name: "Admin",
-    component: Admin,
   },
 ];
 
@@ -191,15 +184,13 @@ For each new route like `src/views/Login.vue`, we can make a basic template for 
 </template>
 ```
 
-```html
-<!-- src/views/Admin.vue-->
-
+<!-- ```html
 <template>
   <div>
     <h1>Admin</h1>
   </div>
 </template>
-```
+``` -->
 
 Now when we run our server, we should have all 5 of the routes working.
 
@@ -463,7 +454,20 @@ Now if someone tries to visit `/dashboard` while logged out, they are immediatel
 ### Dashboard page
 
 ::::: row
+:::: left
 
+Whenever a user does log in, we want to show them some relevant information and also give them the ability to log out.
+
+For the dashboard page, we can add information about the user by referencing the `Userfront.user` object.
+
+We can log the user out by calling `Userfront.logout()`.
+
+Replace the `src/views/Dashboard.vue` file with the following:
+
+::::
+:::::
+
+::::: row
 :::: left
 
 ```html
@@ -506,8 +510,6 @@ Now if someone tries to visit `/dashboard` while logged out, they are immediatel
 </style>
 ```
 
-Now, when a user is logged in, they can view the dashboard. If the user is not logged in, they will be redirected to the login page.
-
 ::::
 ::::right
 
@@ -515,12 +517,12 @@ Now, when a user is logged in, they can view the dashboard. If the user is not l
 
 #### Preview
 
-![React protected route](https://res.cloudinary.com/component/image/upload/v1625846602/guide/vue-cli-dashboard.png)
+![Vue.js protected route](https://res.cloudinary.com/component/image/upload/v1625846602/guide/vue-cli-dashboard.png)
 :::
 ::::
 :::::
 
-## React authentication with an API
+## Vue authentication with an API
 
 :::::row
 ::::left
@@ -554,9 +556,9 @@ There are many libraries to read and verify JWTs across various languages; here 
 :::::row
 ::::left
 
-For Userfront, the access token is available in your React application as `Userfront.accessToken()`.
+For Userfront, the access token is available in your Vue application as `Userfront.accessToken()`.
 
-Your React application can send this as a `Bearer` token inside the `Authorization` header. For example:
+Your Vue application can send this as a `Bearer` token inside the `Authorization` header. For example:
 
 ```js
 // Example of calling an endpoint with a JWT
@@ -644,12 +646,12 @@ app.get("/users", (req, res) => {
 ::::
 :::::
 
-## React SSO (Single Sign On)
+## Vue.js SSO (Single Sign On)
 
 :::::row
 ::::left
 
-From here, you can add social identity providers like Google, Facebook, and LinkedIn to your React application, or business identity providers like Azure AD, Office365, and more.
+From here, you can add social identity providers like Google, Facebook, and LinkedIn to your Vue application, or business identity providers like Azure AD, Office365, and more.
 
 You do this by creating an application with the identity provider (e.g. Google), and then adding that application's credentials to the Userfront dashboard. The result is a modified sign on experience.
 
@@ -657,7 +659,7 @@ No additional code is needed to implement Single Sign On using this approach: yo
 ::::
 ::::right
 
-![React SSO form](https://res.cloudinary.com/component/image/upload/v1619211588/guide/sso-signup.png)
+![Vue SSO form](https://res.cloudinary.com/component/image/upload/v1619211588/guide/sso-signup.png)
 
 ::::
 :::::

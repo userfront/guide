@@ -18,22 +18,36 @@ $MQNarrow = 1119px
 $MQMobile = 959px
 $MQMobileNarrow = 419px
 
+.btn-square-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  @media (max-width: 520px) {
+    flex-direction: column;
+  }
+}
+
 .btn-square {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 150px;
   height: 80px;
   font-weight: bold;
   color: $accentColor !important;
-  margin: 0 10px 10px 0;
-  padding: 32px 0;
-  vertical-align: middle;
+  line-height: 70px;
   &.el-button--primary.is-plain {
     &:hover,
     &:focus {
       background: #eff1fc !important;
     }
   }
+  img {
+    max-height: 100%;
+    margin-right: 6px;
+  }
   @media (max-width 520px) {
     width: 100%;
-    margin: 0 0 10px 0 !important;  
+    margin: 0 0 10px !important;
   }
 }
