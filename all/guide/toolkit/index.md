@@ -1,20 +1,19 @@
 # Toolkit
 
+### Add ready-to-use tools or build your own.
+
+<br>
+<toolkit-initial-picker />
+
 :::::row
 ::::left
 
-Userfront has ready-to-use tools for signup, login, password reset, and logout. These do not require any backend setup to work.
+Userfront's ready-to-use tools do not require any backend setup to work.
 
 You can also build your own tools to include custom fields, multi-language support (i18n), or any other requirements you may have.
 
 ::::
 :::::
-
-<p style="margin-bottom:0">Start by selecting a tool below:</p>
-
-<toolkit-initial-picker />
-
-<br>
 
 ## Installation guides
 
