@@ -76,8 +76,10 @@ export default async ({ isServer, router, Vue }) => {
         Vue.nextTick(scrollToAnchor);
       }, time);
     } catch (error) {
-      console.error("Problem fetching docs.json");
-      console.error(error);
+      console.error("Problem fetching docs.json", error);
+      setTimeout(() => {
+        Vue.nextTick(scrollToAnchor);
+      }, 500);
     }
   }
 };

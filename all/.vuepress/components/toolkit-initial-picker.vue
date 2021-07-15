@@ -1,14 +1,5 @@
 <template>
   <div>
-    <div style="min-height: 40px">
-      <el-button @click="step = 1" type="text" v-if="selectedMod.name">{{
-        selectedMod.name
-      }}</el-button>
-      <span v-if="selectedType.name">/</span>
-      <el-button @click="step = 2" type="text" v-if="selectedType.name">{{
-        selectedType.name
-      }}</el-button>
-    </div>
     <div v-show="this.step == 1">
       <el-button
         v-for="mod in mods"
@@ -50,6 +41,15 @@
       >
         {{ tech.name }}
       </el-button>
+    </div>
+    <div style="min-height: 40px">
+      <el-button @click="step = 1" type="text" v-if="selectedMod.name">{{
+        selectedMod.name
+      }}</el-button>
+      <span v-if="selectedType.name">/</span>
+      <el-button @click="step = 2" type="text" v-if="selectedType.name">{{
+        selectedType.name
+      }}</el-button>
     </div>
   </div>
 </template>

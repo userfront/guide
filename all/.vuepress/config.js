@@ -77,6 +77,7 @@ module.exports = {
     nav: [
       { text: "Home", link: "/guide/" },
       { text: "Toolkit", link: "/guide/toolkit/" },
+      { text: "SSO", link: "/guide/sso/" },
       { text: "Tokens & Access", link: "/guide/auth/" },
       { text: "Examples", link: "/examples/" },
       {
