@@ -172,7 +172,7 @@ Many users may not have an account with the providers you choose, or may not wan
 
 Remember that an SSO provider can revoke your application status at their own discretion. If this happens, you retain all of your user information on Userfront, but your users will be unable to sign on using the SSO provider.
 
-To avoid this, clearly describe your service to both the provider and to your users; include what your service does and how the information you collect is used. Also take care not to violate the SSO provider's terms and conditions.
+To avoid this, clearly describe your service to both the provider and to your users, including what your service does and how the information you collect is used. Also take care not to violate the SSO provider's terms and conditions.
 
 ::::
 :::::
