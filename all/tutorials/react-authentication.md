@@ -6,7 +6,20 @@ Authentication is one of those things that just always seems to take a lot more 
 
 To set up auth, you have to re-research topics you haven’t thought about since the last time you did authentication, and the fast-paced nature of the space means things have often changed in the meantime. New threats, new options, and new updates may have kept you guessing and digging through docs in your past projects.
 
-In this tutorial, we lay out a different approach to authentication (and access control, SSO, and more) in React applications. Rather than add a static library that you have to keep up to date or re-research each time you want to implement auth, we’ll use a service that stays up to date automatically and is a much simpler alternative to Auth0, Okta, and others.
+In this tutorial, we lay out a different approach to authentication (and access control, SSO, and more) in React applications.
+
+Rather than add a static library that you have to keep up to date or re-research each time you want to implement auth, we’ll use a service that stays up to date automatically and is a much simpler alternative to Auth0, Okta, and others.
+::::
+
+::::right
+
+:::card
+
+#### GitHub repo for this example
+
+[https://github.com/userfront/react-example](https://github.com/userfront/react-example)
+:::
+
 ::::
 :::::
 
