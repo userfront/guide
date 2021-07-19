@@ -73,6 +73,7 @@ Registers a new user with one of the available methods.
 | _username_ | The user's username (optional). Used only with the `password` method.                                                                       |
 | _name_     | The user's name (optional). Used only with the `password` method.                                                                           |
 | _password_ | The user's password. Used only with the `password` method.                                                                                  |
+| _redirect_ | Manually set the path to redirect to, or `false` to prevent redirection.                                                                    |
 
 ### Signup via `password` method:
 
@@ -129,6 +130,7 @@ Initiates a login for a user with one of the available methods.
 | _password_        | The user's password. Used only with the `password` method.                                                                                         |
 | _token_           | The `token=` URL parameter sent in a login link. Used only with the `link` method.                                                                 |
 | _uuid_            | The `uuid=` URL parameter sent in a login link. Used only with the `link` method.                                                                  |
+| _redirect_        | Manually set the path to redirect to, or `false` to prevent redirection.                                                                           |
 
 ### Login via `password` method:
 
