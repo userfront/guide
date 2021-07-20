@@ -236,6 +236,19 @@ module.exports = {
       "/docs/api": ["/docs/api.md"],
       "/docs/webhooks": ["/docs/webhooks.md"],
       "/docs/js": [["/docs/js.md", "Core JS library"]],
+      "/tutorials": [
+        {
+          title: "Examples",
+          collapsable: false,
+          children: [
+            ["/examples/react", "React"],
+            ["/examples/vue", "Vue.js"],
+            ["/examples/nodejs", "Node.js"],
+            ["/examples/php", "PHP"],
+            ["/examples/react-native", "React Native"],
+          ],
+        },
+      ],
     },
     lastUpdated: "Last Updated", // string | boolean
     // https://vuepress.vuejs.org/default-theme-config/#algolia-search
