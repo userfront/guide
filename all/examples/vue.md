@@ -1,3 +1,8 @@
+---
+sidebar: auto
+sidebarDepth: -1
+---
+
 # Vue.js auth example
 
 :::::row

@@ -1,3 +1,8 @@
+---
+sidebar: auto
+sidebarDepth: -1
+---
+
 # Node.js example
 
 In this example, we show how to add authentication and access control to a basic Node.js application.

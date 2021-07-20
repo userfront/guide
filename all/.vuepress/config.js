@@ -121,22 +121,118 @@ module.exports = {
       { text: "Dashboard", link: "https://userfront.com/projects" },
     ],
     sidebar: {
-      // "/guide/toolkit/": [
-      //   "/guide/toolkit/",
-      //   "/guide/toolkit/signup.md",
-      //   "/guide/toolkit/login.md",
-      //   "/guide/toolkit/reset.md",
-      //   "/guide/toolkit/logout.md",
-      // ],
       "/guide/auth/": [
         "/guide/auth/token-flow.md",
         "/guide/auth/multi-tenancy.md",
       ],
-      // "/examples/": [
-      //   ["/examples/react", "React"],
-      //   ["/examples/nodejs", "Node.js"],
-      //   ["/examples/php", "PHP"],
-      // ],
+      "/examples/": [
+        {
+          title: "Examples",
+          collapsable: false,
+          children: [
+            ["/examples/react", "React"],
+            ["/examples/vue", "Vue.js"],
+            ["/examples/nodejs", "Node.js"],
+            ["/examples/php", "PHP"],
+            ["/examples/react-native", "React Native"],
+          ],
+        },
+      ],
+      "/guide/sso": [],
+      "/guide/toolkit": [
+        {
+          title: "Ready to use",
+          collapsable: false,
+          initialOpenGroupIndex: -1,
+          children: [
+            {
+              title: "HTML",
+              children: [
+                ["/guide/toolkit/automatic-signup-form-html", "Signup form"],
+                ["/guide/toolkit/automatic-login-form-html", "Login form"],
+                [
+                  "/guide/toolkit/automatic-password-reset-form-html",
+                  "Password reset form",
+                ],
+                [
+                  "/guide/toolkit/automatic-logout-button-html",
+                  "Logout button",
+                ],
+              ],
+            },
+            {
+              title: "React",
+              children: [
+                ["/guide/toolkit/automatic-signup-form-react", "Signup form"],
+                ["/guide/toolkit/automatic-login-form-react", "Login form"],
+                [
+                  "/guide/toolkit/automatic-password-reset-form-react",
+                  "Password reset form",
+                ],
+                [
+                  "/guide/toolkit/automatic-logout-button-react",
+                  "Logout button",
+                ],
+              ],
+            },
+            {
+              title: "Vue.js",
+              children: [
+                ["/guide/toolkit/automatic-signup-form-vue", "Signup form"],
+                ["/guide/toolkit/automatic-login-form-vue", "Login form"],
+                [
+                  "/guide/toolkit/automatic-password-reset-form-vue",
+                  "Password reset form",
+                ],
+                ["/guide/toolkit/automatic-logout-button-vue", "Logout button"],
+              ],
+            },
+          ],
+        },
+        {
+          title: "Build your own",
+          collapsable: false,
+          initialOpenGroupIndex: -1,
+          children: [
+            {
+              title: "HTML",
+              children: [
+                ["/guide/toolkit/build-signup-form-html", "Signup form"],
+                ["/guide/toolkit/build-login-form-html", "Login form"],
+                [
+                  "/guide/toolkit/build-password-reset-form-html",
+                  "Password reset form",
+                ],
+                ["/guide/toolkit/build-logout-button-html", "Logout button"],
+              ],
+            },
+            {
+              title: "React",
+              children: [
+                ["/guide/toolkit/build-signup-form-react", "Signup form"],
+                ["/guide/toolkit/build-login-form-react", "Login form"],
+                [
+                  "/guide/toolkit/build-password-reset-form-react",
+                  "Password reset form",
+                ],
+                ["/guide/toolkit/build-logout-button-react", "Logout button"],
+              ],
+            },
+            {
+              title: "Vue.js",
+              children: [
+                ["/guide/toolkit/build-signup-form-vue", "Signup form"],
+                ["/guide/toolkit/build-login-form-vue", "Login form"],
+                [
+                  "/guide/toolkit/build-password-reset-form-vue",
+                  "Password reset form",
+                ],
+                ["/guide/toolkit/build-logout-button-vue", "Logout button"],
+              ],
+            },
+          ],
+        },
+      ],
       "/docs/api": ["/docs/api.md"],
       "/docs/webhooks": ["/docs/webhooks.md"],
       "/docs/js": [["/docs/js.md", "Core JS library"]],

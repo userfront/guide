@@ -1,3 +1,8 @@
+---
+sidebar: auto
+sidebarDepth: -1
+---
+
 # PHP example
 
 :::::row
