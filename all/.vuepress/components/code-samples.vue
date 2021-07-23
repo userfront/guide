@@ -34,7 +34,7 @@ export default {
     url() {
       return `https://api.userfront.com${this.path
         .replace("{userId}", this.userId || "1")
-        .replace("{tenantId}", this.tenantId)}`;
+        .replace("{tenantId}", this.tenantId || "demo1234")}`;
     },
     uppercaseVerb() {
       return this.verb.toUpperCase();
@@ -63,6 +63,7 @@ export default {
     showPayload() {
       return this.verb === "post" || this.verb === "put";
     },
+
     // cUrl
     curlSample() {
       const data = this.showPayload
@@ -76,14 +77,20 @@ export default {
   --header 'Content-Type: application/json' \\
   --header 'Authorization: Bearer ${this.token}' ${data}`;
     },
+
     // Node.js & JS
     javascriptSample() {
       const data = this.showPayload
-        ? `,
-  data: ${JSON.stringify(this.payload, null, "    ").replace(
-    /"([^"]+)":/g,
-    "$1:"
-  )}`
+        ? `${JSON.stringify(this.payload, null, "  ").replace(
+            /"([^"]+)":/g,
+            "$1:"
+          )}`
+        : "";
+
+      const payloadDefinition = this.showPayload
+        ? `
+const payload = ${data};
+`
         : "";
       return `const axios = require('axios');
       
@@ -91,13 +98,14 @@ const options = {
   headers: { 
     Accept: "*/*",
     Authorization: "Bearer ${this.token}"
-  }${data}
+  }
 };
-
-axios.${this.verb}("${this.url}", options)
-  .then((response) => console.log(response))
+${payloadDefinition}
+axios.${this.verb}("${this.url}",${this.showPayload ? "payload ," : ""} options)
+  .then((response) => console.log(response.data))
   .catch((err) => console.error(err));`;
     },
+
     // Ruby
     rubySample() {
       const data = this.showPayload
