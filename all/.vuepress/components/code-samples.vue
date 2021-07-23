@@ -101,7 +101,7 @@ const options = {
   }
 };
 ${payloadDefinition}
-axios.${this.verb}("${this.url}",${this.showPayload ? "payload ," : ""} options)
+axios.${this.verb}("${this.url}", ${this.showPayload ? "payload, " : ""}options)
   .then((response) => console.log(response.data))
   .catch((err) => console.error(err));`;
     },
