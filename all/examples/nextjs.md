@@ -84,12 +84,12 @@ Just like it says, we can now edit the `pages/index.js` file to start working.
 ::::
 :::::
 
+## Set up routes
+
 :::::row
 ::::left
 
-### Routing
-
-We'll set up our application with the following routes:
+We'll set up our application with the following pages:
 
 | Route        | Description                   |
 | :----------- | :---------------------------- |
@@ -99,7 +99,7 @@ We'll set up our application with the following routes:
 | `/dashboard` | Dashboard for logged in users |
 | `/reset`     | Password reset page           |
 
-Update `/pages/index.js` to add links to the routes we want:
+Update `/pages/index.js` to add links to the pages we want:
 
 ::::
 :::::
@@ -179,16 +179,12 @@ export default function Home() {
 ::::
 :::::
 
-### Adding routes
+### Add files to the project
 
 :::::row
 ::::left
 
-To build these routes and a navbar to navigate between them, we add the following files:
-
-- A navbar file in the `/components` folder (create this folder too)
-- A file for each new route in the `/pages` folder
-- Files to style the navbar and dashboard in the `/styles` folder
+To build out the routes and a navbar to navigate between them, create the following files in your project:
 
 <pre style="color:white">
 .
@@ -216,7 +212,17 @@ To build these routes and a navbar to navigate between them, we add the followin
 ::::
 :::::
 
-### Navbar
+### Navbar setup
+
+:::::row
+::::left
+
+We'll show the navbar at the top of every page except the home page.
+
+We use an `isLoggedIn` prop in the `<Navbar>` component to show or hide different links:
+
+::::
+:::::
 
 :::::row
 ::::left
@@ -267,22 +273,26 @@ export default function Navbar({ isLoggedIn }) {
 
 #### Preview
 
-![React Router authentication](https://res.cloudinary.com/component/image/upload/v1614094607/permanent/react-router-basic.gif)
+When a user is logged out, the navbar has links to sign up or log in.
+
+![Next.js navbar logged out](https://res.cloudinary.com/component/image/upload/v1627655291/guide/examples/nextjs-navbar-logged-out.png)
+
+When the user is logged in, the navbar has links to the dashboard and password reset.
+
+![Next.js navbar logged in](https://res.cloudinary.com/component/image/upload/v1627655291/guide/examples/nextjs-navbar-logged-in.png)
 :::
 
 ::::
 :::::
-
-With our routes in place, we are ready to add authentication.
 
 ## Signup, login, and password reset
 
 :::::row
 ::::left
 
-We'll start by adding a signup form to the home page.
+We'll start by adding a signup form to the `/signup` page.
 
-In the Toolkit section of your dashboard, locate the instructions for installing your signup form.
+In the **Toolkit** section of the Userfront dashboard, locate the instructions for installing your signup form.
 
 It will look like this:
 
@@ -303,7 +313,7 @@ Follow the instructions by installing the Userfront React package with:
 
 ```js
 npm install @userfront/react --save
-npm start
+npm run dev
 ```
 
 ::::
@@ -312,7 +322,32 @@ npm start
 :::::row
 ::::left
 
-Add the signup form to your home page by importing and initializing Userfront, and then updating the `Home()` function to render the form.
+We can avoid having to initialize Userfront on every page by initializing it once in `_app.js`.
+
+Import and initialize Userfront in the `/pages/_app.js` file:
+
+```jsx {3,6}
+// /pages/_app.js
+
+import Userfront from "@userfront/react";
+import "../styles/globals.css";
+
+Userfront.init("demo1234");
+
+function MyApp({ Component, pageProps }) {
+  return <Component {...pageProps} />;
+}
+
+export default MyApp;
+```
+
+::::
+:::::
+
+:::::row
+::::left
+
+Now add the signup form and navbar to the signup page, passing through the `isLoggedIn` prop from the page to the navbar:
 ::::
 :::::
 
@@ -320,78 +355,25 @@ Add the signup form to your home page by importing and initializing Userfront, a
 ::::left
 
 ```jsx
-// src/App.js
+// /pages/signup.js
 
-import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Userfront from "@userfront/react";
-
-Userfront.init("demo1234");
+import Navbar from "../components/navbar.js";
 
 const SignupForm = Userfront.build({
   toolId: "nkmbbm",
 });
 
-export default function App() {
-  return (
-    <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/reset">Reset</Link>
-            </li>
-            <li>
-              <Link to="/dashboard">Dashboard</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/reset">
-            <PasswordReset />
-          </Route>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
-}
-
-function Home() {
+function Signup({ isLoggedIn }) {
   return (
     <div>
-      <h2>Home</h2>
+      <Navbar isLoggedIn={isLoggedIn} />
       <SignupForm />
     </div>
   );
 }
 
-function Login() {
-  return <h2>Login</h2>;
-}
-
-function PasswordReset() {
-  return <h2>Password Reset</h2>;
-}
-
-function Dashboard() {
-  return <h2>Dashboard</h2>;
-}
+export default Signup;
 ```
 
 ::::
@@ -401,7 +383,7 @@ function Dashboard() {
 
 #### Preview
 
-![React signup form](https://res.cloudinary.com/component/image/upload/v1614095453/permanent/react-router-signup.png)
+![Next.js signup form](https://res.cloudinary.com/component/image/upload/v1627657200/guide/examples/nextjs-signup-0.png)
 :::
 
 ::::
@@ -410,7 +392,7 @@ function Dashboard() {
 :::::row
 ::::left
 
-Now the home page has your signup form. Try signing up a user.
+Your signup form should appear on the page. Try signing up a user.
 
 ::::
 :::::
@@ -439,94 +421,47 @@ Continue by adding your login and password reset forms in the same way that you 
 ::::left
 
 ```jsx
-// src/App.js
+// /pages/login.js
 
-import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Userfront from "@userfront/react";
+import Navbar from "../components/navbar.js";
 
-Userfront.init("demo1234");
-
-const SignupForm = Userfront.build({
-  toolId: "nkmbbm",
-});
 const LoginForm = Userfront.build({
   toolId: "alnkkd",
 });
-const PasswordResetForm = Userfront.build({
-  toolId: "dkbmmo",
-});
 
-export default function App() {
-  return (
-    <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/reset">Reset</Link>
-            </li>
-            <li>
-              <Link to="/dashboard">Dashboard</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/reset">
-            <PasswordReset />
-          </Route>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
-}
-
-function Home() {
+function Login({ isLoggedIn }) {
   return (
     <div>
-      <h2>Home</h2>
-      <SignupForm />
-    </div>
-  );
-}
-
-function Login() {
-  return (
-    <div>
-      <h2>Login</h2>
+      <Navbar isLoggedIn={isLoggedIn} />
       <LoginForm />
     </div>
   );
 }
 
-function PasswordReset() {
+export default Login;
+```
+
+```jsx
+// /pages/reset.js
+
+import Userfront from "@userfront/react";
+import Navbar from "../components/navbar.js";
+
+const PasswordResetForm = Userfront.build({
+  toolId: "dkbmmo",
+});
+
+function PasswordReset({ isLoggedIn }) {
   return (
     <div>
-      <h2>Password Reset</h2>
+      <Navbar isLoggedIn={isLoggedIn} />
       <PasswordResetForm />
     </div>
   );
 }
 
-function Dashboard() {
-  return <h2>Dashboard</h2>;
-}
+export default PasswordReset;
 ```
 
 ::::
@@ -536,7 +471,7 @@ function Dashboard() {
 
 #### Preview
 
-![React signup, login, password reset](https://res.cloudinary.com/component/image/upload/v1614095875/permanent/react-router-3.gif)
+![Next.js signup, login, password reset](https://res.cloudinary.com/component/image/upload/v1627659971/guide/examples/nextjs-2.gif)
 :::
 ::::
 
@@ -546,7 +481,7 @@ At this point, your signup, login, and password reset should all be functional.
 
 Your users can sign up, log in, and reset their password.
 
-## Protected route in React
+## Protected route in Next.js
 
 :::::row
 ::::left
@@ -554,6 +489,124 @@ Your users can sign up, log in, and reset their password.
 Usually, we don't want users to be able to view the dashboard unless they are logged in. This is known as protecting a route.
 
 Whenever a user is not logged in but tries to visit `/dashboard`, we can redirect them to the login screen.
+
+We'll start by adding the dashboard page, so that we have something to protect.
+
+::::
+:::::
+
+### Dashboard page
+
+:::::row
+::::left
+
+```jsx
+// /pages/dashboard.js
+
+import { useState, useEffect } from "react";
+import Userfront from "@userfront/react";
+import Navbar from "../components/navbar.js";
+import styles from "../styles/Dashboard.module.css";
+
+const Dashboard = ({ isLoggedIn }) => {
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    setUser(Userfront.user);
+  });
+
+  return (
+    <div>
+      <Navbar isLoggedIn={isLoggedIn} />
+      <div className={styles.container}>
+        <div className={styles.main}>
+          <img src={user.image} className={styles.img} />
+          <p>{user.email}</p>
+          <div>
+            <button onClick={Userfront.logout} className={styles.logout}>
+              Logout
+            </button>
+          </div>
+        </div>
+        <div className={styles.data}>
+          <p>
+            <span className={styles.code}>Userfront.user</span>
+          </p>
+          <pre>
+            <code>{JSON.stringify(user, null, 2)}</code>
+          </pre>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Dashboard;
+```
+
+```css
+/* /styles/Dashboard.module.css */
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button,
+.logout {
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.button {
+  background: #0070f3;
+  color: white;
+}
+
+.data {
+  padding: 0 2rem;
+}
+
+.img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.code {
+  background: #efefef;
+  padding: 2px 6px;
+  font-weight: 600;
+  border-radius: 4px;
+}
+```
+
+::::
+:::: right
+::: card
+
+#### Preview
+
+![Next.js dashboard](https://res.cloudinary.com/component/image/upload/v1627661688/guide/examples/nextjs-dashboard-0.png)
+:::
+::::
+:::::
+
+::::: row
+:::: left
 
 We can accomplish this by updating the `Dashboard` component in `src/App.js` to handle the conditional logic.
 
