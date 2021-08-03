@@ -5,9 +5,9 @@
 
 The Userfront core JavaScript library is intended for use in frontend applications.
 
-The core library must always be initialized with an account or tenant ID, after which it can be used for the following:
+It can be used for the following:
 
-- **Authentication**: These are useful for building your own custom forms and auth flows.
+- **Authentication**: useful for building your own custom forms and auth flows.
 
   - [signup()](#signup-options)
   - [login()](#login-options)
@@ -17,7 +17,7 @@ The core library must always be initialized with an account or tenant ID, after 
   - [sendLoginLink()](#sendloginlink-email)
   - [sendResetLink()](#sendresetlink-email)
 
-- **User**: read or update information about a logged in user
+- **User**: read or update information about a logged in user.
 
   - [user](#user)
   - [user.update()](#user-update-options)
@@ -30,12 +30,14 @@ The core library must always be initialized with an account or tenant ID, after 
 
 ::::
 :::: right
-<code-block-custom 
-  title="Bash" 
-  language="bash" 
-  code="npm install --save @userfront/core" 
-  :active="true">
-</code-block-custom>
+
+| Libraries that implement core methods                                   |
+| ----------------------------------------------------------------------- |
+| [Userfront script snippet](https://github.com/userfront/userfront-html) |
+| [@userfront/core](https://github.com/userfront/userfront-core)          |
+| [@userfront/react](https://github.com/userfront/userfront-react)        |
+| [@userfront/vue](https://github.com/userfront/userfront-vue)            |
+
 ::::
 :::::
 
