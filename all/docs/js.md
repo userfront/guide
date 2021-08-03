@@ -31,12 +31,18 @@ It can be used for the following:
 ::::
 :::: right
 
-| Libraries that implement core methods                                   |
-| ----------------------------------------------------------------------- |
-| [Userfront script snippet](https://github.com/userfront/userfront-html) |
-| [@userfront/core](https://github.com/userfront/userfront-core)          |
-| [@userfront/react](https://github.com/userfront/userfront-react)        |
-| [@userfront/vue](https://github.com/userfront/userfront-vue)            |
+::: card
+
+#### Libraries
+
+The following libraries each implement all of the core JS methods:
+
+- [@userfront/core](https://github.com/userfront/userfront-core)
+- [Userfront script snippet](https://github.com/userfront/userfront-html)
+- [@userfront/react](https://github.com/userfront/userfront-react)
+- [@userfront/vue](https://github.com/userfront/userfront-vue)
+
+:::
 
 ::::
 :::::
