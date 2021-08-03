@@ -33,7 +33,7 @@ The core library must always be initialized with an account or tenant ID, after 
 <code-block-custom 
   title="Bash" 
   language="bash" 
-  code="npm install --save @userfront-core" 
+  code="npm install --save @userfront/core" 
   :active="true">
 </code-block-custom>
 ::::
