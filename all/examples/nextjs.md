@@ -500,6 +500,20 @@ We'll start by adding the dashboard page, so that we have something to protect.
 :::::row
 ::::left
 
+The dashboard page has information about the logged in user as well as a logout button.
+
+We can get information about the logged in user by calling `Userfront.user` in the client-side code.
+
+To log the user out, we can call `Userfront.logout()`.
+
+Add the following to `/pages/dashboard.js` and `/styles/Dashboard.module.css` to set up the dashboard page:
+
+::::
+:::::
+
+:::::row
+::::left
+
 ```jsx
 // /pages/dashboard.js
 
@@ -608,11 +622,10 @@ export default Dashboard;
 ::::: row
 :::: left
 
-We can accomplish this by updating the `Dashboard` component in `src/App.js` to handle the conditional logic.
+### Protecting the dashboard page
 
-When a user is logged in, they will have an access token available as `Userfront.accessToken()`. We can check for this token to determine if the user is logged in.
+When a user is logged in, they are issued an access token that gets stored as a cookie in their browser.
 
-Add the `Redirect` component to the `import` statement for React Router, and then update the `Dashboard` component to redirect if no access token is present.
 ::::
 :::::
 
