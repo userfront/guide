@@ -38,7 +38,7 @@ It can be used for the following:
 The following libraries each implement all of the core JS methods:
 
 - [@userfront/core](https://github.com/userfront/userfront-core)
-- [Userfront script snippet](https://github.com/userfront/userfront-html)
+- [Userfront HTML](https://github.com/userfront/userfront-html)
 - [@userfront/react](https://github.com/userfront/userfront-react)
 - [@userfront/vue](https://github.com/userfront/userfront-vue)
 
