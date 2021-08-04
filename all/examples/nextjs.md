@@ -624,7 +624,27 @@ export default Dashboard;
 
 ### Protecting the dashboard page
 
-When a user is logged in, they are issued an access token that gets stored as a cookie in their browser.
+When a user is logged in, they are issued a JWT access token that gets stored as a cookie in their browser.
+
+We can read and verify this access token with each request:
+
+- If the access token is valid, we include information about the user in the props for our pages
+- If the access token is not valid, we redirect the user to log in
+
+To do this, create a file `/common/auth.js` where we can add a reusable method.
+
+<pre style="color:white">
+.
+├── common
+│ <span class="token string">├── auth.js</span>
+│
+├── ...
+└── package.json
+</pre>
+
+<br />
+
+We will use the [next-cookies](https://github.com/matthewmueller/next-cookies) library to read the request's cookies and the [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) library to verify incoming JWT access tokens.
 
 ::::
 :::::
@@ -632,65 +652,60 @@ When a user is logged in, they are issued an access token that gets stored as a 
 :::::row
 ::::left
 
-```jsx
-// src/App.js
+```js
+// /common/auth.js
 
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect, // Be sure to add this import
-} from "react-router-dom";
+import cookies from "next-cookies";
+import jwt from "jsonwebtoken";
+import Userfront from "@userfront/react";
 
-// ...
+const publicKey = `-----BEGIN RSA PUBLIC KEY-----
+MIIBCgKCAQEAodD/IEagav7wlBX+k30YOSFpYT0u7AtV3ljwC52ShCFFGVvw86T5
+VTbg5Q/L/dgQT0+OZi+Fe/aAIL6j+3d8+Md5nGg7zqTv33GE7tN4ZoSkYnPMAm1I
+PjkOevpia98u8n1jWE/OnDnQqgozcy2zssGcJ1+QwJWuZWVObbFiA6ppFlyb9Hm8
+2wEgvBqjuTqCvLdJO5CtY5ya5OpGLpnqlsXTRgJEEFk0VTdH56ztcLFMDMxm4OVW
+aWy+i4YieTRRKnbyT7fzDPiZupkcg2jwVF49CtyB9UWtE/+/BAKtJtBLfdZ5X1dK
+RqesE10ysVdGxeyeRpyFltEfF5QWAzn99wIDAQAB
+-----END RSA PUBLIC KEY-----`;
 
-function Dashboard() {
-  function renderFn({ location }) {
-    // If the user is not logged in, redirect to login
-    if (!Userfront.accessToken()) {
-      return (
-        <Redirect
-          to={{
-            pathname: "/login",
-            state: { from: location },
-          }}
-        />
-      );
+export async function getPropsFromAccessToken(ctx, { verify } = {}) {
+  try {
+    const { [Userfront.tokens.accessTokenName]: accessToken } = cookies(ctx);
+    const isLoggedIn = !!accessToken;
+    if (verify) {
+      const verifiedToken = jwt.verify(accessToken, publicKey);
+
+      return {
+        props: {
+          isLoggedIn: true,
+          userId: verifiedToken.userId,
+          authorization: verifiedToken.authorization,
+        },
+      };
     }
-
-    // If the user is logged in, show the dashboard
-    const userData = JSON.stringify(Userfront.user, null, 2);
-    return (
-      <div>
-        <h2>Dashboard</h2>
-        <pre>{userData}</pre>
-        <button onClick={Userfront.logout}>Logout</button>
-      </div>
-    );
+    return {
+      props: { isLoggedIn },
+    };
+  } catch (error) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
   }
-
-  return <Route render={renderFn} />;
 }
 ```
-
-Notice also that we've added a logout button by calling `Userfront.logout()` directly:
-
-```js
-<button onClick={Userfront.logout}>Logout</button>
-```
-
-Now, when a user is logged in, they can view the dashboard. If the user is not logged in, they will be redirected to the login page.
 
 ::::
 ::::right
 
 :::card
 
-#### Preview
+#### Notes
 
-![React protected route](https://res.cloudinary.com/component/image/upload/v1614104770/permanent/react-router-4.png)
+- Your JWT public key (`publicKey`) can be found in the Userfront dashboard under **Settings**.
+
 :::
 ::::
 :::::
