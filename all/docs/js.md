@@ -1,12 +1,13 @@
 # Userfront core JS library
 
-The Userfront core JavaScript library is intended for use in frontend applications. The core library is available via
+::::: row
+:::: left
 
-<code-block-custom title="Bash" language="bash" code="npm install --save @userfront-core"></code-block-custom>
+The Userfront core JavaScript library is intended for use in frontend applications.
 
-The core library must always be initialized with an account or tenant ID, after which it can be used for the following:
+It can be used for the following:
 
-- **Authentication**: These are useful for building your own custom forms and auth flows.
+- **Authentication**: useful for building your own custom forms and auth flows.
 
   - [signup()](#signup-options)
   - [login()](#login-options)
@@ -16,17 +17,57 @@ The core library must always be initialized with an account or tenant ID, after 
   - [sendLoginLink()](#sendloginlink-email)
   - [sendResetLink()](#sendresetlink-email)
 
-- **Tokens**: read the user's access and ID tokens.
-  - [accessToken()](#accesstoken)
-  - [idToken()](#idtoken)
+- **User**: read or update information about a logged in user.
+
+  - [user](#user)
+  - [user.update()](#user-update-options)
+
+- **Tokens**: read the user's access or ID token.
+  - [tokens.accessToken](#tokens-accesstoken)
+  - [tokens.accessTokenName](#tokens-accesstokenname)
+  - [tokens.idToken](#tokens-idtoken)
+  - [tokens.idTokenName](#tokens-idtokenname)
+
+::::
+:::: right
+
+::: card
+
+#### Libraries
+
+The following libraries each implement all of the core JS methods:
+
+- [@userfront/core](https://github.com/userfront/userfront-core)
+- [Userfront HTML](https://github.com/userfront/userfront-html)
+- [@userfront/react](https://github.com/userfront/userfront-react)
+- [@userfront/vue](https://github.com/userfront/userfront-vue)
+
+:::
+
+::::
+:::::
 
 # Setup
 
-The core library must always be initialized with an account or tenant ID.
+::::: row
+:::: left
+
+::: tip Note
+The core library must always be initialized with an account or tenant ID using the [init()](#init-tenantid) method.
+:::
+
+::::
+:::::
 
 ## init (tenantId)
 
+::::: row
+:::: left
+
 Initializes the Userfront core library with your account or tenant ID.
+
+::::
+:::: right
 
 ```js
 import Userfront from "@userfront/core";
@@ -34,15 +75,22 @@ import Userfront from "@userfront/core";
 Userfront.init("demo1234");
 ```
 
-Note: you can add a callback to run after `Userfront.init()` by calling `addInitCallback(callback)`.
+::::
+:::::
 
 ## addInitCallback (function)
+
+::::: row
+:::: left
 
 Calls the supplied callback whenever `Userfront.init()` is called. A JSON object with the `tenantId` is supplied to the callback.
 
 If `addInitCallback` is called more than once, callbacks are called in the order they were added (first added = first called).
 
 Once `Userfront.init()` is called, the callbacks are reset and are not called on subsequent `Userfront.init()` calls.
+
+::::
+:::: right
 
 ```js
 import Userfront, { addInitCallback } from "@userfront/core";
@@ -60,6 +108,9 @@ Userfront.init("demo1234");
 // No callbacks
 ```
 
+::::
+:::::
+
 # Authentication
 
 ## signup (options)
@@ -75,9 +126,17 @@ Registers a new user with one of the available methods.
 | _password_ | The user's password. Used only with the `password` method.                                                                                  |
 | _redirect_ | Manually set the path to redirect to, or `false` to prevent redirection.                                                                    |
 
-### Signup via `password` method:
+### Signup via `password` method
 
-Sends an email and password in order to create a user. Upon success, receives auth tokens and adds the auth tokens to the browser's cookies, then redirects the browser to the After-signup path.
+::::: row
+:::: left
+
+Submits an email and password to create a user.
+
+Upon success, receives auth tokens and adds the auth tokens to the browser's cookies, then redirects the browser to the After-signup path.
+
+::::
+:::: right
 
 ```js
 import Userfront from "@userfront/core";
@@ -100,9 +159,26 @@ Userfront.signup({
 });
 ```
 
+::::
+:::::
+
 ### Signup via `azure`, `facebook`, `github`,`google`, or `linkedin` methods
 
+<br/>
+
+::::: row
+:::: left
+
 Initiates the sign on flow for a given SSO provider.
+
+::: tip Note
+When using SSO, there is no difference between the `signup` and `login` methods.
+
+Both methods initiate the sign on flow. New users are ultimately redirected to your After-signup path, and existing users are ultimately redirected to your After-login path.
+:::
+
+::::
+:::: right
 
 ```js
 import Userfront from "@userfront/core";
@@ -115,7 +191,8 @@ Userfront.signup({ method: "azure" });
 Userfront.signup({ method: "google" });
 ```
 
-Note: when using SSO, there is no difference between the `signup` and `login` methods. Both methods initiate the sign on flow. New users are ultimately redirected to the After-signup path, and existing users are ultimately redirected to the After-login path.
+::::
+:::::
 
 ## login (options)
 
@@ -132,9 +209,15 @@ Initiates a login for a user with one of the available methods.
 | _uuid_            | The `uuid=` URL parameter sent in a login link. Used only with the `link` method.                                                                  |
 | _redirect_        | Manually set the path to redirect to, or `false` to prevent redirection.                                                                           |
 
-### Login via `password` method:
+### Login via `password` method
+
+::::: row
+:::: left
 
 Sends a username or email along with a password in order to receive auth tokens, then adds the auth tokens to the browser's cookies and redirects the browser to the After-login path.
+
+::::
+:::: right
 
 ```js
 import Userfront from "@userfront/core";
@@ -162,11 +245,20 @@ Userfront.login({
 });
 ```
 
-### Login via `link` method:
+::::
+:::::
+
+### Login via `link` method
+
+::::: row
+:::: left
 
 This method is used to read the URL query parameters `token` and `uuid` that are sent with login link emails, and uses these parameters to log in a user.
 
 Sends the token and uuid in order to receive auth tokens, then adds the auth tokens to the browser's cookies and redirects the browser to the After-login path.
+
+::::
+:::: right
 
 ```js
 import Userfront from "@userfront/core";
@@ -185,9 +277,26 @@ Userfront.login({
 });
 ```
 
+::::
+:::::
+
 ### Login via `azure`, `facebook`, `github`,`google`, or `linkedin` methods
 
+<br />
+
+::::: row
+:::: left
+
 Initiates the sign on flow for a given SSO provider.
+
+::: tip Note
+When using SSO, there is no difference between the `signup` and `login` methods.
+
+Both methods initiate the sign on flow. New users are ultimately redirected to your After-signup path, and existing users are ultimately redirected to your After-login path.
+:::
+
+::::
+:::: right
 
 ```js
 import Userfront from "@userfront/core";
@@ -200,11 +309,18 @@ Userfront.login({ method: "azure" });
 Userfront.login({ method: "google" });
 ```
 
-Note: when using SSO, there is no difference between the `signup` and `login` methods. Both methods initiate the sign on flow. New users are ultimately redirected to the After-signup path, and existing users are ultimately redirected to the After-login path.
+::::
+:::::
 
 ## logout ()
 
+::::: row
+:::: left
+
 Logs a user out by invalidating their session, removes auth tokens from the browser, and then redirects the browser to the After-logout path.
+
+::::
+:::: right
 
 ```js
 import Userfront from "@userfront/core";
@@ -213,9 +329,18 @@ Userfront.init("demo1234");
 Userfront.logout();
 ```
 
-## redirectIfLoggedIn
+::::
+:::::
+
+## redirectIfLoggedIn ()
+
+::::: row
+:::: left
 
 Checks if the user is logged in and, if so, redirects the browser to the After-login path.
+
+::::
+:::: right
 
 ```js
 import Userfront from "@userfront/core";
@@ -224,7 +349,13 @@ Userfront.init("demo1234");
 Userfront.redirectIfLoggedIn();
 ```
 
+::::
+:::::
+
 ## resetPassword (options)
+
+::::: row
+:::: left
 
 Resets a user's password, then logs the user in by adding auth tokens to the browser's cookies and redirects the browser to the After-login path.
 
@@ -233,6 +364,9 @@ Resets a user's password, then logs the user in by adding auth tokens to the bro
 | _password_ | ✓        | The new password to set for the user.                       |
 | _token_    |          | The `token=` URL parameter sent in the password reset link. |
 | _uuid_     |          | The `uuid=` URL parameter sent in the password reset link.  |
+
+::::
+:::: right
 
 ```js
 import Userfront from "@userfront/core";
@@ -251,11 +385,20 @@ Userfront.resetPassword({
 });
 ```
 
+::::
+:::::
+
 ## sendLoginLink (email)
+
+::::: row
+:::: left
 
 Sends an email containing a login link. This link directs the user to the After-logout path, where the login form should be located.
 
 The user in question must exist already.
+
+::::
+:::: right
 
 ```js
 import Userfront from "@userfront/core";
@@ -264,11 +407,20 @@ Userfront.init("demo1234");
 Userfront.sendLoginLink("admin@example.com");
 ```
 
+::::
+:::::
+
 ## sendResetLink (email)
+
+::::: row
+:::: left
 
 Sends an email containing a password reset link. This link directs the user to the Password reset path.
 
 The user in question must exist already.
+
+::::
+:::: right
 
 ```js
 import Userfront from "@userfront/core";
@@ -277,34 +429,207 @@ Userfront.init("demo1234");
 Userfront.sendResetLink("admin@example.com");
 ```
 
-# Tokens
+::::
+:::::
 
-## accessToken ()
+# User
 
-Returns the JWT access token.
+## user
+
+::::: row
+:::: left
+Returns information about the currently logged in user.
+
+::: warning Note
+Intended for use on the client side only, to display information about the user.
+:::
+
+::::
+:::::
+
+::::: row
+:::: left
+
+| Property      | Type          | Note                                       |
+| :------------ | :------------ | :----------------------------------------- |
+| `email`       | String        |                                            |
+| `name`        | String        | Full name                                  |
+| `image`       | String        | Image URL                                  |
+| `data`        | Object        | Custom JSON data object                    |
+| `username`    | String        |
+| `confirmedAt` | String        | When the user confirmed their email        |
+| `isConfirmed` | Boolean       | Whether the user has confirmed their email |
+| `createdAt`   | String        | When the user record was created           |
+| `updatedAt`   | String        | When the user record was last updated      |
+| `mode`        | String        | `live` or `test` mode                      |
+| `tenantId`    | String        |
+| `userId`      | Integer       |
+| `userUuid`    | String (UUID) |
+
+::::
+:::: right
 
 ```js
 import Userfront from "@userfront/core";
 Userfront.init("demo1234");
 
-Userfront.accessToken();
+Userfront.user;
+
+/** =>
+ * {
+ *    email: "jane@example.com",
+ *    name: "Jane Example",
+ *    image: "https://res.cloudinary.com/component/image/upload/avatars/avatar-plain-9.png",
+ *    data: {
+ *      value: "anything-you-want",
+ *      custom: {
+ *        value: "custom-value"
+ *      }
+ *    },
+ *    username: "jane-example",
+ *    confirmedAt: "2020-01-01T00:00:00.000Z",
+ *    isConfirmed: true,
+ *    createdAt: "2020-01-01T00:00:00.000Z",
+ *    updatedAt: "2020-01-01T00:00:00.000Z",
+ *    mode: "test",
+ *    tenantId: "demo1234",
+ *    userId: 1,
+ *    userUuid: "d6f0f045-f6ea-4262-8724-dfc0b77e7dc9",
+ * }
+ */
+```
+
+::::
+:::::
+
+## user.update (options)
+
+::::: row
+:::: left
+
+Sends a request to update the currently logged in user.
+
+The following user attributes are editable:
+
+| Property   | Type   |
+| :--------- | :----- |
+| `name`     | String |
+| `image`    | String |
+| `username` | String |
+| `data`     | Object |
+
+:::: right
+::::
+
+```js
+import Userfront from "@userfront/core";
+Userfront.init("demo1234");
+
+Userfront.user.update({
+  name: "John Example",
+  data: {
+    somethingCustom: true,
+  },
+});
+```
+
+::::
+:::::
+
+# Tokens
+
+## tokens.accessToken
+
+::::: row
+:::: left
+
+Returns the JWT access token.
+
+Your frontend application can send the access token to your server in order to authenticate a user and provide information about their access levels. For more information, see [Tokens & Access](/guide/auth/).
+
+::::
+:::: right
+
+```js
+import Userfront from "@userfront/core";
+Userfront.init("demo1234");
+
+Userfront.tokens.accessToken;
 
 // => "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2RlIjoidGVzdCIsImlzQ29uZmlybWVkIjp0cnVlLCJ1c2VySWQiOjEsInVzZXJVdWlkIjoiZDAwNTlmN2UtYzU0OS00NmYzLWEzYTMtOGEwNDY0MDkzZmMyIiwidGVuYW50SWQiOiJwOW55OGJkaiIsInNlc3Npb25JZCI6IjRlZjBlMjdjLTI1NDAtNDIzOS05YTJiLWRkZjgyZjE3YmExYiIsImF1dGhvcml6YXRpb24iOnsicDlueThiZGoiOnsidGVuYW50SWQiOiJwOW55OGJkaiIsIm5hbWUiOiJVc2VyZnJvbnQiLCJyb2xlcyI6WyJhZG1pbiJdLCJwZXJtaXNzaW9ucyI6W119fSwiaWF0IjoxNjE3MTQ4MDY3LCJleHAiOjE2MTk3NDAwNjd9.gYz4wxPHLY6PNp8KPEyIjLZ8QzG3-NFJGPitginuLaU"
 ```
 
-Your frontend application can send the access token to your server in order to authenticate a user and provide information about their access levels. For more information, see [Tokens & Access](/guide/auth/).
+::::
+:::::
 
-## idToken ()
+## tokens.accessTokenName
 
-Returns the JWT ID token.
+::::: row
+:::: left
+
+Returns the name of the cookie that holds the JWT access token.
+
+::::
+:::: right
 
 ```js
 import Userfront from "@userfront/core";
 Userfront.init("demo1234");
 
-Userfront.idToken();
+Userfront.tokens.accessTokenName;
+
+// => "access.demo1234"
+```
+
+::::
+:::::
+
+## tokens.idToken
+
+::::: row
+:::: left
+
+::: warning Note
+The ID token is not intended for authentication or access control.
+
+It is used client-side as a verifiable copy of the user's data. Typically it is easier to reference the [user](#user) object instead.
+:::
+
+Returns the JWT ID token.
+
+::::
+:::: right
+
+```js
+import Userfront from "@userfront/core";
+Userfront.init("demo1234");
+
+Userfront.tokens.idToken;
 
 // => "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2RlIjoidGVzdCIsInRlbmFudElkIjoicDlueThiZGoiLCJ1c2VySWQiOjEsInVzZXJVdWlkIjoiZDAwNTlmN2UtYzU0OS00NmYzLWEzYTMtOGEwNDY0MDkzZmMyIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlzQ29uZmlybWVkIjp0cnVlLCJ1c2VybmFtZSI6ImFkbWluIiwibmFtZSI6IkFkbWluIFVzZXIiLCJpbWFnZSI6Imh0dHBzOi8vcmVzLmNsb3VkaW5hcnkuY29tL2NvbXBvbmVudC9pbWFnZS91cGxvYWQvYXZhdGFycy9hdmF0YXItMDcucG5nIiwiZGF0YSI6eyJjdXN0b20iOiJkYXRhIn0sImNvbmZpcm1lZEF0IjoiMjAyMC0wOS0xMVQyMTo1MjoyOC44MjBaIiwiY3JlYXRlZEF0IjoiMjAyMC0wOS0xMVQyMTo1MjoyOC4wOTVaIiwidXBkYXRlZEF0IjoiMjAyMS0wMy0yNFQyMDo1MzowMi4zMDVaIiwic2Vzc2lvbklkIjoiNGVmMGUyN2MtMjU0MC00MjM5LTlhMmItZGRmODJmMTdiYTFiIiwiaWF0IjoxNjE3MTQ4MDY3LCJleHAiOjE2MTk3NDAwNjd9.SZXylt-4G9KtS1Tr52ei75l0Y2eYqYWhVYzQLzXMvS8"
 ```
 
-The ID token is not intended for authentication or access control. Instead, your frontend application can use it to display data about the current logged in user. For more information, see [Tokens & Access](/guide/auth/).
+::::
+:::::
+
+## tokens.idTokenName
+
+::::: row
+:::: left
+
+Returns the name of the cookie that holds the JWT ID token.
+
+::::
+:::: right
+
+```js
+import Userfront from "@userfront/core";
+Userfront.init("demo1234");
+
+Userfront.tokens.idTokenName;
+
+// => "id.demo1234"
+```
+
+::::
+:::::
