@@ -4,14 +4,6 @@
 
 ## Local development
 
-### Guide pages
-
-`vuepress dev guide`
-
-### API docs
-
-`vuepress dev docs`
-
-### Vs pages (Auth comparisons)
-
-`vuepress dev vs`
+```sh
+npm run serve
+```
