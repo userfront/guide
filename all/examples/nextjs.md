@@ -12,11 +12,10 @@ In this example, we will add authentication and access control to a Next.js appl
 
 We will use Create Next App for setup, and will create an application with the following:
 
-- Signup, login, and password reset
-- Single Sign-On (SSO)
-- Client-side access control
-- Server-side access control
-- API access
+- [Signup, login, and password reset](#signup-login-and-password-reset)
+- [Protected route](#protected-route-in-next-js) (server-side & client-side)
+- [API access](#next-js-authentication-with-an-api)
+- [Single Sign-On (SSO)](#next-js-sso-single-sign-on)
 
 ::::
 ::::right
@@ -61,12 +60,20 @@ To get Next.js up and running, start by installing [Create Next App](https://nex
 npx create-next-app
 ```
 
-Answer the prompts to install `create-next-app` and name your project `nextjs-example` (or whatever you want).
+Answer the prompts and name your project `nextjs-example` (or whatever you want).
+
+We will also use the [next-cookies](https://github.com/matthewmueller/next-cookies) library to read cookies, and the [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) library to verify JWT access tokens.
+
+Install these libraries with:
+
+```sh
+cd nextjs-example
+npm install --save next-cookies jsonwebtoken
+```
 
 Now our Next.js application is available at http://localhost:3000 when we run
 
 ```sh
-cd nextjs-example
 npm run dev
 ```
 
@@ -84,7 +91,9 @@ Just like it says, we can now edit the `pages/index.js` file to start working.
 ::::
 :::::
 
-## Set up routes
+## Set up Userfront
+
+## Pages & routing
 
 :::::row
 ::::left
@@ -188,6 +197,9 @@ To build out the routes and a navbar to navigate between them, create the follow
 
 <pre style="color:white">
 .
+├── common
+│ <span class="token string">├── auth.js</span>
+│
 ├── components
 │ <span class="token string">├── navbar.js</span>
 │
@@ -219,7 +231,7 @@ To build out the routes and a navbar to navigate between them, create the follow
 
 We'll show the navbar at the top of every page except the home page.
 
-We use an `isLoggedIn` prop in the `<Navbar>` component to show or hide different links:
+We pass a prop named `isLoggedIn` into the `<Navbar>` component to show or hide different links.
 
 ::::
 :::::
@@ -281,6 +293,33 @@ When the user is logged in, the navbar has links to the dashboard and password r
 
 ![Next.js navbar logged in](https://res.cloudinary.com/component/image/upload/v1627655291/guide/examples/nextjs-navbar-logged-in.png)
 :::
+
+::::
+:::::
+
+::::: row
+:::: left
+
+We can use a helper method in `/common/auth.js` to defined the `isLoggedIn` property based on whether the request has a JWT access token.
+
+```js
+// /common/auth.js
+
+import cookies from "next-cookies";
+import jwt from "jsonwebtoken";
+import Userfront from "@userfront/react";
+
+export function getNavbarProps(ctx) {
+  // Read the JWT access token from the request cookies
+  const { [Userfront.tokens.accessTokenName]: accessToken } = cookies(ctx);
+
+  return {
+    props: {
+      isLoggedIn: !!accessToken,
+    },
+  };
+}
+```
 
 ::::
 :::::
@@ -624,14 +663,14 @@ export default Dashboard;
 
 ### Protecting the dashboard page
 
-When a user is logged in, they are issued a JWT access token that gets stored as a cookie in their browser.
+When a user logs in, they are issued a JWT access token that gets stored as a cookie in their browser.
 
-We can read and verify this access token with each request:
+We can read and verify this access token with each request.
 
-- If the access token is valid, we include information about the user in the props for our pages
-- If the access token is not valid, we redirect the user to log in
+- **If the access token is valid**, we include information about the user in the props for our pages
+- **If the access token is not valid**, we redirect the user to log in
 
-To do this, create a file `/common/auth.js` where we can add a reusable method.
+To set up the reusable method, create a file `/common/auth.js`:
 
 <pre style="color:white">
 .
@@ -644,7 +683,7 @@ To do this, create a file `/common/auth.js` where we can add a reusable method.
 
 <br />
 
-We will use the [next-cookies](https://github.com/matthewmueller/next-cookies) library to read the request's cookies and the [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) library to verify incoming JWT access tokens.
+We will name our method `getPropsFromAccessToken`, because it returns JWT access token information for use in our page props.
 
 ::::
 :::::
@@ -710,7 +749,7 @@ export async function getPropsFromAccessToken(ctx, { verify } = {}) {
 ::::
 :::::
 
-## React authentication with an API
+## Next.js authentication with an API
 
 :::::row
 ::::left
@@ -744,9 +783,9 @@ There are many libraries to read and verify JWTs across various languages; here 
 :::::row
 ::::left
 
-For Userfront, the access token is available in your React application as `Userfront.accessToken()`.
+For Userfront, the access token is available in your Next.js application as `Userfront.accessToken()`.
 
-Your React application can send this as a `Bearer` token inside the `Authorization` header. For example:
+Your Next.js application can send this as a `Bearer` token inside the `Authorization` header. For example:
 
 ```js
 // Example of calling an endpoint with a JWT
@@ -834,12 +873,12 @@ app.get("/users", (req, res) => {
 ::::
 :::::
 
-## React SSO (Single Sign On)
+## Next.js SSO (Single Sign-On)
 
 :::::row
 ::::left
 
-From here, you can add social identity providers like Google, Facebook, and LinkedIn to your React application, or business identity providers like Azure AD, Office365, and more.
+From here, you can add social identity providers like Google, Facebook, and LinkedIn to your Next.js application, or business identity providers like Azure AD, Office365, and more.
 
 You do this by creating an application with the identity provider (e.g. Google), and then adding that application's credentials to the Userfront dashboard. The result is a modified sign on experience.
 
@@ -847,7 +886,7 @@ No additional code is needed to implement Single Sign On using this approach: yo
 ::::
 ::::right
 
-![React SSO form](https://res.cloudinary.com/component/image/upload/v1619211588/guide/sso-signup.png)
+![Next.js SSO form](https://res.cloudinary.com/component/image/upload/v1619211588/guide/sso-signup.png)
 
 ::::
 :::::
