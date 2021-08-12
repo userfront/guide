@@ -87,7 +87,7 @@ const store = new Vuex.Store({
           }
         });
         if (!modMatch) return;
-        modsToAdd[modName] = modMatch.eid;
+        modsToAdd[modNames[i]] = modMatch.eid;
       }
 
       Vue.set(state, "installation", {
