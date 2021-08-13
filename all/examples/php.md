@@ -84,7 +84,7 @@ In the event that the user does not have access to a page, we want to redirect t
 ::::
 ::::right
 :::tip
-With Userfront, a logged in user will have a JWT access token saved in their cookies as `access.ACCOUNT_ID`.
+With Userfront, a logged in user will have a JWT access token saved in their cookies as <access-token-name use-account-id="true"/>.
 
 In this example, we use `access.pn4qwpby`
 :::
