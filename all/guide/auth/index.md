@@ -1,20 +1,33 @@
 # Tokens and Access Control
 
-When a user logs into your application, they are issued 3 tokens:
+::::: row
+:::: left
 
-| Name                            | Description                                                                   |
-| ------------------------------- | ----------------------------------------------------------------------------- |
-| [Access token](#access-token)   | This token has information about the user's access levels.                    |
-| [ID token](#id-token)           | This token has more detailed information about the user, such as their image. |
-| [Refresh token](#refresh-token) | This token is used to obtain new Access & ID tokens.                          |
+When a user logs into your application, they are issued a [JWT access token](#jwt-access-token).
 
-These tokens are all [JWTs](/guide/jwt-json-web-token.html) (JSON Web Tokens) signed using the RSA algorithm, with signing keys specific to your account.
+You can use the JWT access token to determine what the user can access on your server.
 
-## Access token
+The access token is a JSON Web Token ([JWT](/guide/jwt-json-web-token.html)) signed using the RSA algorithm (RS256), with a signing key specific to your account.
+
+::::
+:::::
+
+## JWT access token
+
+::::: row
+:::: left
 
 You can use the access token to determine what the user can access on your server.
 
 Your application should send this token to your server, which will verify and decode the access token and then use the access token payload to determine what the user can access.
+
+::::
+:::: right
+
+<token title="Example JWT access token" value="eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjU1MjRhZWQ1LTdmZjktNGNiYi1hZGM4LWZlMTVjOTMxNWIwNiJ9.eyJtb2RlIjoidGVzdCIsInRlbmFudElkIjoiZGVtbzEyMzQiLCJ1c2VySWQiOjM2LCJ1c2VyVXVpZCI6Ijk2M2JmODk1LTFlNTEtNGQ4Yi04ZDk3LTk4Y2VjNjg3ZjQwZCIsImlzQ29uZmlybWVkIjpmYWxzZSwiYXV0aG9yaXphdGlvbiI6eyJkZW1vMTIzNCI6eyJyb2xlcyI6WyJtZW1iZXIiXX19LCJzZXNzaW9uSWQiOiIzZWJkMjhjMS03ZTEzLTRiNWMtYTJlMS04ODczZWU3NzYwMDUiLCJpYXQiOjE2Mjg4NzAzNzksImV4cCI6MTYzMTQ2MjM3OX0.lLRV3wTprz1-xrzdpTG8siMv8gsaFHH22-UCWotzuU2cWHAreNFBtG9tn-674AVPKcz5GEXVBInix_eIi7nYhU05QrvTQpmj93K5R4WzC6T8ypl-SBXs_UUIBJnxCWdkyO47XFkTiUiV-_F67s-qjjGUYVDR7CC4Q0L1ohnZsTJaToEodb_5OMCckwAWM248uECSQZI0Ip4hJrv_QAMNad3uVlZItL7RMrLoGGBrCPYQn30wcy6XGFs6jAE5G4uLg4LNe_I7xsBzeGDRqoQr5_1dc44_KOFss5zPND1mxlkvkKfXVbf6gqfri5oiR7B0Iya5Bhi3_PsJ2TI5eYj3UA" />
+
+::::
+:::::
 
 #### In the user's browser
 
@@ -26,15 +39,6 @@ Your application code can read and send this access token the same way it would 
 
 The actual access token will look something like this:
 
-```
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjk5LCJ1c2Vybm
-FtZSI6InNvbWV1c2VyIiwidXVpZCI6IjNiMjJhMjQzLTdkZDMtNTBhMy1jOWI0L
-TlkMWJiYzk2MTg4YiIsInByb2plY3QiOiJQUk9KRUNUX0lEIiwiYXV0aG9yaXph
-dGlvbiI6Im1lbWJlciIsImNyZWF0ZWRBdCI6IjIwMjAtMDEtMDFUMDA6MDA6MDE
-uMDAwWiIsImNvbmZpcm1lZCI6dHJ1ZSwiaXNEZXYiOmZhbHNlLCJpYXQiOjE1OT
-M2NDk2MDcsImV4cCI6MTU5NjI0MTYwN30.QQPTMEDrJ6FFuBJ8sCZCZZIjDZvpA
-85dI-EImILTG5g
-```
 
 This is a signed JWT; you can learn about the signing process [here](/guide/jwt-json-web-token.html).
 

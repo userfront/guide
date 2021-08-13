@@ -6,7 +6,7 @@ Access tokens define what a user can access on your server.
 
 When a user signs up or logs into your application, they receive an access token in their browser as a cookie. Your frontend should send this access token to your server, and your server should verify and decode the access token to determine which user is making the request along with what they are allowed to do.
 
-For more information about how to use access tokens, see [Tokens & Access](/guide/auth/#access-token).
+For more information about how to use access tokens, see [Tokens & Access](/guide/auth/#jwt-access-token).
 
 ### Account ID
 

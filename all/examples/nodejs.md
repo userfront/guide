@@ -46,7 +46,7 @@ Response:
 
 ## Protected route
 
-To build a route that only logged-in users can view, we need the client (frontend) to include the user's [JWT access token](/guide/auth/#access-token) in the `authorization` header for the request.
+To build a route that only logged-in users can view, we need the client (frontend) to include the user's [JWT access token](/guide/auth/#jwt-access-token) in the `authorization` header for the request.
 
 Our server can then read the header and reject any requests without a valid JWT access token.
 
@@ -119,7 +119,7 @@ Response:
 
 ## Admin route
 
-To build a route that only admin users can view, we need the client (frontend) to include the user's [JWT access token](/guide/auth/#access-token) in the `authorization` header for the request.
+To build a route that only admin users can view, we need the client (frontend) to include the user's [JWT access token](/guide/auth/#jwt-access-token) in the `authorization` header for the request.
 
 Our server can then read the header and reject any JWT access tokens that don't have the `admin` role.
 

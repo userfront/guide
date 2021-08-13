@@ -254,7 +254,6 @@ try {
 } catch (Exception $e) {
     setcookie("access_" . $tenantId, "", time() - 3600);
     setcookie("id_" . $tenantId, "", time() - 3600);
-    setcookie("refresh_" . $tenantId, "", time() - 3600);
     header("Location: /login.php");
     die();
 }
@@ -312,7 +311,6 @@ try {
 } catch (Exception $e) {
     setcookie("access_" . $tenantId, "", time() - 3600);
     setcookie("id_" . $tenantId, "", time() - 3600);
-    setcookie("refresh_" . $tenantId, "", time() - 3600);
     header("Location: /login.php");
     die();
 }
@@ -395,7 +393,6 @@ try {
 } catch (Exception $e) {
     setcookie("access_" . $tenantId, "", time() - 3600);
     setcookie("id_" . $tenantId, "", time() - 3600);
-    setcookie("refresh_" . $tenantId, "", time() - 3600);
     header("Location: /protected.php");
     die();
 }
@@ -469,7 +466,6 @@ try {
 } catch (Exception $e) {
     setcookie("access_" . $tenantId, "", time() - 3600);
     setcookie("id_" . $tenantId, "", time() - 3600);
-    setcookie("refresh_" . $tenantId, "", time() - 3600);
     header("Location: /protected.php");
     die();
 }
