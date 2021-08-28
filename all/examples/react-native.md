@@ -20,7 +20,7 @@ In the meantime, you can reference a working signup form at [https://snack.expo.
 
 #### GitHub repo for this example
 
-Coming soon
+[https://github.com/userfront/react-native-example](https://github.com/userfront/react-native-example)
 :::
 
 ::::
