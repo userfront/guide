@@ -7,6 +7,7 @@
       ><code class="language-json">{{ value }}</code></pre>
     </div>
     <el-button
+      v-if="decoded"
       size="small"
       type="text"
       @click="showDecoded = !showDecoded"
@@ -25,7 +26,7 @@
 
 <script>
 export default {
-  props: ["title", "value"],
+  props: ["title", "value", "decoded"],
   data() {
     return {
       showDecoded: false,

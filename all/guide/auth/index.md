@@ -3,9 +3,9 @@
 ::::: row
 :::: left
 
-When a user logs into your application, they are issued a JWT access token.
+When a user sign into your application, Userfront issues them a **JWT access token**.
 
-You can use the JWT access token to determine what the user can access on your server.
+You can send this JWT access token to your backend with each request to determine who the user is and what they can access.
 
 ::::
 :::::
@@ -15,25 +15,47 @@ You can use the JWT access token to determine what the user can access on your s
 ::::: row
 :::: left
 
-When a user logs into your application:
+The token flow is as follows:
 
-1. Your signup or login form sends a request to Userfront, which returns their JWT access token and saves it as a cookie.
+1. **[User signs up or logs in](#user-signup-and-login)**: Your signup or login form sends a request to Userfront, which returns their JWT access token and saves it as a cookie.
 
-2. From then on, your frontend code should [send the access token](#sending-the-access-token) with each request, and your server should [verify the access token](#verifying-the-access-token) before responding.
+2. **[Send access token to your server](#sending-the-jwt-access-token)**: Your frontend code should send the access token with each request, and your server should verify the access token before responding.
 
 ::::
 :::::
 
 ![Userfront token flow](https://res.cloudinary.com/component/image/upload/v1616013076/permanent/userfront-diagram.png)
 
-## Sending the access token
+## User signup and login
 
 ::::: row
 :::: left
 
+You can use pre-made signup and login forms or build your own forms: see the [Toolkit](/guide/toolkit) section for how to do this.
+
 The JWT access token is automatically saved in the browser as a cookie named <access-token-name use-account-id="true"/>
 
-Your application can read and send this cookie the same way it would for any other cookie.
+::::
+:::::
+
+## Sending the JWT access token
+
+::::: row
+:::: left
+
+Your frontend can send the JWT access token directly as a cookie, or you can include the access token in the header of your API requests.
+
+::::
+:::::
+
+#### Sending as a cookie
+
+::::: row
+:::: left
+
+The JWT access token is automatically included as a cookie with each request when a user browses your website.
+
+The cookie is named <access-token-name use-account-id="true"/>
 
 ::::
 :::: right
@@ -50,10 +72,14 @@ Your application can read and send this cookie the same way it would for any oth
 ::::
 :::::
 
+#### Sending as a bearer token (API calls)
+
 ::::: row
 :::: left
 
-For API calls, you can use [Userfront.tokens.accessToken](/docs/js.html#tokens-accesstoken) to include the access token.
+For API calls, you can include the JWT access token in the request header.
+
+To do this, you can read the cookie by name or use [Userfront.tokens.accessToken](/docs/js.html#tokens-accesstoken).
 
 ::::
 :::: right
@@ -71,64 +97,99 @@ fetch('https://api.example.com', {
 ::::
 :::::
 
-## Verifying the access token
+## Verify the JWT access token
 
 ::::: row
 :::: left
 
-Your server can verify each incoming JWT access token by using a JWT library along with your account's JWT public key.
+Your server can verify each incoming JWT access token to prove that the token is authentic.
 
-The access token is a JSON Web Token ([JWT](/guide/jwt-json-web-token.html)) signed with the RSA algorithm (RS256) using a signing key specific to your account.
-
-Once your server verifies the access token, your server can use the access token payload to determine what the user can access.
+You do this using a JWT library along with your account's JWT public key.
 
 ::::
 :::: right
+[Learn about JWT structure](https://userfront.com/guide/jwt-json-web-token.html)
+::::
+:::::
 
+::::: row
+:::: left
+
+The JWT access token is a JSON Web Token (JWT) signed with the RSA algorithm (RS256), using a signing key specific to your account.
+
+::::
+:::: right
 <token title="Example JWT access token" value="eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjU1MjRhZWQ1LTdmZjktNGNiYi1hZGM4LWZlMTVjOTMxNWIwNiJ9.eyJtb2RlIjoidGVzdCIsInRlbmFudElkIjoiZGVtbzEyMzQiLCJ1c2VySWQiOjM2LCJ1c2VyVXVpZCI6Ijk2M2JmODk1LTFlNTEtNGQ4Yi04ZDk3LTk4Y2VjNjg3ZjQwZCIsImlzQ29uZmlybWVkIjpmYWxzZSwiYXV0aG9yaXphdGlvbiI6eyJkZW1vMTIzNCI6eyJyb2xlcyI6WyJtZW1iZXIiXX19LCJzZXNzaW9uSWQiOiIzZWJkMjhjMS03ZTEzLTRiNWMtYTJlMS04ODczZWU3NzYwMDUiLCJpYXQiOjE2Mjg4NzAzNzksImV4cCI6MTYzMTQ2MjM3OX0.lLRV3wTprz1-xrzdpTG8siMv8gsaFHH22-UCWotzuU2cWHAreNFBtG9tn-674AVPKcz5GEXVBInix_eIi7nYhU05QrvTQpmj93K5R4WzC6T8ypl-SBXs_UUIBJnxCWdkyO47XFkTiUiV-_F67s-qjjGUYVDR7CC4Q0L1ohnZsTJaToEodb_5OMCckwAWM248uECSQZI0Ip4hJrv_QAMNad3uVlZItL7RMrLoGGBrCPYQn30wcy6XGFs6jAE5G4uLg4LNe_I7xsBzeGDRqoQr5_1dc44_KOFss5zPND1mxlkvkKfXVbf6gqfri5oiR7B0Iya5Bhi3_PsJ2TI5eYj3UA" />
 
+::::
+:::::
+
+::::: row
+:::: left
+
+To verify a JWT access token, use a JWT library along with your account's JWT public key (found in your dashboard under Settings).
+
+::::
+:::: right
 ::: card
 
-#### Example public key
+#### Popular JWT libraries
 
-<pre class="light-code"><code>-----BEGIN RSA PUBLIC KEY-----
+- [Node.js](https://github.com/auth0/node-jsonwebtoken)
+- [.NET](https://github.com/jwt-dotnet/jwt)
+- [PHP](https://github.com/firebase/php-jwt)
+- [See more](/guide/auth/jwt-libraries.html)
+
+:::
+
+```js
+// Example with Node.js
+
+const jwt = require("jsonwebtoken");
+
+const publicKey = `-----BEGIN RSA PUBLIC KEY-----
 MIIBCgKCAQEAodD/IEagav7wlBX+k30YOSFpYT0u7AtV3ljwC52ShCFFGVvw86T5
 VTbg5Q/L/dgQT0+OZi+Fe/aAIL6j+3d8+Md5nGg7zqTv33GE7tN4ZoSkYnPMAm1I
 PjkOevpia98u8n1jWE/OnDnQqgozcy2zssGcJ1+QwJWuZWVObbFiA6ppFlyb9Hm8
 2wEgvBqjuTqCvLdJO5CtY5ya5OpGLpnqlsXTRgJEEFk0VTdH56ztcLFMDMxm4OVW
 aWy+i4YieTRRKnbyT7fzDPiZupkcg2jwVF49CtyB9UWtE/+/BAKtJtBLfdZ5X1dK
 RqesE10ysVdGxeyeRpyFltEfF5QWAzn99wIDAQAB
------END RSA PUBLIC KEY-----</code></pre>
+-----END RSA PUBLIC KEY-----`;
 
-:::
+// Verify the token
+const verifiedPayload = jwt.verify(accessToken, publicKey, {
+  algorithms: ["RS256"],
+});
+```
 
 ::::
 :::::
 
 ### Access token payload
 
-The actual access token will look something like this:
+::::: row
+:::: left
 
+The verified access token payload will look something like this:
 
-This is a signed JWT; you can learn about the signing process [here](/guide/jwt-json-web-token.html).
-
-When you decode the access token using a JWT library, the access token payload looks like:
+::::
+:::::
 
 ```json
 {
-  "mode": "live",
-  "userId": 99,
-  "userUuid": "51a0d840-ffcd-457e-8676-0ab890008cc5",
-  "tenantId": "nz569yb7",
-  "isConfirmed": true,
+  "mode": "test",
+  "tenantId": "demo1234",
+  "userId": 36,
+  "userUuid": "963bf895-1e51-4d8b-8d97-98cec687f40d",
+  "isConfirmed": false,
   "authorization": {
-    "nz569yb7": {
-      "roles": ["admin"]
+    "demo1234": {
+      "roles": ["member"]
     }
   },
-  "sessionId": "9cd533f8-0a4c-43a3-9b9d-a9382231a7f2",
-  "iat": 1602104109,
-  "exp": 1604696109
+  "sessionId": "3ebd28c1-7e13-4b5c-a2e1-8873ee776005",
+  "iat": 1628870379,
+  "exp": 1631462379
 }
 ```
 
