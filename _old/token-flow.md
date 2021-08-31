@@ -24,6 +24,6 @@ Each time a user signs on, they receive 3 tokens.
 
 | Name                                        | Description                                                                   |
 | ------------------------------------------- | ----------------------------------------------------------------------------- |
-| [Access token](/guide/auth/#access-token)   | This token has information about the user's access levels.                    |
+| [Access token](/guide/auth/#jwt-access-token)   | This token has information about the user's access levels.                    |
 | [ID token](/guide/auth/#id-token)           | This token has more detailed information about the user, such as their image. |
 | [Refresh token](/guide/auth/#refresh-token) | This token is used to obtain new Access & ID tokens.                          |

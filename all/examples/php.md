@@ -84,7 +84,7 @@ In the event that the user does not have access to a page, we want to redirect t
 ::::
 ::::right
 :::tip
-With Userfront, a logged in user will have a JWT access token saved in their cookies as `access.ACCOUNT_ID`.
+With Userfront, a logged in user will have a JWT access token saved in their cookies as <access-token-name use-account-id="true"/>.
 
 In this example, we use `access.pn4qwpby`
 :::
@@ -254,7 +254,6 @@ try {
 } catch (Exception $e) {
     setcookie("access_" . $tenantId, "", time() - 3600);
     setcookie("id_" . $tenantId, "", time() - 3600);
-    setcookie("refresh_" . $tenantId, "", time() - 3600);
     header("Location: /login.php");
     die();
 }
@@ -312,7 +311,6 @@ try {
 } catch (Exception $e) {
     setcookie("access_" . $tenantId, "", time() - 3600);
     setcookie("id_" . $tenantId, "", time() - 3600);
-    setcookie("refresh_" . $tenantId, "", time() - 3600);
     header("Location: /login.php");
     die();
 }
@@ -395,7 +393,6 @@ try {
 } catch (Exception $e) {
     setcookie("access_" . $tenantId, "", time() - 3600);
     setcookie("id_" . $tenantId, "", time() - 3600);
-    setcookie("refresh_" . $tenantId, "", time() - 3600);
     header("Location: /protected.php");
     die();
 }
@@ -469,7 +466,6 @@ try {
 } catch (Exception $e) {
     setcookie("access_" . $tenantId, "", time() - 3600);
     setcookie("id_" . $tenantId, "", time() - 3600);
-    setcookie("refresh_" . $tenantId, "", time() - 3600);
     header("Location: /protected.php");
     die();
 }

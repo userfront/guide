@@ -2,7 +2,7 @@
   <!-- Adapted from https://github.com/vuejs/vuepress/blob/51277f815532fbcee5cb351217f94d19a6f44cbb/packages/%40vuepress/theme-default/global-components/CodeBlock.vue -->
   <div
     class="theme-code-block"
-    :class="{ 'theme-code-block__active': active }"
+    :class="{ 'theme-code-block__active': active, 'light-code': light }"
     :ref="`${randomId}-${tenantId}`"
   >
     <div :class="`language-${language} extra-class`">
@@ -18,6 +18,7 @@ import Prism from "prismjs";
 import "prismjs/components/prism-bash";
 import "prismjs/components/prism-ruby";
 import "prismjs/components/prism-python";
+import "prismjs/components/prism-json";
 
 export default {
   name: "CodeBlock",
@@ -27,6 +28,10 @@ export default {
       required: true,
     },
     active: {
+      type: Boolean,
+      default: false,
+    },
+    light: {
       type: Boolean,
       default: false,
     },

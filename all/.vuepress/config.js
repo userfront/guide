@@ -95,10 +95,6 @@ module.exports = {
                 link: "/guide/default-secure-software.md",
               },
               { text: "Authentication", link: "/guide/authentication.md" },
-              {
-                text: "JSON Web Tokens (JWTs)",
-                link: "/guide/jwt-json-web-token.md",
-              },
               { text: "Auth landscape", link: "/guide/auth-landscape.md" },
               {
                 text: "Auth provider comparison",
@@ -122,8 +118,9 @@ module.exports = {
     ],
     sidebar: {
       "/guide/auth/": [
-        "/guide/auth/token-flow.md",
+        "/guide/auth/",
         "/guide/auth/multi-tenancy.md",
+        ["/guide/auth/jwt-json-web-token.md", "JWT info"],
       ],
       "/examples/": [
         {

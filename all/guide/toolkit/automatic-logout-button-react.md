@@ -92,7 +92,7 @@ Whenever the user is logged in, the logout button will be clickable.
 ::::: row
 :::: left
 
-Whenever the logout button is clicked, it makes an API call to Userfront to invalidate the user's current session and clear any refresh tokens (if applicable).
+Whenever the logout button is clicked, it makes an API call to Userfront to invalidate the user's current session and clear any refresh tokens.
 
 The button then removes the access token and ID token cookies from the browser.
 

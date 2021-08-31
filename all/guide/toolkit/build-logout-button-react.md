@@ -162,7 +162,7 @@ The [logout()](/docs/js.html#logout) method allows you to log out a user.
 Userfront then does the following:
 
 1. Invalidates the user's current session
-2. Clears any access, ID, and refresh tokens from the browser
+2. Clears any Userfront-issued tokens from the browser
 3. Redirects the page to the [After-logout path](/guide/glossary.html#after-logout-path)
 
 ::: tip NOTE
@@ -229,7 +229,7 @@ class LogoutButton extends React.Component {
 ::::: row
 :::: left
 
-Whenever `Userfront.logout()` is called, the method makes an API call to Userfront to invalidate the user's current session and clear any refresh tokens (if applicable).
+Whenever `Userfront.logout()` is called, the method makes an API call to Userfront to invalidate the user's current session and clear any refresh tokens.
 
 The method then removes the access token and ID token cookies from the browser.
 
