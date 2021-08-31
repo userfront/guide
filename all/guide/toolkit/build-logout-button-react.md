@@ -162,7 +162,7 @@ The [logout()](/docs/js.html#logout) method allows you to log out a user.
 Userfront then does the following:
 
 1. Invalidates the user's current session
-2. Clears any access, ID, and refresh tokens from the browser
+2. Clears any Userfront-issued tokens from the browser
 3. Redirects the page to the [After-logout path](/guide/glossary.html#after-logout-path)
 
 ::: tip NOTE

@@ -52,7 +52,7 @@ For more information about how to use ID tokens, see [Tokens & Access](/guide/au
 
 A type of signed, secure token that contains information in the form of an encoded JSON object.
 
-For more information, see the section about [JSON Web Tokens (JWTs)](/guide/jwt-json-web-token.html).
+For more information, see the section about [JSON Web Tokens (JWTs)](/guide/auth/jwt-json-web-token.html).
 
 ### JWT
 

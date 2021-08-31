@@ -85,4 +85,4 @@ Congratulations, you've added auth to your site.
 Learn more about the JWT access token:
 
 - [Tokens & Access](/guide/auth/)
-- [What is a JWT](/guide/jwt-json-web-token.html)
+- [What is a JWT](/guide/auth/jwt-json-web-token.html)
