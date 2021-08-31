@@ -229,7 +229,7 @@ class LogoutButton extends React.Component {
 ::::: row
 :::: left
 
-Whenever `Userfront.logout()` is called, the method makes an API call to Userfront to invalidate the user's current session and clear any refresh tokens (if applicable).
+Whenever `Userfront.logout()` is called, the method makes an API call to Userfront to invalidate the user's current session and clear any refresh tokens.
 
 The method then removes the access token and ID token cookies from the browser.
 
