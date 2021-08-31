@@ -440,8 +440,8 @@ Userfront.sendResetLink("admin@example.com");
 :::: left
 Returns information about the currently logged in user.
 
-::: warning Note
-Intended for use on the client side only, to display information about the user.
+::: tip Note
+Userfront.user is intended for frontend use only, to help you display information about the user.
 :::
 
 ::::

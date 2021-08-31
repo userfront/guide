@@ -33,7 +33,7 @@ The token flow is as follows:
 
 You can use pre-made signup and login forms or build your own forms: see the [Toolkit](/guide/toolkit) section for how to do this.
 
-The JWT access token is automatically saved in the browser as a cookie named <access-token-name use-account-id="true"/>
+When you use a toolkit form or the Userfront core JS library, the user's JWT access token is automatically saved in the browser as a cookie named <access-token-name use-account-id="true"/>
 
 ::::
 :::::
@@ -165,74 +165,131 @@ const verifiedPayload = jwt.verify(accessToken, publicKey, {
 ::::
 :::::
 
-### Access token payload
+#### Access token payload
 
 ::::: row
 :::: left
 
-The verified access token payload will look something like this:
+The verified access token payload is a JSON object with information about the user.
+
+You can use this information to look up additional tables asssociated with the user or tenant, and to determine the user's access level.
+
+::::
+:::: right
+
+```js
+// verifiedPayload =>
+
+{
+  mode: "test",
+  tenantId: "demo1234",
+  userId: 36,
+  userUuid: "963bf895-1e51-4d8b-8d97-98cec687f40d",
+  isConfirmed: false,
+  authorization: {
+    demo1234: {
+      roles: ["member"],
+    },
+  },
+  sessionId: "3ebd28c1-7e13-4b5c-a2e1-8873ee776005",
+  iat: 1628870379,
+  exp: 1631462379,
+};
+```
 
 ::::
 :::::
 
-```json
-{
-  "mode": "test",
-  "tenantId": "demo1234",
-  "userId": 36,
-  "userUuid": "963bf895-1e51-4d8b-8d97-98cec687f40d",
-  "isConfirmed": false,
-  "authorization": {
-    "demo1234": {
-      "roles": ["member"]
-    }
-  },
-  "sessionId": "3ebd28c1-7e13-4b5c-a2e1-8873ee776005",
-  "iat": 1628870379,
-  "exp": 1631462379
-}
+## Using the JWT access token on your server
+
+::::: row
+:::: left
+
+If the access token passes verification, your server can trust that it was signed by Userfront and contains accurate information.
+
+#### Logged in or out?
+
+If a request has a valid JWT access token, you can consider the user as logged in.
+
+::::
+:::::
+
+#### Associated user information
+
+::::: row
+:::: left
+
+To read or update information associated with the user on your own system, use the `userId` or `userUuid` from the access token payload along with a column in your database table. For example:
+
+```
+SELECT * FROM table_name WHERE user_id = 36;
 ```
 
-You can use this information to look up additional tables asssociated with the user or tenant, and to determine the user's access level.
-
-#### Usage on your server
-
-When you send the access token to your server, your backend should verify that the JWT is valid by using the JWT Public Key (found in your dashboard under account Settings).
-
-If the access token is valid and not expired, your server can trust that it was signed by Userfront and contains accurate information.
+#### Access control
 
 To determine a user's level of access, your application can inspect the `authorization` object in the access token payload, which looks like:
 
-```json
-"authorization": {
-  "nz569yb7": {
-    "roles": ["admin"]
-  }
+```js
+authorization: {
+  demo1234: {
+    roles: ["member"],
+  },
 }
 ```
 
 This object contains all of the tenants, roles, and permissions associated with a user.
 
-:::tip
 Your application is responsible for determining what a given role or permission means in terms of what the user is allowed to do.
-:::
 
-#### In the user's browser
+::::
+:::: right
 
-Userfront tools automatically add the access token to the browser as a cookie named `access.ACCOUNT_ID`.
+```js {6,7,9-13}
+// verifiedPayload =>
 
-Your application code can read and send this access token the same way it would read any other cookie.
+{
+  mode: "test",
+  tenantId: "demo1234",
+  userId: 36,
+  userUuid: "963bf895-1e51-4d8b-8d97-98cec687f40d",
+  isConfirmed: false,
+  authorization: {
+    demo1234: {
+      roles: ["member"],
+    },
+  },
+  sessionId: "3ebd28c1-7e13-4b5c-a2e1-8873ee776005",
+  iat: 1628870379,
+  exp: 1631462379,
+};
+```
+
+::::
+:::::
 
 ## Other tokens
 
+::::: row
+:::: left
+
+#### Refresh token
+
+The refresh token is used by the Userfront script to obtain new access and ID tokens. Userfront automatically adds the refresh token to the browser.
+
+If you have enabled the `httpOnly` setting in live mode, you will not be able to view the refresh token in your browser.
+
+#### ID token
+
+The ID token contains additional data about the user and is intended for use directly in the browser.
+
+Instead of accessing this token directly, you can use [Userfront.user](/docs/js.html#user).
+
+::::
+:::: right
 :::tip
-The ID token is intended for use directly in the browser. To authenticate the user with your server, use the access token.
+You do not need to use the other tokens directly.
 :::
 
-## Refresh token
+::::
 
-The refresh token is used by the Userfront script to obtain new access and ID tokens. Userfront tools automatically add the refresh token to the browser as a cookie named `refresh.ACCOUNT_ID`.
-
-:::tip
-You do not need to use the refresh token directly.
-:::
+:::::
