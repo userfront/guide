@@ -117,15 +117,15 @@ eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvZSIsImlhdCI6MTUxNjIzOTA
 
 The header and payload of a JWT can be read by the user's browser.
 
-In this example, the JWT could be used to display the username without making any API calls, because the username is in the JWT payload.
+In this example, the JWT can be used to display the username without making any API calls, because the username is in the JWT payload.
 
 :::tip
 A JWT should only contain information that the user is allowed to see.
 :::
 
-Once constructed by a server and sent to the browser, this JWT could be sent to another server to use as authentication.
+Once constructed by a server and sent to the browser, this JWT can be sent to any other server to identify the user.
 
-As long as the other server already has the secret used to sign the JWT, the server can verify that the payload has not been tampered with.
+The other server can use a public key to verify that the payload has not been tampered with.
 ::::
 :::: right
 

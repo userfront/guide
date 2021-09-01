@@ -1,4 +1,4 @@
-# Tokens and Access Control
+# Tokens and access control
 
 ::::: row
 :::: left
@@ -280,7 +280,9 @@ Instead of accessing this token directly, you can use [Userfront.user](/docs/js.
 
 #### Refresh token
 
-The refresh token is used by the Userfront script to obtain new access and ID tokens. Userfront automatically adds the refresh token to the browser.
+The refresh token is used by the Userfront script to obtain new access and ID tokens.
+
+Userfront automatically adds the refresh token to the browser.
 
 If you have enabled the `httpOnly` setting in live mode, you will not be able to view the refresh token in your browser.
 
