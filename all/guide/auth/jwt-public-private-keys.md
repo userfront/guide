@@ -2,13 +2,13 @@
 
 ::::: row
 :::: left
-Userfront uses the `RS256` algorithm for JWT access tokens.
+Userfront uses the `RS256` algorithm to sign JWT access tokens.
 
 The `RS256` algorithm has two keys: a public key and a private key.
 
 The public key is used to verify access token authenticity, and the private key is used to create access tokens.
-::::
 
+::::
 :::::
 
 ## JWT public key
@@ -18,21 +18,21 @@ The public key is used to verify access token authenticity, and the private key 
 
 You can use your JWT public key to verify the JWT access tokens granted to your users when they log into your application.
 
-Once you verify an access token, you can trust that it was created by Userfront and that it has not been altered by a third party.
+Once you have verified an access token, you can trust that it was created by Userfront and that it has not been altered by a third party.
 
 Your JWT public key is available in the **Settings** tab of your Userfront dashboard.
 
 ::::
 :::: right
 ::: tip
-The JWT public key is truly public: it can be shared anywhere without reducing security.
+Your JWT public key is truly public. It can be shared anywhere without reducing security.
 :::
 
 Learn how to verify an access token [here](/guide/auth/#verify-the-jwt-access-token).
 ::::
 :::::
 
-#### Plain text
+#### Plain text JWT public key
 
 ::::: row
 :::: left
@@ -61,10 +61,14 @@ RqesE10ysVdGxeyeRpyFltEfF5QWAzn99wIDAQAB
 -----END RSA PUBLIC KEY-----
 ```
 
+::: tip
+You have a different JWT public key in live mode than in test mode.
+:::
+
 ::::
 :::::
 
-#### Base64
+#### Base64 encoded
 
 ::::: row
 :::: left
@@ -73,7 +77,7 @@ If you want to add the JWT public key as an environment variable for your system
 
 Userfront provides this version alongside the plain text version as a convenience.
 
-The Base64 encoded version is the same public key, and you can Base64 decode this version to get the plain text version.
+The Base64 encoded version is the same public key, and you can Base64 **decode** this version to get the plain text version.
 
 ::::
 :::: right
@@ -90,9 +94,9 @@ LS0tLS1CRUdJTiBSU0EgUFVCTElDIEtFWS0tLS0tCk1JSUJDZ0tDQVFFQW9kRC9JRWFnYXY3d2xCWCtr
 ::::: row
 :::: left
 
-Userfront creates JWT access tokens and signs them with the `RS256` algorithm using a private key specific to your account.
+Userfront uses a private key specific to your account to create JWT access tokens for your users.
 
-This private key is not available in your dashboard: Userfront encrypts and stores each private key such that it is only accessible during automated token creation.
+This private key is not available in your dashboard: Userfront encrypts each private key such that it is only accessible during automated token creation.
 
 ::::
 :::::
@@ -101,7 +105,7 @@ This private key is not available in your dashboard: Userfront encrypts and stor
 
 ::::: row
 :::: left
-The `RS256` algorithm uses SHA-256 hashing along with large-modulus RSA encryption as recommended by the NSA for protecting sensitive information.
+The `RS256` algorithm uses SHA-256 hashing along with large-modulus RSA signing as recommended by the NSA for protecting sensitive information.
 
 ::::
 :::: right

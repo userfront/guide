@@ -276,7 +276,18 @@ Your application is responsible for determining what a given role or permission 
 
 The ID token contains additional data about the user and is intended for use directly in the browser.
 
-Instead of accessing this token directly, you can use [Userfront.user](/docs/js.html#user).
+Instead of accessing the ID token directly, you can use [Userfront.user](/docs/js.html#user).
+
+::::
+:::: right
+:::tip
+You do not need to use the ID or refresh tokens directly.
+:::
+
+::::
+:::::
+::::: row
+:::: left
 
 #### Refresh token
 
@@ -285,12 +296,5 @@ The refresh token is used by the Userfront script to obtain new access and ID to
 Userfront automatically adds the refresh token to the browser.
 
 If you have enabled the `httpOnly` setting in live mode, you will not be able to view the refresh token in your browser.
-
-::::
-:::: right
-:::tip
-You do not need to use the ID or refresh tokens directly.
-:::
-
 ::::
 :::::
