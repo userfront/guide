@@ -118,9 +118,11 @@ module.exports = {
     ],
     sidebar: {
       "/guide/auth/": [
-        "/guide/auth/",
+        ["/guide/auth/", "Tokens & access"],
+        ["/guide/auth/jwt-json-web-token.md", "JWT structure"],
+        ["/guide/auth/jwt-public-private-keys.md", "JWT public & private keys"],
+        "/guide/auth/jwt-libraries.md",
         "/guide/auth/multi-tenancy.md",
-        ["/guide/auth/jwt-json-web-token.md", "JWT info"],
       ],
       "/examples/": [
         {
