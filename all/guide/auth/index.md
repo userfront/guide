@@ -295,6 +295,6 @@ The refresh token is used by the Userfront script to obtain new access and ID to
 
 Userfront automatically adds the refresh token to the browser.
 
-If you have enabled the `httpOnly` setting in live mode, you will not be able to view the refresh token in your browser.
+If you have enabled the `httpOnly` setting in live mode, you will not be able to view the refresh token in your browser. This is an additional security layer that prevents anyone from viewing or copying the refresh token.
 ::::
 :::::
