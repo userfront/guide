@@ -131,6 +131,10 @@ There are also 2 endpoints for searching all users in a tenant: one via GET and 
 
 Creates a new user.
 
+::: tip
+If you want to import or create many users, see [user import & export](/guide/import-export.html).
+:::
+
 <parameters path="/v0/users" verb="post" :show-only="['email', 'username', 'name', 'image', 'data']"/>
 
 ::::
