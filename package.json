@@ -4,12 +4,12 @@
   "description": "Guide for userfront.com",
   "main": "index.js",
   "dependencies": {
-    "@userfront/core": "^0.1.16",
+    "@userfront/core": "^0.2.26",
     "axios": "^0.21.1",
     "core-js": "^2.6",
     "element-ui": "^2.15.2",
     "js-cookie": "^2.2.1",
-    "vuepress": "^1.8.1",
+    "vuepress": "^1.8.2",
     "vuex": "^3.6.2"
   },
   "devDependencies": {
