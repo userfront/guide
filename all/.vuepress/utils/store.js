@@ -144,10 +144,9 @@ const store = new Vuex.Store({
             },
           }
         );
-        const tokenName = tokenLevel === "admin" ? "liveAdmin" : "liveReadonly";
-        commit("setTenantToken", data[tokenName]);
+        commit("setTenantToken", data.results[0].token);
         state.loadingToken = false;
-        return data[tokenName];
+        return data.results[0].token;
       } catch (error) {
         state.loadingToken = false;
         return;
@@ -199,8 +198,8 @@ const store = new Vuex.Store({
     //         },
     //       }
     //     );
-    //     commit("setWebhookToken", data.liveWebhook);
-    //     return data.liveWebhook;
+    //     commit("setWebhookToken", data.results[0].token);
+    //     return data.results[0].token;
     //   } catch (error) {
     //     return;
     //   }
