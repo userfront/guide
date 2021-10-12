@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  props: ["path", "verb", "showOnly"],
+  props: ["path", "verb", "showOnly", "tokenType"],
   computed: {
     url() {
       return `https://api.userfront.com${this.path
@@ -50,6 +50,7 @@ export default {
       }
     },
     token() {
+      if (this.tokenType === "jwt") return `user_jwt_access_token`;
       return this.$store.state.tenantToken || this.$store.state.demoToken;
     },
     payload() {
