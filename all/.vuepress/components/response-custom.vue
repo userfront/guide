@@ -14,15 +14,8 @@ import Prism from "prismjs";
 import "prismjs/components/prism-json";
 
 export default {
-  props: ["title", "path", "verb"],
+  props: ["title", "response"],
   computed: {
-    response() {
-      try {
-        return this.$docs.paths[this.path][this.verb].responses[200] || {};
-      } catch (error) {
-        return {};
-      }
-    },
     responseSample() {
       return JSON.stringify(this.response, null, "  ");
     },
