@@ -54,7 +54,7 @@ export default {
   },
   computed: {
     loading() {
-      return this.$store.state.loadingToken;
+      return this.$store.state.loadingKey;
     },
     showWarning() {
       return (

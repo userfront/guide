@@ -28,7 +28,7 @@ const store = new Vuex.Store({
     demoKey: "uf_test_readonly_demo1234_2d87b3d230bda5685276b43efdac2852",
     activeTenant: JSON.parse(JSON.stringify(demoTenant)),
     tenantKey: "",
-    loadingToken: false,
+    loadingKey: false,
     installation: {
       tenantId: demoTenant.tenantId,
       mods: JSON.parse(JSON.stringify(demoMods)),
@@ -128,13 +128,13 @@ const store = new Vuex.Store({
 
     async setTenantKey({ commit, state }, tenantId) {
       try {
-        if (state.tenantKey.includes(tenantId) || state.loadingToken) return;
+        if (state.tenantKey.includes(tenantId) || state.loadingKey) return;
         const authorization = getAuthorizationObject();
         tenantId = tenantId || Object.keys(authorization)[0];
         const tokenLevel = authorization[tenantId].roles.includes("admin")
           ? "admin"
           : "readonly";
-        state.loadingToken = true;
+        state.loadingKey = true;
         // Return if the tenant token is already set
         const { data } = await axios.get(
           `https://api.userfront.com/v0/tenants/${tenantId}/keys/${tokenLevel}?test=true`,
@@ -145,10 +145,10 @@ const store = new Vuex.Store({
           }
         );
         commit("setTenantKey", data.results[0].token);
-        state.loadingToken = false;
+        state.loadingKey = false;
         return data.results[0].token;
       } catch (error) {
-        state.loadingToken = false;
+        state.loadingKey = false;
         return;
       }
     },
