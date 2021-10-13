@@ -141,7 +141,7 @@ When the user clicks on the link, their email address is verified, and they are 
 
 If you want to be notified when a new user is created, you can add a URL to the User Created Webhook in your account settings.
 
-Userfront will send a JSON `POST` request to your Webhook URL whenever a user is created. This request will have your account's Webhook Token in the header, which you can use to verify the request in your application.
+Userfront will send a JSON `POST` request to your Webhook URL whenever a user is created. This request will have your account's Webhook API key in the header, which you can use to verify the request in your application.
 
 For more information about webhooks, see the [Webhook reference](/docs/webhooks/).
 

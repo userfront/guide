@@ -1,8 +1,8 @@
 <template>
   <div class="light-code">
-    <div v-if="webhookToken">
+    <div v-if="webhookKey">
       <p style="overflow-x:scroll;">
-        <code style="font-weight:600;">{{ webhookToken }}</code>
+        <code style="font-weight:600;">{{ webhookKey }}</code>
       </p>
       <div class="select-container" v-if="filteredTenants.length > 1">
         <select v-model="tenant" @change="setTenant">
@@ -15,25 +15,25 @@
         </select>
       </div>
       <p>
-        Your test webhook token is included in the examples here for
+        Your test webhook API key is included in the examples here for
         illustration purposes.
       </p>
       <div class="language-json">
         <pre><code>{
   headers: {
-    authorization: "Bearer {{ webhookToken }}"
+    authorization: "Bearer {{ webhookKey }}"
   }
 }</code></pre>
       </div>
     </div>
-    <div v-if="!webhookToken">
+    <div v-if="!webhookKey">
       <p>
         Each webhook will have an authorization header containing your account's
-        webhook token.
+        webhook API key.
       </p>
       <p>
         Your server should read this header and verify that it matches the
-        webhook token found in your dashboard.
+        webhook API key found in your dashboard.
       </p>
       <div class="language-json">
         <pre><code>{
@@ -57,8 +57,8 @@ export default {
     demoToken() {
       return this.$store.state.demoToken;
     },
-    webhookToken() {
-      return this.$store.state.webhookToken;
+    webhookKey() {
+      return this.$store.state.webhookKey;
     },
     tenants() {
       return this.$store.state.tenants || [];

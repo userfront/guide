@@ -51,6 +51,6 @@ User Created Webhook in your account settings.
 
 ![Signup webhook](https://res.cloudinary.com/component/image/upload/v1582764381/webhook_url_qcmvkl.png)
 
-Userfront will send a JSON `POST` request to your Webhook URL whenever a user is created. This request will have your account's Webhook Token in the header, which you can use to verify the request in your app.
+Userfront will send a JSON `POST` request to your Webhook URL whenever a user is created. This request will have your account's Webhook API key in the header, which you can use to verify the request in your app.
 
 For more information about webhooks, see the [Webhook reference](/docs/webhooks/).

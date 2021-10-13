@@ -69,13 +69,13 @@ export default {
     activeTenant() {
       return this.$store.state.activeTenant;
     },
-    // Display the tenantToken if it matches the tenant,
+    // Display the tenantKey if it matches the tenant,
     // otherwise display the demo token
     tokenToShow() {
-      const tenantToken = this.$store.state.tenantToken;
+      const tenantKey = this.$store.state.tenantKey;
       try {
-        return tenantToken.indexOf(this.activeTenant.tenantId) > 0
-          ? tenantToken
+        return tenantKey.indexOf(this.activeTenant.tenantId) > 0
+          ? tenantKey
           : this.demoToken;
       } catch (error) {
         return this.demoToken;
