@@ -25,7 +25,7 @@ const store = new Vuex.Store({
     tenants: [],
     usableTenants: [], // admin or member role
     demoTenant,
-    demoToken: "uf_test_readonly_demo1234_2d87b3d230bda5685276b43efdac2852",
+    demoKey: "uf_test_readonly_demo1234_2d87b3d230bda5685276b43efdac2852",
     activeTenant: JSON.parse(JSON.stringify(demoTenant)),
     tenantKey: "",
     loadingToken: false,
@@ -51,7 +51,7 @@ const store = new Vuex.Store({
     setActiveTenant(state, tenant) {
       Vue.set(state, "activeTenant", tenant);
       if (tenant.tenantId === state.demoTenant.tenantId) {
-        Vue.set(state, "tenantKey", state.demoToken);
+        Vue.set(state, "tenantKey", state.demoKey);
       }
     },
     /**

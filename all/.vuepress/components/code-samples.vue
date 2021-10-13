@@ -51,7 +51,7 @@ export default {
     },
     token() {
       if (this.tokenType === "jwt") return `user_jwt_access_token`;
-      return this.$store.state.tenantKey || this.$store.state.demoToken;
+      return this.$store.state.tenantKey || this.$store.state.demoKey;
     },
     payload() {
       const p = {};
