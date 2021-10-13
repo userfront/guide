@@ -59,12 +59,12 @@ export default {
     showWarning() {
       return (
         !this.loading &&
-        this.tokenToShow === this.demoToken &&
+        this.tokenToShow === this.demoKey &&
         this.activeTenant.tenantId !== "demo1234"
       );
     },
-    demoToken() {
-      return this.$store.state.demoToken;
+    demoKey() {
+      return this.$store.state.demoKey;
     },
     activeTenant() {
       return this.$store.state.activeTenant;
@@ -76,9 +76,9 @@ export default {
       try {
         return tenantKey.indexOf(this.activeTenant.tenantId) > 0
           ? tenantKey
-          : this.demoToken;
+          : this.demoKey;
       } catch (error) {
-        return this.demoToken;
+        return this.demoKey;
       }
     },
     isLoggedIn() {

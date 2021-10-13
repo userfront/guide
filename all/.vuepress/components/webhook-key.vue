@@ -54,8 +54,8 @@ export default {
     };
   },
   computed: {
-    demoToken() {
-      return this.$store.state.demoToken;
+    demoKey() {
+      return this.$store.state.demoKey;
     },
     webhookKey() {
       return this.$store.state.webhookKey;
