@@ -27,14 +27,14 @@ const store = new Vuex.Store({
     demoTenant,
     demoToken: "uf_test_readonly_demo1234_2d87b3d230bda5685276b43efdac2852",
     activeTenant: JSON.parse(JSON.stringify(demoTenant)),
-    tenantToken: "",
+    tenantKey: "",
     loadingToken: false,
     installation: {
       tenantId: demoTenant.tenantId,
       mods: JSON.parse(JSON.stringify(demoMods)),
     },
     loadingInstallation: false,
-    // webhookToken: "",
+    // webhookKey: "",
   },
   mutations: {
     setTenants(state) {
@@ -51,7 +51,7 @@ const store = new Vuex.Store({
     setActiveTenant(state, tenant) {
       Vue.set(state, "activeTenant", tenant);
       if (tenant.tenantId === state.demoTenant.tenantId) {
-        Vue.set(state, "tenantToken", state.demoToken);
+        Vue.set(state, "tenantKey", state.demoToken);
       }
     },
     /**
@@ -65,8 +65,8 @@ const store = new Vuex.Store({
       );
       Vue.set(state, "usableTenants", usableTenants);
     },
-    setTenantToken(state, tenantToken) {
-      Vue.set(state, "tenantToken", tenantToken);
+    setTenantKey(state, tenantKey) {
+      Vue.set(state, "tenantKey", tenantKey);
     },
     setInstallation(state, { tenantId, mods }) {
       if (!tenantId || !mods) return;
@@ -95,8 +95,8 @@ const store = new Vuex.Store({
         mods: modsToAdd,
       });
     },
-    // setWebhookToken(state, webhookToken) {
-    //   state.webhookToken = webhookToken;
+    // setWebhookKey(state, webhookKey) {
+    //   state.webhookKey = webhookKey;
     // },
   },
   actions: {
@@ -115,7 +115,7 @@ const store = new Vuex.Store({
         tenant ||= authorization[tenantIds[0]];
         if (!tenant) return;
         const tenantId = tenant.tenantId || tenantIds[0];
-        await dispatch("setTenantToken", tenantId);
+        await dispatch("setTenantKey", tenantId);
         commit("setTenants");
         commit("setUsableTenants");
         commit("setActiveTenant", tenant);
@@ -126,9 +126,9 @@ const store = new Vuex.Store({
       }
     },
 
-    async setTenantToken({ commit, state }, tenantId) {
+    async setTenantKey({ commit, state }, tenantId) {
       try {
-        if (state.tenantToken.includes(tenantId) || state.loadingToken) return;
+        if (state.tenantKey.includes(tenantId) || state.loadingToken) return;
         const authorization = getAuthorizationObject();
         tenantId = tenantId || Object.keys(authorization)[0];
         const tokenLevel = authorization[tenantId].roles.includes("admin")
@@ -137,14 +137,14 @@ const store = new Vuex.Store({
         state.loadingToken = true;
         // Return if the tenant token is already set
         const { data } = await axios.get(
-          `https://api.userfront.com/v0/tenants/${tenantId}/tokens/${tokenLevel}?test=true`,
+          `https://api.userfront.com/v0/tenants/${tenantId}/keys/${tokenLevel}?test=true`,
           {
             headers: {
               Authorization: `Bearer ${state.accessToken}`,
             },
           }
         );
-        commit("setTenantToken", data.results[0].token);
+        commit("setTenantKey", data.results[0].token);
         state.loadingToken = false;
         return data.results[0].token;
       } catch (error) {
@@ -183,7 +183,7 @@ const store = new Vuex.Store({
       }
     },
 
-    // async setWebhookToken({ commit, state }, tenantId) {
+    // async setWebhookKey({ commit, state }, tenantId) {
     //   try {
     //     const authorization = getAccessTokenObject().authorization;
     //     tenantId = tenantId || Object.keys(authorization)[0];
@@ -191,14 +191,14 @@ const store = new Vuex.Store({
     //       ? "admin"
     //       : "readonly";
     //     const { data } = await axios.get(
-    //       `https://api.userfront.com/v0/tenants/${tenantId}/tokens/webhook?test=true`,
+    //       `https://api.userfront.com/v0/tenants/${tenantId}/keys/webhook?test=true`,
     //       {
     //         headers: {
     //           Authorization: `Bearer ${state.accessToken}`,
     //         },
     //       }
     //     );
-    //     commit("setWebhookToken", data.results[0].token);
+    //     commit("setWebhookKey", data.results[0].token);
     //     return data.results[0].token;
     //   } catch (error) {
     //     return;
