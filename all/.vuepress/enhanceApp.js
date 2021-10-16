@@ -22,6 +22,11 @@ const docsJsonUrl =
     ? "http://localhost:5001/v0/docs.json"
     : "https://api.userfront.com/v0/docs.json";
 
+const docsClientJsonUrl =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:5001/v0/docs-client.json"
+    : "https://api.userfront.com/v0/docs-client.json";
+
 export default async ({ isServer, router, Vue }) => {
   // Add vuex
   Vue.use(Vuex);
@@ -46,8 +51,21 @@ export default async ({ isServer, router, Vue }) => {
   Vue.prototype.router = router;
 
   if (!isServer) {
-    // Update the brand link
-    router.beforeEach((to, from, next) => {
+    router.beforeEach(async (to, from, next) => {
+      // Load the API docs.json if needed
+      if (to.path === "/docs/api.html" && !Vue.prototype.$docs) {
+        const { data } = await axios.get(docsJsonUrl);
+        Vue.prototype.$docs = data;
+        store.dispatch("setActiveTenant");
+      }
+
+      // Load the API docs-client.json if needed
+      if (to.path === "/docs/api-client.html" && !Vue.prototype.$docsClient) {
+        const { data } = await axios.get(docsClientJsonUrl);
+        Vue.prototype.$docsClient = data;
+      }
+
+      // Update the brand link
       if (to && to.path === "/") {
         return next({ path: "/guide/" });
       }
@@ -62,11 +80,7 @@ export default async ({ isServer, router, Vue }) => {
       } catch (err) {}
     });
 
-    // Load the docs.json spec
     try {
-      const { data } = await axios.get(docsJsonUrl);
-      Vue.prototype.$docs = data;
-      store.dispatch("setActiveTenant");
       // Wait and then scroll to anchor
       let time = 500;
       if (window.location.pathname === "/docs/api.html") {

@@ -233,6 +233,7 @@ module.exports = {
         },
       ],
       "/docs/api": ["/docs/api.md"],
+      "/docs/api-client": ["/docs/api-client.md"],
       "/docs/webhooks": ["/docs/webhooks.md"],
       "/docs/js": [["/docs/js.md", "Core JS library"]],
       "/tutorials": [

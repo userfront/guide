@@ -20,14 +20,15 @@
 
 <script>
 export default {
-  props: ["path", "verb", "showOnly"],
+  props: ["path", "verb", "showOnly", "source"],
   computed: {
     prefix() {
       return `${this.verb}-${this.path.replace(/[\/{}]/g, "")}`;
     },
     parameters() {
       try {
-        return this.$docs.paths[this.path][this.verb].parameters || [];
+        const source = this.source || "$docs";
+        return this[source].paths[this.path][this.verb].parameters || [];
       } catch (error) {
         return [];
       }

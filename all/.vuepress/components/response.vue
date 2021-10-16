@@ -14,11 +14,12 @@ import Prism from "prismjs";
 import "prismjs/components/prism-json";
 
 export default {
-  props: ["title", "path", "verb"],
+  props: ["title", "path", "verb", "source"],
   computed: {
     response() {
       try {
-        return this.$docs.paths[this.path][this.verb].responses[200] || {};
+        const source = this.source || "$docs";
+        return this[source].paths[this.path][this.verb].responses[200] || {};
       } catch (error) {
         return {};
       }
