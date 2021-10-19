@@ -80,21 +80,14 @@ export default async ({ isServer, router, Vue }) => {
       } catch (err) {}
     });
 
-    try {
-      // Wait and then scroll to anchor
-      let time = 500;
-      if (window.location.pathname === "/docs/api.html") {
-        time = 1000;
-      }
-      setTimeout(() => {
-        Vue.nextTick(scrollToAnchor);
-      }, time);
-    } catch (error) {
-      console.error("Problem fetching docs.json", error);
-      setTimeout(() => {
-        Vue.nextTick(scrollToAnchor);
-      }, 500);
+    // Wait and then scroll to anchor
+    let time = 500;
+    if (window.location.pathname.indexOf("/docs/api") > -1) {
+      time = 1000;
     }
+    setTimeout(() => {
+      Vue.nextTick(scrollToAnchor);
+    }, time);
   }
 };
 
@@ -109,11 +102,15 @@ function setPrimaryAnchor() {
 }
 
 function scrollToAnchor() {
-  if (window.location.hash) {
-    const element = document.getElementById(window.location.hash.slice(1));
+  try {
+    if (window.location.hash) {
+      const element = document.getElementById(window.location.hash.slice(1));
 
-    if (element) {
-      element.scrollIntoView();
+      if (element) {
+        element.scrollIntoView();
+      }
     }
+  } catch (error) {
+    console.log("Problem scrolling: ", error);
   }
 }

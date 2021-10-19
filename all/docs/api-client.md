@@ -70,7 +70,7 @@ Register a new user with an email and password.
 ::::
 :::: right
 
-<code-samples path="/v0/auth/create" verb="post" :show-only="['email', 'username', 'name', 'image', 'data']" source="$docsClient"/>
+<code-samples-client path="/v0/auth/create" verb="post"/>
 
 <response path="/v0/auth/create" verb="post" source="$docsClient"/>
 
@@ -82,14 +82,14 @@ Register a new user with an email and password.
 ::::: row
 :::: left
 
-Send a password and email/username to log in a user.
+Log in with a password and email/username.
 
 <parameters path="/v0/auth/basic" verb="post" source="$docsClient"/>
 
 ::::
 :::: right
 
-<code-samples path="/v0/auth/basic" verb="post" source="$docsClient"/>
+<code-samples-client path="/v0/auth/basic" verb="post"/>
 
 <response path="/v0/auth/basic" verb="post" source="$docsClient"/>
 
@@ -108,7 +108,7 @@ Update a user's password using their valid JWT access token.
 ::::
 :::: right
 
-<code-samples path="/v0/auth/basic" verb="put" source="$docsClient"/>
+<code-samples-client path="/v0/auth/basic" verb="put"/>
 
 <response path="/v0/auth/basic" verb="put" source="$docsClient"/>
 
@@ -127,7 +127,7 @@ Generate and send a login link email.
 ::::
 :::: right
 
-<code-samples path="/v0/auth/link" verb="post" source="$docsClient"/>
+<code-samples-client path="/v0/auth/link" verb="post"/>
 
 <response path="/v0/auth/link" verb="post" source="$docsClient"/>
 
@@ -146,7 +146,7 @@ Log in using the token and uuid from a login link.
 ::::
 :::: right
 
-<code-samples path="/v0/auth/link" verb="put" source="$docsClient"/>
+<code-samples-client path="/v0/auth/link" verb="put"/>
 
 <response path="/v0/auth/link" verb="put" source="$docsClient"/>
 
@@ -177,7 +177,7 @@ The SSO provider must already be configured.
 ::::
 :::: right
 
-<code-samples path="/v0/auth/{provider}/login" verb="get" source="$docsClient"/>
+<code-samples-client path="/v0/auth/{provider}/login" verb="get"/>
 
 <response path="/v0/auth/{provider}/login" verb="get" source="$docsClient"/>
 
@@ -196,7 +196,7 @@ Generate and send a password reset link email.
 ::::
 :::: right
 
-<code-samples path="/v0/auth/reset/link" verb="post" source="$docsClient"/>
+<code-samples-client path="/v0/auth/reset/link" verb="post"/>
 
 <response path="/v0/auth/reset/link" verb="post" source="$docsClient"/>
 
@@ -210,12 +210,14 @@ Generate and send a password reset link email.
 
 Generate and send an account verification link email.
 
+Functionally, an account verification link works the same as a login link, so the resulting `token` and `uuid` from the email can be handled via [Log in with login link](/docs/api-client.html#log-in-with-login-link).
+
 <parameters path="/v0/auth/verify/link" verb="post" source="$docsClient"/>
 
 ::::
 :::: right
 
-<code-samples path="/v0/auth/verify/link" verb="post" source="$docsClient"/>
+<code-samples-client path="/v0/auth/verify/link" verb="post"/>
 
 <response path="/v0/auth/verify/link" verb="post" source="$docsClient"/>
 
@@ -227,14 +229,16 @@ Generate and send an account verification link email.
 ::::: row
 :::: left
 
-Generate and send an account verification link email.
+Log a user out and invalidate their current session.
+
+In order to invalidate the user's current session, the request must include a valid JWT access token or refresh token in the `Authorization` header. This token can be expired.
 
 <parameters path="/v0/auth/logout" verb="get" source="$docsClient"/>
 
 ::::
 :::: right
 
-<code-samples path="/v0/auth/logout" verb="get" source="$docsClient"/>
+<code-samples-client path="/v0/auth/logout" verb="get" show-access-token="true"/>
 
 <response path="/v0/auth/logout" verb="get" source="$docsClient"/>
 
