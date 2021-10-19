@@ -124,8 +124,6 @@ Log in with a password and email/username.
 
 Update a user's password using their valid JWT access token and their existing password.
 
-If the user does not have a password, the `password` and `existingPassword` fields are both ignored, and Userfront sends the user a password reset link.
-
 <parameters path="/v0/auth/basic" verb="put" source="$docsClient"/>
 
 ::::
@@ -133,7 +131,22 @@ If the user does not have a password, the `password` and `existingPassword` fiel
 
 <code-samples-client path="/v0/auth/basic" verb="put"/>
 
-<response path="/v0/auth/basic" verb="put" source="$docsClient"/>
+<response-custom :response="{ message: 'OK' }"/>
+
+::::
+:::::
+
+#### If no password exists
+
+::::: row
+:::: left
+
+If the user does not have a password (for example, if they logged in via SSO), the `password` and `existingPassword` fields are both ignored, and Userfront sends the user a password reset link.
+
+::::
+:::: right
+
+<response-custom title="Response (if no password exists)" :response="{ message: 'OK', result: { to: 'user@example.com', messageId: '18299324-bf92-4ec9-bd47-403eda5f278d', submittedAt: new Date() }}"/>
 
 ::::
 :::::
