@@ -77,6 +77,27 @@ Register a new user with an email and password.
 ::::
 :::::
 
+### Sign up with passwordless
+
+::::: row
+:::: left
+
+Register a new user with an email only.
+
+If the user already exists, send them a login link. See [generate login link](#generate-login-link).
+
+<parameters path="/v0/auth/link" verb="post" source="$docsClient"/>
+
+::::
+:::: right
+
+<code-samples-client path="/v0/auth/link" verb="post"/>
+
+<response path="/v0/auth/link" verb="post" source="$docsClient"/>
+
+::::
+:::::
+
 ### Log in with password
 
 ::::: row
@@ -96,7 +117,7 @@ Log in with a password and email/username.
 ::::
 :::::
 
-<!-- ### Update own password
+### Update own password
 
 ::::: row
 :::: left
@@ -113,7 +134,7 @@ Update a user's password using their valid JWT access token.
 <response path="/v0/auth/basic" verb="put" source="$docsClient"/>
 
 ::::
-::::: -->
+:::::
 
 ### Generate login link
 
@@ -121,6 +142,8 @@ Update a user's password using their valid JWT access token.
 :::: left
 
 Generate and send a login link email.
+
+If no user exists with the given email, create a new user and send them a login link. See [sign up with passwordless](#sign-up-with-passwordless).
 
 <parameters path="/v0/auth/link" verb="post" source="$docsClient"/>
 
