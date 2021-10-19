@@ -2,7 +2,7 @@
 sidebarDepth: 2
 ---
 
-# API reference: Client-to-Server
+# API reference: client-to-server
 
 ::::: row
 :::: left
@@ -10,6 +10,8 @@ sidebarDepth: 2
 The Userfront API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts [JSON-encoded](http://www.json.org/) request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.
 
 You can use the Userfront API in test mode, which does not affect your live data. The request origin and JWT access token used to for the request determine whether the request is live mode or test mode.
+
+The documentation below covers requests made by a user's browser or mobile app directly to Userfront's server. For requests made by your server to Userfront using your application's API key, see the [server-to-server API reference](/docs/api.html).
 
 <!-- Log in to see docs customized to your version of the API, with your test key and data. -->
 
@@ -30,7 +32,7 @@ Check out our development [quickstart guide](/guide/quickstart/).
 ::::
 :::::
 
-## Authentication
+## Authentication actions
 
 ::::: row
 :::: left
@@ -245,31 +247,41 @@ Log in using the token and uuid from a login link.
 ::::: row
 :::: left
 
-Log in using an SSO provider.
+Log in using an SSO provider by visiting a link for that provider.
 
 The SSO provider must already be configured.
 
-#### Query string
+#### Provider
+
+The `:provider` value should be the lowercased name of the SSO provider.
+
+For example: `google`, `github`, `linkedin`, `facebook`, or `azure`.
+
+#### Query strings
 
 ---
 
-**tenant_id** required
+<parameter name="tenant_id" description="Unique identifier for the tenant. Note that this querystring uses underscore instead of camelcase." :required="true"/>
 
-**origin** required
-
-<br>
-
-<parameters path="/v0/auth/{provider}/login" verb="get" source="$docsClient"/>
+<parameter name="origin" description="The origin of the requesting page." :required="true"/>
 
 ::::
 :::: right
 
-<code-samples-client path="/v0/auth/{provider}/login" verb="get"/>
-
-<response path="/v0/auth/{provider}/login" verb="get" source="$docsClient"/>
+<code-group-custom verb="get" path="/v0/auth/{provider}/login">
+  <code-block-custom
+    title="JavaScript"
+    language="js"
+    code="// Example link
+https://api.userfront.com/v0/auth/google/login?tenant_id=demo1234&origin=https://example.com"
+  />
+</code-group-custom>
 
 ::::
 :::::
+
+<br>
+<br>
 
 ### Generate password reset link
 
