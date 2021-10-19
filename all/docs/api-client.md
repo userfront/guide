@@ -84,7 +84,7 @@ Register a new user with an email and password.
 
 Register a new user with an email only.
 
-If the user already exists, send them a login link. See [generate login link](#generate-login-link).
+If the user already exists, sends them a login link. See [generate login link](#generate-login-link).
 
 <parameters path="/v0/auth/link" verb="post" source="$docsClient"/>
 
@@ -122,7 +122,9 @@ Log in with a password and email/username.
 ::::: row
 :::: left
 
-Update a user's password using their valid JWT access token.
+Update a user's password using their valid JWT access token and their existing password.
+
+If the user does not have a password, the `password` and `existingPassword` fields are both ignored, and Userfront sends the user a password reset link.
 
 <parameters path="/v0/auth/basic" verb="put" source="$docsClient"/>
 
@@ -143,7 +145,7 @@ Update a user's password using their valid JWT access token.
 
 Generate and send a login link email.
 
-If no user exists with the given email, create a new user and send them a login link. See [sign up with passwordless](#sign-up-with-passwordless).
+If no user exists with the given email, creates a new user and sends them a login link. See [sign up with passwordless](#sign-up-with-passwordless).
 
 <parameters path="/v0/auth/link" verb="post" source="$docsClient"/>
 
