@@ -2,7 +2,7 @@
 sidebarDepth: 2
 ---
 
-# API reference: Client-to-Server
+# API reference: client-to-server
 
 ::::: row
 :::: left
@@ -10,6 +10,8 @@ sidebarDepth: 2
 The Userfront API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts [JSON-encoded](http://www.json.org/) request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.
 
 You can use the Userfront API in test mode, which does not affect your live data. The request origin and JWT access token used to for the request determine whether the request is live mode or test mode.
+
+The documentation below covers requests made by a user's browser or mobile app directly to Userfront's server. For requests made by your server to Userfront using your application's API key, see the [server-to-server API reference](/docs/api.html).
 
 <!-- Log in to see docs customized to your version of the API, with your test key and data. -->
 
@@ -30,7 +32,7 @@ Check out our development [quickstart guide](/guide/quickstart/).
 ::::
 :::::
 
-## Authentication
+## Authentication actions
 
 ::::: row
 :::: left
@@ -82,7 +84,7 @@ Register a new user with an email and password.
 ::::: row
 :::: left
 
-Register a new user with an email only.
+Register a new user with an email, and send them a login link.
 
 If the user already exists, sends them a login link. See [generate login link](#generate-login-link).
 
@@ -94,6 +96,21 @@ If the user already exists, sends them a login link. See [generate login link](#
 <code-samples-client path="/v0/auth/link" verb="post"/>
 
 <response path="/v0/auth/link" verb="post" source="$docsClient"/>
+
+::::
+:::::
+
+::::: row
+:::: left
+
+#### Test mode
+
+In test mode, Userfront does not send emails. Instead, the API response will contain a `link` attribute that can be followed directly to log in.
+
+::::
+:::: right
+
+<response-custom title="Response (test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/login?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e&type=welcome' }}"/>
 
 ::::
 :::::
@@ -136,10 +153,10 @@ Update a user's password using their valid JWT access token and their existing p
 ::::
 :::::
 
-#### If no password exists
-
 ::::: row
 :::: left
+
+#### If no password exists
 
 If the user does not have a password (for example, if they logged in via SSO), the `password` and `existingPassword` fields are both ignored, and Userfront sends the user a password reset link.
 
@@ -151,10 +168,10 @@ If the user does not have a password (for example, if they logged in via SSO), t
 ::::
 :::::
 
-#### Test mode
-
 ::::: row
 :::: left
+
+#### Test mode
 
 In test mode, Userfront does not send emails.
 
@@ -191,6 +208,21 @@ If no user exists with the given email, creates a new user and sends them a logi
 ::::
 :::::
 
+::::: row
+:::: left
+
+#### Test mode
+
+In test mode, Userfront does not send emails. Instead, the API response will contain a `link` attribute that can be followed directly to log in.
+
+::::
+:::: right
+
+<response-custom title="Response (test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/login?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e&type=login' }}"/>
+
+::::
+:::::
+
 ### Log in with login link
 
 ::::: row
@@ -215,31 +247,41 @@ Log in using the token and uuid from a login link.
 ::::: row
 :::: left
 
-Log in using an SSO provider.
+Log in using an SSO provider by visiting a link for that provider.
 
 The SSO provider must already be configured.
 
-#### Query string
+#### Provider
+
+The `:provider` value should be the lowercased name of the SSO provider.
+
+For example: `google`, `github`, `linkedin`, `facebook`, or `azure`.
+
+#### Query strings
 
 ---
 
-**tenant_id** required
+<parameter name="tenant_id" description="Unique identifier for the tenant. Note that this querystring uses underscore instead of camelcase." :required="true"/>
 
-**origin** required
-
-<br>
-
-<parameters path="/v0/auth/{provider}/login" verb="get" source="$docsClient"/>
+<parameter name="origin" description="The origin of the requesting page." :required="true"/>
 
 ::::
 :::: right
 
-<code-samples-client path="/v0/auth/{provider}/login" verb="get"/>
-
-<response path="/v0/auth/{provider}/login" verb="get" source="$docsClient"/>
+<code-group-custom verb="get" path="/v0/auth/{provider}/login">
+  <code-block-custom
+    title="JavaScript"
+    language="js"
+    code="// Example link
+https://api.userfront.com/v0/auth/google/login?tenant_id=demo1234&origin=https://example.com"
+  />
+</code-group-custom>
 
 ::::
 :::::
+
+<br>
+<br>
 
 ### Generate password reset link
 
@@ -256,6 +298,21 @@ Generate and send a password reset link email.
 <code-samples-client path="/v0/auth/reset/link" verb="post"/>
 
 <response path="/v0/auth/reset/link" verb="post" source="$docsClient"/>
+
+::::
+:::::
+
+::::: row
+:::: left
+
+#### Test mode
+
+In test mode, Userfront does not send emails. Instead, the API response will contain a `link` attribute that can be followed directly to reset the user's password.
+
+::::
+:::: right
+
+<response-custom title="Response (test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/reset?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e' }}"/>
 
 ::::
 :::::
@@ -277,6 +334,21 @@ Functionally, an account verification link works the same as a login link, so th
 <code-samples-client path="/v0/auth/verify/link" verb="post"/>
 
 <response path="/v0/auth/verify/link" verb="post" source="$docsClient"/>
+
+::::
+:::::
+
+::::: row
+:::: left
+
+#### Test mode
+
+In test mode, Userfront does not send emails. Instead, the API response will contain a `link` attribute that can be followed directly to log in.
+
+::::
+:::: right
+
+<response-custom title="Response (test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/login?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e&type=verify' }}"/>
 
 ::::
 :::::

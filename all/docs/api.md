@@ -11,6 +11,8 @@ The Userfront API is organized around [REST](http://en.wikipedia.org/wiki/Repres
 
 You can use the Userfront API in test mode, which does not affect your live data. The API key you use to [authenticate](#authentication) the request determines whether the request is live mode or test mode.
 
+The documentation below covers requests made by your server to Userfront's server using an API key. For requests that end users can make directly, such as signup, login, password reset, and more, see the [client-to-server API reference](/docs/api-client.html).
+
 <!-- Log in to see docs customized to your version of the API, with your test key and data. -->
 
 ::::
