@@ -82,7 +82,7 @@ Register a new user with an email and password.
 ::::: row
 :::: left
 
-Register a new user with an email only.
+Register a new user with an email, and send them a login link.
 
 If the user already exists, sends them a login link. See [generate login link](#generate-login-link).
 
@@ -94,6 +94,21 @@ If the user already exists, sends them a login link. See [generate login link](#
 <code-samples-client path="/v0/auth/link" verb="post"/>
 
 <response path="/v0/auth/link" verb="post" source="$docsClient"/>
+
+::::
+:::::
+
+::::: row
+:::: left
+
+#### Test mode
+
+In test mode, Userfront does not send emails. Instead, the API response will contain a `link` attribute that can be followed directly to log in.
+
+::::
+:::: right
+
+<response-custom title="Response (test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/login?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e&type=welcome' }}"/>
 
 ::::
 :::::
@@ -136,10 +151,10 @@ Update a user's password using their valid JWT access token and their existing p
 ::::
 :::::
 
-#### If no password exists
-
 ::::: row
 :::: left
+
+#### If no password exists
 
 If the user does not have a password (for example, if they logged in via SSO), the `password` and `existingPassword` fields are both ignored, and Userfront sends the user a password reset link.
 
@@ -151,10 +166,10 @@ If the user does not have a password (for example, if they logged in via SSO), t
 ::::
 :::::
 
-#### Test mode
-
 ::::: row
 :::: left
+
+#### Test mode
 
 In test mode, Userfront does not send emails.
 
@@ -187,6 +202,21 @@ If no user exists with the given email, creates a new user and sends them a logi
 <code-samples-client path="/v0/auth/link" verb="post"/>
 
 <response path="/v0/auth/link" verb="post" source="$docsClient"/>
+
+::::
+:::::
+
+::::: row
+:::: left
+
+#### Test mode
+
+In test mode, Userfront does not send emails. Instead, the API response will contain a `link` attribute that can be followed directly to log in.
+
+::::
+:::: right
+
+<response-custom title="Response (test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/login?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e&type=login' }}"/>
 
 ::::
 :::::
@@ -260,6 +290,21 @@ Generate and send a password reset link email.
 ::::
 :::::
 
+::::: row
+:::: left
+
+#### Test mode
+
+In test mode, Userfront does not send emails. Instead, the API response will contain a `link` attribute that can be followed directly to reset the user's password.
+
+::::
+:::: right
+
+<response-custom title="Response (test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/reset?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e' }}"/>
+
+::::
+:::::
+
 ### Generate account verification link
 
 ::::: row
@@ -277,6 +322,21 @@ Functionally, an account verification link works the same as a login link, so th
 <code-samples-client path="/v0/auth/verify/link" verb="post"/>
 
 <response path="/v0/auth/verify/link" verb="post" source="$docsClient"/>
+
+::::
+:::::
+
+::::: row
+:::: left
+
+#### Test mode
+
+In test mode, Userfront does not send emails. Instead, the API response will contain a `link` attribute that can be followed directly to log in.
+
+::::
+:::: right
+
+<response-custom title="Response (test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/login?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e&type=verify' }}"/>
 
 ::::
 :::::
