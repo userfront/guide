@@ -151,6 +151,25 @@ If the user does not have a password (for example, if they logged in via SSO), t
 ::::
 :::::
 
+#### Test mode
+
+::::: row
+:::: left
+
+In test mode, Userfront does not send emails.
+
+If a test user does not have a password, the API response will contain a `link` attribute that can be followed directly in order to set the password.
+
+This link will direct the user to your Password reset path.
+
+::::
+:::: right
+
+<response-custom title="Response (if no password exists, test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/reset?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e' }}"/>
+
+::::
+:::::
+
 ### Generate login link
 
 ::::: row
