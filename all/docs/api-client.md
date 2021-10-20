@@ -1,8 +1,37 @@
 ---
 sidebarDepth: 2
+title: Client-to-server API reference
 ---
 
-# API reference: client-to-server
+# API reference
+
+::::: row
+:::: left
+
+<div>
+  <h3 style="margin:0 0 8px">Client-to-server</h3>
+  <div style="display:flex;align-items:center;height:36px;">
+    <span style="font-size:36px;">👩‍💻</span>
+    <span style="font-size:36px;padding:0 12px 0 8px;">→</span>
+    <img src="https://res.cloudinary.com/component/image/upload/w_32,o_80/v1634764502/permanent/server-solid.png" style="height:32px;margin-top:2px;">
+  </div>
+</div>
+
+This documentation covers requests made by a user's browser or mobile app directly to Userfront's server.
+
+For requests made by your server to Userfront's server using your application's API key, see the API reference for [server-to-server](/docs/api.html) actions.
+
+::::
+:::: right
+
+#### Just getting started?
+
+Check out our development [quickstart guide](/guide/quickstart/).
+
+::::
+:::::
+
+#### REST endpoints
 
 ::::: row
 :::: left
@@ -11,16 +40,8 @@ The Userfront API is organized around [REST](http://en.wikipedia.org/wiki/Repres
 
 You can use the Userfront API in test mode, which does not affect your live data. The request origin and JWT access token used to for the request determine whether the request is live mode or test mode.
 
-The documentation below covers requests made by a user's browser or mobile app directly to Userfront's server. For requests made by your server to Userfront using your application's API key, see the [server-to-server API reference](/docs/api.html).
-
-<!-- Log in to see docs customized to your version of the API, with your test key and data. -->
-
 ::::
 :::: right
-
-#### Just getting started?
-
-Check out our development [quickstart guide](/guide/quickstart/).
 
 ::: card
 

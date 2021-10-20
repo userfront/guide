@@ -1,5 +1,6 @@
 ---
 sidebarDepth: 2
+title: Server-to-server API reference
 ---
 
 # API reference
@@ -7,13 +8,18 @@ sidebarDepth: 2
 ::::: row
 :::: left
 
-The Userfront API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts [JSON-encoded](http://www.json.org/) request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.
+<div>
+  <h3 style="margin:0 0 8px">Server-to-server</h3>
+  <div style="display:flex;align-items:center;height:36px;">
+    <img src="https://res.cloudinary.com/component/image/upload/w_32,o_80/v1634764502/permanent/server-solid.png" style="height:32px;margin-top:2px;">
+    <span style="font-size:36px;padding:0 12px;">→</span>
+    <img src="https://res.cloudinary.com/component/image/upload/w_32,o_80/v1634764502/permanent/server-solid.png" style="height:32px;margin-top:2px;">
+  </div>
+</div>
 
-You can use the Userfront API in test mode, which does not affect your live data. The API key you use to [authenticate](#authentication) the request determines whether the request is live mode or test mode.
+This documentation covers requests made by your server to Userfront's server using an API key.
 
-The documentation below covers requests made by your server to Userfront's server using an API key. For requests that end users can make directly, such as signup, login, password reset, and more, see the [client-to-server API reference](/docs/api-client.html).
-
-<!-- Log in to see docs customized to your version of the API, with your test key and data. -->
+For requests that end users can make directly, such as signup, login, password reset, and more, see the API refernce for [client-to-server](/docs/api-client.html) actions.
 
 ::::
 :::: right
@@ -21,6 +27,23 @@ The documentation below covers requests made by your server to Userfront's serve
 #### Just getting started?
 
 Check out our development [quickstart guide](/guide/quickstart/).
+
+::::
+:::::
+
+#### REST endpoints
+
+::::: row
+:::: left
+
+The Userfront API is organized around [REST](http://en.wikipedia.org/wiki/Representational_State_Transfer). Our API has predictable resource-oriented URLs, accepts [JSON-encoded](http://www.json.org/) request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.
+
+You can use the Userfront API in test mode, which does not affect your live data. The API key you use to authenticate the request determines whether the request is live mode or test mode.
+
+<!-- Log in to see docs customized to your version of the API, with your test key and data. -->
+
+::::
+:::: right
 
 ::: card
 
