@@ -109,7 +109,11 @@ module.exports = {
         text: "APIs & SDKs",
         ariaLabel: "APIs and SDKs",
         items: [
-          { text: "API reference", link: "/docs/api.html" },
+          { text: "API reference: Server-to-server", link: "/docs/api.html" },
+          {
+            text: "API reference: Client-to-server",
+            link: "/docs/api-client.html",
+          },
           { text: "Webhook reference", link: "/docs/webhooks.html" },
           { text: "Core JS library", link: "/docs/js.html" },
         ],
