@@ -530,6 +530,27 @@ The role(s) that is created will be at the application-wide level. To invite a u
 
 ---
 
+### List roles (tenant level)
+
+::::: row
+:::: left
+
+Lists all the roles available within the specified tenant.
+
+<parameters path="/v0/tenants/{tenantId}/roles" verb="get" />
+
+::::
+:::: right
+
+<code-samples path="/v0/tenants/{tenantId}/roles" verb="get" />
+
+<response path="/v0/tenants/{tenantId}/roles" verb="get"/>
+
+::::
+:::::
+
+---
+
 ### Set user roles (tenant level)
 
 ::::: row
