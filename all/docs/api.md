@@ -452,6 +452,7 @@ You can create, read, update, and delete roles with standard REST operations.
   { verb: 'post', path: '/v0/users/:userId/roles', anchor: 'set-user-roles' },
   { verb: 'post', path: '/v0/roles/invite', anchor: 'invite-user-to-a-role' },
   {},
+  { verb: 'get', path: '/v0/tenants/:tenantId/roles', anchor: 'list-roles-tenant-level' },
   { verb: 'post', path: '/v0/tenants/:tenantId/users/:userId/roles', anchor: 'set-user-roles-tenant-level' },
   { verb: 'post', path: '/v0/tenants/:tenantId/roles/invite', anchor: 'invite-user-to-a-role-tenant-level' },
 ]"/>
