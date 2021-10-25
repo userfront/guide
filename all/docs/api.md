@@ -248,6 +248,275 @@ Search user records.
 
 <parameters path="/v0/users/find" verb="post" />
 
+<br>
+
+#### Filter options
+
+<hr>
+
+The `filters` object has a top-level `conjunction` that applies to one or more `filterGroups`.
+
+```json
+{
+  "filters": {
+    "conjunction": "and",
+    "filterGroups": [
+      {
+        "conjunction": "and",
+        "filters": [
+          {
+            "attr": "username",
+            "type": "string",
+            "comparison": "is",
+            "value": "janedoe"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+The `"and"` conjunction returns users who meet all of the criteria, while the `"or"` conjunction returns users who meet any one of the criteria.
+
+Each `filter` has the following options:
+
+#### attr
+
+The attribute to search, such as `email` or `createdAt`. For attributes in the `data` object, use `data.myAttr`.
+
+#### type
+
+The data type of the attribute. Can be `string`, `boolean`, `number`, `date`, or `array`.
+
+#### comparison
+
+The desired criteria for returned users.
+
+::: details Comparison options
+
+<style>
+  #comparison-table {
+    background:white;
+  }
+  #comparison-table tbody {
+    display:table;
+    width:100%;
+  }
+  #comparison-table code {
+    line-height: 2em;
+  }
+</style>
+
+<table id="comparison-table">
+<tbody>
+<tr>
+<td><code>string</code></td>
+<td>
+<code>is</code><br>
+<code>contains</code><br>
+<code>does not contain</code><br>
+<code>starts with</code><br>
+<code>ends with</code><br>
+<code>is unknown</code><br>
+<code>has any value</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>boolean</code>
+</td>
+<td>
+<code>is</code><br>
+<code>is not</code><br>
+</td>
+</tr>
+<tr>
+<td>
+<code>date</code>
+</td>
+<td>
+<code>before</code><br>
+<code>after</code><br>
+<code>between</code><br>
+<code>less than</code> (days ago)<br>
+<code>more than</code> (days ago)
+</td>
+</tr>
+<tr>
+<td>
+<code>number</code>
+</td>
+<td>
+<code>is</code><br>
+<code>more than</code><br>
+<code>less than</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>array</code>
+</td>
+<td>
+<code>contains</code><br>
+<code>does not contain</code><br>
+<code>any</code>
+</td>
+</tr>
+</tbody>
+</table>
+
+:::
+
+#### value
+
+The value to be compared. Should make sense in the context of the `type` and `comparison`.
+
+#### Example searches
+
+::: details Users created in the last week
+
+```json
+{
+  "order": "createdAt_DESC",
+  "filters": {
+    "conjunction": "and",
+    "filterGroups": [
+      {
+        "conjunction": "and",
+        "filters": [
+          {
+            "attr": "createdAt",
+            "type": "date",
+            "comparison": "less than",
+            "value": 7
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+:::
+
+::: details Users named John who were last active less than 30 days ago
+
+```json
+{
+  "filters": {
+    "conjunction": "and",
+    "filterGroups": [
+      {
+        "conjunction": "and",
+        "filters": [
+          {
+            "attr": "name",
+            "type": "string",
+            "comparison": "contains",
+            "value": "John"
+          },
+          {
+            "attr": "lastActiveAt",
+            "type": "date",
+            "comparison": "less than",
+            "value": 30
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+:::
+
+::: details Users with example.com in their email, or who have "Example" as a custom data attribute, sorted by username
+
+```json
+{
+  "order": "username_ASC",
+  "filters": {
+    "conjunction": "and",
+    "filterGroups": [
+      {
+        "conjunction": "or",
+        "filters": [
+          {
+            "attr": "email",
+            "type": "string",
+            "comparison": "ends with",
+            "value": "@example.com"
+          }
+          {
+            "attr": "data.projectName",
+            "type": "string",
+            "comparison": "is",
+            "value": "Example"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+:::
+
+#### Searching roles
+
+To search for users with a specific role use `"tenantId: role name"`, or to search for users with any role in the tenant, use `"tenantId"`.
+
+::: details Users with an admin role in the demo tenant (tenantId = "demo1234")
+
+```json
+{
+  "filters": {
+    "conjunction": "and",
+    "filterGroups": [
+      {
+        "conjunction": "and",
+        "filters": [
+          {
+            "attr": "role",
+            "type": "string",
+            "comparison": "is",
+            "value": "demo1234:admin"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+:::
+
+::: details Users with any role in the demo tenant (tenantId = "demo1234")
+
+```json
+{
+  "filters": {
+    "conjunction": "and",
+    "filterGroups": [
+      {
+        "conjunction": "and",
+        "filters": [
+          {
+            "attr": "role",
+            "type": "string",
+            "comparison": "is",
+            "value": "demo1234"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+:::
+
 ::::
 :::: right
 
@@ -593,3 +862,7 @@ Invite a user to join the application with the given role(s) in the specified te
 
 ::::
 :::::
+
+```
+
+```
