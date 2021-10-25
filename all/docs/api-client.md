@@ -121,6 +121,16 @@ Register a new user with an email and password.
 
 <parameters path="/v0/auth/create" verb="post" source="$docsClient"/>
 
+<br />
+
+#### Welcome / signup email
+
+By default, Userfront sends new users a welcome email to confirm their account. The link in this email contains a `uuid` and `token` that allow login the same way as a [login link](/docs/api-client.html#log-in-with-login-link).
+
+You can disable this email with the `noSignupEmail` parameter above.
+
+In test mode, Userfront does not send emails.
+
 ::::
 :::: right
 
@@ -145,7 +155,7 @@ If the user already exists, sends them a login link. See [generate login link](#
 ::::
 :::: right
 
-<code-samples-client path="/v0/auth/link" verb="post"/>
+<code-samples-client path="/v0/auth/link" verb="post" :show-only="['email', 'username','name','data','tenantId']"/>
 
 <response path="/v0/auth/link" verb="post" source="$docsClient"/>
 
@@ -164,6 +174,21 @@ In test mode, Userfront does not send emails. Instead, the API response will con
 
 <response-custom title="Response (test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/login?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e&type=welcome' }}"/>
 
+::::
+:::::
+
+::::: row
+:::: left
+
+#### Welcome / signup email
+
+By default, Userfront sends new users a welcome email to confirm their account. The link in this email contains a `uuid` and `token` and works the same way as a [login link](/docs/api-client.html#log-in-with-login-link).
+
+You can disable this email with the `noSignupEmail` parameter above.
+::::
+:::: right
+
+<response-custom title="Response (noSignupEmail: true)" :response="{ message: 'OK' }"/>
 ::::
 :::::
 
@@ -248,12 +273,12 @@ Generate and send a login link email.
 
 If no user exists with the given email, creates a new user and sends them a login link. See [sign up with passwordless](#sign-up-with-passwordless).
 
-<parameters path="/v0/auth/link" verb="post" source="$docsClient"/>
+<parameters path="/v0/auth/link" verb="post" source="$docsClient" :show-only="['email', 'redirect']"/>
 
 ::::
 :::: right
 
-<code-samples-client path="/v0/auth/link" verb="post"/>
+<code-samples-client path="/v0/auth/link" verb="post" :show-only="['email', 'redirect']"/>
 
 <response path="/v0/auth/link" verb="post" source="$docsClient"/>
 
