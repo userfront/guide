@@ -134,7 +134,7 @@ In test mode, Userfront does not send emails.
 ::::
 :::: right
 
-<code-samples-client path="/v0/auth/create" verb="post" :show-only="['email','password','username','name','data','tenantId']"/>
+<code-samples-client path="/v0/auth/create" verb="post" :show-only="['email','password','username','name','data','tenantId', 'options']"/>
 
 <response path="/v0/auth/create" verb="post" source="$docsClient"/>
 
