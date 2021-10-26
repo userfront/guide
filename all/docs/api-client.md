@@ -150,12 +150,12 @@ Register a new user with an email, and send them a login link.
 
 If the user already exists, sends them a login link. See [generate login link](#generate-login-link).
 
-<parameters path="/v0/auth/link" verb="post" source="$docsClient"/>
+<parameters path="/v0/auth/link" verb="post" source="$docsClient" :show-only="['email', 'username', 'name', 'data', 'tenantId', 'options', 'options.redirect', 'options.noSignupEmail']"/>
 
 ::::
 :::: right
 
-<code-samples-client path="/v0/auth/link" verb="post" :show-only="['email', 'username','name','data','tenantId']"/>
+<code-samples-client path="/v0/auth/link" verb="post" :show-only="['email', 'username','name','data','tenantId', 'options']"/>
 
 <response path="/v0/auth/link" verb="post" source="$docsClient"/>
 
@@ -273,12 +273,12 @@ Generate and send a login link email.
 
 If no user exists with the given email, creates a new user and sends them a login link. See [sign up with passwordless](#sign-up-with-passwordless).
 
-<parameters path="/v0/auth/link" verb="post" source="$docsClient" :show-only="['email', 'redirect']"/>
+<parameters path="/v0/auth/link" verb="post" source="$docsClient" :show-only="['email', 'options', 'options.redirect']"/>
 
 ::::
 :::: right
 
-<code-samples-client path="/v0/auth/link" verb="post" :show-only="['email', 'redirect']"/>
+<code-samples-client path="/v0/auth/link" verb="post" :show-only="['email', 'options']"/>
 
 <response path="/v0/auth/link" verb="post" source="$docsClient"/>
 
@@ -341,6 +341,8 @@ For example: `google`, `github`, `linkedin`, `facebook`, or `azure`.
 <parameter name="tenant_id" description="Unique identifier for the tenant. Note that this querystring uses underscore instead of camelcase." :required="true"/>
 
 <parameter name="origin" description="The origin of the requesting page." :required="true"/>
+
+<parameter name="redirect" description="A path to redirect the user to upon sign on." :required="false"/>
 
 ::::
 :::: right
