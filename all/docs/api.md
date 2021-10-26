@@ -863,6 +863,56 @@ Invite a user to join the application with the given role(s) in the specified te
 ::::
 :::::
 
-```
+---
 
-```
+## Authentication actions
+
+::::: row
+:::: left
+
+Server-to-server authentication actions allow your backend to perform actions that an end user cannot perform on their own, such as directly generating login link credentials.
+
+::::
+:::: right
+
+<endpoints :endpoints="[
+  { verb: 'post', path: '/v0/auth/link/generate', anchor: 'generate-link-credentials' },
+]"/>
+
+::::
+:::::
+
+---
+
+### Generate link credentials
+
+::::: row
+:::: left
+
+Generate link credentials for use in custom login, welcome, or verification flows.
+
+This endpoint returns `uuid` and `token` link credentials but does not send an email.
+
+The client application can use these link credentials in the [Log in with login link](/docs/api-client.html#log-in-with-login-link) endpoint or the [Userfront.login()](/docs/js.html#login-options) method.
+
+If you want Userfront to send an email on your behalf, you can use endpoints like [generate login link](/docs/api-client.html#generate-login-link).
+
+<parameters path="/v0/auth/link/generate" verb="post" />
+
+The link credentials can only be used once and will automatically expire according to the type of link:
+
+| options.type      | Expiration |
+| :---------------- | :--------- |
+| `login` (default) | 1 hour     |
+| `welcome`         | 3 days     |
+| `verify`          | 3 days     |
+
+::::
+:::: right
+
+<code-samples path="/v0/auth/link/generate" verb="post" :show-only="['email','options']" />
+
+<response path="/v0/auth/link/generate" verb="post"/>
+
+::::
+:::::
