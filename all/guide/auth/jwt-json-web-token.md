@@ -15,7 +15,7 @@ A JWT is signed using an algorithm designed to make data readable by a 3rd party
 ::::: row
 :::: left
 
-JWTs consist of 3 parts: a header, a signature, and a payload. The final token is written with dots separating each part.
+JWTs consist of 3 parts: a header, a payload, and a signature. The final token is written with dots separating each part.
 
 ::::
 :::: right

@@ -38,7 +38,7 @@ In order to "log out" a user, the server can delete its own token or mark it as 
 
 A JSON Web Token (JWT, pronounced "jot") can be used the same way as an opaque bearer token, but instead of being random, the JWT has some information about the user included. This information is "signed" rather than "encrypted", which means that it can be read by the browser, but not edited.
 
-A JWT consists of 3 parts: a header, a signature, and a payload. The final token is written with dots separating each part:
+A JWT consists of 3 parts: a header, a payload, and a signature. The final token is written with dots separating each part:
 
 ```
 header.payload.signature
