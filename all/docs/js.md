@@ -117,14 +117,15 @@ Userfront.init("demo1234");
 
 Registers a new user with one of the available methods.
 
-| option     | description                                                                                                                                 |
-| :--------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
-| _method_   | The method for registering. Options are: `password`, `azure`, `facebook`, `github`,`google`,`linkedin`. See below for more info on methods. |
-| _email_    | The user's email, which is required for the `password` method. Used only with the `password` method.                                        |
-| _username_ | The user's username (optional). Used only with the `password` method.                                                                       |
-| _name_     | The user's name (optional). Used only with the `password` method.                                                                           |
-| _password_ | The user's password. Used only with the `password` method.                                                                                  |
-| _redirect_ | Manually set the path to redirect to, or `false` to prevent redirection.                                                                    |
+| option     | description                                                                                                                                                 |
+| :--------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _method_   | The method for registering. Options are: `password`, `passwordless`, `azure`, `facebook`, `github`,`google`,`linkedin`. See below for more info on methods. |
+| _email_    | The user's email address, which is required for the `password` and `passwordless` methods.                                                                  |
+| _username_ | The user's username (optional). Used only with the `password` and `passwordless` methods.                                                                   |
+| _name_     | The user's name (optional). Used only with the `password` and `passwordless` methods.                                                                       |
+| _data_     | The user's custom data object (optional). Used only with the `password` and `passwordless` methods.                                                         |
+| _password_ | The user's password. Used only with the `password`.                                                                                                         |
+| _redirect_ | Manually set the path to redirect to, or `false` to prevent redirection.                                                                                    |
 
 ### Signup via `password` method
 
@@ -145,17 +146,57 @@ Userfront.init("demo1234");
 // Example with email
 Userfront.signup({
   method: "password",
-  email: "admin@example.com",
+  email: "user@example.com",
   password: "testmodepassword",
 });
 
 // Example with name and username included
 Userfront.signup({
   method: "password",
-  email: "admin@example.com",
+  email: "user@example.com",
   name: "Jane Doe",
   username: "jdoe11",
+  data: {
+    custom: "information",
+  },
   password: "testmodepassword",
+});
+```
+
+::::
+:::::
+
+### Signup via `passwordless` method
+
+::::: row
+:::: left
+
+Creates a user and sends them an email with a link to log in. This link works with the [Login via link](/docs/js.html#login-via-link-method) method.
+
+If a user with the given email address already exists, sends them an email to log in.
+
+::::
+:::: right
+
+```js
+import Userfront from "@userfront/core";
+Userfront.init("demo1234");
+
+// Example with email
+Userfront.signup({
+  method: "passwordless",
+  email: "user@example.com",
+});
+
+// Example with name and username included
+Userfront.signup({
+  method: "passwordless",
+  email: "user@example.com",
+  name: "Jane Doe",
+  username: "jdoe11",
+  data: {
+    custom: "information",
+  },
 });
 ```
 
@@ -198,16 +239,16 @@ Userfront.signup({ method: "google" });
 
 Initiates a login for a user with one of the available methods.
 
-| option            | description                                                                                                                                        |
-| :---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _method_          | The method for logging in. Options are: `password`, `link`, `azure`, `facebook`, `github`,`google`,`linkedin`. See below for more info on methods. |
-| _email_           | The user's email. Used only with the `password` method.                                                                                            |
-| _username_        | The user's username. Used only with the `password` method.                                                                                         |
-| _emailOrUsername_ | The user's email or username. Used only with the `password` method.                                                                                |
-| _password_        | The user's password. Used only with the `password` method.                                                                                         |
-| _token_           | The `token=` URL parameter sent in a login link. Used only with the `link` method.                                                                 |
-| _uuid_            | The `uuid=` URL parameter sent in a login link. Used only with the `link` method.                                                                  |
-| _redirect_        | Manually set the path to redirect to, or `false` to prevent redirection.                                                                           |
+| option            | description                                                                                                                                                        |
+| :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _method_          | The method for logging in. Options are: `password`, `passwordless`, `link`, `azure`, `facebook`, `github`,`google`,`linkedin`. See below for more info on methods. |
+| _email_           | The user's email. Used with the `password` and `passwordless` methods.                                                                                             |
+| _username_        | The user's username. Used only with the `password` method.                                                                                                         |
+| _emailOrUsername_ | The user's email or username. Used only with the `password` method.                                                                                                |
+| _password_        | The user's password. Used only with the `password` method.                                                                                                         |
+| _token_           | The `token=` URL parameter sent in a login link. Used only with the `link` method.                                                                                 |
+| _uuid_            | The `uuid=` URL parameter sent in a login link. Used only with the `link` method.                                                                                  |
+| _redirect_        | Manually set the path to redirect to, or `false` to prevent redirection.                                                                                           |
 
 ### Login via `password` method
 
@@ -226,22 +267,48 @@ Userfront.init("demo1234");
 // Example with email
 Userfront.login({
   method: "password",
-  email: "admin@example.com",
+  email: "user@example.com",
   password: "testmodepassword",
 });
 
 // Example with username
 Userfront.login({
   method: "password",
-  username: "admin",
+  username: "janedoe",
   password: "testmodepassword",
 });
 
 // Example with emailOrUsername
 Userfront.login({
   method: "password",
-  emailOrUsername: "admin@example.com", // or "admin"
+  emailOrUsername: "user@example.com", // or "janedoe"
   password: "testmodepassword",
+});
+```
+
+::::
+:::::
+
+### Login via `passwordless` method
+
+::::: row
+:::: left
+
+Sends the user an email with a link to log in. This link works with the [Login via link](/docs/js.html#login-via-link-method) method.
+
+If a user with the given email address does not exist, creates a new user record.
+
+::::
+:::: right
+
+```js
+import Userfront from "@userfront/core";
+Userfront.init("demo1234");
+
+// Send a login link email
+Userfront.login({
+  method: "passwordless",
+  email: "user@example.com",
 });
 ```
 
@@ -404,7 +471,7 @@ The user in question must exist already.
 import Userfront from "@userfront/core";
 Userfront.init("demo1234");
 
-Userfront.sendLoginLink("admin@example.com");
+Userfront.sendLoginLink("user@example.com");
 ```
 
 ::::
@@ -426,7 +493,7 @@ The user in question must exist already.
 import Userfront from "@userfront/core";
 Userfront.init("demo1234");
 
-Userfront.sendResetLink("admin@example.com");
+Userfront.sendResetLink("user@example.com");
 ```
 
 ::::
@@ -518,8 +585,8 @@ The following user attributes are editable:
 | `username` | String |
 | `data`     | Object |
 
-:::: right
 ::::
+:::: right
 
 ```js
 import Userfront from "@userfront/core";
@@ -531,6 +598,62 @@ Userfront.user.update({
     somethingCustom: true,
   },
 });
+```
+
+::::
+:::::
+
+## user.hasRole (roleName, options)
+
+::::: row
+:::: left
+
+Helper method to determine if the logged in user has a given role in the `authorization` object of their JWT access token.
+
+Returns `true` if the role is present, or `false` if not present.
+
+::: warning Note
+user.hasRole() should only be used to show or hide public elements like buttons or badges.
+
+Sensitive information should always rely on server-side checks.
+:::
+
+| option     | description                                                                           |
+| :--------- | :------------------------------------------------------------------------------------ |
+| _tenantId_ | The tenant to check against. Defaults to the tenantId from `Userfront.init(tenantId)` |
+
+::::
+:::: right
+
+```js
+import Userfront from "@userfront/core";
+Userfront.init("demo1234");
+
+/**
+ * {
+ *   ...
+ *   authorization: {
+ *     demo1234: {
+ *       roles: ["admin"]
+ *     },
+ *     abcd1234: {
+ *       roles: ["custom role"]
+ *     },
+ *   }
+ * }
+ */
+
+// Check for a role in demo1234 tenant
+Userfront.user.hasRole("admin");
+// => true
+Userfront.user.hasRole("member");
+// => false
+
+// Check for a role in abcd1234 tenant
+Userfront.user.hasRole("custom role", {
+  tenantId: "abcd1234",
+});
+// => true
 ```
 
 ::::
