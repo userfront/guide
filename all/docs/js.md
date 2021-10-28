@@ -21,6 +21,7 @@ It can be used for the following:
 
   - [user](#user)
   - [user.update()](#user-update-options)
+  - [user.hasRole()](#user-hasrole-rolename-options)
 
 - **Tokens**: read the user's access or ID token.
   - [tokens.accessToken](#tokens-accesstoken)
