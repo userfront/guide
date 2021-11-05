@@ -113,7 +113,7 @@ In this case, we're using a custom-styled `<button>` element that is red when ac
 ::::: row
 :::: left
 
-The [logout()](/docs/js.html#logout) method allows you to log out a user.
+The [logout()](/docs/js.html#logout-options) method allows you to log out a user.
 
 Userfront then does the following:
 

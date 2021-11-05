@@ -11,7 +11,7 @@ It can be used for the following:
 
   - [signup()](#signup-options)
   - [login()](#login-options)
-  - [logout()](#logout)
+  - [logout()](#logout-options)
   - [redirectIfLoggedIn()](#redirectifloggedin)
   - [resetPassword()](#resetpassword-options)
   - [sendLoginLink()](#sendloginlink-email)
@@ -380,12 +380,16 @@ Userfront.login({ method: "google" });
 ::::
 :::::
 
-## logout ()
+## logout (options)
 
 ::::: row
 :::: left
 
 Logs a user out by invalidating their session, removes auth tokens from the browser, and then redirects the browser to the After-logout path.
+
+| option     | description                                                              |
+| :--------- | :----------------------------------------------------------------------- |
+| _redirect_ | Manually set the path to redirect to, or `false` to prevent redirection. |
 
 ::::
 :::: right
@@ -394,7 +398,11 @@ Logs a user out by invalidating their session, removes auth tokens from the brow
 import Userfront from "@userfront/core";
 Userfront.init("demo1234");
 
+// Log out a user
 Userfront.logout();
+
+// Log out a user without redirecting
+Userfront.logout({ redirect: false });
 ```
 
 ::::
