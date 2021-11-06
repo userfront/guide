@@ -167,7 +167,7 @@ If you want to import or create many users, see [user import & export](/guide/im
 
 <code-samples path="/v0/users" verb="post" :show-only="['email', 'username', 'name', 'image', 'data']"/>
 
-<response path="/v0/users" verb="post"/>
+<response-json path="/v0/users" verb="post"/>
 
 ::::
 :::::
@@ -188,7 +188,7 @@ Reads a user record by its `userId`.
 
 <code-samples path="/v0/users/{userId}" verb="get" />
 
-<response path="/v0/users/{userId}" verb="get"/>
+<response-json path="/v0/users/{userId}" verb="get"/>
 
 ::::
 :::::
@@ -211,7 +211,7 @@ This request accepts mostly the same arguments as the user creation call.
 
 <code-samples path="/v0/users/{userId}" verb="put" />
 
-<response path="/v0/users/{userId}" verb="put"/>
+<response-json path="/v0/users/{userId}" verb="put"/>
 
 ::::
 :::::
@@ -232,7 +232,7 @@ Deletes a user record.
 
 <code-samples path="/v0/users/{userId}" verb="delete" />
 
-<response path="/v0/users/{userId}" verb="delete"/>
+<response-json path="/v0/users/{userId}" verb="delete"/>
 
 ::::
 :::::
@@ -522,7 +522,7 @@ To search for users with a specific role use `"tenantId: role name"`, or to sear
 
 <code-samples path="/v0/users/find" verb="post" />
 
-<response path="/v0/users/find" verb="post"/>
+<response-json path="/v0/users/find" verb="post"/>
 
 ::::
 :::::
@@ -543,7 +543,7 @@ Invite a user by email address.
 
 <code-samples path="/v0/users/invite" verb="post" />
 
-<response path="/v0/users/invite" verb="post"/>
+<response-json path="/v0/users/invite" verb="post"/>
 
 ::::
 :::::
@@ -564,7 +564,7 @@ Create a user or, if the user already exists, update it.
 
 <code-samples path="/v0/users/createOrUpdate" verb="post" />
 
-<response path="/v0/users/createOrUpdate" verb="post"/>
+<response-json path="/v0/users/createOrUpdate" verb="post"/>
 
 ::::
 :::::
@@ -585,7 +585,7 @@ Mark a user as active. This updates a user's `lastActiveAt` timestamp to the cur
 
 <code-samples path="/v0/users/{userId}/active" verb="post" />
 
-<response path="/v0/users/{userId}/active" verb="post"/>
+<response-json path="/v0/users/{userId}/active" verb="post"/>
 
 ::::
 :::::
@@ -632,7 +632,7 @@ Creates a new tenant.
 
 <code-samples path="/v0/tenants" verb="post" />
 
-<response path="/v0/tenants" verb="post"/>
+<response-json path="/v0/tenants" verb="post"/>
 
 ::::
 :::::
@@ -653,7 +653,7 @@ Reads a tenant record by its `tenantId`.
 
 <code-samples path="/v0/tenants/{tenantId}" verb="get" :tenant="store.state.activeTenant" />
 
-<response path="/v0/tenants/{tenantId}" verb="get"/>
+<response-json path="/v0/tenants/{tenantId}" verb="get"/>
 
 ::::
 :::::
@@ -674,7 +674,7 @@ Updates an existing tenant.
 
 <code-samples path="/v0/tenants/{tenantId}" verb="put" :tenant="store.state.activeTenant" />
 
-<response path="/v0/tenants/{tenantId}" verb="put"/>
+<response-json path="/v0/tenants/{tenantId}" verb="put"/>
 
 ::::
 :::::
@@ -695,7 +695,7 @@ Deletes an existing tenant.
 
 <code-samples path="/v0/tenants/{tenantId}" verb="delete" />
 
-<response path="/v0/tenants/{tenantId}" verb="delete"/>
+<response-json path="/v0/tenants/{tenantId}" verb="delete"/>
 
 ::::
 :::::
@@ -745,7 +745,7 @@ Lists all the roles available in your account.
 
 <code-samples path="/v0/roles" verb="get" />
 
-<response path="/v0/roles" verb="get"/>
+<response-json path="/v0/roles" verb="get"/>
 
 ::::
 :::::
@@ -770,7 +770,7 @@ To remove all roles for a user, pass an empty array for `roles`.
 
 <code-samples path="/v0/users/{userId}/roles" verb="put" />
 
-<response path="/v0/users/{userId}/roles" verb="put"/>
+<response-json path="/v0/users/{userId}/roles" verb="put"/>
 
 ::::
 :::::
@@ -793,7 +793,7 @@ The role(s) that is created will be at the application-wide level. To invite a u
 
 <code-samples path="/v0/roles/invite" verb="post" />
 
-<response path="/v0/roles/invite" verb="post"/>
+<response-json path="/v0/roles/invite" verb="post"/>
 
 ::::
 :::::
@@ -814,7 +814,7 @@ Lists all the roles available within the specified tenant.
 
 <code-samples path="/v0/tenants/{tenantId}/roles" verb="get" />
 
-<response path="/v0/tenants/{tenantId}/roles" verb="get"/>
+<response-json path="/v0/tenants/{tenantId}/roles" verb="get"/>
 
 ::::
 :::::
@@ -837,7 +837,7 @@ To remove all roles for a user within the specified tenant, pass an empty array 
 
 <code-samples path="/v0/tenants/{tenantId}/users/{userId}/roles" verb="put" />
 
-<response path="/v0/tenants/{tenantId}/users/{userId}/roles" verb="put"/>
+<response-json path="/v0/tenants/{tenantId}/users/{userId}/roles" verb="put"/>
 
 ::::
 :::::
@@ -858,7 +858,7 @@ Invite a user to join the application with the given role(s) in the specified te
 
 <code-samples path="/v0/tenants/{tenantId}/roles/invite" verb="post" />
 
-<response path="/v0/tenants/{tenantId}/roles/invite" verb="post"/>
+<response-json path="/v0/tenants/{tenantId}/roles/invite" verb="post"/>
 
 ::::
 :::::
@@ -912,7 +912,7 @@ The link credentials can only be used once and will automatically expire accordi
 
 <code-samples path="/v0/auth/link/generate" verb="post" :show-only="['email','options']" />
 
-<response path="/v0/auth/link/generate" verb="post"/>
+<response-json path="/v0/auth/link/generate" verb="post"/>
 
 ::::
 :::::

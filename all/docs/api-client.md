@@ -136,7 +136,7 @@ In test mode, Userfront does not send emails.
 
 <code-samples-client path="/v0/auth/create" verb="post" :show-only="['email','password','username','name','data','tenantId', 'options']"/>
 
-<response path="/v0/auth/create" verb="post" source="$docsClient"/>
+<response-json path="/v0/auth/create" verb="post" source="$docsClient"/>
 
 ::::
 :::::
@@ -157,7 +157,7 @@ If the user already exists, sends them a login link. See [generate login link](#
 
 <code-samples-client path="/v0/auth/link" verb="post" :show-only="['email', 'username','name','data','tenantId', 'options']"/>
 
-<response path="/v0/auth/link" verb="post" source="$docsClient"/>
+<response-json path="/v0/auth/link" verb="post" source="$docsClient"/>
 
 ::::
 :::::
@@ -172,7 +172,7 @@ In test mode, Userfront does not send emails. Instead, the API response will con
 ::::
 :::: right
 
-<response-custom title="Response (test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/login?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e&type=welcome' }}"/>
+<response-json-custom title="Response (test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/login?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e&type=welcome' }}"/>
 
 ::::
 :::::
@@ -188,7 +188,7 @@ You can disable this email with the `noSignupEmail` parameter above.
 ::::
 :::: right
 
-<response-custom title="Response (noSignupEmail: true)" :response="{ message: 'OK' }"/>
+<response-json-custom title="Response (noSignupEmail: true)" :response="{ message: 'OK' }"/>
 ::::
 :::::
 
@@ -206,7 +206,7 @@ Log in with a password and email/username.
 
 <code-samples-client path="/v0/auth/basic" verb="post"/>
 
-<response path="/v0/auth/basic" verb="post" source="$docsClient"/>
+<response-json path="/v0/auth/basic" verb="post" source="$docsClient"/>
 
 ::::
 :::::
@@ -225,7 +225,7 @@ Update a user's password using their valid JWT access token and their existing p
 
 <code-samples-client path="/v0/auth/basic" verb="put"/>
 
-<response-custom :response="{ message: 'OK' }"/>
+<response-json-custom :response="{ message: 'OK' }"/>
 
 ::::
 :::::
@@ -240,7 +240,7 @@ If the user does not have a password (for example, if they logged in via SSO), t
 ::::
 :::: right
 
-<response-custom title="Response (if no password exists)" :response="{ message: 'OK', result: { to: 'user@example.com', messageId: '18299324-bf92-4ec9-bd47-403eda5f278d', submittedAt: new Date() }}"/>
+<response-json-custom title="Response (if no password exists)" :response="{ message: 'OK', result: { to: 'user@example.com', messageId: '18299324-bf92-4ec9-bd47-403eda5f278d', submittedAt: new Date() }}"/>
 
 ::::
 :::::
@@ -259,7 +259,7 @@ This link will direct the user to your Password reset path.
 ::::
 :::: right
 
-<response-custom title="Response (if no password exists, test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/reset?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e' }}"/>
+<response-json-custom title="Response (if no password exists, test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/reset?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e' }}"/>
 
 ::::
 :::::
@@ -280,7 +280,7 @@ If no user exists with the given email, creates a new user and sends them a logi
 
 <code-samples-client path="/v0/auth/link" verb="post" :show-only="['email', 'options']"/>
 
-<response path="/v0/auth/link" verb="post" source="$docsClient"/>
+<response-json path="/v0/auth/link" verb="post" source="$docsClient"/>
 
 ::::
 :::::
@@ -295,7 +295,7 @@ In test mode, Userfront does not send emails. Instead, the API response will con
 ::::
 :::: right
 
-<response-custom title="Response (test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/login?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e&type=login' }}"/>
+<response-json-custom title="Response (test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/login?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e&type=login' }}"/>
 
 ::::
 :::::
@@ -314,7 +314,7 @@ Log in using the token and uuid from a login link.
 
 <code-samples-client path="/v0/auth/link" verb="put"/>
 
-<response path="/v0/auth/link" verb="put" source="$docsClient"/>
+<response-json path="/v0/auth/link" verb="put" source="$docsClient"/>
 
 ::::
 :::::
@@ -376,7 +376,7 @@ Generate and send a password reset link email.
 
 <code-samples-client path="/v0/auth/reset/link" verb="post"/>
 
-<response path="/v0/auth/reset/link" verb="post" source="$docsClient"/>
+<response-json path="/v0/auth/reset/link" verb="post" source="$docsClient"/>
 
 ::::
 :::::
@@ -391,7 +391,7 @@ In test mode, Userfront does not send emails. Instead, the API response will con
 ::::
 :::: right
 
-<response-custom title="Response (test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/reset?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e' }}"/>
+<response-json-custom title="Response (test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/reset?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e' }}"/>
 
 ::::
 :::::
@@ -412,7 +412,7 @@ Functionally, an account verification link works the same as a login link, so th
 
 <code-samples-client path="/v0/auth/verify/link" verb="post"/>
 
-<response path="/v0/auth/verify/link" verb="post" source="$docsClient"/>
+<response-json path="/v0/auth/verify/link" verb="post" source="$docsClient"/>
 
 ::::
 :::::
@@ -427,7 +427,7 @@ In test mode, Userfront does not send emails. Instead, the API response will con
 ::::
 :::: right
 
-<response-custom title="Response (test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/login?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e&type=verify' }}"/>
+<response-json-custom title="Response (test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/login?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e&type=verify' }}"/>
 
 ::::
 :::::
@@ -448,7 +448,7 @@ In order to invalidate the user's current session, the request must include a va
 
 <code-samples-client path="/v0/auth/logout" verb="get" show-access-token="true"/>
 
-<response path="/v0/auth/logout" verb="get" source="$docsClient"/>
+<response-json path="/v0/auth/logout" verb="get" source="$docsClient"/>
 
 ::::
 :::::

@@ -164,6 +164,11 @@ Userfront.signup({
 });
 ```
 
+::: caret Return values
+<response-js method="Userfront.signup(...)" path="/v0/auth/create" verb="post" source="$docsClient"
+error-message="Password must be at least 16 characters OR at least 8 characters including a number and a letter"/>
+:::
+
 ::::
 :::::
 

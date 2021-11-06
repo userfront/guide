@@ -224,3 +224,21 @@ h1,h2,h3,h4,h5,.navbar a .site-name {
 .param-description {
   margin-top: 4px;
 }
+
+// Caret-container
+
+.caret-container {
+  background: #353839;
+  color: white;
+  border-radius: 6px;
+  summary {
+    padding: 1.6em;
+    cursor: pointer;
+  }
+  &[open] summary {
+    padding-bottom: 0;
+  }
+  .theme-code-group {
+    margin-top: 0;  
+  }
+}
