@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@userfront/core": "^0.2.26",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "core-js": "^2.6",
     "element-ui": "^2.15.2",
     "js-cookie": "^2.2.1",
