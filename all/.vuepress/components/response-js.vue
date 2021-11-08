@@ -6,7 +6,12 @@
         language="js"
         :code="`${responseSuccess}`"
       />
-      <code-block-custom title="Error" language="js" :code="`${response400}`" />
+      <code-block-custom
+        v-if="errorMessage"
+        title="Error"
+        language="js"
+        :code="`${response400}`"
+      />
     </code-group>
   </div>
 </template>
@@ -40,9 +45,9 @@ ${this.responsify(this.response)}`;
       return (
         this.errorPrepend +
         this.responsify({
-          statusCode: 400,
           error: "Bad Request",
           message: this.errorMessage || "Problem with request",
+          statusCode: 400,
         })
       );
     },

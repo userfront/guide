@@ -206,6 +206,11 @@ Userfront.signup({
 });
 ```
 
+::: caret Return values
+<response-js method="Userfront.signup(...)" path="/v0/auth/link" verb="post" source="$docsClient"
+error-message="Email format is invalid"/>
+:::
+
 ::::
 :::::
 
@@ -292,6 +297,11 @@ Userfront.login({
 });
 ```
 
+::: caret Return values
+<response-js method="Userfront.login(...)" path="/v0/auth/basic" verb="post" source="$docsClient"
+error-message="Incorrect email or password"/>
+:::
+
 ::::
 :::::
 
@@ -317,6 +327,11 @@ Userfront.login({
   email: "user@example.com",
 });
 ```
+
+::: caret Return values
+<response-js method="Userfront.login(...)" path="/v0/auth/link" verb="post" source="$docsClient"
+error-message="Email format is invalid"/>
+:::
 
 ::::
 :::::
@@ -349,6 +364,11 @@ Userfront.login({
   uuid: uuid,
 });
 ```
+
+::: caret Return values
+<response-js method="Userfront.login(...)" path="/v0/auth/link" verb="put" source="$docsClient"
+error-message="Invalid token"/>
+:::
 
 ::::
 :::::
@@ -410,6 +430,10 @@ Userfront.logout();
 Userfront.logout({ redirect: false });
 ```
 
+::: caret Return values
+<response-js method="Userfront.logout(...)" path="/v0/auth/logout" verb="get" source="$docsClient"/>
+:::
+
 ::::
 :::::
 
@@ -465,6 +489,11 @@ Userfront.resetPassword({
   uuid: "9994b8d1-d51b-4a83-aa85-7e7508b92525",
 });
 ```
+
+::: caret Return values
+<response-js method="Userfront.resetPassword(...)" path="/v0/auth/reset" verb="put" source="$docsClient"
+error-message="Invalid token"/>
+:::
 
 ::::
 :::::

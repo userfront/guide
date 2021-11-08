@@ -104,7 +104,7 @@ Most of these actions are also implemented with helper functions in the [Core JS
   { verb: 'put', path: '/v0/auth/link', anchor: 'log-in-with-login-link' },
   { verb: 'get', path: '/v0/auth/{provider}/login', anchor: 'log-in-with-sso' },
   { verb: 'post', path: '/v0/auth/reset/link', anchor: 'generate-password-reset-link' },
-  { verb: 'put', path: '/v0/auth/reset', anchor: 'reset-password-with-password-reset-link' },
+  { verb: 'put', path: '/v0/auth/reset', anchor: 'reset-password-with-link-credentials' },
   { verb: 'post', path: '/v0/auth/verify/link', anchor: 'generate-account-verification-link' },
   { verb: 'get', path: '/v0/auth/logout', anchor: 'log-out' },
 ]"/>
@@ -392,6 +392,27 @@ In test mode, Userfront does not send emails. Instead, the API response will con
 :::: right
 
 <response-json-custom title="Response (test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/reset?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e' }}"/>
+
+::::
+:::::
+
+### Reset password with link credentials
+
+::::: row
+:::: left
+
+Reset a user's password using the `token` and `uuid` from a password reset link.
+
+Upon success, returns a JWT access token so that the user can log in directly.
+
+<parameters path="/v0/auth/reset" verb="put" source="$docsClient"/>
+
+::::
+:::: right
+
+<code-samples-client path="/v0/auth/reset" verb="put"/>
+
+<response-json path="/v0/auth/reset" verb="put" source="$docsClient"/>
 
 ::::
 :::::
