@@ -517,6 +517,11 @@ Userfront.init("demo1234");
 Userfront.sendLoginLink("user@example.com");
 ```
 
+::: caret Return values
+<response-js method="Userfront.sendLoginLink(...)" path="/v0/auth/link" verb="post" source="$docsClient"
+error-message="Email format is invalid"/>
+:::
+
 ::::
 :::::
 
@@ -538,6 +543,11 @@ Userfront.init("demo1234");
 
 Userfront.sendResetLink("user@example.com");
 ```
+
+::: caret Return values
+<response-js method="Userfront.sendResetLink(...)" path="/v0/auth/reset/link" verb="post" source="$docsClient"
+error-message="Email format is invalid"/>
+:::
 
 ::::
 :::::
