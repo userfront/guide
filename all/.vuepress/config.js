@@ -284,6 +284,29 @@ module.exports = {
       md.use(require("markdown-it-container"), "right");
       md.use(require("markdown-it-container"), "row");
       md.use(require("markdown-it-container"), "card");
+      // Custom ::: caret container
+      md.use(require("markdown-it-container"), "caret", {
+        validate: function(params) {
+          return params.trim().match(/^caret\s+(.*)$/);
+        },
+
+        render: function(tokens, idx) {
+          var m = tokens[idx].info.trim().match(/^caret\s+(.*)$/);
+
+          if (tokens[idx].nesting === 1) {
+            // opening tag
+            return (
+              `<details class="caret-container"><summary>` +
+              md.utils.escapeHtml(m[1]) +
+              "</summary>\n"
+            );
+          } else {
+            // closing tag
+            return "</details>\n";
+          }
+        },
+      });
+
       md.use(require("markdown-it-include"));
     },
   },

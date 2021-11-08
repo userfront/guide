@@ -157,7 +157,7 @@ class LogoutButton extends React.Component {
 ::::: row
 :::: left
 
-The [logout()](/docs/js.html#logout) method allows you to log out a user.
+The [logout()](/docs/js.html#logout-options) method allows you to log out a user.
 
 Userfront then does the following:
 

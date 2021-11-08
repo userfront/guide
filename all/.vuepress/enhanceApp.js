@@ -50,6 +50,8 @@ export default async ({ isServer, router, Vue }) => {
   Vue.prototype.store = store;
   Vue.prototype.router = router;
 
+  const pathsWithDocsClient = ["/docs/api-client.html", "/docs/js.html"];
+
   if (!isServer) {
     router.beforeEach(async (to, from, next) => {
       // Load the API docs.json if needed
@@ -60,7 +62,7 @@ export default async ({ isServer, router, Vue }) => {
       }
 
       // Load the API docs-client.json if needed
-      if (to.path === "/docs/api-client.html" && !Vue.prototype.$docsClient) {
+      if (pathsWithDocsClient.includes(to.path) && !Vue.prototype.$docsClient) {
         const { data } = await axios.get(docsClientJsonUrl);
         Vue.prototype.$docsClient = data;
       }

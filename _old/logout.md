@@ -4,11 +4,14 @@
 
 You can log out a user with the Userfront Core JavaScript library, which has the `logout()` method.
 
-[Userfront.logout() method](/docs/js.html#logout)
+[Userfront.logout() method](/docs/js.html#logout-options)
 
 ```js
 // Example to log out a user
 Userfront.logout();
+
+// Example to log out a user without redirecting
+Userfront.logout({ redirect: false });
 ```
 
 ## Toolkit button

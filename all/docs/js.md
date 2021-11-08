@@ -11,7 +11,7 @@ It can be used for the following:
 
   - [signup()](#signup-options)
   - [login()](#login-options)
-  - [logout()](#logout)
+  - [logout()](#logout-options)
   - [redirectIfLoggedIn()](#redirectifloggedin)
   - [resetPassword()](#resetpassword-options)
   - [sendLoginLink()](#sendloginlink-email)
@@ -164,6 +164,11 @@ Userfront.signup({
 });
 ```
 
+::: caret Return values
+<response-js method="Userfront.signup(...)" path="/v0/auth/create" verb="post" source="$docsClient"
+error-message="Password must be at least 16 characters OR at least 8 characters including a number and a letter"/>
+:::
+
 ::::
 :::::
 
@@ -200,6 +205,11 @@ Userfront.signup({
   },
 });
 ```
+
+::: caret Return values
+<response-js method="Userfront.signup(...)" path="/v0/auth/link" verb="post" source="$docsClient"
+error-message="Email format is invalid"/>
+:::
 
 ::::
 :::::
@@ -287,6 +297,11 @@ Userfront.login({
 });
 ```
 
+::: caret Return values
+<response-js method="Userfront.login(...)" path="/v0/auth/basic" verb="post" source="$docsClient"
+error-message="Incorrect email or password"/>
+:::
+
 ::::
 :::::
 
@@ -312,6 +327,11 @@ Userfront.login({
   email: "user@example.com",
 });
 ```
+
+::: caret Return values
+<response-js method="Userfront.login(...)" path="/v0/auth/link" verb="post" source="$docsClient"
+error-message="Email format is invalid"/>
+:::
 
 ::::
 :::::
@@ -344,6 +364,11 @@ Userfront.login({
   uuid: uuid,
 });
 ```
+
+::: caret Return values
+<response-js method="Userfront.login(...)" path="/v0/auth/link" verb="put" source="$docsClient"
+error-message="Invalid token"/>
+:::
 
 ::::
 :::::
@@ -380,12 +405,16 @@ Userfront.login({ method: "google" });
 ::::
 :::::
 
-## logout ()
+## logout (options)
 
 ::::: row
 :::: left
 
 Logs a user out by invalidating their session, removes auth tokens from the browser, and then redirects the browser to the After-logout path.
+
+| option     | description                                                              |
+| :--------- | :----------------------------------------------------------------------- |
+| _redirect_ | Manually set the path to redirect to, or `false` to prevent redirection. |
 
 ::::
 :::: right
@@ -394,8 +423,16 @@ Logs a user out by invalidating their session, removes auth tokens from the brow
 import Userfront from "@userfront/core";
 Userfront.init("demo1234");
 
+// Log out a user
 Userfront.logout();
+
+// Log out a user without redirecting
+Userfront.logout({ redirect: false });
 ```
+
+::: caret Return values
+<response-js method="Userfront.logout(...)" path="/v0/auth/logout" verb="get" source="$docsClient"/>
+:::
 
 ::::
 :::::
@@ -453,6 +490,11 @@ Userfront.resetPassword({
 });
 ```
 
+::: caret Return values
+<response-js method="Userfront.resetPassword(...)" path="/v0/auth/reset" verb="put" source="$docsClient"
+error-message="Invalid token"/>
+:::
+
 ::::
 :::::
 
@@ -475,6 +517,11 @@ Userfront.init("demo1234");
 Userfront.sendLoginLink("user@example.com");
 ```
 
+::: caret Return values
+<response-js method="Userfront.sendLoginLink(...)" path="/v0/auth/link" verb="post" source="$docsClient"
+error-message="Email format is invalid"/>
+:::
+
 ::::
 :::::
 
@@ -496,6 +543,11 @@ Userfront.init("demo1234");
 
 Userfront.sendResetLink("user@example.com");
 ```
+
+::: caret Return values
+<response-js method="Userfront.sendResetLink(...)" path="/v0/auth/reset/link" verb="post" source="$docsClient"
+error-message="Email format is invalid"/>
+:::
 
 ::::
 :::::
