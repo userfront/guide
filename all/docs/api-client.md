@@ -271,7 +271,11 @@ This link will direct the user to your Password reset path.
 
 Generate and send a login link email.
 
-If no user exists with the given email, creates a new user and sends them a login link. See [sign up with passwordless](#sign-up-with-passwordless).
+::: tip Note
+If no user exists with the given email, this endpoint creates a new user and sends them a login link.
+
+See also: [sign up with passwordless](#sign-up-with-passwordless).
+:::
 
 <parameters path="/v0/auth/link" verb="post" source="$docsClient" :show-only="['email', 'options', 'options.redirect']"/>
 
