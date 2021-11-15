@@ -24,10 +24,16 @@
 export default {
   props: ["path", "verb", "showOnly", "showAccessToken"],
   computed: {
+    installation() {
+      return this.$store.state.installation || {};
+    },
+    tenantId() {
+      return this.installation.tenantId || "demo1234";
+    },
     url() {
       return `https://api.userfront.com${this.path
         .replace("{userId}", this.userId || "1")
-        .replace("{tenantId}", this.tenantId || "demo1234")}`;
+        .replace("{tenantId}", this.tenantId)}`;
     },
     uppercaseVerb() {
       return this.verb.toUpperCase();
@@ -50,6 +56,9 @@ export default {
       this.parameters.map((param) => {
         if (this.showOnly && !this.showOnly.includes(param.name)) return;
         p[param.name] = param.examples[0];
+        if (param.name === "tenantId") {
+          p.tenantId = this.tenantId;
+        }
       });
       return p;
     },
@@ -67,8 +76,7 @@ export default {
       return `curl --request ${this.uppercaseVerb} \\
   --url ${this.url} \\
   --header 'Accept: */*' \\
-  --header 'Content-Type: application/json' \\
-  --header 'Authorization: Bearer ${this.token}' ${data}`;
+  --header 'Content-Type: application/json' ${data}`;
     },
 
     fetchSample() {
@@ -123,8 +131,7 @@ const payload = ${data};
       
 const options = {
   headers: { 
-    Accept: "*/*",
-    Authorization: "Bearer ${this.token}"
+    Accept: "*/*"
   }
 };
 ${payloadDefinition}
