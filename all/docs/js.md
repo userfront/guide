@@ -312,7 +312,11 @@ error-message="Incorrect email or password"/>
 
 Sends the user an email with a link to log in. This link works with the [Login via link](/docs/js.html#login-via-link-method) method.
 
-If a user with the given email address does not exist, creates a new user record.
+::: tip Note
+If no user exists with the given email, this method creates a new user and sends them a login link.
+
+See also: [signup via passwordless method](#signup-via-passwordless-method).
+:::
 
 ::::
 :::: right
