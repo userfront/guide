@@ -19,7 +19,7 @@ footer: ©2020 Userfront
     <p>
       Try a demo application that uses Userfront, and view the code it uses.
       <br>
-      <a href="https://userfront.dev">See demo →</a>
+      <a href="https://test-demo1234.demo.userfront.dev">See demo →</a>
     </p>
   </div>
   <div class="feature">

@@ -1,7 +1,7 @@
 <template>
   <iframe
     v-if="tenantId && modId"
-    :src="`https://test-${tenantId}.userfront.dev/iframe/${modId}`"
+    :src="`https://test-${tenantId}.demo.userfront.dev/iframe/${modId}`"
     frameborder="0"
     style="width:100%;border:1px solid #eee; margin-top:10px;"
     :style="`min-height: ${height ? height : 500}px`"
