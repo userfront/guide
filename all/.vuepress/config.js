@@ -258,7 +258,7 @@ module.exports = {
     // https://vuepress.vuejs.org/theme/default-theme-config.html#algolia-search
     algolia: {
       apiKey: "38b12ca6d195419623c24987e99c6d34",
-      indexName: "Q8V84Z0FBH",
+      indexName: "userfront",
     },
 
     // Assumes GitHub. Can also be a full GitLab url.
