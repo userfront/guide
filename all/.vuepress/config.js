@@ -257,7 +257,8 @@ module.exports = {
     lastUpdated: "Last Updated", // string | boolean
     // https://vuepress.vuejs.org/theme/default-theme-config.html#algolia-search
     algolia: {
-      apiKey: "3d15a906f533dae762fe03ca79737fa5",
+      appId: "Q8V84Z0FBH",
+      apiKey: "38b12ca6d195419623c24987e99c6d34",
       indexName: "userfront",
     },
 
