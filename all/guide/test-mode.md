@@ -10,6 +10,13 @@ Test mode allows you to experiment and develop locally without affecting your li
 ::::
 ::::right
 
+::: tip To enable live mode:
+
+1. Your page must use `https://`
+2. Activate your account, and [add your domain](#activate-live-mode) as a live domain.
+
+:::
+
 ::::
 :::::
 
@@ -88,5 +95,26 @@ Once you have done this, any Toolkit forms or requests from this domain will be 
 | sub.example.com | sub.example.com, another.sub.example.com (but not example.com) |
 
 Domains are matched at the top level, unless a subdomain is specified.
+::::
+:::::
+
+### Mimick live mode for API requests
+
+::::: row
+:::: left
+
+To make live mode API requests without the browser (e.g. using Postman), include your live domain as the origin of the request.
+
+::::
+:::: right
+
+```
+{
+  headers: {
+    origin: "https://example.com"
+  }
+}
+```
+
 ::::
 :::::
