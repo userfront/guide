@@ -38,6 +38,10 @@
   <router-link :to="{ path: '/examples/react-native.html' }" class="el-button is-plain btn-square" style="min-width: 170px"><img src="https://res.cloudinary.com/component/image/upload/v1625866445/guide/react_200.png" /> React Native</router-link>
 </div>
 
+## Integrations
+
+[AWS API Gateway Lambda Authorizer](https://github.com/userfront/example-aws-api-gateway)
+
 ## Unofficial examples
 
 [Tutorial with React, Node, and Postgres](https://github.com/tyrw/survey-dev-tutorial)
