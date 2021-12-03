@@ -369,6 +369,9 @@ If your original SSO signup call contained a `redirect` parameter, it will be in
 
 ```js
 // On your login page:
+
+Userfront.init("demo1234");
+
 // If the URL contains token & uuid params, log in
 if (
   document.location.search.includes("token=") &&
