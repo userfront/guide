@@ -365,9 +365,24 @@ handleSubmit(event) {
 
 To configure Single sign-on (SSO), first add the provider you want to use in the Userfront dashboard in the **SSO** tab.
 
+The SSO flow is as follows:
+
+1. The user clicks the SSO button ("Sign up with Google"), which triggers `Userfront.signup()`
+2. The browser redirects to the provider (Google), where the user authorizes your application
+3. Upon success, the browser redirects back to your login page (your [After-logout path](/guide/glossary.html#after-logout-path)) with `uuid` and `token` login credentials in the URL
+4. Your application calls `Userfront.login()` to log in the user with the `uuid` and `token`
+
+::::
+:::::
+
+#### Sign up with Google button
+
+::::: row
+:::: left
+
 In this example, we add an `<SSOButton />` component to allow signup with Google.
 
-Ultimately, we need to call `Userfront.signup({ method: "google" })` whenever the button is clicked. You can style the button however you like.
+We need to call `Userfront.signup({ method: "google" })` whenever the button is clicked. You can style the button however you like.
 
 You can find more provider options like GitHub, LinkedIn, and Facebook in the docs for [signup()](/docs/js.html#signup-options).
 
@@ -424,6 +439,39 @@ class SignupForm extends React.Component {
       </div>
     );
   }
+}
+```
+
+::::
+:::::
+
+#### Login after redirect
+
+::::: row
+:::: left
+
+Once the browser is redirected back to your login page after SSO approval, your application should call
+
+`Userfront.login({ method: "link" })`
+
+You can set up your JS to call this method automatically by checking whether the URL contains the `token` and `uuid` parameters.
+
+If your original SSO signup call contained a `redirect` parameter, it will be included in the URL and followed automatically.
+
+::::
+:::: right
+
+```js
+// On your login page:
+
+Userfront.init("demo1234");
+
+// If the URL contains token & uuid params, log in
+if (
+  document.location.search.includes("token=") &&
+  document.location.search.includes("uuid=")
+) {
+  Userfront.login({ method: "link" });
 }
 ```
 
