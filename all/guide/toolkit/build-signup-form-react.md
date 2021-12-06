@@ -384,6 +384,8 @@ In this example, we add an `<SSOButton />` component to allow signup with Google
 
 We need to call `Userfront.signup({ method: "google" })` whenever the button is clicked. You can style the button however you like.
 
+You can find more provider options like GitHub, LinkedIn, and Facebook in the docs for [signup()](/docs/js.html#signup-options).
+
 ::::
 :::: right
 
@@ -450,7 +452,7 @@ class SignupForm extends React.Component {
 
 Once the browser is redirected back to your login page after SSO approval, your application should call
 
-`Userfront.login({ method: "link" })`.
+`Userfront.login({ method: "link" })`
 
 You can set up your JS to call this method automatically by checking whether the URL contains the `token` and `uuid` parameters.
 
@@ -461,6 +463,9 @@ If your original SSO signup call contained a `redirect` parameter, it will be in
 
 ```js
 // On your login page:
+
+Userfront.init("demo1234");
+
 // If the URL contains token & uuid params, log in
 if (
   document.location.search.includes("token=") &&
