@@ -219,12 +219,14 @@ Log in with a password and email/username.
 
 Update a user's password using their valid JWT access token and their existing password.
 
+The request must include a valid JWT access token in the `Authorization` header.
+
 <parameters path="/v0/auth/basic" verb="put" source="$docsClient"/>
 
 ::::
 :::: right
 
-<code-samples-client path="/v0/auth/basic" verb="put"/>
+<code-samples-client path="/v0/auth/basic" verb="put" show-token="access"/>
 
 <response-json-custom :response="{ message: 'OK' }"/>
 
