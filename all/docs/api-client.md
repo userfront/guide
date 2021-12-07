@@ -103,6 +103,7 @@ Most of these actions are also implemented with helper functions in the [Core JS
   { verb: 'post', path: '/v0/auth/link', anchor: 'generate-login-link' },
   { verb: 'put', path: '/v0/auth/link', anchor: 'log-in-with-login-link' },
   { verb: 'get', path: '/v0/auth/{provider}/login', anchor: 'log-in-with-sso' },
+  { verb: 'get', path: '/v0/auth/refresh', anchor: 'refresh-jwt-access-token' },
   { verb: 'post', path: '/v0/auth/reset/link', anchor: 'generate-password-reset-link' },
   { verb: 'put', path: '/v0/auth/reset', anchor: 'reset-password-with-link-credentials' },
   { verb: 'post', path: '/v0/auth/verify/link', anchor: 'generate-account-verification-link' },
@@ -366,6 +367,29 @@ https://api.userfront.com/v0/auth/google/login?tenant_id=demo1234&origin=https:/
 <br>
 <br>
 
+### Refresh JWT access token
+
+::::: row
+:::: left
+
+Send a user's valid refresh token to obtain a new JWT access token.
+
+The request must include a valid refresh token in the `Authorization` header.
+
+<parameters path="/v0/auth/refresh" verb="get" source="$docsClient"/>
+
+::::
+:::: right
+
+<code-samples-client path="/v0/auth/refresh" verb="get" show-token="refresh"/>
+
+<response-json path="/v0/auth/refresh" verb="get" source="$docsClient"/>
+::::
+:::::
+
+<br>
+<br>
+
 ### Generate password reset link
 
 ::::: row
@@ -471,7 +495,7 @@ In order to invalidate the user's current session, the request must include a va
 ::::
 :::: right
 
-<code-samples-client path="/v0/auth/logout" verb="get" show-access-token="true"/>
+<code-samples-client path="/v0/auth/logout" verb="get" show-token="access"/>
 
 <response-json path="/v0/auth/logout" verb="get" source="$docsClient"/>
 
