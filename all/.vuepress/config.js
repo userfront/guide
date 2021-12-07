@@ -87,6 +87,7 @@ module.exports = {
           { text: "Test mode", link: "/guide/test-mode.md" },
           { text: "Import and export users", link: "/guide/import-export.md" },
           { text: "Glossary of terms", link: "/guide/glossary.md" },
+          { text: "Status & maintenance", link: "/guide/status.md" },
           {
             text: "Learn more about",
             items: [
