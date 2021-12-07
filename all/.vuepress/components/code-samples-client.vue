@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  props: ["path", "verb", "showOnly", "showAccessToken"],
+  props: ["path", "verb", "showOnly", "showToken"],
   computed: {
     installation() {
       return this.$store.state.installation || {};
@@ -49,6 +49,7 @@ export default {
       }
     },
     token() {
+      if (this.showToken === "refresh") return `{User JWT refresh token}`;
       return `{User JWT access token}`;
     },
     payload() {
@@ -93,7 +94,7 @@ export default {
 `
         : "";
 
-      const accessTokenJS = this.showAccessToken
+      const accessTokenJS = this.showToken
         ? `,
     Authorization: "Bearer ${this.token}"`
         : "";
