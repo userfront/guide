@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  props: ["path", "verb", "showOnly", "tokenType"],
+  props: ["path", "verb", "showOnly", "tokenType", "noAuthorization"],
   computed: {
     url() {
       return `https://api.userfront.com${this.path
@@ -72,11 +72,17 @@ export default {
   --data '${JSON.stringify(this.payload)}'`
         : "";
 
-      return `curl --request ${this.uppercaseVerb} \\
+      let curl = `curl --request ${this.uppercaseVerb} \\
   --url ${this.url} \\
   --header 'Accept: */*' \\
-  --header 'Content-Type: application/json' \\
+  --header 'Content-Type: application/json'`;
+
+      if (!this.noAuthorization) {
+        curl += ` \\
   --header 'Authorization: Bearer ${this.token}' ${data}`;
+      }
+
+      return curl;
     },
 
     // Node.js & JS
@@ -93,12 +99,17 @@ export default {
 const payload = ${data};
 `
         : "";
+
+      const authorization = this.noAuthorization
+        ? ""
+        : `,
+    Authorization: "Bearer ${this.token}"`;
+
       return `const axios = require('axios');
       
 const options = {
   headers: { 
-    Accept: "*/*",
-    Authorization: "Bearer ${this.token}"
+    Accept: "*/*"${authorization}
   }
 };
 ${payloadDefinition}
@@ -117,6 +128,11 @@ data = ${JSON.stringify(this.payload, null, "  ").replace(
           )}`
         : "";
 
+      const authorization = this.noAuthorization
+        ? ""
+        : `,
+  'Authorization': 'Bearer ${this.token}'`;
+
       return `require 'net/http'
 require 'net/https'
 require 'uri'
@@ -125,8 +141,7 @@ require 'json'
 uri = URI.parse("${this.url}")
 
 header = {
-  'Content-Type': 'text/json',
-  'Authorization': 'Bearer ${this.token}'
+  'Content-Type': 'text/json'${authorization}
 }${data}
 
 https = Net::HTTP.new(uri.host, uri.port)
@@ -143,6 +158,11 @@ puts response.read_body`;
     },
     // Python
     pythonSample() {
+      const authorization = this.noAuthorization
+        ? ""
+        : `,
+  "Authorization": "Bearer ${this.token}"`;
+
       const data = this.showPayload
         ? `
 
@@ -157,8 +177,7 @@ url = "${this.url}"
 
 headers = {
   "Accept": "*/*",
-  "Content-Type": "application/json",
-  "Authorization": "Bearer ${this.token}"
+  "Content-Type": "application/json"${authorization}
 }${data}
 
 response = requests.${this.verb}(url, data=data, headers=headers)

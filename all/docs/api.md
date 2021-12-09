@@ -702,6 +702,140 @@ Deletes an existing tenant.
 
 ---
 
+## API keys
+
+::::: row
+:::: left
+
+API keys allow you to perform machine-to-machine requests.
+
+<!-- You can create, read, and verify API keys with standard REST operations. -->
+
+::::
+:::: right
+
+<endpoints :endpoints="[
+  { verb: 'get', path: '/v0/keys/:type', anchor: 'list-api-keys' },
+  { verb: 'get', path: '/v0/tenants/:tenantId/keys/jwt', anchor: 'list-jwt-public-keys' },
+  { verb: 'get', path: '/v0/tenants/:tenantId/jwks', anchor: 'json-web-key-set-jwks' },
+  { verb: 'get', path: '/v0/tenants/:tenantId/keys/:type', anchor: 'list-api-keys-tenant-level' }
+]"/>
+
+::::
+:::::
+
+---
+
+### List API keys
+
+::::: row
+:::: left
+
+Lists all of a tenant's API keys for a given type.
+
+This route can only be accessed with a valid `admin` API key.
+
+| type       | description                                   |
+| :--------- | :-------------------------------------------- |
+| `admin`    | Allows all Userfront actions for a tenant     |
+| `readonly` | Allows readonly actions for a tenant          |
+| `webhook`  | Included in webhook headers sent by Userfront |
+
+::::
+:::: right
+
+<code-samples path="/v0/keys/{type}" verb="get" />
+
+<response-json path="/v0/keys/{type}" verb="get"/>
+
+::::
+:::::
+
+---
+
+### List JWT public keys
+
+::::: row
+:::: left
+
+Lists all of a tenant's JWT public keys.
+
+This route does not require an `Authorization` header.
+
+#### Query strings
+
+---
+
+<parameter name="test" description="Optional query string for test mode (?test=true)" :required="false"/>
+
+::::
+:::: right
+
+<code-samples path="/v0/tenants/{tenantId}/keys/jwt" verb="get" no-authorization="true"/>
+
+<response-json path="/v0/tenants/{tenantId}/keys/jwt" verb="get"/>
+
+::::
+:::::
+
+---
+
+### JSON Web Key Set (JWKS)
+
+::::: row
+:::: left
+
+The public JWKS url for a tenant.
+
+A [JSON Web Key Set](https://datatracker.ietf.org/doc/html/rfc7517) allows your application to build your JWT public key(s) from a URL instead of hard-coding the latest JWT public key into your code.
+
+This allows you to rotate your JWT signing key at any time without having to update your code.
+
+This route does not require an `Authorization` header.
+
+#### Query strings
+
+---
+
+<parameter name="test" description="Optional query string for test mode (?test=true)" :required="false"/>
+
+::::
+:::: right
+
+<code-samples path="/v0/tenants/{tenantId}/jwks" verb="get" no-authorization="true"/>
+
+<response-json path="/v0/tenants/{tenantId}/jwks" verb="get"/>
+
+::::
+:::::
+
+---
+
+### List API keys (tenant level)
+
+::::: row
+:::: left
+
+Lists all of a tenant's API keys for a given type.
+
+This route can only be accessed with a valid `admin` API key.
+
+| type       | description                                   |
+| :--------- | :-------------------------------------------- |
+| `admin`    | Allows all Userfront actions for a tenant     |
+| `readonly` | Allows readonly actions for a tenant          |
+| `webhook`  | Included in webhook headers sent by Userfront |
+
+::::
+:::: right
+
+<code-samples path="/v0/tenants/{tenantId}/keys/{type}" verb="get" />
+
+<response-json path="/v0/tenants/{tenantId}/keys/{type}" verb="get"/>
+
+::::
+:::::
+
 ## Roles
 
 ::::: row
