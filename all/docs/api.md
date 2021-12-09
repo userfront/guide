@@ -889,23 +889,35 @@ Server-to-server authentication actions allow your backend to perform actions th
 ::::: row
 :::: left
 
-Generate link credentials for use in custom login, welcome, or verification flows.
+Generate link credentials for use in custom login, welcome, verification, or password reset flows.
 
-This endpoint returns `uuid` and `token` link credentials but does not send an email.
+This endpoint returns the `uuid` and `token` credentials but does not send an email.
 
-The client application can use these link credentials in the [Log in with login link](/docs/api-client.html#log-in-with-login-link) endpoint or the [Userfront.login()](/docs/js.html#login-options) method.
-
-If you want Userfront to send an email on your behalf, you can use endpoints like [generate login link](/docs/api-client.html#generate-login-link).
+If you want Userfront to send an email on your behalf, you can use endpoints like [generate login link](/docs/api-client.html#generate-login-link) or [generate password reset link](/docs/api-client.html#generate-password-reset-link).
 
 <parameters path="/v0/auth/link/generate" verb="post" />
 
-The link credentials can only be used once and will automatically expire according to the type of link:
+#### Login, welcome, and verification
+
+Your application can send the `token` and `uuid` to the [Log in with login link](/docs/api-client.html#log-in-with-login-link) endpoint or use them with the [Userfront.login()](/docs/js.html#login-options) method.
+
+The `token` and `uuid` can only be used once and will automatically expire according to the type of link:
 
 | options.type      | Expiration |
 | :---------------- | :--------- |
 | `login` (default) | 1 hour     |
 | `welcome`         | 3 days     |
 | `verify`          | 3 days     |
+
+#### Password reset
+
+Your application can send the `token` and `uuid` to the [Reset password with link credentials](/docs/api-client.html#reset-password-with-link-credentials) endpoint or use them with the [Userfront.resetPassword()](/docs/js.html#resetpassword-options) method.
+
+The `token` and `uuid` can only be used once and will automatically expire according to the type of link:
+
+| options.type | Expiration |
+| :----------- | :--------- |
+| `reset`      | 1 hour     |
 
 ::::
 :::: right
