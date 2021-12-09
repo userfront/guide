@@ -131,22 +131,22 @@ const store = new Vuex.Store({
         if (state.tenantKey.includes(tenantId) || state.loadingKey) return;
         const authorization = getAuthorizationObject();
         tenantId = tenantId || Object.keys(authorization)[0];
-        const tokenLevel = authorization[tenantId].roles.includes("admin")
+        const accessLevel = authorization[tenantId].roles.includes("admin")
           ? "admin"
           : "readonly";
         state.loadingKey = true;
-        // Return if the tenant token is already set
+        // Return if the tenant key is already set
         const { data } = await axios.get(
-          `https://api.userfront.com/v0/tenants/${tenantId}/keys/${tokenLevel}?test=true`,
+          `https://api.userfront.com/v0/tenants/${tenantId}/keys/${accessLevel}?test=true`,
           {
             headers: {
               Authorization: `Bearer ${state.accessToken}`,
             },
           }
         );
-        commit("setTenantKey", data.results[0].token);
+        commit("setTenantKey", data.results[0].key);
         state.loadingKey = false;
-        return data.results[0].token;
+        return data.results[0].key;
       } catch (error) {
         state.loadingKey = false;
         return;
@@ -187,7 +187,7 @@ const store = new Vuex.Store({
     //   try {
     //     const authorization = getAccessTokenObject().authorization;
     //     tenantId = tenantId || Object.keys(authorization)[0];
-    //     const tokenLevel = authorization[tenantId].roles.includes("admin")
+    //     const accessLevel = authorization[tenantId].roles.includes("admin")
     //       ? "admin"
     //       : "readonly";
     //     const { data } = await axios.get(
@@ -198,8 +198,8 @@ const store = new Vuex.Store({
     //         },
     //       }
     //     );
-    //     commit("setWebhookKey", data.results[0].token);
-    //     return data.results[0].token;
+    //     commit("setWebhookKey", data.results[0].key);
+    //     return data.results[0].key;
     //   } catch (error) {
     //     return;
     //   }
