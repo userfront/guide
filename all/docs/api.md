@@ -718,10 +718,10 @@ You can read and verify API keys with standard REST operations.
 
 <endpoints :endpoints="[
   { verb: 'get', path: '/v0/keys/:type', anchor: 'list-api-keys' },
+  { verb: 'get', path: '/v0/tenants/:tenantId/keys/:type', anchor: 'list-api-keys-tenant-level' },
   { verb: 'post', path: '/v0/keys/verify', anchor: 'verify-api-key' },
   { verb: 'get', path: '/v0/tenants/:tenantId/keys/jwt', anchor: 'list-jwt-public-keys' },
-  { verb: 'get', path: '/v0/tenants/:tenantId/jwks', anchor: 'json-web-key-set-jwks' },
-  { verb: 'get', path: '/v0/tenants/:tenantId/keys/:type', anchor: 'list-api-keys-tenant-level' }
+  { verb: 'get', path: '/v0/tenants/:tenantId/jwks', anchor: 'json-web-key-set-jwks' }
 ]"/>
 
 ::::
@@ -750,6 +750,33 @@ This route can only be accessed with a valid `admin` API key.
 <code-samples path="/v0/keys/{type}" verb="get" />
 
 <response-json path="/v0/keys/{type}" verb="get"/>
+
+::::
+:::::
+
+---
+
+### List API keys (tenant level)
+
+::::: row
+:::: left
+
+Lists all of a tenant's API keys for a given type.
+
+This route can only be accessed with a valid `admin` API key.
+
+| type       | description                                   |
+| :--------- | :-------------------------------------------- |
+| `admin`    | Allows all Userfront actions for a tenant     |
+| `readonly` | Allows readonly actions for a tenant          |
+| `webhook`  | Included in webhook headers sent by Userfront |
+
+::::
+:::: right
+
+<code-samples path="/v0/tenants/{tenantId}/keys/{type}" verb="get" />
+
+<response-json path="/v0/tenants/{tenantId}/keys/{type}" verb="get"/>
 
 ::::
 :::::
@@ -837,33 +864,6 @@ This route does not require an `Authorization` header.
 <code-samples path="/v0/tenants/{tenantId}/jwks" verb="get" no-authorization="true"/>
 
 <response-json path="/v0/tenants/{tenantId}/jwks" verb="get"/>
-
-::::
-:::::
-
----
-
-### List API keys (tenant level)
-
-::::: row
-:::: left
-
-Lists all of a tenant's API keys for a given type.
-
-This route can only be accessed with a valid `admin` API key.
-
-| type       | description                                   |
-| :--------- | :-------------------------------------------- |
-| `admin`    | Allows all Userfront actions for a tenant     |
-| `readonly` | Allows readonly actions for a tenant          |
-| `webhook`  | Included in webhook headers sent by Userfront |
-
-::::
-:::: right
-
-<code-samples path="/v0/tenants/{tenantId}/keys/{type}" verb="get" />
-
-<response-json path="/v0/tenants/{tenantId}/keys/{type}" verb="get"/>
 
 ::::
 :::::
