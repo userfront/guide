@@ -709,6 +709,8 @@ Deletes an existing tenant.
 
 API keys allow you to perform machine-to-machine requests.
 
+You can read and verify API keys with standard REST operations.
+
 <!-- You can create, read, and verify API keys with standard REST operations. -->
 
 ::::
@@ -716,6 +718,7 @@ API keys allow you to perform machine-to-machine requests.
 
 <endpoints :endpoints="[
   { verb: 'get', path: '/v0/keys/:type', anchor: 'list-api-keys' },
+  { verb: 'post', path: '/v0/keys/verify', anchor: 'verify-api-key' },
   { verb: 'get', path: '/v0/tenants/:tenantId/keys/jwt', anchor: 'list-jwt-public-keys' },
   { verb: 'get', path: '/v0/tenants/:tenantId/jwks', anchor: 'json-web-key-set-jwks' },
   { verb: 'get', path: '/v0/tenants/:tenantId/keys/:type', anchor: 'list-api-keys-tenant-level' }
@@ -747,6 +750,35 @@ This route can only be accessed with a valid `admin` API key.
 <code-samples path="/v0/keys/{type}" verb="get" />
 
 <response-json path="/v0/keys/{type}" verb="get"/>
+
+::::
+:::::
+
+---
+
+### Verify API key
+
+::::: row
+:::: left
+
+Verify that an API key is valid.
+
+This route can only be accessed with a valid `admin` API key.
+
+Include your admin API key in the `authorization` header, and include the key that you want to verify as `key` in the request body.
+
+<parameters path="/v0/keys/verify" verb="post"/>
+
+::: warning Note
+An API key cannot be used to verify itself.
+:::
+
+::::
+:::: right
+
+<code-samples path="/v0/keys/verify" verb="post" />
+
+<response-json path="/v0/keys/verify" verb="post"/>
 
 ::::
 :::::
