@@ -100,13 +100,13 @@ Most of these actions are also implemented with helper functions in the [Core JS
   { verb: 'post', path: '/v0/auth/create', anchor: 'sign-up-with-password' },
   { verb: 'post', path: '/v0/auth/basic', anchor: 'log-in-with-password' },
   { verb: 'put', path: '/v0/auth/basic', anchor: 'update-own-password' },
-  { verb: 'post', path: '/v0/auth/link', anchor: 'generate-login-link' },
+  { verb: 'post', path: '/v0/auth/link', anchor: 'send-login-link-email' },
   { verb: 'put', path: '/v0/auth/link', anchor: 'log-in-with-login-link' },
   { verb: 'get', path: '/v0/auth/{provider}/login', anchor: 'log-in-with-sso' },
   { verb: 'get', path: '/v0/auth/refresh', anchor: 'refresh-jwt-access-token' },
-  { verb: 'post', path: '/v0/auth/reset/link', anchor: 'generate-password-reset-link' },
+  { verb: 'post', path: '/v0/auth/reset/link', anchor: 'send-password-reset-email' },
   { verb: 'put', path: '/v0/auth/reset', anchor: 'reset-password-with-link-credentials' },
-  { verb: 'post', path: '/v0/auth/verify/link', anchor: 'generate-account-verification-link' },
+  { verb: 'post', path: '/v0/auth/verify/link', anchor: 'send-account-verification-email' },
   { verb: 'get', path: '/v0/auth/logout', anchor: 'log-out' },
 ]"/>
 
@@ -147,9 +147,9 @@ In test mode, Userfront does not send emails.
 ::::: row
 :::: left
 
-Register a new user with an email, and send them a login link.
+Register a new user with an email, and send them a login link email.
 
-If the user already exists, sends them a login link. See [generate login link](#generate-login-link).
+If the user already exists, sends them a login link email. See [send login link email](#send-login-link-email).
 
 <parameters path="/v0/auth/link" verb="post" source="$docsClient" :show-only="['email', 'username', 'name', 'data', 'tenantId', 'options', 'options.redirect', 'options.noSignupEmail']"/>
 
@@ -267,7 +267,7 @@ This link will direct the user to your Password reset path.
 ::::
 :::::
 
-### Generate login link
+### Send login link email
 
 ::::: row
 :::: left
@@ -307,12 +307,22 @@ In test mode, Userfront does not send emails. Instead, the API response will con
 ::::
 :::::
 
+::::: row
+:::: left
+
+#### Generate link credentials without sending email
+
+You can generate login link credentials to use in your own custom emails by using the [generate link credentials](/docs/api.html#generate-link-credentials) endpoint.
+
+::::
+:::::
+
 ### Log in with login link
 
 ::::: row
 :::: left
 
-Log in using the token and uuid from a login link.
+Log in using the `token` and `uuid` from a login link.
 
 <parameters path="/v0/auth/link" verb="put" source="$docsClient"/>
 
@@ -392,7 +402,7 @@ The request must include a valid refresh token in the `Authorization` header.
 <br>
 <br>
 
-### Generate password reset link
+### Send password reset email
 
 ::::: row
 :::: left
@@ -426,6 +436,16 @@ In test mode, Userfront does not send emails. Instead, the API response will con
 ::::
 :::::
 
+::::: row
+:::: left
+
+#### Generate link credentials without sending email
+
+You can generate password reset link credentials to use in your own custom emails by using the [generate link credentials](/docs/api.html#generate-link-credentials) endpoint.
+
+::::
+:::::
+
 ### Reset password with link credentials
 
 ::::: row
@@ -447,7 +467,7 @@ Upon success, returns a JWT access token so that the user can log in directly.
 ::::
 :::::
 
-### Generate account verification link
+### Send account verification email
 
 ::::: row
 :::: left
@@ -479,6 +499,16 @@ In test mode, Userfront does not send emails. Instead, the API response will con
 :::: right
 
 <response-json-custom title="Response (test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/login?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e&type=verify' }}"/>
+
+::::
+:::::
+
+::::: row
+:::: left
+
+#### Generate link credentials without sending email
+
+You can generate account verification link credentials to use in your own custom emails by using the [generate link credentials](/docs/api.html#generate-link-credentials) endpoint.
 
 ::::
 :::::
