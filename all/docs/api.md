@@ -763,9 +763,9 @@ This route can only be accessed with a valid `admin` API key.
 
 Verify that an API key is valid.
 
-This route can only be accessed with a valid `admin` API key.
-
 Include your admin API key in the `authorization` header, and include the key that you want to verify as `key` in the request body.
+
+This route can only be accessed with a valid `admin` API key.
 
 <parameters path="/v0/keys/verify" verb="post"/>
 
