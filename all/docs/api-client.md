@@ -113,6 +113,8 @@ Most of these actions are also implemented with helper functions in the [Core JS
 ::::
 :::::
 
+---
+
 ### Sign up with password
 
 ::::: row
@@ -141,6 +143,8 @@ In test mode, Userfront does not send emails.
 
 ::::
 :::::
+
+---
 
 ### Sign up with passwordless
 
@@ -193,6 +197,8 @@ You can disable this email with the `noSignupEmail` parameter above.
 ::::
 :::::
 
+---
+
 ### Log in with password
 
 ::::: row
@@ -211,6 +217,8 @@ Log in with a password and email/username.
 
 ::::
 :::::
+
+---
 
 ### Update own password
 
@@ -267,6 +275,27 @@ This link will direct the user to your Password reset path.
 ::::
 :::::
 
+---
+
+### Update own email address
+
+::::: row
+:::: left
+
+Update a user's own email address by passing the new email address to the [send account verification email](#send-account-verification-email) endpoint.
+
+This will generate a link the user can click to verify their new email address. They will retain their old email address until the link is clicked.
+
+See [send account verification email](#send-account-verification-email).
+
+::::
+:::::
+
+<br>
+<br>
+
+---
+
 ### Send login link email
 
 ::::: row
@@ -317,6 +346,8 @@ You can generate login link credentials to use in your own custom emails by usin
 ::::
 :::::
 
+---
+
 ### Log in with login link
 
 ::::: row
@@ -335,6 +366,8 @@ Log in using the `token` and `uuid` from a login link.
 
 ::::
 :::::
+
+---
 
 ### Log in with SSO
 
@@ -379,6 +412,8 @@ https://api.userfront.com/v0/auth/google/login?tenant_id=demo1234&origin=https:/
 <br>
 <br>
 
+---
+
 ### Refresh JWT access token
 
 ::::: row
@@ -400,7 +435,8 @@ The request must include a valid refresh token in the `Authorization` header.
 :::::
 
 <br>
-<br>
+
+---
 
 ### Send password reset email
 
@@ -446,6 +482,8 @@ You can generate password reset link credentials to use in your own custom email
 ::::
 :::::
 
+---
+
 ### Reset password with link credentials
 
 ::::: row
@@ -467,6 +505,8 @@ Upon success, returns a JWT access token so that the user can log in directly.
 ::::
 :::::
 
+---
+
 ### Send account verification email
 
 ::::: row
@@ -474,7 +514,11 @@ Upon success, returns a JWT access token so that the user can log in directly.
 
 Generate and send an account verification link email.
 
-Functionally, an account verification link works the same as a login link, so the resulting `token` and `uuid` from the email can be handled via [Log in with login link](/docs/api-client.html#log-in-with-login-link).
+After a user follows the account verification link, their user record is marked `isConfirmed: true`.
+
+If the user submitted a new email address to this endpoint, their email address is updated when they follow the account verification link.
+
+You can process the account verification link's `token` and `uuid` credentials the same way as login link credentials: with [Log in with login link](/docs/api-client.html#log-in-with-login-link).
 
 <parameters path="/v0/auth/verify/link" verb="post" source="$docsClient"/>
 

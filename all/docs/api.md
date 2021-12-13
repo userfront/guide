@@ -557,6 +557,10 @@ Invite a user by email address.
 
 Create a user or, if the user already exists, update it.
 
+Must include an email address if creating a user.
+
+Must include a `userId` or `userUuid` if updating a user.
+
 <parameters path="/v0/users/createOrUpdate" verb="post" />
 
 ::::
