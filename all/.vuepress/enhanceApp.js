@@ -50,19 +50,32 @@ export default async ({ isServer, router, Vue }) => {
   Vue.prototype.store = store;
   Vue.prototype.router = router;
 
-  const pathsWithDocsClient = ["/docs/api-client.html", "/docs/js.html"];
+  const pathsWithServerToServerExamples = [
+    "/docs/api.html",
+    "/docs/webhooks.html",
+  ];
+  const pathsWithClientToServerExamples = [
+    "/docs/api-client.html",
+    "/docs/js.html",
+  ];
 
   if (!isServer) {
     router.beforeEach(async (to, from, next) => {
       // Load the API docs.json if needed
-      if (to.path === "/docs/api.html" && !Vue.prototype.$docs) {
+      if (
+        pathsWithServerToServerExamples.includes(to.path) &&
+        !Vue.prototype.$docs
+      ) {
         const { data } = await axios.get(docsJsonUrl);
         Vue.prototype.$docs = data;
         store.dispatch("setActiveTenant");
       }
 
       // Load the API docs-client.json if needed
-      if (pathsWithDocsClient.includes(to.path) && !Vue.prototype.$docsClient) {
+      if (
+        pathsWithClientToServerExamples.includes(to.path) &&
+        !Vue.prototype.$docsClient
+      ) {
         const { data } = await axios.get(docsClientJsonUrl);
         Vue.prototype.$docsClient = data;
       }
