@@ -58,6 +58,7 @@ You can log in with these users to test your application or you can sign up new 
 When in test mode, Userfront does not send welcome or confirmation emails.
 
 Anywhere an email would have been sent to a user, that information is displayed directly in the browser instead.
+
 ::::
 ::::right
 
@@ -71,6 +72,27 @@ Your initial test users:
 | unconfirmed | unconfirmed@example.com | testmodepassword |
 
 Example: you could use `admin` for the username and `testmodepassword` for the password, and your login form will log you in as the Admin User above.
+
+::::
+:::::
+
+### Allowed test mode passwords
+
+::::: row
+:::: left
+
+Several basic passwords are allowed in test mode to make testing easier.
+
+These passwords will not work in live mode.
+
+::::
+:::: right
+
+| Reserved passwords that will work in test mode |
+| ---------------------------------------------- |
+| `test`                                         |
+| `dev`                                          |
+| `password`                                     |
 
 ::::
 :::::
