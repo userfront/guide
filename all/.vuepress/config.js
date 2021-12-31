@@ -142,7 +142,10 @@ module.exports = {
           ],
         },
       ],
-      "/guide/sso": [],
+      "/guide/sso": [
+        ["/guide/sso/", "Social"],
+        ["/guide/sso/saml", "SAML"],
+      ],
       "/guide/toolkit": [
         {
           title: "Ready to use",

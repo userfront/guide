@@ -1,14 +1,9 @@
----
-sidebar: auto
-sidebarDepth: -1
----
-
 # Single Sign-On (SSO)
 
 ::::: row
 :::: left
 
-Single Sign-On lets users log into your service by verifying their identity with a 3rd party provider instead of providing an email and password.
+xSingle Sign-On lets users log into your service by verifying their identity with a 3rd party provider instead of providing an email and password.
 
 SSO can reduce friction in the signup & login process by allowing users to click a button instead of typing in credentials.
 
