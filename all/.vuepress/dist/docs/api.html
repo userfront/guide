@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Server-to-server API reference | Userfront guide</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="https://res.cloudinary.com/component/image/upload/v1582652683/circle_400_light_jrgbjq.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons">
+    <script src="https://cdn.userfront.com/core.js"></script>
+    <script id="chatwoot-script">(function(d,t) {
+    var BASE_URL="https://app.chatwoot.com";
+    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=BASE_URL+"/packs/js/sdk.js";
+    s.parentNode.insertBefore(g,s);
+    g.onload=function(){
+      window.chatwootSDK.run({
+        websiteToken: '7XyQSCgsKvpygFg7zYsKKV7q',
+        baseUrl: BASE_URL
+      })
+    }
+  })(document,"script");</script>
+    <meta name="description" content="Guide and examples for Userfront">
+    
+    <link rel="preload" href="/assets/css/0.styles.0d8bc850.css" as="style"><link rel="preload" href="/assets/js/app.f60119e2.js" as="script"><link rel="preload" href="/assets/js/4.9310b4a5.js" as="script"><link rel="preload" href="/assets/js/26.36e24f28.js" as="script"><link rel="preload" href="/assets/js/10.d6e86aa5.js" as="script"><link rel="preload" href="/assets/js/16.57fc4166.js" as="script"><link rel="preload" href="/assets/js/35.7686e3ce.js" as="script"><link rel="preload" href="/assets/js/30.f2edd5c4.js" as="script"><link rel="preload" href="/assets/js/15.754f265b.js" as="script"><link rel="preload" href="/assets/js/18.54ee526c.js" as="script"><link rel="preload" href="/assets/js/34.ee601710.js" as="script"><link rel="prefetch" href="/assets/js/1.f693c36e.js"><link rel="prefetch" href="/assets/js/100.5831eb6e.js"><link rel="prefetch" href="/assets/js/101.2fb12d5c.js"><link rel="prefetch" href="/assets/js/102.a133f599.js"><link rel="prefetch" href="/assets/js/103.20c624f7.js"><link rel="prefetch" href="/assets/js/11.957ff8e7.js"><link rel="prefetch" href="/assets/js/12.00930353.js"><link rel="prefetch" href="/assets/js/13.61379314.js"><link rel="prefetch" href="/assets/js/14.1ff2d0ca.js"><link rel="prefetch" href="/assets/js/17.781e7961.js"><link rel="prefetch" href="/assets/js/19.5684dcc5.js"><link rel="prefetch" href="/assets/js/20.7deb419c.js"><link rel="prefetch" href="/assets/js/21.7cc838a6.js"><link rel="prefetch" href="/assets/js/22.f6e788ee.js"><link rel="prefetch" href="/assets/js/23.a26e571a.js"><link rel="prefetch" href="/assets/js/24.4f69c213.js"><link rel="prefetch" href="/assets/js/25.5d5179b3.js"><link rel="prefetch" href="/assets/js/27.c15748c9.js"><link rel="prefetch" href="/assets/js/28.334e20f5.js"><link rel="prefetch" href="/assets/js/29.aa42f3e2.js"><link rel="prefetch" href="/assets/js/31.aecea9fb.js"><link rel="prefetch" href="/assets/js/32.77ce2d77.js"><link rel="prefetch" href="/assets/js/33.7a431159.js"><link rel="prefetch" href="/assets/js/36.f39e3e11.js"><link rel="prefetch" href="/assets/js/37.529a9888.js"><link rel="prefetch" href="/assets/js/38.bb7e5ec9.js"><link rel="prefetch" href="/assets/js/39.5339200a.js"><link rel="prefetch" href="/assets/js/40.a93b0cb6.js"><link rel="prefetch" href="/assets/js/41.1177c710.js"><link rel="prefetch" href="/assets/js/42.89cf6e99.js"><link rel="prefetch" href="/assets/js/43.af938a5b.js"><link rel="prefetch" href="/assets/js/44.2d5d782d.js"><link rel="prefetch" href="/assets/js/45.8434a5fa.js"><link rel="prefetch" href="/assets/js/46.f3b66321.js"><link rel="prefetch" href="/assets/js/47.c7282776.js"><link rel="prefetch" href="/assets/js/48.b46bcdbb.js"><link rel="prefetch" href="/assets/js/49.053b895c.js"><link rel="prefetch" href="/assets/js/5.ec9e5e2b.js"><link rel="prefetch" href="/assets/js/50.5fe1fba9.js"><link rel="prefetch" href="/assets/js/51.f2bf908a.js"><link rel="prefetch" href="/assets/js/52.02d8a8e0.js"><link rel="prefetch" href="/assets/js/53.0f907a6f.js"><link rel="prefetch" href="/assets/js/54.114acd97.js"><link rel="prefetch" href="/assets/js/55.8846c4f8.js"><link rel="prefetch" href="/assets/js/56.4e8c58b5.js"><link rel="prefetch" href="/assets/js/57.ae6b31df.js"><link rel="prefetch" href="/assets/js/58.5179135b.js"><link rel="prefetch" href="/assets/js/59.e5f4a108.js"><link rel="prefetch" href="/assets/js/6.81516845.js"><link rel="prefetch" href="/assets/js/60.fc2a9eb7.js"><link rel="prefetch" href="/assets/js/61.c23b8187.js"><link rel="prefetch" href="/assets/js/62.8cc3478a.js"><link rel="prefetch" href="/assets/js/63.ffcdd0cd.js"><link rel="prefetch" href="/assets/js/64.f920d857.js"><link rel="prefetch" href="/assets/js/65.cea3864b.js"><link rel="prefetch" href="/assets/js/66.8a55cbea.js"><link rel="prefetch" href="/assets/js/67.0b0f73e5.js"><link rel="prefetch" href="/assets/js/68.c55ce140.js"><link rel="prefetch" href="/assets/js/69.434848f5.js"><link rel="prefetch" href="/assets/js/7.d7615472.js"><link rel="prefetch" href="/assets/js/70.6034cce9.js"><link rel="prefetch" href="/assets/js/71.2b216b9e.js"><link rel="prefetch" href="/assets/js/72.5ee3b3c6.js"><link rel="prefetch" href="/assets/js/73.6e68ebf5.js"><link rel="prefetch" href="/assets/js/74.b94325b6.js"><link rel="prefetch" href="/assets/js/75.efed040f.js"><link rel="prefetch" href="/assets/js/76.f3efd14b.js"><link rel="prefetch" href="/assets/js/77.c7571345.js"><link rel="prefetch" href="/assets/js/78.edd54fd3.js"><link rel="prefetch" href="/assets/js/79.deb3d036.js"><link rel="prefetch" href="/assets/js/8.304807cc.js"><link rel="prefetch" href="/assets/js/80.62ca634c.js"><link rel="prefetch" href="/assets/js/81.d04bc444.js"><link rel="prefetch" href="/assets/js/82.4a15b6ae.js"><link rel="prefetch" href="/assets/js/83.ee914f7b.js"><link rel="prefetch" href="/assets/js/84.75ea737b.js"><link rel="prefetch" href="/assets/js/85.eea8f5ad.js"><link rel="prefetch" href="/assets/js/86.4b1a8101.js"><link rel="prefetch" href="/assets/js/87.0b203e06.js"><link rel="prefetch" href="/assets/js/88.673195e1.js"><link rel="prefetch" href="/assets/js/89.95bcce67.js"><link rel="prefetch" href="/assets/js/9.62ea8da8.js"><link rel="prefetch" href="/assets/js/90.50821515.js"><link rel="prefetch" href="/assets/js/91.8f511a6e.js"><link rel="prefetch" href="/assets/js/92.f4a048d3.js"><link rel="prefetch" href="/assets/js/93.64941b24.js"><link rel="prefetch" href="/assets/js/94.98933b07.js"><link rel="prefetch" href="/assets/js/95.1189d20d.js"><link rel="prefetch" href="/assets/js/96.ca3af040.js"><link rel="prefetch" href="/assets/js/97.a0ab8c39.js"><link rel="prefetch" href="/assets/js/98.a420b718.js"><link rel="prefetch" href="/assets/js/99.27df4746.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.b8d51838.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.0d8bc850.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Userfront guide</span></a> <div class="links"><form id="search-form" role="search" class="algolia-search-wrapper search-box"><input id="algolia-search-input" class="search-query"></form> <nav class="nav-links can-hide"><div class="nav-item" style="display:;"><a href="/guide/" class="nav-link">
+  Home
+</a></div><div class="nav-item" style="display:;"><a href="/guide/toolkit/" class="nav-link">
+  Toolkit
+</a></div><div class="nav-item" style="display:;"><a href="/guide/sso/" class="nav-link">
+  SSO
+</a></div><div class="nav-item" style="display:;"><a href="/guide/auth/" class="nav-link">
+  Tokens &amp; Access
+</a></div><div class="nav-item" style="display:;"><a href="/examples/" class="nav-link">
+  Examples
+</a></div><div class="nav-item" style="display:;"><div class="dropdown-wrapper"><button type="button" aria-label="More resources" class="dropdown-title"><span class="title">···</span> <span class="arrow down"></span></button> <button type="button" aria-label="More resources" class="mobile-dropdown-title"><span class="title">···</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/guide/test-mode.html" class="nav-link">
+  Test mode
+</a></li><li class="dropdown-item"><!----> <a href="/guide/import-export.html" class="nav-link">
+  Import and export users
+</a></li><li class="dropdown-item"><!----> <a href="/guide/glossary.html" class="nav-link">
+  Glossary of terms
+</a></li><li class="dropdown-item"><!----> <a href="/guide/status.html" class="nav-link">
+  Status &amp; maintenance
+</a></li><li class="dropdown-item"><h4>
+          Learn more about
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/guide/default-secure-software.html" class="nav-link">
+  Default-Secure Software
+</a></li><li class="dropdown-subitem"><a href="/guide/authentication.html" class="nav-link">
+  Authentication
+</a></li><li class="dropdown-subitem"><a href="/guide/auth-landscape.html" class="nav-link">
+  Auth landscape
+</a></li><li class="dropdown-subitem"><a href="/vs/best-auth-comparison-auth0-okta-firebase-cognito.html" class="nav-link">
+  Auth provider comparison
+</a></li><li class="dropdown-subitem"><a href="/guide/cohort-analysis.html" class="nav-link">
+  Cohort analysis
+</a></li></ul></li></ul></div></div><div class="nav-item" style="display:;"><div class="dropdown-wrapper"><button type="button" aria-label="APIs and SDKs" class="dropdown-title"><span class="title">APIs &amp; SDKs</span> <span class="arrow down"></span></button> <button type="button" aria-label="APIs and SDKs" class="mobile-dropdown-title"><span class="title">APIs &amp; SDKs</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/api.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  API reference: Server-to-server
+</a></li><li class="dropdown-item"><!----> <a href="/docs/api-client.html" class="nav-link">
+  API reference: Client-to-server
+</a></li><li class="dropdown-item"><!----> <a href="/docs/js.html" class="nav-link">
+  Core JS library
+</a></li><li class="dropdown-item"><!----> <a href="/docs/webhooks.html" class="nav-link">
+  Webhook reference
+</a></li></ul></div></div><div class="nav-item" style="display:none;"><a href="https://userfront.com/projects" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Dashboard
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div id="top-right" data-v-ad3069d6><div style="display:none;" data-v-7d9a66b0 data-v-ad3069d6><!----> <!----></div> <div style="display:;" data-v-ad3069d6><a href="/signup" target="_blank" class="el-link el-link--primary is-underline" data-v-ad3069d6><!----><span class="el-link--inner">Create account</span><!----></a>  
+    <a href="/login?redirect=/docs/api.html" class="el-button el-button--default el-button--small" data-v-ad3069d6>Log in</a></div></div> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item" style="display:;"><a href="/guide/" class="nav-link">
+  Home
+</a></div><div class="nav-item" style="display:;"><a href="/guide/toolkit/" class="nav-link">
+  Toolkit
+</a></div><div class="nav-item" style="display:;"><a href="/guide/sso/" class="nav-link">
+  SSO
+</a></div><div class="nav-item" style="display:;"><a href="/guide/auth/" class="nav-link">
+  Tokens &amp; Access
+</a></div><div class="nav-item" style="display:;"><a href="/examples/" class="nav-link">
+  Examples
+</a></div><div class="nav-item" style="display:;"><div class="dropdown-wrapper"><button type="button" aria-label="More resources" class="dropdown-title"><span class="title">···</span> <span class="arrow down"></span></button> <button type="button" aria-label="More resources" class="mobile-dropdown-title"><span class="title">···</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/guide/test-mode.html" class="nav-link">
+  Test mode
+</a></li><li class="dropdown-item"><!----> <a href="/guide/import-export.html" class="nav-link">
+  Import and export users
+</a></li><li class="dropdown-item"><!----> <a href="/guide/glossary.html" class="nav-link">
+  Glossary of terms
+</a></li><li class="dropdown-item"><!----> <a href="/guide/status.html" class="nav-link">
+  Status &amp; maintenance
+</a></li><li class="dropdown-item"><h4>
+          Learn more about
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/guide/default-secure-software.html" class="nav-link">
+  Default-Secure Software
+</a></li><li class="dropdown-subitem"><a href="/guide/authentication.html" class="nav-link">
+  Authentication
+</a></li><li class="dropdown-subitem"><a href="/guide/auth-landscape.html" class="nav-link">
+  Auth landscape
+</a></li><li class="dropdown-subitem"><a href="/vs/best-auth-comparison-auth0-okta-firebase-cognito.html" class="nav-link">
+  Auth provider comparison
+</a></li><li class="dropdown-subitem"><a href="/guide/cohort-analysis.html" class="nav-link">
+  Cohort analysis
+</a></li></ul></li></ul></div></div><div class="nav-item" style="display:;"><div class="dropdown-wrapper"><button type="button" aria-label="APIs and SDKs" class="dropdown-title"><span class="title">APIs &amp; SDKs</span> <span class="arrow down"></span></button> <button type="button" aria-label="APIs and SDKs" class="mobile-dropdown-title"><span class="title">APIs &amp; SDKs</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/api.html" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  API reference: Server-to-server
+</a></li><li class="dropdown-item"><!----> <a href="/docs/api-client.html" class="nav-link">
+  API reference: Client-to-server
+</a></li><li class="dropdown-item"><!----> <a href="/docs/js.html" class="nav-link">
+  Core JS library
+</a></li><li class="dropdown-item"><!----> <a href="/docs/webhooks.html" class="nav-link">
+  Webhook reference
+</a></li></ul></div></div><div class="nav-item" style="display:none;"><a href="https://userfront.com/projects" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Dashboard
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/docs/api.html" aria-current="page" class="active sidebar-link">Server-to-server API reference</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/api.html#authentication" class="sidebar-link">Authentication</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#errors" class="sidebar-link">Errors</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#users" class="sidebar-link">Users</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/api.html#create-user" class="sidebar-link">Create user</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#read-user" class="sidebar-link">Read user</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#update-user" class="sidebar-link">Update user</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#delete-user" class="sidebar-link">Delete user</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#search-users" class="sidebar-link">Search users</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#invite-user" class="sidebar-link">Invite user</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#create-or-update-user" class="sidebar-link">Create or update user</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#mark-user-active" class="sidebar-link">Mark user active</a></li></ul></li><li class="sidebar-sub-header"><a href="/docs/api.html#tenants" class="sidebar-link">Tenants</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/api.html#create-tenant" class="sidebar-link">Create tenant</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#read-tenant" class="sidebar-link">Read tenant</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#update-tenant" class="sidebar-link">Update tenant</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#delete-tenant" class="sidebar-link">Delete tenant</a></li></ul></li><li class="sidebar-sub-header"><a href="/docs/api.html#api-keys" class="sidebar-link">API keys</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/api.html#list-api-keys" class="sidebar-link">List API keys</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#list-api-keys-tenant-level" class="sidebar-link">List API keys (tenant level)</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#verify-api-key" class="sidebar-link">Verify API key</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#list-jwt-public-keys" class="sidebar-link">List JWT public keys</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#json-web-key-set-jwks" class="sidebar-link">JSON Web Key Set (JWKS)</a></li></ul></li><li class="sidebar-sub-header"><a href="/docs/api.html#roles" class="sidebar-link">Roles</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/api.html#list-roles" class="sidebar-link">List roles</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#set-user-roles" class="sidebar-link">Set user roles</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#invite-user-to-a-role" class="sidebar-link">Invite user to a role</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#list-roles-tenant-level" class="sidebar-link">List roles (tenant level)</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#set-user-roles-tenant-level" class="sidebar-link">Set user roles (tenant level)</a></li><li class="sidebar-sub-header"><a href="/docs/api.html#invite-user-to-a-role-tenant-level" class="sidebar-link">Invite user to a role (tenant level)</a></li></ul></li><li class="sidebar-sub-header"><a href="/docs/api.html#authentication-actions" class="sidebar-link">Authentication actions</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/docs/api.html#generate-link-credentials" class="sidebar-link">Generate link credentials</a></li></ul></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="api-reference"><a href="#api-reference" class="header-anchor">#</a> API reference</h1> <div class="row"><div class="left"><div><h3 style="margin:0 0 8px;">Server-to-server</h3> <div style="display:flex;align-items:center;height:36px;"><img src="https://res.cloudinary.com/component/image/upload/w_32,o_80/v1634764502/permanent/server-solid.png" style="height:32px;margin-top:2px;"> <span style="font-size:36px;padding:0 12px;">→</span> <img src="https://res.cloudinary.com/component/image/upload/w_32,o_80/v1634764502/permanent/server-solid.png" style="height:32px;margin-top:2px;"></div></div> <p>This documentation covers requests made by your server to Userfront's server using an API key.</p> <p>For requests that end users can make directly, such as signup, login, password reset, and more, see the API refernce for <a href="/docs/api-client.html">client-to-server</a> actions.</p></div> <div class="right"><h4 id="just-getting-started"><a href="#just-getting-started" class="header-anchor">#</a> Just getting started?</h4> <p>Check out our development <a href="/guide/quickstart/">quickstart guide</a>.</p></div></div> <h4 id="rest-endpoints"><a href="#rest-endpoints" class="header-anchor">#</a> REST endpoints</h4> <div class="row"><div class="left"><p>The Userfront API is organized around <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer" target="_blank" rel="noopener noreferrer">REST<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>. Our API has predictable resource-oriented URLs, accepts <a href="http://www.json.org/" target="_blank" rel="noopener noreferrer">JSON-encoded<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.</p> <p>You can use the Userfront API in test mode, which does not affect your live data. The API key you use to authenticate the request determines whether the request is live mode or test mode.</p></div> <div class="right"><div class="card"><h4 id="base-url"><a href="#base-url" class="header-anchor">#</a> Base URL</h4> <p><code style="background-color:inherit;font-size:14px;padding:0;">https://api.userfront.com</code></p></div></div></div> <h2 id="authentication"><a href="#authentication" class="header-anchor">#</a> Authentication</h2> <div class="row"><div class="left"><p>The Userfront API uses API keys to authenticate requests. You can view and manage your API keys in the Userfront Dashboard.</p> <p>Test mode keys have the prefix <code>uf_test_</code> and live mode keys have the prefix <code>uf_live_</code>.</p> <p>Your API keys carry many privileges, so be sure to keep them secure! Do not share your API keys in publicly accessible areas such as GitHub, client-side code, and so forth.</p> <p>Authentication to the API is performed via HTTP <a href="https://tools.ietf.org/html/rfc6750" target="_blank" rel="noopener noreferrer">Bearer Auth<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>. Provide your API key in the header of each request as:
+<code>Authorization: Bearer your_api_key</code>.</p> <p>All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.</p></div> <div class="right"><div class="card"><h4 id="your-api-key"><a href="#your-api-key" class="header-anchor">#</a> Your API Key</h4> <div class="light-code" data-v-1d7e4d8c><div style="display:none;" data-v-1d7e4d8c><div class="el-alert el-alert--error is-light" style="margin-top:20px;display:none;" data-v-1d7e4d8c>
+        Unable to fetch your API key, so a demo API key is shown instead.
+      </div> <div class="language-json" data-v-1d7e4d8c><pre style="padding: 40px 0 10px; font-size: 16px;" data-v-1d7e4d8c><code style="font-weight:600;" data-v-1d7e4d8c>uf_test_readonly_demo1234_2d87b3d230bda5685276b43efdac2852</code></pre></div> <div data-v-7d9a66b0 data-v-1d7e4d8c><!----> <!----></div> <p data-v-1d7e4d8c>
+        Your test API key is included in all the examples here, so you can test
+        the code samples right away.
+      </p> <p data-v-1d7e4d8c>
+        In general, you should include your API key in the header of requests:
+      </p> <div class="language-json" data-v-1d7e4d8c><pre data-v-1d7e4d8c><code data-v-1d7e4d8c>{
+  headers: {
+    authorization: &quot;Bearer uf_test_readonly_demo1234_2d87b3d230bda5685276b43efdac2852&quot;
+  }
+}</code></pre></div></div> <div data-v-1d7e4d8c><p data-v-1d7e4d8c>
+        A sample test API key is included in all the examples here, so you can
+        test any example right away.
+      </p> <p data-v-1d7e4d8c>
+        To test requests using your account, replace the sample API key with
+        your actual API key or sign in.
+      </p> <p data-v-1d7e4d8c><a href="../login?redirect=/docs/api" class="action-button" data-v-1d7e4d8c>Sign in</a></p></div></div></div></div></div> <h2 id="errors"><a href="#errors" class="header-anchor">#</a> Errors</h2> <div class="row"><div class="left"><p>Userfront uses conventional HTTP response codes to indicate the success or failure of an API request. In general: Codes in the <code>2xx</code> range indicate success. Codes in the <code>4xx</code> range indicate an error that failed given the information provided (e.g., a required parameter was omitted, a charge failed, etc.). Codes in the <code>5xx</code> range indicate an error with Userfront's servers (these are rare).</p> <p>Some <code>4xx</code> errors that could be handled programmatically (e.g. a token is expired) include an error code that briefly explains the error reported.</p></div> <div class="right"><div class="card"><h4 id="http-status-code-summary"><a href="#http-status-code-summary" class="header-anchor">#</a> HTTP Status Code Summary</h4> <table><thead><tr><th style="text-align:right;"></th> <th></th></tr></thead> <tbody><tr><td style="text-align:right;"><strong>200 - OK</strong></td> <td>Everything worked as expected.</td></tr> <tr><td style="text-align:right;"><strong>400 - Bad Request</strong></td> <td>The request was unacceptable, often due to missing a required parameter.</td></tr> <tr><td style="text-align:right;"><strong>401 - Unauthorized</strong></td> <td>No valid API key provided.</td></tr> <tr><td style="text-align:right;"><strong>402 - Request Failed</strong></td> <td>The parameters were valid but the request failed.</td></tr> <tr><td style="text-align:right;"><strong>403 - Forbidden</strong></td> <td>The API key doesn't have permissions to perform the request.</td></tr> <tr><td style="text-align:right;"><strong>404 - Not Found</strong></td> <td>The requested resource doesn't exist.</td></tr> <tr><td style="text-align:right;"><strong>429 - Too Many Requests</strong></td> <td>Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.</td></tr> <tr><td style="text-align:right;"><strong>500 - Server Error</strong></td> <td>Something went wrong on Userfront's end. (These are rare.)</td></tr></tbody></table></div></div></div> <h2 id="users"><a href="#users" class="header-anchor">#</a> Users</h2> <div class="row"><div class="left"><p>Users are the user records within your account or within your account's tenants.</p> <p>You can create, read, update, and delete a user with standard REST operations.</p> <p>Additionally, there are POST operations for inviting a user to a tenant, creating or updating a user (if you don't know whether they already exist), and marking a user as &quot;active&quot; for data purposes.</p> <p>There are also 2 endpoints for searching all users in a tenant: one via GET and one via POST.</p></div> <div class="right"><p><div class="card" data-v-6e6ebe46><h4 data-v-6e6ebe46>Endpoints</h4> <br data-v-6e6ebe46> <div class="endpoint-rows" data-v-6e6ebe46><p class="endpoint-row" data-v-6e6ebe46><a href="#create-user" data-v-6e6ebe46><span class="endpoint-verb post" data-v-6e6ebe46>
+          post
+        </span>
+        /v0/users
+      </a></p><p class="endpoint-row" data-v-6e6ebe46><a href="#read-user" data-v-6e6ebe46><span class="endpoint-verb get" data-v-6e6ebe46>
+          get
+        </span>
+        /v0/users/:userId
+      </a></p><p class="endpoint-row" data-v-6e6ebe46><a href="#update-user" data-v-6e6ebe46><span class="endpoint-verb put" data-v-6e6ebe46>
+          put
+        </span>
+        /v0/users/:userId
+      </a></p><p class="endpoint-row" data-v-6e6ebe46><a href="#delete-user" data-v-6e6ebe46><span class="endpoint-verb delete" data-v-6e6ebe46>
+          delete
+        </span>
+        /v0/users/:userId
+      </a></p><p class="endpoint-row" data-v-6e6ebe46><a href="#undefined" data-v-6e6ebe46><span class="endpoint-verb undefined" data-v-6e6ebe46>
+          
+        </span>
+        
+      </a></p><p class="endpoint-row" data-v-6e6ebe46><a href="#search-users" data-v-6e6ebe46><span class="endpoint-verb post" data-v-6e6ebe46>
+          post
+        </span>
+        /v0/users/find
+      </a></p><p class="endpoint-row" data-v-6e6ebe46><a href="#invite-user" data-v-6e6ebe46><span class="endpoint-verb post" data-v-6e6ebe46>
+          post
+        </span>
+        /v0/users/invite
+      </a></p><p class="endpoint-row" data-v-6e6ebe46><a href="#create-or-update-user" data-v-6e6ebe46><span class="endpoint-verb post" data-v-6e6ebe46>
+          post
+        </span>
+        /v0/users/createOrUpdate
+      </a></p><p class="endpoint-row" data-v-6e6ebe46><a href="#mark-user-active" data-v-6e6ebe46><span class="endpoint-verb post" data-v-6e6ebe46>
+          post
+        </span>
+        /v0/users/:userId/active
+      </a></p></div> <br data-v-6e6ebe46></div></p></div></div> <hr> <h3 id="create-user"><a href="#create-user" class="header-anchor">#</a> Create user</h3> <div class="row"><div class="left"><p>Creates a new user.</p> <div class="custom-block tip"><p class="custom-block-title">TIP</p> <p>If you want to import or create many users, see <a href="/guide/import-export.html">user import &amp; export</a>.</p></div> <div><h4>Parameters</h4> <hr> <div style="display:none;"></div> <div class="param-container">
+    No parameters
+  </div></div></div> <div class="right"><div><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <hr> <h3 id="read-user"><a href="#read-user" class="header-anchor">#</a> Read user</h3> <div class="row"><div class="left"><p>Reads a user record by its <code>userId</code>.</p> <div><h4>Parameters</h4> <hr> <div style="display:none;"></div> <div class="param-container">
+    No parameters
+  </div></div></div> <div class="right"><div><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <hr> <h3 id="update-user"><a href="#update-user" class="header-anchor">#</a> Update user</h3> <div class="row"><div class="left"><p>Updates the specified user by setting the values of the parameters passed. Any parameters not provided will be left unchanged. For example, if you pass the <code>name</code> parameter, that becomes the user's name to be used in the future.</p> <p>This request accepts mostly the same arguments as the user creation call.</p> <div><h4>Parameters</h4> <hr> <div style="display:none;"></div> <div class="param-container">
+    No parameters
+  </div></div></div> <div class="right"><div><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <hr> <h3 id="delete-user"><a href="#delete-user" class="header-anchor">#</a> Delete user</h3> <div class="row"><div class="left"><p>Deletes a user record.</p> <div><h4>Parameters</h4> <hr> <div style="display:none;"></div> <div class="param-container">
+    No parameters
+  </div></div></div> <div class="right"><div><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <hr> <h3 id="search-users"><a href="#search-users" class="header-anchor">#</a> Search users</h3> <div class="row"><div class="left"><p>Search user records.</p> <div><h4>Parameters</h4> <hr> <div style="display:none;"></div> <div class="param-container">
+    No parameters
+  </div></div> <br> <h4 id="filter-options"><a href="#filter-options" class="header-anchor">#</a> Filter options</h4> <hr> <p>The <code>filters</code> object has a top-level <code>conjunction</code> that applies to one or more <code>filterGroups</code>.</p> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;filters&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;conjunction&quot;</span><span class="token operator">:</span> <span class="token string">&quot;and&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;filterGroups&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;conjunction&quot;</span><span class="token operator">:</span> <span class="token string">&quot;and&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;filters&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span>
+            <span class="token property">&quot;attr&quot;</span><span class="token operator">:</span> <span class="token string">&quot;username&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;string&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;comparison&quot;</span><span class="token operator">:</span> <span class="token string">&quot;is&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;janedoe&quot;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>The <code>&quot;and&quot;</code> conjunction returns users who meet all of the criteria, while the <code>&quot;or&quot;</code> conjunction returns users who meet any one of the criteria.</p> <p>Each <code>filter</code> has the following options:</p> <h4 id="attr"><a href="#attr" class="header-anchor">#</a> attr</h4> <p>The attribute to search, such as <code>email</code> or <code>createdAt</code>. For attributes in the <code>data</code> object, use <code>data.myAttr</code>.</p> <h4 id="type"><a href="#type" class="header-anchor">#</a> type</h4> <p>The data type of the attribute. Can be <code>string</code>, <code>boolean</code>, <code>number</code>, <code>date</code>, or <code>array</code>.</p> <h4 id="comparison"><a href="#comparison" class="header-anchor">#</a> comparison</h4> <p>The desired criteria for returned users.</p> <details class="custom-block details"><summary>Comparison options</summary> <table id="comparison-table"><tbody><tr><td><code>string</code></td> <td><code>is</code><br> <code>contains</code><br> <code>does not contain</code><br> <code>starts with</code><br> <code>ends with</code><br> <code>is unknown</code><br> <code>has any value</code></td></tr> <tr><td><code>boolean</code></td> <td><code>is</code><br> <code>is not</code><br></td></tr> <tr><td><code>date</code></td> <td><code>before</code><br> <code>after</code><br> <code>between</code><br> <code>less than</code> (days ago)<br> <code>more than</code> (days ago)
+</td></tr> <tr><td><code>number</code></td> <td><code>is</code><br> <code>more than</code><br> <code>less than</code></td></tr> <tr><td><code>array</code></td> <td><code>contains</code><br> <code>does not contain</code><br> <code>any</code></td></tr></tbody></table></details> <h4 id="value"><a href="#value" class="header-anchor">#</a> value</h4> <p>The value to be compared. Should make sense in the context of the <code>type</code> and <code>comparison</code>.</p> <h4 id="example-searches"><a href="#example-searches" class="header-anchor">#</a> Example searches</h4> <details class="custom-block details"><summary>Users created in the last week</summary> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;order&quot;</span><span class="token operator">:</span> <span class="token string">&quot;createdAt_DESC&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;filters&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;conjunction&quot;</span><span class="token operator">:</span> <span class="token string">&quot;and&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;filterGroups&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;conjunction&quot;</span><span class="token operator">:</span> <span class="token string">&quot;and&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;filters&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span>
+            <span class="token property">&quot;attr&quot;</span><span class="token operator">:</span> <span class="token string">&quot;createdAt&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;date&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;comparison&quot;</span><span class="token operator">:</span> <span class="token string">&quot;less than&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">7</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></details> <details class="custom-block details"><summary>Users named John who were last active less than 30 days ago</summary> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;filters&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;conjunction&quot;</span><span class="token operator">:</span> <span class="token string">&quot;and&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;filterGroups&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;conjunction&quot;</span><span class="token operator">:</span> <span class="token string">&quot;and&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;filters&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span>
+            <span class="token property">&quot;attr&quot;</span><span class="token operator">:</span> <span class="token string">&quot;name&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;string&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;comparison&quot;</span><span class="token operator">:</span> <span class="token string">&quot;contains&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;John&quot;</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span>
+            <span class="token property">&quot;attr&quot;</span><span class="token operator">:</span> <span class="token string">&quot;lastActiveAt&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;date&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;comparison&quot;</span><span class="token operator">:</span> <span class="token string">&quot;less than&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token number">30</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></details> <details class="custom-block details"><summary>Users with example.com in their email, or who have &quot;Example&quot; as a custom data attribute, sorted by username</summary> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;order&quot;</span><span class="token operator">:</span> <span class="token string">&quot;username_ASC&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;filters&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;conjunction&quot;</span><span class="token operator">:</span> <span class="token string">&quot;and&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;filterGroups&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;conjunction&quot;</span><span class="token operator">:</span> <span class="token string">&quot;or&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;filters&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span>
+            <span class="token property">&quot;attr&quot;</span><span class="token operator">:</span> <span class="token string">&quot;email&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;string&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;comparison&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ends with&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;@example.com&quot;</span>
+          <span class="token punctuation">}</span>
+          <span class="token punctuation">{</span>
+            <span class="token property">&quot;attr&quot;</span><span class="token operator">:</span> <span class="token string">&quot;data.projectName&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;string&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;comparison&quot;</span><span class="token operator">:</span> <span class="token string">&quot;is&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;Example&quot;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></details> <h4 id="searching-roles"><a href="#searching-roles" class="header-anchor">#</a> Searching roles</h4> <p>To search for users with a specific role use <code>&quot;tenantId: role name&quot;</code>, or to search for users with any role in the tenant, use <code>&quot;tenantId&quot;</code>.</p> <details class="custom-block details"><summary>Users with an admin role in the demo tenant (tenantId = &quot;demo1234&quot;)</summary> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;filters&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;conjunction&quot;</span><span class="token operator">:</span> <span class="token string">&quot;and&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;filterGroups&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;conjunction&quot;</span><span class="token operator">:</span> <span class="token string">&quot;and&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;filters&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span>
+            <span class="token property">&quot;attr&quot;</span><span class="token operator">:</span> <span class="token string">&quot;role&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;string&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;comparison&quot;</span><span class="token operator">:</span> <span class="token string">&quot;is&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;demo1234:admin&quot;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></details> <details class="custom-block details"><summary>Users with any role in the demo tenant (tenantId = &quot;demo1234&quot;)</summary> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;filters&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;conjunction&quot;</span><span class="token operator">:</span> <span class="token string">&quot;and&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;filterGroups&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">&quot;conjunction&quot;</span><span class="token operator">:</span> <span class="token string">&quot;and&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;filters&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span>
+            <span class="token property">&quot;attr&quot;</span><span class="token operator">:</span> <span class="token string">&quot;role&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;string&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;comparison&quot;</span><span class="token operator">:</span> <span class="token string">&quot;is&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;demo1234&quot;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></details></div> <div class="right"><div><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <hr> <h3 id="invite-user"><a href="#invite-user" class="header-anchor">#</a> Invite user</h3> <div class="row"><div class="left"><p>Invite a user by email address.</p> <div><h4>Parameters</h4> <hr> <div style="display:none;"></div> <div class="param-container">
+    No parameters
+  </div></div></div> <div class="right"><div><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <hr> <h3 id="create-or-update-user"><a href="#create-or-update-user" class="header-anchor">#</a> Create or update user</h3> <div class="row"><div class="left"><p>Create a user or, if the user already exists, update it.</p> <p>Must include an email address if creating a user.</p> <p>Must include a <code>userId</code> or <code>userUuid</code> if updating a user.</p> <div><h4>Parameters</h4> <hr> <div style="display:none;"></div> <div class="param-container">
+    No parameters
+  </div></div></div> <div class="right"><div><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <hr> <h3 id="mark-user-active"><a href="#mark-user-active" class="header-anchor">#</a> Mark user active</h3> <div class="row"><div class="left"><p>Mark a user as active. This updates a user's <code>lastActiveAt</code> timestamp to the current time.</p> <div><h4>Parameters</h4> <hr> <div style="display:none;"></div> <div class="param-container">
+    No parameters
+  </div></div></div> <div class="right"><div><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <hr> <h2 id="tenants"><a href="#tenants" class="header-anchor">#</a> Tenants</h2> <div class="row"><div class="left"><p>Tenants allow you to sub-divide your application so that certain users only have access to certain parts.</p> <p>For example, your account could have Tenant A and Tenant B. You could give some users access to Tenant A, some users access to Tenant B, some users access to both Tenants, and some users access to neither Tenant.</p> <p>You can create and read tenants with standard REST operations.</p></div> <div class="right"><p><div class="card" data-v-6e6ebe46><h4 data-v-6e6ebe46>Endpoints</h4> <br data-v-6e6ebe46> <div class="endpoint-rows" data-v-6e6ebe46><p class="endpoint-row" data-v-6e6ebe46><a href="#create-tenant" data-v-6e6ebe46><span class="endpoint-verb post" data-v-6e6ebe46>
+          post
+        </span>
+        /v0/tenants
+      </a></p><p class="endpoint-row" data-v-6e6ebe46><a href="#read-tenant" data-v-6e6ebe46><span class="endpoint-verb get" data-v-6e6ebe46>
+          get
+        </span>
+        /v0/tenants/:tenantId
+      </a></p><p class="endpoint-row" data-v-6e6ebe46><a href="#update-tenant" data-v-6e6ebe46><span class="endpoint-verb put" data-v-6e6ebe46>
+          put
+        </span>
+        /v0/tenants/:tenantId
+      </a></p><p class="endpoint-row" data-v-6e6ebe46><a href="#delete-tenant" data-v-6e6ebe46><span class="endpoint-verb delete" data-v-6e6ebe46>
+          delete
+        </span>
+        /v0/tenants/:tenantId
+      </a></p></div> <br data-v-6e6ebe46></div></p></div></div> <hr> <h3 id="create-tenant"><a href="#create-tenant" class="header-anchor">#</a> Create tenant</h3> <div class="row"><div class="left"><p>Creates a new tenant.</p> <div><h4>Parameters</h4> <hr> <div style="display:none;"></div> <div class="param-container">
+    No parameters
+  </div></div></div> <div class="right"><div><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <hr> <h3 id="read-tenant"><a href="#read-tenant" class="header-anchor">#</a> Read tenant</h3> <div class="row"><div class="left"><p>Reads a tenant record by its <code>tenantId</code>.</p> <div><h4>Parameters</h4> <hr> <div style="display:none;"></div> <div class="param-container">
+    No parameters
+  </div></div></div> <div class="right"><div tenant="[object Object]"><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <hr> <h3 id="update-tenant"><a href="#update-tenant" class="header-anchor">#</a> Update tenant</h3> <div class="row"><div class="left"><p>Updates an existing tenant.</p> <div><h4>Parameters</h4> <hr> <div style="display:none;"></div> <div class="param-container">
+    No parameters
+  </div></div></div> <div class="right"><div tenant="[object Object]"><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <hr> <h3 id="delete-tenant"><a href="#delete-tenant" class="header-anchor">#</a> Delete tenant</h3> <div class="row"><div class="left"><p>Deletes an existing tenant.</p> <div><h4>Parameters</h4> <hr> <div style="display:none;"></div> <div class="param-container">
+    No parameters
+  </div></div></div> <div class="right"><div><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <hr> <h2 id="api-keys"><a href="#api-keys" class="header-anchor">#</a> API keys</h2> <div class="row"><div class="left"><p>API keys allow you to perform machine-to-machine requests.</p> <p>You can read and verify API keys with standard REST operations.</p></div> <div class="right"><p><div class="card" data-v-6e6ebe46><h4 data-v-6e6ebe46>Endpoints</h4> <br data-v-6e6ebe46> <div class="endpoint-rows" data-v-6e6ebe46><p class="endpoint-row" data-v-6e6ebe46><a href="#list-api-keys" data-v-6e6ebe46><span class="endpoint-verb get" data-v-6e6ebe46>
+          get
+        </span>
+        /v0/keys/:type
+      </a></p><p class="endpoint-row" data-v-6e6ebe46><a href="#list-api-keys-tenant-level" data-v-6e6ebe46><span class="endpoint-verb get" data-v-6e6ebe46>
+          get
+        </span>
+        /v0/tenants/:tenantId/keys/:type
+      </a></p><p class="endpoint-row" data-v-6e6ebe46><a href="#verify-api-key" data-v-6e6ebe46><span class="endpoint-verb post" data-v-6e6ebe46>
+          post
+        </span>
+        /v0/keys/verify
+      </a></p><p class="endpoint-row" data-v-6e6ebe46><a href="#list-jwt-public-keys" data-v-6e6ebe46><span class="endpoint-verb get" data-v-6e6ebe46>
+          get
+        </span>
+        /v0/tenants/:tenantId/keys/jwt
+      </a></p><p class="endpoint-row" data-v-6e6ebe46><a href="#json-web-key-set-jwks" data-v-6e6ebe46><span class="endpoint-verb get" data-v-6e6ebe46>
+          get
+        </span>
+        /v0/tenants/:tenantId/jwks
+      </a></p></div> <br data-v-6e6ebe46></div></p></div></div> <hr> <h3 id="list-api-keys"><a href="#list-api-keys" class="header-anchor">#</a> List API keys</h3> <div class="row"><div class="left"><p>Lists all of a tenant's API keys for a given type.</p> <p>This route can only be accessed with a valid <code>admin</code> API key.</p> <table><thead><tr><th style="text-align:left;">type</th> <th style="text-align:left;">description</th></tr></thead> <tbody><tr><td style="text-align:left;"><code>admin</code></td> <td style="text-align:left;">Allows all Userfront actions for a tenant</td></tr> <tr><td style="text-align:left;"><code>readonly</code></td> <td style="text-align:left;">Allows readonly actions for a tenant</td></tr> <tr><td style="text-align:left;"><code>webhook</code></td> <td style="text-align:left;">Included in webhook headers sent by Userfront</td></tr></tbody></table></div> <div class="right"><div><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <hr> <h3 id="list-api-keys-tenant-level"><a href="#list-api-keys-tenant-level" class="header-anchor">#</a> List API keys (tenant level)</h3> <div class="row"><div class="left"><p>Lists all of a tenant's API keys for a given type.</p> <p>This route can only be accessed with a valid <code>admin</code> API key.</p> <table><thead><tr><th style="text-align:left;">type</th> <th style="text-align:left;">description</th></tr></thead> <tbody><tr><td style="text-align:left;"><code>admin</code></td> <td style="text-align:left;">Allows all Userfront actions for a tenant</td></tr> <tr><td style="text-align:left;"><code>readonly</code></td> <td style="text-align:left;">Allows readonly actions for a tenant</td></tr> <tr><td style="text-align:left;"><code>webhook</code></td> <td style="text-align:left;">Included in webhook headers sent by Userfront</td></tr></tbody></table></div> <div class="right"><div><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <hr> <h3 id="verify-api-key"><a href="#verify-api-key" class="header-anchor">#</a> Verify API key</h3> <div class="row"><div class="left"><p>Verify that an API key is valid.</p> <p>Include your admin API key in the <code>authorization</code> header, and include the key that you want to verify as <code>key</code> in the request body.</p> <p>This route can only be accessed with a valid <code>admin</code> API key.</p> <div><h4>Parameters</h4> <hr> <div style="display:none;"></div> <div class="param-container">
+    No parameters
+  </div></div> <div class="custom-block warning"><p class="custom-block-title">Note</p> <p>An API key cannot be used to verify itself.</p></div></div> <div class="right"><div><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <hr> <h3 id="list-jwt-public-keys"><a href="#list-jwt-public-keys" class="header-anchor">#</a> List JWT public keys</h3> <div class="row"><div class="left"><p>Lists all of a tenant's JWT public keys.</p> <p>This route does not require an <code>Authorization</code> header.</p> <h4 id="query-strings"><a href="#query-strings" class="header-anchor">#</a> Query strings</h4> <hr> <div id="undefined-test" class="param-container"><div class="param-title"><a href="#undefined-test" class="param-anchor">#</a>
+    test 
+    <!----> <span class="param-optional">optional</span></div> <p class="param-description">Optional query string for test mode (?test=true)</p> <hr></div></div> <div class="right"><div><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <hr> <h3 id="json-web-key-set-jwks"><a href="#json-web-key-set-jwks" class="header-anchor">#</a> JSON Web Key Set (JWKS)</h3> <div class="row"><div class="left"><p>The public JWKS url for a tenant.</p> <p>A <a href="https://datatracker.ietf.org/doc/html/rfc7517" target="_blank" rel="noopener noreferrer">JSON Web Key Set<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> allows your application to build your JWT public key(s) from a URL instead of hard-coding the latest JWT public key into your code.</p> <p>This allows you to rotate your JWT signing key at any time without having to update your code.</p> <p>This route does not require an <code>Authorization</code> header.</p> <h4 id="query-strings-2"><a href="#query-strings-2" class="header-anchor">#</a> Query strings</h4> <hr> <div id="undefined-test" class="param-container"><div class="param-title"><a href="#undefined-test" class="param-anchor">#</a>
+    test 
+    <!----> <span class="param-optional">optional</span></div> <p class="param-description">Optional query string for test mode (?test=true)</p> <hr></div></div> <div class="right"><div><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <h2 id="roles"><a href="#roles" class="header-anchor">#</a> Roles</h2> <div class="row"><div class="left"><p>Roles are labels you can use to determine each user's access control within your application.</p> <p>You can assign one or more roles to each user, and roles can apply to your entire application or to <a href="#tenants">tenants</a> within your application.</p> <p>You can create, read, update, and delete roles with standard REST operations.</p></div> <div class="right"><p><div class="card" data-v-6e6ebe46><h4 data-v-6e6ebe46>Endpoints</h4> <br data-v-6e6ebe46> <div class="endpoint-rows" data-v-6e6ebe46><p class="endpoint-row" data-v-6e6ebe46><a href="#list-roles" data-v-6e6ebe46><span class="endpoint-verb get" data-v-6e6ebe46>
+          get
+        </span>
+        /v0/roles
+      </a></p><p class="endpoint-row" data-v-6e6ebe46><a href="#set-user-roles" data-v-6e6ebe46><span class="endpoint-verb post" data-v-6e6ebe46>
+          post
+        </span>
+        /v0/users/:userId/roles
+      </a></p><p class="endpoint-row" data-v-6e6ebe46><a href="#invite-user-to-a-role" data-v-6e6ebe46><span class="endpoint-verb post" data-v-6e6ebe46>
+          post
+        </span>
+        /v0/roles/invite
+      </a></p><p class="endpoint-row" data-v-6e6ebe46><a href="#undefined" data-v-6e6ebe46><span class="endpoint-verb undefined" data-v-6e6ebe46>
+          
+        </span>
+        
+      </a></p><p class="endpoint-row" data-v-6e6ebe46><a href="#list-roles-tenant-level" data-v-6e6ebe46><span class="endpoint-verb get" data-v-6e6ebe46>
+          get
+        </span>
+        /v0/tenants/:tenantId/roles
+      </a></p><p class="endpoint-row" data-v-6e6ebe46><a href="#set-user-roles-tenant-level" data-v-6e6ebe46><span class="endpoint-verb post" data-v-6e6ebe46>
+          post
+        </span>
+        /v0/tenants/:tenantId/users/:userId/roles
+      </a></p><p class="endpoint-row" data-v-6e6ebe46><a href="#invite-user-to-a-role-tenant-level" data-v-6e6ebe46><span class="endpoint-verb post" data-v-6e6ebe46>
+          post
+        </span>
+        /v0/tenants/:tenantId/roles/invite
+      </a></p></div> <br data-v-6e6ebe46></div></p></div></div> <hr> <h3 id="list-roles"><a href="#list-roles" class="header-anchor">#</a> List roles</h3> <div class="row"><div class="left"><p>Lists all the roles available in your account.</p> <div><h4>Parameters</h4> <hr> <div style="display:none;"></div> <div class="param-container">
+    No parameters
+  </div></div></div> <div class="right"><div><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <hr> <h3 id="set-user-roles"><a href="#set-user-roles" class="header-anchor">#</a> Set user roles</h3> <div class="row"><div class="left"><p>Sets the roles for a given user.</p> <p>The role(s) set with this route will be at the application-wide level. To set a user's role(s) within a specific tenant, see <a href="#set-user-roles-tenant-level">Set user roles (tenant level)</a>.</p> <p>To remove all roles for a user, pass an empty array for <code>roles</code>.</p> <div><h4>Parameters</h4> <hr> <div style="display:none;"></div> <div class="param-container">
+    No parameters
+  </div></div></div> <div class="right"><div><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <hr> <h3 id="invite-user-to-a-role"><a href="#invite-user-to-a-role" class="header-anchor">#</a> Invite user to a role</h3> <div class="row"><div class="left"><p>Invite a user to join the application with the given role(s).</p> <p>The role(s) that is created will be at the application-wide level. To invite a user to a role within a specific tenant, see <a href="#invite-user-to-a-role-tenant-level">Invite user to a role (tenant level)</a>.</p> <div><h4>Parameters</h4> <hr> <div style="display:none;"></div> <div class="param-container">
+    No parameters
+  </div></div></div> <div class="right"><div><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <hr> <h3 id="list-roles-tenant-level"><a href="#list-roles-tenant-level" class="header-anchor">#</a> List roles (tenant level)</h3> <div class="row"><div class="left"><p>Lists all the roles available within the specified tenant.</p> <div><h4>Parameters</h4> <hr> <div style="display:none;"></div> <div class="param-container">
+    No parameters
+  </div></div></div> <div class="right"><div><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <hr> <h3 id="set-user-roles-tenant-level"><a href="#set-user-roles-tenant-level" class="header-anchor">#</a> Set user roles (tenant level)</h3> <div class="row"><div class="left"><p>Sets the roles for a given user within the specified tenant.</p> <p>To remove all roles for a user within the specified tenant, pass an empty array for <code>roles</code>.</p> <div><h4>Parameters</h4> <hr> <div style="display:none;"></div> <div class="param-container">
+    No parameters
+  </div></div></div> <div class="right"><div><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <hr> <h3 id="invite-user-to-a-role-tenant-level"><a href="#invite-user-to-a-role-tenant-level" class="header-anchor">#</a> Invite user to a role (tenant level)</h3> <div class="row"><div class="left"><p>Invite a user to join the application with the given role(s) in the specified tenant.</p> <div><h4>Parameters</h4> <hr> <div style="display:none;"></div> <div class="param-container">
+    No parameters
+  </div></div></div> <div class="right"><div><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div> <hr> <h2 id="authentication-actions"><a href="#authentication-actions" class="header-anchor">#</a> Authentication actions</h2> <div class="row"><div class="left"><p>Server-to-server authentication actions allow your backend to perform actions that an end user cannot perform on their own, such as directly generating login link credentials.</p></div> <div class="right"><p><div class="card" data-v-6e6ebe46><h4 data-v-6e6ebe46>Endpoints</h4> <br data-v-6e6ebe46> <div class="endpoint-rows" data-v-6e6ebe46><p class="endpoint-row" data-v-6e6ebe46><a href="#generate-link-credentials" data-v-6e6ebe46><span class="endpoint-verb post" data-v-6e6ebe46>
+          post
+        </span>
+        /v0/auth/link/generate
+      </a></p></div> <br data-v-6e6ebe46></div></p></div></div> <hr> <h3 id="generate-link-credentials"><a href="#generate-link-credentials" class="header-anchor">#</a> Generate link credentials</h3> <div class="row"><div class="left"><p>Generate link credentials for use in custom login, welcome, verification, or password reset flows.</p> <p>This endpoint returns the <code>uuid</code> and <code>token</code> credentials but does not send an email.</p> <p>If you want Userfront to send an email on your behalf, you can use endpoints like <a href="/docs/api-client.html#generate-login-link">generate login link</a> or <a href="/docs/api-client.html#generate-password-reset-link">generate password reset link</a>.</p> <div><h4>Parameters</h4> <hr> <div style="display:none;"></div> <div class="param-container">
+    No parameters
+  </div></div> <h4 id="login-welcome-and-verification"><a href="#login-welcome-and-verification" class="header-anchor">#</a> Login, welcome, and verification</h4> <p>Your application can send the <code>token</code> and <code>uuid</code> to the <a href="/docs/api-client.html#log-in-with-login-link">Log in with login link</a> endpoint or use them with the <a href="/docs/js.html#login-options">Userfront.login()</a> method.</p> <p>The <code>token</code> and <code>uuid</code> can only be used once and will automatically expire according to the type of link:</p> <table><thead><tr><th style="text-align:left;">options.type</th> <th style="text-align:left;">Expiration</th></tr></thead> <tbody><tr><td style="text-align:left;"><code>login</code> (default)</td> <td style="text-align:left;">1 hour</td></tr> <tr><td style="text-align:left;"><code>welcome</code></td> <td style="text-align:left;">3 days</td></tr> <tr><td style="text-align:left;"><code>verify</code></td> <td style="text-align:left;">3 days</td></tr></tbody></table> <h4 id="password-reset"><a href="#password-reset" class="header-anchor">#</a> Password reset</h4> <p>Your application can send the <code>token</code> and <code>uuid</code> to the <a href="/docs/api-client.html#reset-password-with-link-credentials">Reset password with link credentials</a> endpoint or use them with the <a href="/docs/js.html#resetpassword-options">Userfront.resetPassword()</a> method.</p> <p>The <code>token</code> and <code>uuid</code> can only be used once and will automatically expire according to the type of link:</p> <table><thead><tr><th style="text-align:left;">options.type</th> <th style="text-align:left;">Expiration</th></tr></thead> <tbody><tr><td style="text-align:left;"><code>reset</code></td> <td style="text-align:left;">1 hour</td></tr></tbody></table></div> <div class="right"><div><!----></div> <div class="card light-code"><h4>Response</h4> <div class="language-json extra-class"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div></div></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">12/13/2021, 2:23:18 PM</span></div></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.f60119e2.js" defer></script><script src="/assets/js/4.9310b4a5.js" defer></script><script src="/assets/js/26.36e24f28.js" defer></script><script src="/assets/js/10.d6e86aa5.js" defer></script><script src="/assets/js/16.57fc4166.js" defer></script><script src="/assets/js/35.7686e3ce.js" defer></script><script src="/assets/js/30.f2edd5c4.js" defer></script><script src="/assets/js/15.754f265b.js" defer></script><script src="/assets/js/18.54ee526c.js" defer></script><script src="/assets/js/34.ee601710.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Create an HTML login form | Userfront guide</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="https://res.cloudinary.com/component/image/upload/v1582652683/circle_400_light_jrgbjq.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons">
+    <script src="https://cdn.userfront.com/core.js"></script>
+    <script id="chatwoot-script">(function(d,t) {
+    var BASE_URL="https://app.chatwoot.com";
+    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=BASE_URL+"/packs/js/sdk.js";
+    s.parentNode.insertBefore(g,s);
+    g.onload=function(){
+      window.chatwootSDK.run({
+        websiteToken: '7XyQSCgsKvpygFg7zYsKKV7q',
+        baseUrl: BASE_URL
+      })
+    }
+  })(document,"script");</script>
+    <meta name="description" content="Guide and examples for Userfront">
+    
+    <link rel="preload" href="/assets/css/0.styles.0d8bc850.css" as="style"><link rel="preload" href="/assets/js/app.f60119e2.js" as="script"><link rel="preload" href="/assets/js/4.9310b4a5.js" as="script"><link rel="preload" href="/assets/js/87.0b203e06.js" as="script"><link rel="preload" href="/assets/js/14.1ff2d0ca.js" as="script"><link rel="preload" href="/assets/js/31.aecea9fb.js" as="script"><link rel="prefetch" href="/assets/js/1.f693c36e.js"><link rel="prefetch" href="/assets/js/10.d6e86aa5.js"><link rel="prefetch" href="/assets/js/100.5831eb6e.js"><link rel="prefetch" href="/assets/js/101.2fb12d5c.js"><link rel="prefetch" href="/assets/js/102.a133f599.js"><link rel="prefetch" href="/assets/js/103.20c624f7.js"><link rel="prefetch" href="/assets/js/11.957ff8e7.js"><link rel="prefetch" href="/assets/js/12.00930353.js"><link rel="prefetch" href="/assets/js/13.61379314.js"><link rel="prefetch" href="/assets/js/15.754f265b.js"><link rel="prefetch" href="/assets/js/16.57fc4166.js"><link rel="prefetch" href="/assets/js/17.781e7961.js"><link rel="prefetch" href="/assets/js/18.54ee526c.js"><link rel="prefetch" href="/assets/js/19.5684dcc5.js"><link rel="prefetch" href="/assets/js/20.7deb419c.js"><link rel="prefetch" href="/assets/js/21.7cc838a6.js"><link rel="prefetch" href="/assets/js/22.f6e788ee.js"><link rel="prefetch" href="/assets/js/23.a26e571a.js"><link rel="prefetch" href="/assets/js/24.4f69c213.js"><link rel="prefetch" href="/assets/js/25.5d5179b3.js"><link rel="prefetch" href="/assets/js/26.36e24f28.js"><link rel="prefetch" href="/assets/js/27.c15748c9.js"><link rel="prefetch" href="/assets/js/28.334e20f5.js"><link rel="prefetch" href="/assets/js/29.aa42f3e2.js"><link rel="prefetch" href="/assets/js/30.f2edd5c4.js"><link rel="prefetch" href="/assets/js/32.77ce2d77.js"><link rel="prefetch" href="/assets/js/33.7a431159.js"><link rel="prefetch" href="/assets/js/34.ee601710.js"><link rel="prefetch" href="/assets/js/35.7686e3ce.js"><link rel="prefetch" href="/assets/js/36.f39e3e11.js"><link rel="prefetch" href="/assets/js/37.529a9888.js"><link rel="prefetch" href="/assets/js/38.bb7e5ec9.js"><link rel="prefetch" href="/assets/js/39.5339200a.js"><link rel="prefetch" href="/assets/js/40.a93b0cb6.js"><link rel="prefetch" href="/assets/js/41.1177c710.js"><link rel="prefetch" href="/assets/js/42.89cf6e99.js"><link rel="prefetch" href="/assets/js/43.af938a5b.js"><link rel="prefetch" href="/assets/js/44.2d5d782d.js"><link rel="prefetch" href="/assets/js/45.8434a5fa.js"><link rel="prefetch" href="/assets/js/46.f3b66321.js"><link rel="prefetch" href="/assets/js/47.c7282776.js"><link rel="prefetch" href="/assets/js/48.b46bcdbb.js"><link rel="prefetch" href="/assets/js/49.053b895c.js"><link rel="prefetch" href="/assets/js/5.ec9e5e2b.js"><link rel="prefetch" href="/assets/js/50.5fe1fba9.js"><link rel="prefetch" href="/assets/js/51.f2bf908a.js"><link rel="prefetch" href="/assets/js/52.02d8a8e0.js"><link rel="prefetch" href="/assets/js/53.0f907a6f.js"><link rel="prefetch" href="/assets/js/54.114acd97.js"><link rel="prefetch" href="/assets/js/55.8846c4f8.js"><link rel="prefetch" href="/assets/js/56.4e8c58b5.js"><link rel="prefetch" href="/assets/js/57.ae6b31df.js"><link rel="prefetch" href="/assets/js/58.5179135b.js"><link rel="prefetch" href="/assets/js/59.e5f4a108.js"><link rel="prefetch" href="/assets/js/6.81516845.js"><link rel="prefetch" href="/assets/js/60.fc2a9eb7.js"><link rel="prefetch" href="/assets/js/61.c23b8187.js"><link rel="prefetch" href="/assets/js/62.8cc3478a.js"><link rel="prefetch" href="/assets/js/63.ffcdd0cd.js"><link rel="prefetch" href="/assets/js/64.f920d857.js"><link rel="prefetch" href="/assets/js/65.cea3864b.js"><link rel="prefetch" href="/assets/js/66.8a55cbea.js"><link rel="prefetch" href="/assets/js/67.0b0f73e5.js"><link rel="prefetch" href="/assets/js/68.c55ce140.js"><link rel="prefetch" href="/assets/js/69.434848f5.js"><link rel="prefetch" href="/assets/js/7.d7615472.js"><link rel="prefetch" href="/assets/js/70.6034cce9.js"><link rel="prefetch" href="/assets/js/71.2b216b9e.js"><link rel="prefetch" href="/assets/js/72.5ee3b3c6.js"><link rel="prefetch" href="/assets/js/73.6e68ebf5.js"><link rel="prefetch" href="/assets/js/74.b94325b6.js"><link rel="prefetch" href="/assets/js/75.efed040f.js"><link rel="prefetch" href="/assets/js/76.f3efd14b.js"><link rel="prefetch" href="/assets/js/77.c7571345.js"><link rel="prefetch" href="/assets/js/78.edd54fd3.js"><link rel="prefetch" href="/assets/js/79.deb3d036.js"><link rel="prefetch" href="/assets/js/8.304807cc.js"><link rel="prefetch" href="/assets/js/80.62ca634c.js"><link rel="prefetch" href="/assets/js/81.d04bc444.js"><link rel="prefetch" href="/assets/js/82.4a15b6ae.js"><link rel="prefetch" href="/assets/js/83.ee914f7b.js"><link rel="prefetch" href="/assets/js/84.75ea737b.js"><link rel="prefetch" href="/assets/js/85.eea8f5ad.js"><link rel="prefetch" href="/assets/js/86.4b1a8101.js"><link rel="prefetch" href="/assets/js/88.673195e1.js"><link rel="prefetch" href="/assets/js/89.95bcce67.js"><link rel="prefetch" href="/assets/js/9.62ea8da8.js"><link rel="prefetch" href="/assets/js/90.50821515.js"><link rel="prefetch" href="/assets/js/91.8f511a6e.js"><link rel="prefetch" href="/assets/js/92.f4a048d3.js"><link rel="prefetch" href="/assets/js/93.64941b24.js"><link rel="prefetch" href="/assets/js/94.98933b07.js"><link rel="prefetch" href="/assets/js/95.1189d20d.js"><link rel="prefetch" href="/assets/js/96.ca3af040.js"><link rel="prefetch" href="/assets/js/97.a0ab8c39.js"><link rel="prefetch" href="/assets/js/98.a420b718.js"><link rel="prefetch" href="/assets/js/99.27df4746.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.b8d51838.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.0d8bc850.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Userfront guide</span></a> <div class="links"><form id="search-form" role="search" class="algolia-search-wrapper search-box"><input id="algolia-search-input" class="search-query"></form> <nav class="nav-links can-hide"><div class="nav-item" style="display:;"><a href="/guide/" class="nav-link router-link-active">
+  Home
+</a></div><div class="nav-item" style="display:;"><a href="/guide/toolkit/" class="nav-link router-link-active">
+  Toolkit
+</a></div><div class="nav-item" style="display:;"><a href="/guide/sso/" class="nav-link">
+  SSO
+</a></div><div class="nav-item" style="display:;"><a href="/guide/auth/" class="nav-link">
+  Tokens &amp; Access
+</a></div><div class="nav-item" style="display:;"><a href="/examples/" class="nav-link">
+  Examples
+</a></div><div class="nav-item" style="display:;"><div class="dropdown-wrapper"><button type="button" aria-label="More resources" class="dropdown-title"><span class="title">···</span> <span class="arrow down"></span></button> <button type="button" aria-label="More resources" class="mobile-dropdown-title"><span class="title">···</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/guide/test-mode.html" class="nav-link">
+  Test mode
+</a></li><li class="dropdown-item"><!----> <a href="/guide/import-export.html" class="nav-link">
+  Import and export users
+</a></li><li class="dropdown-item"><!----> <a href="/guide/glossary.html" class="nav-link">
+  Glossary of terms
+</a></li><li class="dropdown-item"><!----> <a href="/guide/status.html" class="nav-link">
+  Status &amp; maintenance
+</a></li><li class="dropdown-item"><h4>
+          Learn more about
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/guide/default-secure-software.html" class="nav-link">
+  Default-Secure Software
+</a></li><li class="dropdown-subitem"><a href="/guide/authentication.html" class="nav-link">
+  Authentication
+</a></li><li class="dropdown-subitem"><a href="/guide/auth-landscape.html" class="nav-link">
+  Auth landscape
+</a></li><li class="dropdown-subitem"><a href="/vs/best-auth-comparison-auth0-okta-firebase-cognito.html" class="nav-link">
+  Auth provider comparison
+</a></li><li class="dropdown-subitem"><a href="/guide/cohort-analysis.html" class="nav-link">
+  Cohort analysis
+</a></li></ul></li></ul></div></div><div class="nav-item" style="display:;"><div class="dropdown-wrapper"><button type="button" aria-label="APIs and SDKs" class="dropdown-title"><span class="title">APIs &amp; SDKs</span> <span class="arrow down"></span></button> <button type="button" aria-label="APIs and SDKs" class="mobile-dropdown-title"><span class="title">APIs &amp; SDKs</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/api.html" class="nav-link">
+  API reference: Server-to-server
+</a></li><li class="dropdown-item"><!----> <a href="/docs/api-client.html" class="nav-link">
+  API reference: Client-to-server
+</a></li><li class="dropdown-item"><!----> <a href="/docs/js.html" class="nav-link">
+  Core JS library
+</a></li><li class="dropdown-item"><!----> <a href="/docs/webhooks.html" class="nav-link">
+  Webhook reference
+</a></li></ul></div></div><div class="nav-item" style="display:none;"><a href="https://userfront.com/projects" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Dashboard
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div id="top-right" data-v-ad3069d6><div style="display:none;" data-v-7d9a66b0 data-v-ad3069d6><!----> <!----></div> <div style="display:;" data-v-ad3069d6><a href="/signup" target="_blank" class="el-link el-link--primary is-underline" data-v-ad3069d6><!----><span class="el-link--inner">Create account</span><!----></a>  
+    <a href="/login?redirect=/guide/toolkit/build-login-form-html.html" class="el-button el-button--default el-button--small" data-v-ad3069d6>Log in</a></div></div> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item" style="display:;"><a href="/guide/" class="nav-link router-link-active">
+  Home
+</a></div><div class="nav-item" style="display:;"><a href="/guide/toolkit/" class="nav-link router-link-active">
+  Toolkit
+</a></div><div class="nav-item" style="display:;"><a href="/guide/sso/" class="nav-link">
+  SSO
+</a></div><div class="nav-item" style="display:;"><a href="/guide/auth/" class="nav-link">
+  Tokens &amp; Access
+</a></div><div class="nav-item" style="display:;"><a href="/examples/" class="nav-link">
+  Examples
+</a></div><div class="nav-item" style="display:;"><div class="dropdown-wrapper"><button type="button" aria-label="More resources" class="dropdown-title"><span class="title">···</span> <span class="arrow down"></span></button> <button type="button" aria-label="More resources" class="mobile-dropdown-title"><span class="title">···</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/guide/test-mode.html" class="nav-link">
+  Test mode
+</a></li><li class="dropdown-item"><!----> <a href="/guide/import-export.html" class="nav-link">
+  Import and export users
+</a></li><li class="dropdown-item"><!----> <a href="/guide/glossary.html" class="nav-link">
+  Glossary of terms
+</a></li><li class="dropdown-item"><!----> <a href="/guide/status.html" class="nav-link">
+  Status &amp; maintenance
+</a></li><li class="dropdown-item"><h4>
+          Learn more about
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/guide/default-secure-software.html" class="nav-link">
+  Default-Secure Software
+</a></li><li class="dropdown-subitem"><a href="/guide/authentication.html" class="nav-link">
+  Authentication
+</a></li><li class="dropdown-subitem"><a href="/guide/auth-landscape.html" class="nav-link">
+  Auth landscape
+</a></li><li class="dropdown-subitem"><a href="/vs/best-auth-comparison-auth0-okta-firebase-cognito.html" class="nav-link">
+  Auth provider comparison
+</a></li><li class="dropdown-subitem"><a href="/guide/cohort-analysis.html" class="nav-link">
+  Cohort analysis
+</a></li></ul></li></ul></div></div><div class="nav-item" style="display:;"><div class="dropdown-wrapper"><button type="button" aria-label="APIs and SDKs" class="dropdown-title"><span class="title">APIs &amp; SDKs</span> <span class="arrow down"></span></button> <button type="button" aria-label="APIs and SDKs" class="mobile-dropdown-title"><span class="title">APIs &amp; SDKs</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/api.html" class="nav-link">
+  API reference: Server-to-server
+</a></li><li class="dropdown-item"><!----> <a href="/docs/api-client.html" class="nav-link">
+  API reference: Client-to-server
+</a></li><li class="dropdown-item"><!----> <a href="/docs/js.html" class="nav-link">
+  Core JS library
+</a></li><li class="dropdown-item"><!----> <a href="/docs/webhooks.html" class="nav-link">
+  Webhook reference
+</a></li></ul></div></div><div class="nav-item" style="display:none;"><a href="https://userfront.com/projects" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Dashboard
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Ready to use</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>HTML</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>React</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>Vue.js</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Build your own</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading open"><span>HTML</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/guide/toolkit/build-signup-form-html.html" class="sidebar-link">Signup form</a></li><li><a href="/guide/toolkit/build-login-form-html.html" aria-current="page" class="active sidebar-link">Login form</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/guide/toolkit/build-login-form-html.html#example-custom-login-form" class="sidebar-link">Example: custom login form</a></li><li class="sidebar-sub-header"><a href="/guide/toolkit/build-login-form-html.html#add-the-userfront-core-js-library" class="sidebar-link">Add the Userfront Core JS library</a></li><li class="sidebar-sub-header"><a href="/guide/toolkit/build-login-form-html.html#set-up-the-form" class="sidebar-link">Set up the form</a></li><li class="sidebar-sub-header"><a href="/guide/toolkit/build-login-form-html.html#pass-form-data-to-userfront-login" class="sidebar-link">Pass form data to Userfront.login()</a></li><li class="sidebar-sub-header"><a href="/guide/toolkit/build-login-form-html.html#single-sign-on" class="sidebar-link">Single sign-on</a></li></ul></li><li><a href="/guide/toolkit/build-password-reset-form-html.html" class="sidebar-link">Password reset form</a></li><li><a href="/guide/toolkit/build-logout-button-html.html" class="sidebar-link">Logout button</a></li></ul></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>React</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>Vue.js</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><div><div aria-label="Breadcrumb" role="navigation" class="el-breadcrumb"><span class="el-breadcrumb__item"><span role="link" class="el-breadcrumb__inner"><a href="/guide/toolkit" class="router-link-active">
+        Toolkit
+      </a></span><span role="presentation" class="el-breadcrumb__separator"></span></span> <span class="el-breadcrumb__item"><span role="link" class="el-breadcrumb__inner"><div class="el-dropdown"><span class="el-dropdown-link">
+          Build your own<i class="el-icon-arrow-down el-icon--right"></i></span> <ul class="el-dropdown-menu el-popper toolkit-breadcrumb" style="display:none;"><li tabindex="-1" class="el-dropdown-menu__item"><!----><a href="/guide/toolkit/automatic-login-form-html.html">
+              Automatic
+            </a></li><li tabindex="-1" class="el-dropdown-menu__item"><!----><a href="/guide/toolkit/build-login-form-html.html" aria-current="page" class="router-link-exact-active router-link-active">
+              Build your own
+            </a></li></ul></div></span><span role="presentation" class="el-breadcrumb__separator"></span></span> <span class="el-breadcrumb__item"><span role="link" class="el-breadcrumb__inner"><div class="el-dropdown"><span class="el-dropdown-link">
+          Login form<i class="el-icon-arrow-down el-icon--right"></i></span> <ul class="el-dropdown-menu el-popper toolkit-breadcrumb" style="display:none;"><li tabindex="-1" class="el-dropdown-menu__item"><!----><a href="/guide/toolkit/build-signup-form-html.html">
+              Signup form
+            </a></li><li tabindex="-1" class="el-dropdown-menu__item"><!----><a href="/guide/toolkit/build-login-form-html.html" aria-current="page" class="router-link-exact-active router-link-active">
+              Login form
+            </a></li><li tabindex="-1" class="el-dropdown-menu__item"><!----><a href="/guide/toolkit/build-password-reset-form-html.html">
+              Password reset
+            </a></li><li tabindex="-1" class="el-dropdown-menu__item"><!----><a href="/guide/toolkit/build-logout-button-html.html">
+              Logout button
+            </a></li></ul></div></span><span role="presentation" class="el-breadcrumb__separator"></span></span> <span class="el-breadcrumb__item"><span role="link" class="el-breadcrumb__inner"><div class="el-dropdown"><span class="el-dropdown-link">
+          HTML<i class="el-icon-arrow-down el-icon--right"></i></span> <ul class="el-dropdown-menu el-popper toolkit-breadcrumb" style="display:none;"><li tabindex="-1" class="el-dropdown-menu__item"><!----><a href="/guide/toolkit/build-login-form-html.html" aria-current="page" class="router-link-exact-active router-link-active">
+              HTML
+            </a></li><li tabindex="-1" class="el-dropdown-menu__item"><!----><a href="/guide/toolkit/build-login-form-react.html">
+              React
+            </a></li><li tabindex="-1" class="el-dropdown-menu__item"><!----><a href="/guide/toolkit/build-login-form-vue.html">
+              Vue.js
+            </a></li></ul></div></span><span role="presentation" class="el-breadcrumb__separator"></span></span></div></div> <h1 id="build-a-login-form-with-html"><a href="#build-a-login-form-with-html" class="header-anchor">#</a> Build a login form with HTML</h1> <div class="row"><div class="left"><p>In this section, we create a custom login form with email/username and password that includes:</p> <ul><li><a href="#email-or-username-field">Email or username</a> field</li> <li><a href="#error-handling">Error messages</a></li> <li><a href="#single-sign-on">Single sign-on</a> (SSO) with Google</li></ul></div></div> <h2 id="example-custom-login-form"><a href="#example-custom-login-form" class="header-anchor">#</a> Example: custom login form</h2> <div class="row"><div class="left"><p>You can clone the example login form on <a href="https://codepen.io/userfront/pen/zYZbbNJ" target="_blank" rel="noopener noreferrer">CodePen<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> and make edits, or follow along below.</p> <div class="custom-block tip"><p class="custom-block-title">NOTE</p> <p>The example form has the Userfront Core JS library added to the document, as described in the next section.</p></div></div> <div class="right"><br> <p data-height="400" data-theme-id="dark" data-default-tab="result" data-user="userfront" data-slug-hash="zYZbbNJ" data-pen-title="Build a login form with HTML" class="codepen" style="height:400px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;border:2px solid;margin:24px 0;padding:1em;"><span>
+    See the Pen
+    <a href="https://codepen.io/userfront/pen/zYZbbNJ"> Build a login form with HTML</a></span></p></div></div> <h2 id="add-the-userfront-core-js-library"><a href="#add-the-userfront-core-js-library" class="header-anchor">#</a> Add the Userfront Core JS library</h2> <div class="row"><div class="left"><p>You can add the Userfront Core JS library by CDN or using npm.</p> <p>You only need to do one of these.</p></div> <div class="right"><h3 id="cdn"><a href="#cdn" class="header-anchor">#</a> CDN</h3> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>https://cdn.userfront.com/core.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><br> <h3 id="npm"><a href="#npm" class="header-anchor">#</a> NPM</h3> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">npm</span> <span class="token function">install</span> @userfront/core
+</code></pre></div><p>Then import the library into your file(s)</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> Userfront <span class="token keyword">from</span> <span class="token string">&quot;@userfront/core&quot;</span><span class="token punctuation">;</span>
+</code></pre></div></div></div> <h2 id="set-up-the-form"><a href="#set-up-the-form" class="header-anchor">#</a> Set up the form</h2> <div class="row"><div class="left"><p>Create your login form with the elements you want to use.</p> <p>In this case, we've added:</p> <ul><li><code>email or username</code> - the user's email address or username</li> <li><code>password</code> - required for login with password (obviously)</li></ul></div> <div class="right"><div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>login-form<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>alert<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>email-or-username<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Email address or Username<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>text<span class="token punctuation">&quot;</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>email-or-username<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>password<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Password<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>password<span class="token punctuation">&quot;</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>password<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>submit<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Log in<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>or<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>login-google<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Login with Google<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><div class="language-css extra-class"><pre class="language-css"><code><span class="token selector">button,
+input</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
+  <span class="token property">margin-bottom</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">#alert</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+  <span class="token property">margin-bottom</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div></div> <h2 id="pass-form-data-to-userfront-login"><a href="#pass-form-data-to-userfront-login" class="header-anchor">#</a> Pass form data to Userfront.login()</h2> <div class="row"><div class="left"><p>The <a href="/docs/js.html#login-options">login()</a> method allows you to pass in data to log in a user.</p> <p>Our JavaScript needs to pass our form data into this method.</p> <p>Userfront then does the following:</p> <ol><li>Verifies the user's credentials</li> <li>Adds the user's access token as a cookie named <code>access.demo1234</code></li> <li>Redirects the page to the <a href="/guide/glossary.html#after-login-path">After-login path</a></li></ol></div> <div class="right"><div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// Sample: how to use Userfront.login()</span>
+Userfront<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token string">&quot;demo1234&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Userfront<span class="token punctuation">.</span><span class="token function">login</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  method<span class="token operator">:</span> <span class="token string">&quot;password&quot;</span><span class="token punctuation">,</span>
+  emailOrUsername<span class="token operator">:</span> <span class="token string">&quot;member@example.com&quot;</span><span class="token punctuation">,</span>
+  password<span class="token operator">:</span> <span class="token string">&quot;testmodepassword&quot;</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></div></div> <h3 id="example-javascript"><a href="#example-javascript" class="header-anchor">#</a> Example JavaScript</h3> <div class="row"><div class="left"><p>In the example code here, we do the following:</p> <ol><li>Reference all the elements on the page</li> <li>Define a custom <code>formLogin()</code> method that calls <code>Userfront.login()</code> with the form values</li> <li>Add an event listener to call <code>formLogin()</code> when the form is submitted</li></ol></div> <div class="right"><div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// Initialize Userfront</span>
+Userfront<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token string">&quot;demo1234&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 1. Reference the elements on the page</span>
+<span class="token keyword">var</span> loginFormEl <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">&quot;login-form&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> alertEl <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">&quot;alert&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> emailOrUsernameEl <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">&quot;email-or-username&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> passwordEl <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">&quot;password&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 2. Login with an email/username and password</span>
+<span class="token keyword">function</span> <span class="token function">formLogin</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Prevent the form's default behavior</span>
+  e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// Reset the alert to empty</span>
+  <span class="token function">setAlert</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// Call Userfront.login()</span>
+  Userfront<span class="token punctuation">.</span><span class="token function">login</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    method<span class="token operator">:</span> <span class="token string">&quot;password&quot;</span><span class="token punctuation">,</span>
+    emailOrUsername<span class="token operator">:</span> emailOrUsernameEl<span class="token punctuation">.</span>value<span class="token punctuation">,</span>
+    password<span class="token operator">:</span> passwordEl<span class="token punctuation">.</span>value<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">setAlert</span><span class="token punctuation">(</span>error<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Set the alert element to show the message</span>
+<span class="token keyword">function</span> <span class="token function">setAlert</span><span class="token punctuation">(</span><span class="token parameter">message</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  alertEl<span class="token punctuation">.</span>innerText <span class="token operator">=</span> message<span class="token punctuation">;</span>
+  alertEl<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> message <span class="token operator">?</span> <span class="token string">&quot;block&quot;</span> <span class="token operator">:</span> <span class="token string">&quot;none&quot;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 3. Add an event listener for the login for submit</span>
+loginFormEl<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">&quot;submit&quot;</span><span class="token punctuation">,</span> formLogin<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></div></div> <h3 id="email-or-username-field"><a href="#email-or-username-field" class="header-anchor">#</a> Email or username field</h3> <div class="row"><div class="left"><p>For login, you can use the <code>emailOrUsername</code> field, which will accept both email and username.</p> <p>If you want email only, or username only, you can use the <code>email</code> or <code>username</code> attributes instead of <code>emailOrUsername</code>.</p></div> <div class="right"><div class="language-js extra-class"><pre class="language-js"><code>Userfront<span class="token punctuation">.</span><span class="token function">login</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+  emailOrUsername<span class="token operator">:</span> <span class="token string">&quot;member@example.com&quot;</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Is the same as</span>
+
+Userfront<span class="token punctuation">.</span><span class="token function">login</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+  email<span class="token operator">:</span> <span class="token string">&quot;member@example.com&quot;</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Or you can use &quot;username&quot;</span>
+
+Userfront<span class="token punctuation">.</span><span class="token function">login</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+  username<span class="token operator">:</span> <span class="token string">&quot;member1234&quot;</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></div></div> <h3 id="error-handling"><a href="#error-handling" class="header-anchor">#</a> Error handling</h3> <div class="row"><div class="left"><p>Whenever the <code>Userfront.login()</code> method fails, we can <code>catch</code> its error in the promise chain.</p> <p>This error contains a <code>message</code> property with what went wrong.</p> <p>In this example, we use the <code>setAlert()</code> method to display the error message inside of our alert element.</p></div> <div class="right"><div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// Catch the error</span>
+Userfront<span class="token punctuation">.</span><span class="token function">login</span><span class="token punctuation">(</span><span class="token operator">...</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">setAlert</span><span class="token punctuation">(</span>error<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Add the error message to the alert element</span>
+<span class="token keyword">function</span> <span class="token function">setAlert</span><span class="token punctuation">(</span><span class="token parameter">message</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  alertEl<span class="token punctuation">.</span>innerText <span class="token operator">=</span> message<span class="token punctuation">;</span>
+  alertEl<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> message <span class="token operator">?</span> <span class="token string">&quot;block&quot;</span> <span class="token operator">:</span> <span class="token string">&quot;none&quot;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div></div> <h2 id="single-sign-on"><a href="#single-sign-on" class="header-anchor">#</a> Single sign-on</h2> <div class="row"><div class="left"><p>To configure Single sign-on (SSO), first add the provider you want to use in the Userfront dashboard in the <strong>SSO</strong> tab.</p> <p>In this example, we add an event listener to call <code>Userfront.login()</code> with <code>&quot;google&quot;</code> as the login method whenever the Google button is clicked. You can style the button however you like, or initate the login programmatically.</p> <p>You can find more provider options like GitHub, LinkedIn, and Facebook in the docs for <a href="/docs/js.html#login-options">login()</a>.</p></div> <div class="right"><div class="language-js extra-class"><pre class="language-js"><code>Userfront<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token string">&quot;demo1234&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> googleButtonEl <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">&quot;login-google&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 4. Add an event listener for the google button click</span>
+googleButtonEl<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">&quot;click&quot;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  Userfront<span class="token punctuation">.</span><span class="token function">login</span><span class="token punctuation">(</span><span class="token punctuation">{</span> method<span class="token operator">:</span> <span class="token string">&quot;google&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">7/8/2021, 9:09:09 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/guide/toolkit/build-signup-form-html.html" class="prev">
+        Signup form
+      </a></span> <span class="next"><a href="/guide/toolkit/build-password-reset-form-html.html">
+        Password reset form
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.f60119e2.js" defer></script><script src="/assets/js/4.9310b4a5.js" defer></script><script src="/assets/js/87.0b203e06.js" defer></script><script src="/assets/js/14.1ff2d0ca.js" defer></script><script src="/assets/js/31.aecea9fb.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Vue.js auth example | Userfront guide</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="https://res.cloudinary.com/component/image/upload/v1582652683/circle_400_light_jrgbjq.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons">
+    <script src="https://cdn.userfront.com/core.js"></script>
+    <script id="chatwoot-script">(function(d,t) {
+    var BASE_URL="https://app.chatwoot.com";
+    var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=BASE_URL+"/packs/js/sdk.js";
+    s.parentNode.insertBefore(g,s);
+    g.onload=function(){
+      window.chatwootSDK.run({
+        websiteToken: '7XyQSCgsKvpygFg7zYsKKV7q',
+        baseUrl: BASE_URL
+      })
+    }
+  })(document,"script");</script>
+    <meta name="description" content="Guide and examples for Userfront">
+    
+    <link rel="preload" href="/assets/css/0.styles.0d8bc850.css" as="style"><link rel="preload" href="/assets/js/app.f60119e2.js" as="script"><link rel="preload" href="/assets/js/4.9310b4a5.js" as="script"><link rel="preload" href="/assets/js/51.f2bf908a.js" as="script"><link rel="prefetch" href="/assets/js/1.f693c36e.js"><link rel="prefetch" href="/assets/js/10.d6e86aa5.js"><link rel="prefetch" href="/assets/js/100.5831eb6e.js"><link rel="prefetch" href="/assets/js/101.2fb12d5c.js"><link rel="prefetch" href="/assets/js/102.a133f599.js"><link rel="prefetch" href="/assets/js/103.20c624f7.js"><link rel="prefetch" href="/assets/js/11.957ff8e7.js"><link rel="prefetch" href="/assets/js/12.00930353.js"><link rel="prefetch" href="/assets/js/13.61379314.js"><link rel="prefetch" href="/assets/js/14.1ff2d0ca.js"><link rel="prefetch" href="/assets/js/15.754f265b.js"><link rel="prefetch" href="/assets/js/16.57fc4166.js"><link rel="prefetch" href="/assets/js/17.781e7961.js"><link rel="prefetch" href="/assets/js/18.54ee526c.js"><link rel="prefetch" href="/assets/js/19.5684dcc5.js"><link rel="prefetch" href="/assets/js/20.7deb419c.js"><link rel="prefetch" href="/assets/js/21.7cc838a6.js"><link rel="prefetch" href="/assets/js/22.f6e788ee.js"><link rel="prefetch" href="/assets/js/23.a26e571a.js"><link rel="prefetch" href="/assets/js/24.4f69c213.js"><link rel="prefetch" href="/assets/js/25.5d5179b3.js"><link rel="prefetch" href="/assets/js/26.36e24f28.js"><link rel="prefetch" href="/assets/js/27.c15748c9.js"><link rel="prefetch" href="/assets/js/28.334e20f5.js"><link rel="prefetch" href="/assets/js/29.aa42f3e2.js"><link rel="prefetch" href="/assets/js/30.f2edd5c4.js"><link rel="prefetch" href="/assets/js/31.aecea9fb.js"><link rel="prefetch" href="/assets/js/32.77ce2d77.js"><link rel="prefetch" href="/assets/js/33.7a431159.js"><link rel="prefetch" href="/assets/js/34.ee601710.js"><link rel="prefetch" href="/assets/js/35.7686e3ce.js"><link rel="prefetch" href="/assets/js/36.f39e3e11.js"><link rel="prefetch" href="/assets/js/37.529a9888.js"><link rel="prefetch" href="/assets/js/38.bb7e5ec9.js"><link rel="prefetch" href="/assets/js/39.5339200a.js"><link rel="prefetch" href="/assets/js/40.a93b0cb6.js"><link rel="prefetch" href="/assets/js/41.1177c710.js"><link rel="prefetch" href="/assets/js/42.89cf6e99.js"><link rel="prefetch" href="/assets/js/43.af938a5b.js"><link rel="prefetch" href="/assets/js/44.2d5d782d.js"><link rel="prefetch" href="/assets/js/45.8434a5fa.js"><link rel="prefetch" href="/assets/js/46.f3b66321.js"><link rel="prefetch" href="/assets/js/47.c7282776.js"><link rel="prefetch" href="/assets/js/48.b46bcdbb.js"><link rel="prefetch" href="/assets/js/49.053b895c.js"><link rel="prefetch" href="/assets/js/5.ec9e5e2b.js"><link rel="prefetch" href="/assets/js/50.5fe1fba9.js"><link rel="prefetch" href="/assets/js/52.02d8a8e0.js"><link rel="prefetch" href="/assets/js/53.0f907a6f.js"><link rel="prefetch" href="/assets/js/54.114acd97.js"><link rel="prefetch" href="/assets/js/55.8846c4f8.js"><link rel="prefetch" href="/assets/js/56.4e8c58b5.js"><link rel="prefetch" href="/assets/js/57.ae6b31df.js"><link rel="prefetch" href="/assets/js/58.5179135b.js"><link rel="prefetch" href="/assets/js/59.e5f4a108.js"><link rel="prefetch" href="/assets/js/6.81516845.js"><link rel="prefetch" href="/assets/js/60.fc2a9eb7.js"><link rel="prefetch" href="/assets/js/61.c23b8187.js"><link rel="prefetch" href="/assets/js/62.8cc3478a.js"><link rel="prefetch" href="/assets/js/63.ffcdd0cd.js"><link rel="prefetch" href="/assets/js/64.f920d857.js"><link rel="prefetch" href="/assets/js/65.cea3864b.js"><link rel="prefetch" href="/assets/js/66.8a55cbea.js"><link rel="prefetch" href="/assets/js/67.0b0f73e5.js"><link rel="prefetch" href="/assets/js/68.c55ce140.js"><link rel="prefetch" href="/assets/js/69.434848f5.js"><link rel="prefetch" href="/assets/js/7.d7615472.js"><link rel="prefetch" href="/assets/js/70.6034cce9.js"><link rel="prefetch" href="/assets/js/71.2b216b9e.js"><link rel="prefetch" href="/assets/js/72.5ee3b3c6.js"><link rel="prefetch" href="/assets/js/73.6e68ebf5.js"><link rel="prefetch" href="/assets/js/74.b94325b6.js"><link rel="prefetch" href="/assets/js/75.efed040f.js"><link rel="prefetch" href="/assets/js/76.f3efd14b.js"><link rel="prefetch" href="/assets/js/77.c7571345.js"><link rel="prefetch" href="/assets/js/78.edd54fd3.js"><link rel="prefetch" href="/assets/js/79.deb3d036.js"><link rel="prefetch" href="/assets/js/8.304807cc.js"><link rel="prefetch" href="/assets/js/80.62ca634c.js"><link rel="prefetch" href="/assets/js/81.d04bc444.js"><link rel="prefetch" href="/assets/js/82.4a15b6ae.js"><link rel="prefetch" href="/assets/js/83.ee914f7b.js"><link rel="prefetch" href="/assets/js/84.75ea737b.js"><link rel="prefetch" href="/assets/js/85.eea8f5ad.js"><link rel="prefetch" href="/assets/js/86.4b1a8101.js"><link rel="prefetch" href="/assets/js/87.0b203e06.js"><link rel="prefetch" href="/assets/js/88.673195e1.js"><link rel="prefetch" href="/assets/js/89.95bcce67.js"><link rel="prefetch" href="/assets/js/9.62ea8da8.js"><link rel="prefetch" href="/assets/js/90.50821515.js"><link rel="prefetch" href="/assets/js/91.8f511a6e.js"><link rel="prefetch" href="/assets/js/92.f4a048d3.js"><link rel="prefetch" href="/assets/js/93.64941b24.js"><link rel="prefetch" href="/assets/js/94.98933b07.js"><link rel="prefetch" href="/assets/js/95.1189d20d.js"><link rel="prefetch" href="/assets/js/96.ca3af040.js"><link rel="prefetch" href="/assets/js/97.a0ab8c39.js"><link rel="prefetch" href="/assets/js/98.a420b718.js"><link rel="prefetch" href="/assets/js/99.27df4746.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.b8d51838.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.0d8bc850.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">Userfront guide</span></a> <div class="links"><form id="search-form" role="search" class="algolia-search-wrapper search-box"><input id="algolia-search-input" class="search-query"></form> <nav class="nav-links can-hide"><div class="nav-item" style="display:;"><a href="/guide/" class="nav-link">
+  Home
+</a></div><div class="nav-item" style="display:;"><a href="/guide/toolkit/" class="nav-link">
+  Toolkit
+</a></div><div class="nav-item" style="display:;"><a href="/guide/sso/" class="nav-link">
+  SSO
+</a></div><div class="nav-item" style="display:;"><a href="/guide/auth/" class="nav-link">
+  Tokens &amp; Access
+</a></div><div class="nav-item" style="display:;"><a href="/examples/" class="nav-link router-link-active">
+  Examples
+</a></div><div class="nav-item" style="display:;"><div class="dropdown-wrapper"><button type="button" aria-label="More resources" class="dropdown-title"><span class="title">···</span> <span class="arrow down"></span></button> <button type="button" aria-label="More resources" class="mobile-dropdown-title"><span class="title">···</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/guide/test-mode.html" class="nav-link">
+  Test mode
+</a></li><li class="dropdown-item"><!----> <a href="/guide/import-export.html" class="nav-link">
+  Import and export users
+</a></li><li class="dropdown-item"><!----> <a href="/guide/glossary.html" class="nav-link">
+  Glossary of terms
+</a></li><li class="dropdown-item"><!----> <a href="/guide/status.html" class="nav-link">
+  Status &amp; maintenance
+</a></li><li class="dropdown-item"><h4>
+          Learn more about
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/guide/default-secure-software.html" class="nav-link">
+  Default-Secure Software
+</a></li><li class="dropdown-subitem"><a href="/guide/authentication.html" class="nav-link">
+  Authentication
+</a></li><li class="dropdown-subitem"><a href="/guide/auth-landscape.html" class="nav-link">
+  Auth landscape
+</a></li><li class="dropdown-subitem"><a href="/vs/best-auth-comparison-auth0-okta-firebase-cognito.html" class="nav-link">
+  Auth provider comparison
+</a></li><li class="dropdown-subitem"><a href="/guide/cohort-analysis.html" class="nav-link">
+  Cohort analysis
+</a></li></ul></li></ul></div></div><div class="nav-item" style="display:;"><div class="dropdown-wrapper"><button type="button" aria-label="APIs and SDKs" class="dropdown-title"><span class="title">APIs &amp; SDKs</span> <span class="arrow down"></span></button> <button type="button" aria-label="APIs and SDKs" class="mobile-dropdown-title"><span class="title">APIs &amp; SDKs</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/api.html" class="nav-link">
+  API reference: Server-to-server
+</a></li><li class="dropdown-item"><!----> <a href="/docs/api-client.html" class="nav-link">
+  API reference: Client-to-server
+</a></li><li class="dropdown-item"><!----> <a href="/docs/js.html" class="nav-link">
+  Core JS library
+</a></li><li class="dropdown-item"><!----> <a href="/docs/webhooks.html" class="nav-link">
+  Webhook reference
+</a></li></ul></div></div><div class="nav-item" style="display:none;"><a href="https://userfront.com/projects" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Dashboard
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div id="top-right" data-v-ad3069d6><div style="display:none;" data-v-7d9a66b0 data-v-ad3069d6><!----> <!----></div> <div style="display:;" data-v-ad3069d6><a href="/signup" target="_blank" class="el-link el-link--primary is-underline" data-v-ad3069d6><!----><span class="el-link--inner">Create account</span><!----></a>  
+    <a href="/login?redirect=/examples/vue.html" class="el-button el-button--default el-button--small" data-v-ad3069d6>Log in</a></div></div> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item" style="display:;"><a href="/guide/" class="nav-link">
+  Home
+</a></div><div class="nav-item" style="display:;"><a href="/guide/toolkit/" class="nav-link">
+  Toolkit
+</a></div><div class="nav-item" style="display:;"><a href="/guide/sso/" class="nav-link">
+  SSO
+</a></div><div class="nav-item" style="display:;"><a href="/guide/auth/" class="nav-link">
+  Tokens &amp; Access
+</a></div><div class="nav-item" style="display:;"><a href="/examples/" class="nav-link router-link-active">
+  Examples
+</a></div><div class="nav-item" style="display:;"><div class="dropdown-wrapper"><button type="button" aria-label="More resources" class="dropdown-title"><span class="title">···</span> <span class="arrow down"></span></button> <button type="button" aria-label="More resources" class="mobile-dropdown-title"><span class="title">···</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/guide/test-mode.html" class="nav-link">
+  Test mode
+</a></li><li class="dropdown-item"><!----> <a href="/guide/import-export.html" class="nav-link">
+  Import and export users
+</a></li><li class="dropdown-item"><!----> <a href="/guide/glossary.html" class="nav-link">
+  Glossary of terms
+</a></li><li class="dropdown-item"><!----> <a href="/guide/status.html" class="nav-link">
+  Status &amp; maintenance
+</a></li><li class="dropdown-item"><h4>
+          Learn more about
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/guide/default-secure-software.html" class="nav-link">
+  Default-Secure Software
+</a></li><li class="dropdown-subitem"><a href="/guide/authentication.html" class="nav-link">
+  Authentication
+</a></li><li class="dropdown-subitem"><a href="/guide/auth-landscape.html" class="nav-link">
+  Auth landscape
+</a></li><li class="dropdown-subitem"><a href="/vs/best-auth-comparison-auth0-okta-firebase-cognito.html" class="nav-link">
+  Auth provider comparison
+</a></li><li class="dropdown-subitem"><a href="/guide/cohort-analysis.html" class="nav-link">
+  Cohort analysis
+</a></li></ul></li></ul></div></div><div class="nav-item" style="display:;"><div class="dropdown-wrapper"><button type="button" aria-label="APIs and SDKs" class="dropdown-title"><span class="title">APIs &amp; SDKs</span> <span class="arrow down"></span></button> <button type="button" aria-label="APIs and SDKs" class="mobile-dropdown-title"><span class="title">APIs &amp; SDKs</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/docs/api.html" class="nav-link">
+  API reference: Server-to-server
+</a></li><li class="dropdown-item"><!----> <a href="/docs/api-client.html" class="nav-link">
+  API reference: Client-to-server
+</a></li><li class="dropdown-item"><!----> <a href="/docs/js.html" class="nav-link">
+  Core JS library
+</a></li><li class="dropdown-item"><!----> <a href="/docs/webhooks.html" class="nav-link">
+  Webhook reference
+</a></li></ul></div></div><div class="nav-item" style="display:none;"><a href="https://userfront.com/projects" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Dashboard
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Vue.js auth example</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/examples/vue.html#vue-js-authentication" class="sidebar-link">Vue.js authentication</a></li><li><a href="/examples/vue.html#set-up-vue-cli" class="sidebar-link">Set up Vue CLI</a></li><li><a href="/examples/vue.html#signup-login-and-password-reset" class="sidebar-link">Signup, login, and password reset</a></li><li><a href="/examples/vue.html#protected-route-in-vue" class="sidebar-link">Protected route in Vue</a></li><li><a href="/examples/vue.html#vue-authentication-with-an-api" class="sidebar-link">Vue authentication with an API</a></li><li><a href="/examples/vue.html#vue-js-sso-single-sign-on" class="sidebar-link">Vue.js SSO (Single Sign On)</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="vue-js-auth-example"><a href="#vue-js-auth-example" class="header-anchor">#</a> Vue.js auth example</h1> <div class="row"><div class="left"><p>In this example, we will add authentication and access control to a Vue.js application.</p> <p>We will use Vue CLI for setup, along with Vue Router for client-side routing.</p></div> <div class="right"><div class="card"><h4 id="github-repo-for-this-example"><a href="#github-repo-for-this-example" class="header-anchor">#</a> GitHub repo for this example</h4> <p><a href="https://github.com/userfront/vue-example" target="_blank" rel="noopener noreferrer">https://github.com/userfront/vue-example<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></div></div></div> <h2 id="vue-js-authentication"><a href="#vue-js-authentication" class="header-anchor">#</a> Vue.js authentication</h2> <div class="row"><div class="left"><p>At a high level, Vue's responsibility in authentication is to:</p> <ol><li><p>Send an initial request to Userfront to get the JWT access token. This is what the signup and login forms do.</p></li> <li><p>Send the JWT access token to your server with each subsequent request.</p></li></ol></div> <div class="right"><p><img src="https://res.cloudinary.com/component/image/upload/v1616013076/permanent/userfront-diagram.png" alt="Vue.js authentication diagram"></p></div></div> <h2 id="set-up-vue-cli"><a href="#set-up-vue-cli" class="header-anchor">#</a> Set up Vue CLI</h2> <div class="row"><div class="left"><p>To get Vue up and running, start by installing <a href="https://cli.vuejs.org/" target="_blank" rel="noopener noreferrer">Vue CLI<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">npm</span> <span class="token function">install</span> -g @vue/cli
+vue create vue-example
+</code></pre></div><p>Select the options as you go. In this example, we set up Vue with the following:</p> <ul><li>Vue version 2</li> <li>Babel</li> <li>Router with history mode</li> <li>CSS Pre-processor: dart sass</li> <li>Linter: ESLint + Prettier</li></ul> <p>Then with it set up, we can run the server:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token builtin class-name">cd</span> vue-example
+<span class="token function">npm</span> run serve
+</code></pre></div><p>Now our Vue application is available at http://localhost:8080</p></div> <div class="right"><div class="card"><h4 id="preview"><a href="#preview" class="header-anchor">#</a> Preview</h4> <p><img src="https://res.cloudinary.com/component/image/upload/v1625839561/guide/vue-cli-example.png" alt="Vue CLI app authentication"></p></div></div></div> <h3 id="routing"><a href="#routing" class="header-anchor">#</a> Routing</h3> <div class="row"><div class="left"><p>We'll set up a simple app with routing. This is all we need to start adding authentication.</p> <table><thead><tr><th style="text-align:left;">Route</th> <th style="text-align:left;">Description</th></tr></thead> <tbody><tr><td style="text-align:left;"><code>/</code></td> <td style="text-align:left;">Home page</td></tr> <tr><td style="text-align:left;"><code>/login</code></td> <td style="text-align:left;">Login page</td></tr> <tr><td style="text-align:left;"><code>/reset</code></td> <td style="text-align:left;">Password reset page</td></tr> <tr><td style="text-align:left;"><code>/dashboard</code></td> <td style="text-align:left;">User dashboard, for logged in users only</td></tr></tbody></table></div></div> <div class="row"><div class="left"><p>Replace the contents of <code>src/router/index.js</code> with the following to set up the routes we want:</p></div></div> <div class="row"><div class="left"><div class="language-js extra-class"><div class="highlight-lines"><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br><br><br><br><br><br><br><br></div><pre class="language-js"><code><span class="token comment">// src/router/index.js</span>
+
+<span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">&quot;vue&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> VueRouter <span class="token keyword">from</span> <span class="token string">&quot;vue-router&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Home <span class="token keyword">from</span> <span class="token string">&quot;../views/Home.vue&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Login <span class="token keyword">from</span> <span class="token string">&quot;../views/Login.vue&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Reset <span class="token keyword">from</span> <span class="token string">&quot;../views/Reset.vue&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Dashboard <span class="token keyword">from</span> <span class="token string">&quot;../views/Dashboard.vue&quot;</span><span class="token punctuation">;</span>
+
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>VueRouter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> routes <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">&quot;/&quot;</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">&quot;Home&quot;</span><span class="token punctuation">,</span>
+    component<span class="token operator">:</span> Home<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">&quot;/login&quot;</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">&quot;Login&quot;</span><span class="token punctuation">,</span>
+    component<span class="token operator">:</span> Login<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">&quot;/reset&quot;</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">&quot;Reset&quot;</span><span class="token punctuation">,</span>
+    component<span class="token operator">:</span> Reset<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    path<span class="token operator">:</span> <span class="token string">&quot;/dashboard&quot;</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">&quot;Dashboard&quot;</span><span class="token punctuation">,</span>
+    component<span class="token operator">:</span> Dashboard<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  mode<span class="token operator">:</span> <span class="token string">&quot;history&quot;</span><span class="token punctuation">,</span>
+  base<span class="token operator">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">BASE_URL</span><span class="token punctuation">,</span>
+  routes<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> router<span class="token punctuation">;</span>
+</code></pre></div><p>For each new route like <code>src/views/Login.vue</code>, we can make a basic template for now:</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token comment">&lt;!-- src/views/Login.vue--&gt;</span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Login<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><div class="language-html extra-class"><pre class="language-html"><code><span class="token comment">&lt;!-- src/views/Reset.vue--&gt;</span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Reset<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><div class="language-html extra-class"><pre class="language-html"><code><span class="token comment">&lt;!-- src/views/Dashboard.vue--&gt;</span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Dashboard<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div> <p>Now when we run our server, we should have all 5 of the routes working.</p> <p>With these routes in place, we are ready to add authentication.</p></div> <div class="right"><div class="card"><h4 id="preview-2"><a href="#preview-2" class="header-anchor">#</a> Preview</h4> <p><img src="https://res.cloudinary.com/component/image/upload/v1625840798/guide/vue-cli-routing-0.gif" alt="Vue Router authentication"></p></div></div></div> <h2 id="signup-login-and-password-reset"><a href="#signup-login-and-password-reset" class="header-anchor">#</a> Signup, login, and password reset</h2> <div class="row"><div class="left"><p>We'll start by adding a signup form to the home page.</p> <p>In the <strong>Toolkit</strong> section of your dashboard, locate the instructions for installing your signup form with Vue.</p> <p>It will look like this:</p> <div class="card"><h4 id="userfront-toolkit"><a href="#userfront-toolkit" class="header-anchor">#</a> Userfront Toolkit</h4> <p><img src="https://res.cloudinary.com/component/image/upload/v1625842678/guide/installation-instructions-vue.png" alt="Userfront Vue installation instructions"></p></div></div></div> <div class="row"><div class="left"><p>Follow the instructions by installing the Userfront Vue package with:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">npm</span> <span class="token function">install</span> @userfront/vue --save
+<span class="token function">npm</span> run serve
+</code></pre></div></div></div> <div class="row"><div class="left"><p>We will use Userfront tools on multiple pages, so we can initialize it once in the <code>main.js</code> file, instead of the component like the instructions show.</p> <div class="language-js extra-class"><div class="highlight-lines"><br><br><br><div class="highlighted"> </div><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br></div><pre class="language-js"><code><span class="token comment">// src/main.js</span>
+
+<span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">&quot;vue&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Userfront <span class="token keyword">from</span> <span class="token string">&quot;@userfront/vue&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">&quot;./App.vue&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> router <span class="token keyword">from</span> <span class="token string">&quot;./router&quot;</span><span class="token punctuation">;</span>
+
+Userfront<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token string">&quot;demo1234&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+Vue<span class="token punctuation">.</span>config<span class="token punctuation">.</span>productionTip <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+<span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  router<span class="token punctuation">,</span>
+  <span class="token function-variable function">render</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">h</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">h</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">$mount</span><span class="token punctuation">(</span><span class="token string">&quot;#app&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></div></div> <div class="row"><div class="left"><p>Now we can add the signup form to the home page by replacing the contents of <code>src/views/Home.vue</code> with the template from the instructions:</p></div></div> <div class="row"><div class="left"><div class="language-html extra-class"><pre class="language-html"><code><span class="token comment">&lt;!-- src/views/Home.vue --&gt;</span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>signup-form</span> <span class="token attr-name">tool-id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>nkmbbm<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+  <span class="token keyword">import</span> <span class="token punctuation">{</span> SignupForm <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@userfront/vue&quot;</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+    components<span class="token operator">:</span> <span class="token punctuation">{</span>
+      SignupForm<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><br>
+Now the home page has your signup form. Try signing up a user.
+</div> <div class="right"><div class="card"><h4 id="preview-3"><a href="#preview-3" class="header-anchor">#</a> Preview</h4> <p><img src="https://res.cloudinary.com/component/image/upload/v1625842971/guide/vue-cli-home.png" alt="Vue signup form"></p></div></div></div> <div class="row"><div class="left"><h3 id="test-mode"><a href="#test-mode" class="header-anchor">#</a> Test mode</h3> <p>The form is in &quot;Test mode&quot; by default, which will create user records in a test environment you can view separately in your Userfront dashboard.</p></div></div> <p><img src="https://res.cloudinary.com/component/image/upload/v1612980797/permanent/create-react-app-2.png" alt="Userfront test mode"></p> <h3 id="login-and-password-reset"><a href="#login-and-password-reset" class="header-anchor">#</a> Login and password reset</h3> <div class="row"><div class="left"><p>Continue by adding your login and password reset forms in the same way that you added your signup form:</p></div></div> <div class="row"><div class="left"><div class="language-html extra-class"><pre class="language-html"><code><span class="token comment">&lt;!-- src/views/Login.vue --&gt;</span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>login-form</span> <span class="token attr-name">tool-id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>alnkkd<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+  <span class="token keyword">import</span> <span class="token punctuation">{</span> LoginForm <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@userfront/vue&quot;</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+    components<span class="token operator">:</span> <span class="token punctuation">{</span>
+      LoginForm<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><div class="language-html extra-class"><pre class="language-html"><code><span class="token comment">&lt;!-- src/views/Reset.vue --&gt;</span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>password-reset-form</span> <span class="token attr-name">tool-id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>dkbmmo<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+  <span class="token keyword">import</span> <span class="token punctuation">{</span> PasswordResetForm <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@userfront/vue&quot;</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+    components<span class="token operator">:</span> <span class="token punctuation">{</span>
+      PasswordResetForm<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div></div> <div class="right"><div class="card"><h4 id="preview-4"><a href="#preview-4" class="header-anchor">#</a> Preview</h4> <p><img src="https://res.cloudinary.com/component/image/upload/v1625844010/guide/vue-cli-routing-1.gif" alt="Vue signup, login, password reset"></p></div></div></div> <div class="row"><div class="left"><p>At this point, your signup, login, and password reset should all be functional.</p> <p>Your users can sign up, log in, and reset their password.</p></div></div> <h2 id="protected-route-in-vue"><a href="#protected-route-in-vue" class="header-anchor">#</a> Protected route in Vue</h2> <div class="row"><div class="left"><p>Usually, we don't want users to be able to view the dashboard unless they are logged in. This is known as protecting a route.</p> <p>Whenever a user is not logged in but tries to visit <code>/dashboard</code>, we can redirect them to the login screen.</p> <p>We can accomplish this by adding a <a href="https://router.vuejs.org/guide/advanced/navigation-guards.html" target="_blank" rel="noopener noreferrer">navigation guard<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> to our router.</p> <p>When a user is logged in, they will have an access token available as <code>Userfront.accessToken()</code>. We can check for this token to determine if the user is logged in.</p> <p>Add a <code>beforeEach</code> guard that checks for the <code>Userfront.accessToken()</code> value and, if not present, redirects to the login page.</p></div></div> <div class="row"><div class="left"><div class="language-js extra-class"><div class="highlight-lines"><br><br><br><br><div class="highlighted"> </div><br><br><br><br><br><br><br><br><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><div class="highlighted"> </div><br><br><br></div><pre class="language-js"><code><span class="token comment">// src/router/index.js</span>
+
+<span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">&quot;vue&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> VueRouter <span class="token keyword">from</span> <span class="token string">&quot;vue-router&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Userfront <span class="token keyword">from</span> <span class="token string">&quot;@userfront/vue&quot;</span><span class="token punctuation">;</span>
+<span class="token comment">// ...</span>
+
+<span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  mode<span class="token operator">:</span> <span class="token string">&quot;history&quot;</span><span class="token punctuation">,</span>
+  base<span class="token operator">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">BASE_URL</span><span class="token punctuation">,</span>
+  routes<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+router<span class="token punctuation">.</span><span class="token function">beforeEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">to<span class="token punctuation">,</span> from<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// If the user is not logged in, redirect to /login</span>
+  <span class="token keyword">const</span> isLoggedIn <span class="token operator">=</span> <span class="token operator">!</span><span class="token operator">!</span>Userfront<span class="token punctuation">.</span><span class="token function">accessToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>to<span class="token punctuation">.</span>name <span class="token operator">===</span> <span class="token string">&quot;Dashboard&quot;</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>isLoggedIn<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">{</span> path<span class="token operator">:</span> <span class="token string">&quot;/login&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> router<span class="token punctuation">;</span>
+</code></pre></div><p>Now if someone tries to visit <code>/dashboard</code> while logged out, they are immediately redirected to <code>/login</code> instead.</p></div></div> <h3 id="dashboard-page"><a href="#dashboard-page" class="header-anchor">#</a> Dashboard page</h3> <div class="row"><div class="left"><p>Whenever a user does log in, we want to show them some relevant information and also give them the ability to log out.</p> <p>For the dashboard page, we can add information about the user by referencing the <code>Userfront.user</code> object.</p> <p>We can log the user out by calling <code>Userfront.logout()</code>.</p> <p>Replace the <code>src/views/Dashboard.vue</code> file with the following:</p></div></div> <div class="row"><div class="left"><div class="language-html extra-class"><pre class="language-html"><code><span class="token comment">&lt;!-- src/views/Dashboard.vue --&gt;</span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Dashboard<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">&gt;</span></span>{{ user.name }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">:src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>user.image<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">@click.prevent</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>logout<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>Log out<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>pre</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">&gt;</span></span>{{ user }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>pre</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+  <span class="token keyword">import</span> Userfront <span class="token keyword">from</span> <span class="token string">&quot;@userfront/vue&quot;</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+    computed<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token function">user</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> Userfront<span class="token punctuation">.</span>user<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    methods<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token function">logout</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Userfront<span class="token punctuation">.</span><span class="token function">logout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">scoped</span><span class="token punctuation">&gt;</span></span><span class="token style"><span class="token language-css">
+  <span class="token selector">pre</span> <span class="token punctuation">{</span>
+    <span class="token property">text-align</span><span class="token punctuation">:</span> left<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div></div> <div class="right"><div class="card"><h4 id="preview-5"><a href="#preview-5" class="header-anchor">#</a> Preview</h4> <p><img src="https://res.cloudinary.com/component/image/upload/v1625846602/guide/vue-cli-dashboard.png" alt="Vue.js protected route"></p></div></div></div> <h2 id="vue-authentication-with-an-api"><a href="#vue-authentication-with-an-api" class="header-anchor">#</a> Vue authentication with an API</h2> <div class="row"><div class="left"><p>You will probably want to retrieve user-specific information from your backend. In order to protect these API endpoints, your server should check that incoming JWTs are valid.</p> <p>There are many libraries to read and verify JWTs across various languages; here are a few popular libraries for handling JWTs:</p></div> <div class="right"><div class="card"><h4 id="jwt-libraries"><a href="#jwt-libraries" class="header-anchor">#</a> JWT libraries</h4> <p><a href="https://github.com/auth0/node-jsonwebtoken" target="_blank">Node.js</a> <br> <a href="https://github.com/jpadilla/pyjwt/" target="_blank">Python</a> <br> <a href="https://github.com/auth0/java-jwt" target="_blank">Java</a> <br> <a href="https://github.com/firebase/php-jwt" target="_blank">PHP</a> <br> <a href="https://github.com/jwt-dotnet/jwt" target="_blank">.NET</a></p></div></div></div> <div class="row"><div class="left"><p>For Userfront, the access token is available in your Vue application as <code>Userfront.accessToken()</code>.</p> <p>Your Vue application can send this as a <code>Bearer</code> token inside the <code>Authorization</code> header. For example:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// Example of calling an endpoint with a JWT</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">getInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token keyword">await</span> window<span class="token punctuation">.</span><span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">&quot;/your-endpoint&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    method<span class="token operator">:</span> <span class="token string">&quot;GET&quot;</span><span class="token punctuation">,</span>
+    headers<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token string">&quot;Content-Type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;application/json&quot;</span><span class="token punctuation">,</span>
+      Authorization<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Bearer </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>Userfront<span class="token punctuation">.</span><span class="token function">accessToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">getInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>To handle a request like this, your backend should read the JWT from the <code>Authorization</code> header and verify that it is valid using the public key found in your Userfront dashboard.</p> <p>Here is an example of Node.js middleware to read and verify the JWT:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// Node.js example (Express.js)</span>
+
+<span class="token keyword">const</span> jwt <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;jsonwebtoken&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">authenticateToken</span><span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Read the JWT access token from the request header</span>
+  <span class="token keyword">const</span> authHeader <span class="token operator">=</span> req<span class="token punctuation">.</span>headers<span class="token punctuation">[</span><span class="token string">&quot;authorization&quot;</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> token <span class="token operator">=</span> authHeader <span class="token operator">&amp;&amp;</span> authHeader<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">&quot; &quot;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>token <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token keyword">return</span> res<span class="token punctuation">.</span><span class="token function">sendStatus</span><span class="token punctuation">(</span><span class="token number">401</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Return 401 if no token</span>
+
+  <span class="token comment">// Verify the token using the Userfront public key</span>
+  jwt<span class="token punctuation">.</span><span class="token function">verify</span><span class="token punctuation">(</span>token<span class="token punctuation">,</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">USERFRONT_PUBLIC_KEY</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> auth</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token keyword">return</span> res<span class="token punctuation">.</span><span class="token function">sendStatus</span><span class="token punctuation">(</span><span class="token number">403</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Return 403 if there is an error verifying</span>
+    req<span class="token punctuation">.</span>auth <span class="token operator">=</span> auth<span class="token punctuation">;</span>
+    <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Using this approach, any invalid or missing tokens would be rejected by your server. You can also reference the contents of the token later in the route handlers using the <code>req.auth</code> object:</p> <div class="language-js extra-class"><pre class="language-js"><code>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>req<span class="token punctuation">.</span>auth<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// =&gt;</span>
+<span class="token punctuation">{</span>
+  mode<span class="token operator">:</span> <span class="token string">'test'</span><span class="token punctuation">,</span>
+  tenantId<span class="token operator">:</span> <span class="token string">'demo1234'</span><span class="token punctuation">,</span>
+  userId<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  userUuid<span class="token operator">:</span> <span class="token string">'ab53dbdc-bb1a-4d4d-9edf-683a6ca3f609'</span><span class="token punctuation">,</span>
+  isConfirmed<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  authorization<span class="token operator">:</span> <span class="token punctuation">{</span>
+    demo1234<span class="token operator">:</span> <span class="token punctuation">{</span>
+      roles<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;admin&quot;</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  sessionId<span class="token operator">:</span> <span class="token string">'35d0bf4a-912c-4429-9886-cd65a4844a4f'</span><span class="token punctuation">,</span>
+  iat<span class="token operator">:</span> <span class="token number">1614114057</span><span class="token punctuation">,</span>
+  exp<span class="token operator">:</span> <span class="token number">1616706057</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>With this information, you can perform further checks as desired, or use the <code>userId</code> or <code>userUuid</code> to look up user information to return.</p> <p>For example, if you wanted to limit a route to admin users, you could check against the <code>authorization</code> object from the verified access token:</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// Node.js example (Express.js)</span>
+
+app<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&quot;/users&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> authorization <span class="token operator">=</span> req<span class="token punctuation">.</span>auth<span class="token punctuation">.</span>authorization<span class="token punctuation">[</span><span class="token string">&quot;demo1234&quot;</span><span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>authorization<span class="token punctuation">.</span>roles<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">&quot;admin&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Allow access</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Deny access</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></div></div> <h2 id="vue-js-sso-single-sign-on"><a href="#vue-js-sso-single-sign-on" class="header-anchor">#</a> Vue.js SSO (Single Sign On)</h2> <div class="row"><div class="left"><p>From here, you can add social identity providers like Google, Facebook, and LinkedIn to your Vue application, or business identity providers like Azure AD, Office365, and more.</p> <p>You do this by creating an application with the identity provider (e.g. Google), and then adding that application's credentials to the Userfront dashboard. The result is a modified sign on experience.</p> <p>No additional code is needed to implement Single Sign On using this approach: you can add and remove providers without updating your forms or the way you handle JWTs.</p></div> <div class="right"><p><img src="https://res.cloudinary.com/component/image/upload/v1619211588/guide/sso-signup.png" alt="Vue SSO form"></p></div></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">7/20/2021, 11:12:55 AM</span></div></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.f60119e2.js" defer></script><script src="/assets/js/4.9310b4a5.js" defer></script><script src="/assets/js/51.f2bf908a.js" defer></script>
+  </body>
+</html>
