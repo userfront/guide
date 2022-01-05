@@ -282,12 +282,16 @@ This link will direct the user to your Password reset path.
 ::::: row
 :::: left
 
-Update a user's own email address by passing the new email address to the [send account verification email](#send-account-verification-email) endpoint.
+To update a user's own email address, send the new email address to the [send account verification email](#send-account-verification-email) endpoint.
 
 This will generate a link the user can click to verify their new email address. They will retain their old email address until the link is clicked.
 
-See [send account verification email](#send-account-verification-email).
+::::
+:::: right
 
+::: card
+See [send account verification email](#send-account-verification-email).
+:::
 ::::
 :::::
 
