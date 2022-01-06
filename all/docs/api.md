@@ -1040,7 +1040,9 @@ When an API key is invalid, Userfront returns a 400 status code response with th
 
 Invalidate an API key.
 
-API keys that have been invalidated will no longer show in [list API keys](#list-api-keys) and will return 400 "Invalid" for [verify API key](#verify-api-key).
+API keys that have been invalidated are still returned in the [list API keys](#list-api-keys) response, but have the `isActive` value set to `false`.
+
+API keys that have been invalidated will return 400 "Invalid" for [verify API key](#verify-api-key).
 
 <parameters path="/v0/keys/invalidate" verb="put" />
 
@@ -1079,7 +1081,7 @@ You cannot invalidate the final API key of a given type. You must create another
 
 Delete an API key.
 
-API keys that have been deleted will no longer show in [list API keys](#list-api-keys) and will return 400 "Invalid" for [verify API key](#verify-api-key).
+API keys that have been deleted will return 400 "Invalid" for [verify API key](#verify-api-key).
 
 <parameters path="/v0/keys" verb="delete" />
 
