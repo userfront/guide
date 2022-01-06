@@ -1031,35 +1031,6 @@ When an API key is invalid, Userfront returns a 400 status code response with th
 
 ---
 
-### Delete API key
-
-<access-level type="admin-only"/>
-
-::::: row
-:::: left
-
-Delete an API key.
-
-API keys that have been deleted will no longer show in [list API keys](#list-api-keys) and will return 400 "Invalid" for [verify API key](#verify-api-key).
-
-<parameters path="/v0/keys" verb="delete" />
-
-::: warning Note
-You cannot delete the final API key of a given type. You must create another key to take its place before deleting.
-:::
-
-::::
-:::: right
-
-<code-samples path="/v0/keys" verb="delete" />
-
-<response-json path="/v0/keys" verb="delete"/>
-
-::::
-:::::
-
----
-
 ### Invalidate API key
 
 <access-level type="admin-only"/>
@@ -1073,10 +1044,6 @@ API keys that have been invalidated will no longer show in [list API keys](#list
 
 <parameters path="/v0/keys/invalidate" verb="put" />
 
-::: warning Note
-You cannot invalidate the final API key of a given type. You must create another key to take its place before invalidating.
-:::
-
 ::::
 :::: right
 
@@ -1085,6 +1052,59 @@ You cannot invalidate the final API key of a given type. You must create another
 <response-json path="/v0/keys/invalidate" verb="put"/>
 
 ::::
+:::::
+
+::::: row
+:::: left
+
+::: warning Note
+You cannot invalidate the final API key of a given type. You must create another key to take its place before invalidating.
+:::
+
+::::
+:::: right
+
+<response-json-custom title="Response (400)" :response="{ message: 'Cannot invalidate the only active admin API key. Please create another admin API key, then try again.'}"/>
+
+:::::
+
+---
+
+### Delete API key
+
+<access-level type="admin-only"/>
+
+::::: row
+:::: left
+
+Delete an API key.
+
+API keys that have been deleted will no longer show in [list API keys](#list-api-keys) and will return 400 "Invalid" for [verify API key](#verify-api-key).
+
+<parameters path="/v0/keys" verb="delete" />
+
+::::
+:::: right
+
+<code-samples path="/v0/keys" verb="delete" />
+
+<response-json path="/v0/keys" verb="delete"/>
+
+::::
+:::::
+
+::::: row
+:::: left
+
+::: warning Note
+You cannot delete the final API key of a given type. You must create another key to take its place before deleting.
+:::
+
+::::
+:::: right
+
+<response-json-custom title="Response (400)" :response="{ message: 'Cannot delete the only active admin API key. Please create another admin API key, then try again.'}"/>
+
 :::::
 
 ---

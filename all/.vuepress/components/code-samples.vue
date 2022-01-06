@@ -63,7 +63,11 @@ export default {
       return p;
     },
     showPayload() {
-      return this.verb === "post" || this.verb === "put";
+      return (
+        this.verb === "post" ||
+        this.verb === "put" ||
+        (this.verb === "delete" && this.parameters.length > 0)
+      );
     },
 
     // cUrl
