@@ -151,6 +151,8 @@ There are also 2 endpoints for searching all users in a tenant: one via GET and 
 
 ### Create user
 
+<access-level type="admin-only"/>
+
 ::::: row
 :::: left
 
@@ -176,6 +178,8 @@ If you want to import or create many users, see [user import & export](/guide/im
 
 ### Read user
 
+<access-level type="admin-or-readonly"/>
+
 ::::: row
 :::: left
 
@@ -196,6 +200,8 @@ Reads a user record by its `userId`.
 ---
 
 ### Update user
+
+<access-level type="admin-only"/>
 
 ::::: row
 :::: left
@@ -220,6 +226,8 @@ This request accepts mostly the same arguments as the user creation call.
 
 ### Delete user
 
+<access-level type="admin-only"/>
+
 ::::: row
 :::: left
 
@@ -240,6 +248,8 @@ Deletes a user record.
 ---
 
 ### Search users
+
+<access-level type="admin-or-readonly"/>
 
 ::::: row
 :::: left
@@ -531,6 +541,8 @@ To search for users with a specific role use `"tenantId: role name"`, or to sear
 
 ### Invite user
 
+<access-level type="admin-only"/>
+
 ::::: row
 :::: left
 
@@ -551,6 +563,8 @@ Invite a user by email address.
 ---
 
 ### Create or update user
+
+<access-level type="admin-only"/>
 
 ::::: row
 :::: left
@@ -576,6 +590,8 @@ Must include a `userId` or `userUuid` if updating a user.
 ---
 
 ### Mark user active
+
+<access-level type="admin-only"/>
 
 ::::: row
 :::: left
@@ -624,6 +640,8 @@ You can create and read tenants with standard REST operations.
 
 ### Create tenant
 
+<access-level type="admin-only"/>
+
 ::::: row
 :::: left
 
@@ -644,6 +662,8 @@ Creates a new tenant.
 ---
 
 ### Read tenant
+
+<access-level type="admin-or-readonly"/>
 
 ::::: row
 :::: left
@@ -666,6 +686,8 @@ Reads a tenant record by its `tenantId`.
 
 ### Update tenant
 
+<access-level type="admin-only"/>
+
 ::::: row
 :::: left
 
@@ -687,6 +709,8 @@ Updates an existing tenant.
 
 ### Delete tenant
 
+<access-level type="admin-only"/>
+
 ::::: row
 :::: left
 
@@ -705,172 +729,6 @@ Deletes an existing tenant.
 :::::
 
 ---
-
-## API keys
-
-::::: row
-:::: left
-
-API keys allow you to perform machine-to-machine requests.
-
-You can read and verify API keys with standard REST operations.
-
-<!-- You can create, read, and verify API keys with standard REST operations. -->
-
-::::
-:::: right
-
-<endpoints :endpoints="[
-  { verb: 'get', path: '/v0/keys/:type', anchor: 'list-api-keys' },
-  { verb: 'get', path: '/v0/tenants/:tenantId/keys/:type', anchor: 'list-api-keys-tenant-level' },
-  { verb: 'post', path: '/v0/keys/verify', anchor: 'verify-api-key' },
-  { verb: 'get', path: '/v0/tenants/:tenantId/keys/jwt', anchor: 'list-jwt-public-keys' },
-  { verb: 'get', path: '/v0/tenants/:tenantId/jwks', anchor: 'json-web-key-set-jwks' }
-]"/>
-
-::::
-:::::
-
----
-
-### List API keys
-
-::::: row
-:::: left
-
-Lists all of a tenant's API keys for a given type.
-
-This route can only be accessed with a valid `admin` API key.
-
-| type       | description                                   |
-| :--------- | :-------------------------------------------- |
-| `admin`    | Allows all Userfront actions for a tenant     |
-| `readonly` | Allows readonly actions for a tenant          |
-| `webhook`  | Included in webhook headers sent by Userfront |
-
-::::
-:::: right
-
-<code-samples path="/v0/keys/{type}" verb="get" />
-
-<response-json path="/v0/keys/{type}" verb="get"/>
-
-::::
-:::::
-
----
-
-### List API keys (tenant level)
-
-::::: row
-:::: left
-
-Lists all of a tenant's API keys for a given type.
-
-This route can only be accessed with a valid `admin` API key.
-
-| type       | description                                   |
-| :--------- | :-------------------------------------------- |
-| `admin`    | Allows all Userfront actions for a tenant     |
-| `readonly` | Allows readonly actions for a tenant          |
-| `webhook`  | Included in webhook headers sent by Userfront |
-
-::::
-:::: right
-
-<code-samples path="/v0/tenants/{tenantId}/keys/{type}" verb="get" />
-
-<response-json path="/v0/tenants/{tenantId}/keys/{type}" verb="get"/>
-
-::::
-:::::
-
----
-
-### Verify API key
-
-::::: row
-:::: left
-
-Verify that an API key is valid.
-
-Include your admin API key in the `authorization` header, and include the key that you want to verify as `key` in the request body.
-
-This route can only be accessed with a valid `admin` API key.
-
-<parameters path="/v0/keys/verify" verb="post"/>
-
-::: warning Note
-An API key cannot be used to verify itself.
-:::
-
-::::
-:::: right
-
-<code-samples path="/v0/keys/verify" verb="post" />
-
-<response-json path="/v0/keys/verify" verb="post"/>
-
-::::
-:::::
-
----
-
-### List JWT public keys
-
-::::: row
-:::: left
-
-Lists all of a tenant's JWT public keys.
-
-This route does not require an `Authorization` header.
-
-#### Query strings
-
----
-
-<parameter name="test" description="Optional query string for test mode (?test=true)" :required="false"/>
-
-::::
-:::: right
-
-<code-samples path="/v0/tenants/{tenantId}/keys/jwt" verb="get" no-authorization="true"/>
-
-<response-json path="/v0/tenants/{tenantId}/keys/jwt" verb="get"/>
-
-::::
-:::::
-
----
-
-### JSON Web Key Set (JWKS)
-
-::::: row
-:::: left
-
-The public JWKS url for a tenant.
-
-A [JSON Web Key Set](https://datatracker.ietf.org/doc/html/rfc7517) allows your application to build your JWT public key(s) from a URL instead of hard-coding the latest JWT public key into your code.
-
-This allows you to rotate your JWT signing key at any time without having to update your code.
-
-This route does not require an `Authorization` header.
-
-#### Query strings
-
----
-
-<parameter name="test" description="Optional query string for test mode (?test=true)" :required="false"/>
-
-::::
-:::: right
-
-<code-samples path="/v0/tenants/{tenantId}/jwks" verb="get" no-authorization="true"/>
-
-<response-json path="/v0/tenants/{tenantId}/jwks" verb="get"/>
-
-::::
-:::::
 
 ## Roles
 
@@ -903,6 +761,8 @@ You can create, read, update, and delete roles with standard REST operations.
 
 ### List roles
 
+<access-level type="admin-or-readonly"/>
+
 ::::: row
 :::: left
 
@@ -923,6 +783,8 @@ Lists all the roles available in your account.
 ---
 
 ### Set user roles
+
+<access-level type="admin-only"/>
 
 ::::: row
 :::: left
@@ -949,6 +811,8 @@ To remove all roles for a user, pass an empty array for `roles`.
 
 ### Invite user to a role
 
+<access-level type="admin-only"/>
+
 ::::: row
 :::: left
 
@@ -972,6 +836,8 @@ The role(s) that is created will be at the application-wide level. To invite a u
 
 ### List roles (tenant level)
 
+<access-level type="admin-or-readonly"/>
+
 ::::: row
 :::: left
 
@@ -992,6 +858,8 @@ Lists all the roles available within the specified tenant.
 ---
 
 ### Set user roles (tenant level)
+
+<access-level type="admin-only"/>
 
 ::::: row
 :::: left
@@ -1016,6 +884,8 @@ To remove all roles for a user within the specified tenant, pass an empty array 
 
 ### Invite user to a role (tenant level)
 
+<access-level type="admin-only"/>
+
 ::::: row
 :::: left
 
@@ -1029,6 +899,321 @@ Invite a user to join the application with the given role(s) in the specified te
 <code-samples path="/v0/tenants/{tenantId}/roles/invite" verb="post" />
 
 <response-json path="/v0/tenants/{tenantId}/roles/invite" verb="post"/>
+
+::::
+:::::
+
+---
+
+## API keys
+
+::::: row
+:::: left
+
+API keys are a way to authenticate machine-to-machine requests, either from your server to Userfront, or from your users' servers to your server.
+
+You can create, read, invalidate, delete, and verify API keys with standard REST operations.
+
+::::
+:::: right
+
+<endpoints :endpoints="[
+  { verb: 'post', path: '/v0/keys', anchor: 'create-api-key' },
+  { verb: 'get', path: '/v0/keys/:type', anchor: 'list-api-keys' },
+  { verb: 'post', path: '/v0/keys/verify', anchor: 'verify-api-key' },
+  { verb: 'put', path: '/v0/keys/invalidate', anchor: 'invalidate-api-key' },
+  { verb: 'delete', path: '/v0/keys', anchor: 'delete-api-key' },
+  { verb: 'get', path: '/v0/tenants/:tenantId/keys/:type', anchor: 'list-api-keys-tenant-level' }
+]"/>
+
+::::
+:::::
+
+---
+
+### Create API key
+
+<access-level type="admin-only"/>
+
+::::: row
+:::: left
+
+Create a new API key with a given type.
+
+<parameters path="/v0/keys" verb="post"/>
+
+| type       | description                                   |
+| :--------- | :-------------------------------------------- |
+| `admin`    | Allows all Userfront actions for a tenant     |
+| `readonly` | Allows readonly actions for a tenant          |
+| `webhook`  | Included in webhook headers sent by Userfront |
+
+::::
+:::: right
+
+<code-samples path="/v0/keys" verb="post" />
+
+<response-json path="/v0/keys" verb="post"/>
+
+::::
+:::::
+
+---
+
+### List API keys
+
+<access-level type="admin-only"/>
+
+::::: row
+:::: left
+
+Lists all of a tenant's API keys for a given type.
+
+| type       | description                                   |
+| :--------- | :-------------------------------------------- |
+| `admin`    | Allows all Userfront actions for a tenant     |
+| `readonly` | Allows readonly actions for a tenant          |
+| `webhook`  | Included in webhook headers sent by Userfront |
+
+::::
+:::: right
+
+<code-samples path="/v0/keys/{type}" verb="get" />
+
+<response-json path="/v0/keys/{type}" verb="get"/>
+
+::::
+:::::
+
+---
+
+### Verify API key
+
+<access-level type="admin-only"/>
+
+::::: row
+:::: left
+
+Verify that an API key is valid.
+
+Include your admin API key in the `authorization` header, and include the key that you want to verify as `key` in the request body.
+
+::: warning Note
+An API key cannot be used to verify itself.
+:::
+
+<parameters path="/v0/keys/verify" verb="post"/>
+
+::::
+:::: right
+
+<code-samples path="/v0/keys/verify" verb="post" />
+
+<response-json path="/v0/keys/verify" verb="post"/>
+
+::::
+:::::
+
+::::: row
+:::: left
+
+#### Invalid API key
+
+When an API key is invalid, Userfront returns a 400 status code response with the message "Invalid API key".
+
+::::
+:::: right
+
+<response-json-custom title="Response (400)" :response="{ message: 'Invalid API key', result: { mode: 'test', type: 'readonly', tenantId: 'demo1234', isActive: false }}"/>
+
+::::
+:::::
+
+---
+
+### Invalidate API key
+
+<access-level type="admin-only"/>
+
+::::: row
+:::: left
+
+Invalidate an API key.
+
+API keys that have been invalidated will no longer show in [list API keys](#list-api-keys) and will return 400 "Invalid" for [verify API key](#verify-api-key).
+
+<parameters path="/v0/keys/invalidate" verb="put" />
+
+::::
+:::: right
+
+<code-samples path="/v0/keys/invalidate" verb="put" />
+
+<response-json path="/v0/keys/invalidate" verb="put"/>
+
+::::
+:::::
+
+::::: row
+:::: left
+
+::: warning Note
+You cannot invalidate the final API key of a given type. You must create another key to take its place before invalidating.
+:::
+
+::::
+:::: right
+
+<response-json-custom title="Response (400)" :response="{ message: 'Cannot invalidate the only active admin API key. Please create another admin API key, then try again.'}"/>
+
+:::::
+
+---
+
+### Delete API key
+
+<access-level type="admin-only"/>
+
+::::: row
+:::: left
+
+Delete an API key.
+
+API keys that have been deleted will no longer show in [list API keys](#list-api-keys) and will return 400 "Invalid" for [verify API key](#verify-api-key).
+
+<parameters path="/v0/keys" verb="delete" />
+
+::::
+:::: right
+
+<code-samples path="/v0/keys" verb="delete" />
+
+<response-json path="/v0/keys" verb="delete"/>
+
+::::
+:::::
+
+::::: row
+:::: left
+
+::: warning Note
+You cannot delete the final API key of a given type. You must create another key to take its place before deleting.
+:::
+
+::::
+:::: right
+
+<response-json-custom title="Response (400)" :response="{ message: 'Cannot delete the only active admin API key. Please create another admin API key, then try again.'}"/>
+
+:::::
+
+---
+
+### List API keys (tenant level)
+
+<access-level type="admin-only"/>
+
+::::: row
+:::: left
+
+Lists all of a tenant's API keys for a given type.
+
+| type       | description                                   |
+| :--------- | :-------------------------------------------- |
+| `admin`    | Allows all Userfront actions for a tenant     |
+| `readonly` | Allows readonly actions for a tenant          |
+| `webhook`  | Included in webhook headers sent by Userfront |
+
+::::
+:::: right
+
+<code-samples path="/v0/tenants/{tenantId}/keys/{type}" verb="get" />
+
+<response-json path="/v0/tenants/{tenantId}/keys/{type}" verb="get"/>
+
+::::
+:::::
+
+---
+
+## JWTs
+
+::::: row
+:::: left
+
+Userfront issues a JWT access token to each user when they log into your application.
+
+Your client (frontend) application should send the JWT access token to your server with each request, where you can verify it using your JWT public key.
+
+Your JWT public key(s) can be viewed directly with the `/v0/tenants/:tenantId/keys/jwt` endpoint, or as a JSON Web Key Set (JWKS) with the `/v0/tenants/:tenantId/jwks` endpoint.
+
+For more information about JWT access tokens, see [Tokens and access control](/guide/auth).
+
+::::
+:::: right
+
+<endpoints :endpoints="[
+  { verb: 'get', path: '/v0/tenants/:tenantId/keys/jwt', anchor: 'list-jwt-public-keys' },
+  { verb: 'get', path: '/v0/tenants/:tenantId/jwks', anchor: 'json-web-key-set-jwks' }
+]"/>
+
+::::
+:::::
+
+### List JWT public keys
+
+<access-level type="public"/>
+
+::::: row
+:::: left
+
+Lists all of a tenant's JWT public keys in both plaintext (`publicKey`) and Base64 (`publicKeyBase64`) format.
+
+#### Query strings
+
+---
+
+<parameter name="test" description="Optional query string for test mode (?test=true)" :required="false"/>
+
+::::
+:::: right
+
+<code-samples path="/v0/tenants/{tenantId}/keys/jwt" verb="get" no-authorization="true"/>
+
+<response-json path="/v0/tenants/{tenantId}/keys/jwt" verb="get"/>
+
+::::
+:::::
+
+---
+
+### JSON Web Key Set (JWKS)
+
+<access-level type="public"/>
+
+::::: row
+:::: left
+
+The public JWKS url for a tenant.
+
+A [JSON Web Key Set](https://datatracker.ietf.org/doc/html/rfc7517) allows your application to build your JWT public key(s) from a URL instead of hard-coding the latest JWT public key into your code.
+
+The JWKS representation requires fewer bytes than a full JWT public key, which is preferrable if you want your application to look up public key information in realtime instead of hard-coding a JWT public key.
+
+When you set up your application to use JWKS instead of a hard-coded JWT public key, you can rotate your JWT signing key without having to update your application code.
+
+#### Query strings
+
+---
+
+<parameter name="test" description="Optional query string for test mode (?test=true)" :required="false"/>
+
+::::
+:::: right
+
+<code-samples path="/v0/tenants/{tenantId}/jwks" verb="get" no-authorization="true"/>
+
+<response-json path="/v0/tenants/{tenantId}/jwks" verb="get"/>
 
 ::::
 :::::
@@ -1055,6 +1240,8 @@ Server-to-server authentication actions allow your backend to perform actions th
 ---
 
 ### Generate link credentials
+
+<access-level type="admin-only"/>
 
 ::::: row
 :::: left
