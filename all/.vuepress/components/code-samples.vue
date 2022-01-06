@@ -34,7 +34,8 @@ export default {
     url() {
       return `https://api.userfront.com${this.path
         .replace("{userId}", this.userId || "1")
-        .replace("{tenantId}", this.tenantId || "demo1234")}`;
+        .replace("{tenantId}", this.tenantId || "demo1234")
+        .replace("{type}", "admin")}`;
     },
     uppercaseVerb() {
       return this.verb.toUpperCase();

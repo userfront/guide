@@ -884,6 +884,8 @@ To remove all roles for a user within the specified tenant, pass an empty array 
 
 ### Invite user to a role (tenant level)
 
+<access-level type="admin-only"/>
+
 ::::: row
 :::: left
 
@@ -916,11 +918,11 @@ You can create, read, invalidate, delete, and verify API keys with standard REST
 :::: right
 
 <endpoints :endpoints="[
-  { verb: 'post', path: '/v0/keys/:type', anchor: 'create-api-key' },
+  { verb: 'post', path: '/v0/keys', anchor: 'create-api-key' },
   { verb: 'get', path: '/v0/keys/:type', anchor: 'list-api-keys' },
-  { verb: 'put', path: '/v0/keys', anchor: 'invalidate-api-key' },
-  { verb: 'delete', path: '/v0/keys', anchor: 'delete-api-key' },
   { verb: 'post', path: '/v0/keys/verify', anchor: 'verify-api-key' },
+  { verb: 'put', path: '/v0/keys/invalidate', anchor: 'invalidate-api-key' },
+  { verb: 'delete', path: '/v0/keys', anchor: 'delete-api-key' },
   { verb: 'get', path: '/v0/tenants/:tenantId/keys/:type', anchor: 'list-api-keys-tenant-level' }
 ]"/>
 
@@ -938,6 +940,8 @@ You can create, read, invalidate, delete, and verify API keys with standard REST
 
 Create a new API key with a given type.
 
+<parameters path="/v0/keys" verb="post"/>
+
 | type       | description                                   |
 | :--------- | :-------------------------------------------- |
 | `admin`    | Allows all Userfront actions for a tenant     |
@@ -947,9 +951,9 @@ Create a new API key with a given type.
 ::::
 :::: right
 
-<code-samples path="/v0/keys/{type}" verb="post" />
+<code-samples path="/v0/keys" verb="post" />
 
-<response-json path="/v0/keys/{type}" verb="post"/>
+<response-json path="/v0/keys" verb="post"/>
 
 ::::
 :::::
@@ -983,6 +987,108 @@ Lists all of a tenant's API keys for a given type.
 
 ---
 
+### Verify API key
+
+<access-level type="admin-only"/>
+
+::::: row
+:::: left
+
+Verify that an API key is valid.
+
+Include your admin API key in the `authorization` header, and include the key that you want to verify as `key` in the request body.
+
+::: warning Note
+An API key cannot be used to verify itself.
+:::
+
+<parameters path="/v0/keys/verify" verb="post"/>
+
+::::
+:::: right
+
+<code-samples path="/v0/keys/verify" verb="post" />
+
+<response-json path="/v0/keys/verify" verb="post"/>
+
+::::
+:::::
+
+::::: row
+:::: left
+
+#### Invalid API key
+
+When an API key is invalid, Userfront returns a 400 status code response with the message "Invalid API key".
+
+::::
+:::: right
+
+<response-json-custom title="Response (400)" :response="{ message: 'Invalid API key', result: { mode: 'test', type: 'readonly', tenantId: 'demo1234', isActive: false }}"/>
+
+::::
+:::::
+
+---
+
+### Delete API key
+
+<access-level type="admin-only"/>
+
+::::: row
+:::: left
+
+Delete an API key.
+
+API keys that have been deleted will no longer show in [list API keys](#list-api-keys) and will return 400 "Invalid" for [verify API key](#verify-api-key).
+
+<parameters path="/v0/keys" verb="delete" />
+
+::: warning Note
+You cannot delete the final API key of a given type. You must create another key to take its place before deleting.
+:::
+
+::::
+:::: right
+
+<code-samples path="/v0/keys" verb="delete" />
+
+<response-json path="/v0/keys" verb="delete"/>
+
+::::
+:::::
+
+---
+
+### Invalidate API key
+
+<access-level type="admin-only"/>
+
+::::: row
+:::: left
+
+Invalidate an API key.
+
+API keys that have been invalidated will no longer show in [list API keys](#list-api-keys) and will return 400 "Invalid" for [verify API key](#verify-api-key).
+
+<parameters path="/v0/keys/invalidate" verb="put" />
+
+::: warning Note
+You cannot invalidate the final API key of a given type. You must create another key to take its place before invalidating.
+:::
+
+::::
+:::: right
+
+<code-samples path="/v0/keys/invalidate" verb="put" />
+
+<response-json path="/v0/keys/invalidate" verb="put"/>
+
+::::
+:::::
+
+---
+
 ### List API keys (tenant level)
 
 <access-level type="admin-only"/>
@@ -1004,37 +1110,6 @@ Lists all of a tenant's API keys for a given type.
 <code-samples path="/v0/tenants/{tenantId}/keys/{type}" verb="get" />
 
 <response-json path="/v0/tenants/{tenantId}/keys/{type}" verb="get"/>
-
-::::
-:::::
-
----
-
-### Verify API key
-
-<access-level type="admin-only"/>
-
-::::: row
-:::: left
-
-Verify that an API key is valid.
-
-Include your admin API key in the `authorization` header, and include the key that you want to verify as `key` in the request body.
-
-This route can only be accessed with a valid `admin` API key.
-
-<parameters path="/v0/keys/verify" verb="post"/>
-
-::: warning Note
-An API key cannot be used to verify itself.
-:::
-
-::::
-:::: right
-
-<code-samples path="/v0/keys/verify" verb="post" />
-
-<response-json path="/v0/keys/verify" verb="post"/>
 
 ::::
 :::::
