@@ -79,7 +79,7 @@ Just like it says, we can now edit the `src/App.js` file to start working.
 
 ### Routing
 
-We'll set up a simple app with routing. This is all we need to start adding authentication.
+We'll set up a small app with routing. This is all we need to start adding authentication.
 
 | Route        | Description                              |
 | :----------- | :--------------------------------------- |
@@ -172,8 +172,8 @@ With our routes in place, we are ready to add authentication.
 
 ## Signup, login, and password reset
 
-:::::row
-::::left
+::::: row
+:::: left
 
 We'll start by adding a signup form to the home page.
 
@@ -186,8 +186,14 @@ It will look like this:
 #### Userfront Toolkit
 
 ![Userfront installation instructions](https://res.cloudinary.com/component/image/upload/v1617818640/permanent/installation-instructions-react.png)
-:::
 
+:::
+::::
+
+:::: right
+::: tip
+Keep your Toolkit open in another browser tab for later when we add the login form & password reset form
+:::
 ::::
 :::::
 
@@ -320,7 +326,21 @@ The form is in "Test mode" by default, which will create user records in a test 
 
 We'll continue by adding your login and password reset forms in the same way that you added your signup form. To allow a user to log out, we can call the built-in `Userfront.logout` method.
 
-Update the `Dashboard()` method in `src/App.js` to add the login form, password reset form, and a logout button:
+::::
+:::::
+
+:::::row
+::::left
+Make the following updates in `src/App.js`:
+
+- Update the `Login()` method to return the login form.
+- Update the `PasswordReset()` method to return the password reset form.
+- Update the `Dashboard()` method to display the user's data and a logout button.
+
+::: tip
+Note your `toolId` in your Toolkit for each form. The `toolIds` in this code example will not work for your application.
+:::
+
 ::::
 :::::
 
@@ -426,6 +446,7 @@ function Dashboard() {
 
 ![React signup, login, password reset](https://res.cloudinary.com/component/image/upload/v1614095875/permanent/react-router-3.gif)
 :::
+
 ::::
 
 :::::
@@ -435,7 +456,7 @@ function Dashboard() {
 
 At this point, your signup, login, and password reset should all be functional. Note that the login form on the `/login` page will automatically redirect to `/dashboard` if you are logged in.
 
-Your users can sign up, log in, log out, and reset their password.
+Your users can now sign up, log in, log out, and reset their password.
 
 ::::
 :::::
@@ -445,7 +466,7 @@ Your users can sign up, log in, log out, and reset their password.
 :::::row
 ::::left
 
-Usually, we don't want users to be able to view the dashboard unless they are logged in. This is known as protecting a route.
+We don't want users to be able to view the dashboard unless they are logged in. This is known as protecting a route.
 
 Whenever a user is not logged in but tries to visit `/dashboard`, we can redirect them to the login screen.
 
@@ -596,7 +617,7 @@ We now have a web application with signup, login, logout, password reset, and a 
 
 We saw above that the frontend has an access token available as `Userfront.tokens.accessToken` when the user is logged in. This is a JWT access token that you can also use on your backend to protect your API endpoints.
 
-There are many libraries to read and verify JWTs across various languages. Here are a few popular libraries for handling JWTs.
+There are many libraries to read and verify JWTs across various languages. The list to the right contains some popular libraries for handling JWTs.
 
 ::::
 ::::right
@@ -690,7 +711,7 @@ console.log(req.auth);
 }
 ```
 
-With this information, you can perform further checks as desired, or use the `userId` or `userUuid` to look up user information to return.
+With this information, you can perform further checks as desired, or use the `userId` or `userUuid` to look up information related to the user.
 
 For example, if you wanted to limit a route to admin users, you could check against the `authorization` object from the verified access token:
 
