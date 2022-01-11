@@ -333,11 +333,19 @@ We'll continue by adding your login and password reset forms in the same way tha
 ::::left
 Make the following updates in `src/App.js`:
 
-- Update the `Dashboard()` method to display the user's data and a logout button.
 - Update the `Login()` method to return the login form.
 - Update the `PasswordReset()` method to return the password reset form.
+- Update the `Dashboard()` method to display the user's data and a logout button.
 
-Be sure to use the correct `toolId` from your Toolkit for each of your forms using `Userfront.build`.
+::: tip
+Note your `toolId` in your Toolkit for each form. The `toolIds` in this code example will not work for your application.
+:::
+
+::::
+:::::
+
+:::::row
+::::left
 
 ```jsx
 // src/App.js
@@ -437,10 +445,6 @@ function Dashboard() {
 #### Preview
 
 ![React signup, login, password reset](https://res.cloudinary.com/component/image/upload/v1614095875/permanent/react-router-3.gif)
-:::
-
-::: tip
-Note your `toolId` in your Toolkit. The ones in the code example will not work for your application.
 :::
 
 ::::
@@ -707,7 +711,7 @@ console.log(req.auth);
 }
 ```
 
-With this information, you can perform further checks as desired, or use the `userId` or `userUuid` to [look up user information](https://userfront.com/docs/api.html#users) to return.
+With this information, you can perform further checks as desired, or use the `userId` or `userUuid` to look up information related to the user.
 
 For example, if you wanted to limit a route to admin users, you could check against the `authorization` object from the verified access token:
 
