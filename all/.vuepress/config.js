@@ -244,17 +244,11 @@ module.exports = {
       "/docs/api": ["/docs/api.md"], // Keep below /docs/api-client
       "/docs/webhooks": ["/docs/webhooks.md"],
       "/docs/js": [["/docs/js.md", "Core JS library"]],
-      "/tutorials": [
+      "/tutorials/": [
         {
-          title: "Examples",
+          title: "Tutorials",
           collapsable: false,
-          children: [
-            ["/examples/react", "React"],
-            ["/examples/vue", "Vue.js"],
-            ["/examples/nodejs", "Node.js"],
-            ["/examples/php", "PHP"],
-            ["/examples/react-native", "React Native"],
-          ],
+          children: [["/tutorials/react-authentication"]],
         },
       ],
     },

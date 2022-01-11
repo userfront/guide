@@ -1,5 +1,5 @@
-/examples/create-react-app*       /guide/examples/react       301!
-/examples/react-router*           /guide/examples/react       301!
+/examples/create-react-app*       /examples/react       301!
+/examples/react-router*           /examples/react       301!
 
 /guide/auth/token-flow.html       /guide/auth/                301!
 /guide/jwt-json-web-token.html    /guide/auth/jwt-json-web-token.html 301!

@@ -1,3 +1,9 @@
+---
+sidebar: auto
+sidebarDepth: -1
+title: " "
+---
+
 # React authentication, simplified
 
 :::::row
@@ -181,9 +187,9 @@ At a high level, React’s responsibility in authentication is to:
 :::::row
 ::::left
 
-To get React up and running, start by installing [Create React App](https://reactjs.org/docs/create-a-new-react-app.html) and [React Router](https://reactrouter.com/web/guides/quick-start)
+To get React up and running, start by installing [Create React App](https://reactjs.org/docs/create-a-new-react-app.html) and [React Router](https://github.com/remix-run/react-router)
 
-```js
+```sh
 npx create-react-app my-app
 cd my-app
 npm install react-router-dom --save
@@ -211,7 +217,7 @@ Just like it says, we can now edit the `src/App.js` file to start working.
 
 ### Routing
 
-We'll set up a simple app with routing. This is all we need to start adding authentication.
+We'll set up a small app with routing. This is all we need to start adding authentication.
 
 | Route        | Description                              |
 | :----------- | :--------------------------------------- |
@@ -236,7 +242,7 @@ Replace the contents of `src/App.js` with the following, based on the React Rout
 // src/App.js
 
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 export default function App() {
   return (
@@ -259,20 +265,12 @@ export default function App() {
           </ul>
         </nav>
 
-        <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/reset">
-            <PasswordReset />
-          </Route>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/reset" element={<PasswordReset />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
       </div>
     </Router>
   );
@@ -312,8 +310,10 @@ With our routes in place, we are ready to add authentication.
 
 ## Signup, login, and password reset
 
-:::::row
-::::left
+::::: row
+:::: left
+
+We'll start by adding a signup form to the home page.
 
 In the Toolkit section of your dashboard, locate the instructions for installing your signup form.
 
@@ -324,8 +324,14 @@ It will look like this:
 #### Userfront Toolkit
 
 ![Userfront installation instructions](https://res.cloudinary.com/component/image/upload/v1617818640/permanent/installation-instructions-react.png)
-:::
 
+:::
+::::
+
+:::: right
+::: tip
+Keep your Toolkit open in another browser tab for later when we add the login form & password reset form
+:::
 ::::
 :::::
 
@@ -334,7 +340,7 @@ It will look like this:
 
 Follow the instructions by installing the Userfront React package with:
 
-```js
+```sh
 npm install @userfront/react --save
 npm start
 ```
@@ -356,7 +362,7 @@ Add the signup form to your home page by importing and initializing Userfront, a
 // src/App.js
 
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Userfront from "@userfront/react";
 
 Userfront.init("demo1234");
@@ -386,20 +392,12 @@ export default function App() {
           </ul>
         </nav>
 
-        <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/reset">
-            <PasswordReset />
-          </Route>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/reset" element={<PasswordReset />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
       </div>
     </Router>
   );
@@ -464,7 +462,23 @@ The form is in "Test mode" by default, which will create user records in a test 
 :::::row
 ::::left
 
-Continue by adding your login and password reset forms in the same way that you added your signup form:
+We'll continue by adding your login and password reset forms in the same way that you added your signup form. To allow a user to log out, we can call the built-in `Userfront.logout` method.
+
+::::
+:::::
+
+:::::row
+::::left
+Make the following updates in `src/App.js`:
+
+- Update the `Login()` method to return the login form.
+- Update the `PasswordReset()` method to return the password reset form.
+- Update the `Dashboard()` method to display the user's data and a logout button.
+
+::: tip
+Note your `toolId` in your Toolkit for each form. The `toolIds` in this code example will not work for your application.
+:::
+
 ::::
 :::::
 
@@ -475,7 +489,7 @@ Continue by adding your login and password reset forms in the same way that you 
 // src/App.js
 
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Userfront from "@userfront/react";
 
 Userfront.init("demo1234");
@@ -511,20 +525,12 @@ export default function App() {
           </ul>
         </nav>
 
-        <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/reset">
-            <PasswordReset />
-          </Route>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/reset" element={<PasswordReset />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
       </div>
     </Router>
   );
@@ -558,7 +564,14 @@ function PasswordReset() {
 }
 
 function Dashboard() {
-  return <h2>Dashboard</h2>;
+  const userData = JSON.stringify(Userfront.user, null, 2);
+  return (
+    <div>
+      <h2>Dashboard</h2>
+      <pre>{userData}</pre>
+      <button onClick={Userfront.logout}>Logout</button>
+    </div>
+  );
 }
 ```
 
@@ -571,28 +584,34 @@ function Dashboard() {
 
 ![React signup, login, password reset](https://res.cloudinary.com/component/image/upload/v1614095875/permanent/react-router-3.gif)
 :::
+
 ::::
 
 :::::
 
-At this point, your signup, login, and password reset should all be functional.
+::::: row
+:::: left
 
-Your users can sign up, log in, and reset their password.
+At this point, your signup, login, and password reset should all be functional. Note that the login form on the `/login` page will automatically redirect to `/dashboard` if you are logged in.
+
+Your users can now sign up, log in, log out, and reset their password.
+
+::::
+:::::
 
 ## Protected route in React
 
 :::::row
 ::::left
 
-Usually, we don't want users to be able to view the dashboard unless they are logged in. This is known as protecting a route.
+We don't want users to be able to view the dashboard unless they are logged in. This is known as protecting a route.
 
 Whenever a user is not logged in but tries to visit `/dashboard`, we can redirect them to the login screen.
 
-We can accomplish this by updating the `Dashboard` component in `src/App.js` to handle the conditional logic.
+We can accomplish this by wrapping the `<Dashboard />` component in a `<RequireAuth>` component that checks to see if the user is logged in. When a user is logged in, their access token is available as `Userfront.tokens.accessToken`, so we check for this.
 
-When a user is logged in, they will have an access token available as `Userfront.accessToken()`. We can check for this token to determine if the user is logged in.
+The `RequireAuth` component uses `Navigate` and `useLocation` from React Router to redirect the browser if no access token is present.
 
-Add the `Redirect` component to the `import` statement for React Router, and then update the `Dashboard` component to redirect if no access token is present.
 ::::
 :::::
 
@@ -605,50 +624,117 @@ Add the `Redirect` component to the `import` statement for React Router, and the
 import React from "react";
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
   Link,
-  Redirect, // Be sure to add this import
+  Navigate,
+  useLocation,
 } from "react-router-dom";
+import Userfront from "@userfront/react";
 
-// ...
+Userfront.init("demo1234");
+
+const SignupForm = Userfront.build({
+  toolId: "nkmbbm",
+});
+const LoginForm = Userfront.build({
+  toolId: "alnkkd",
+});
+const PasswordResetForm = Userfront.build({
+  toolId: "dkbmmo",
+});
+
+export default function App() {
+  return (
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/reset">Reset</Link>
+            </li>
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/reset" element={<PasswordReset />} />
+          <Route
+            path="/dashboard"
+            element={
+              <RequireAuth>
+                <Dashboard />
+              </RequireAuth>
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
+  );
+}
+
+function Home() {
+  return (
+    <div>
+      <h2>Home</h2>
+      <SignupForm />
+    </div>
+  );
+}
+
+function Login() {
+  return (
+    <div>
+      <h2>Login</h2>
+      <LoginForm />
+    </div>
+  );
+}
+
+function PasswordReset() {
+  return (
+    <div>
+      <h2>Password Reset</h2>
+      <PasswordResetForm />
+    </div>
+  );
+}
 
 function Dashboard() {
-  function renderFn({ location }) {
-    // If the user is not logged in, redirect to login
-    if (!Userfront.accessToken()) {
-      return (
-        <Redirect
-          to={{
-            pathname: "/login",
-            state: { from: location },
-          }}
-        />
-      );
-    }
+  const userData = JSON.stringify(Userfront.user, null, 2);
+  return (
+    <div>
+      <h2>Dashboard</h2>
+      <pre>{userData}</pre>
+      <button onClick={Userfront.logout}>Logout</button>
+    </div>
+  );
+}
 
-    // If the user is logged in, show the dashboard
-    const userData = JSON.stringify(Userfront.user, null, 2);
-    return (
-      <div>
-        <h2>Dashboard</h2>
-        <pre>{userData}</pre>
-        <button onClick={Userfront.logout}>Logout</button>
-      </div>
-    );
+function RequireAuth({ children }) {
+  let location = useLocation();
+  if (!Userfront.tokens.accessToken) {
+    // Redirect to the /login page
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  return <Route render={renderFn} />;
+  return children;
 }
 ```
 
-Notice also that we've added a logout button by calling `Userfront.logout()` directly:
-
-```js
-<button onClick={Userfront.logout}>Logout</button>
-```
-
 Now, when a user is logged in, they can view the dashboard. If the user is not logged in, they will be redirected to the login page.
+
+We now have a web application with signup, login, logout, password reset, and a protected route.
 
 ::::
 ::::right
@@ -667,9 +753,9 @@ Now, when a user is logged in, they can view the dashboard. If the user is not l
 :::::row
 ::::left
 
-You will probably want to retrieve user-specific information from your backend. In order to protect these API endpoints, your server should check that incoming JWTs are valid.
+We saw above that the frontend has an access token available as `Userfront.tokens.accessToken` when the user is logged in. This is a JWT access token that you can also use on your backend to protect your API endpoints.
 
-There are many libraries to read and verify JWTs across various languages; here are a few popular libraries for handling JWTs:
+There are many libraries to read and verify JWTs across various languages. The list to the right contains some popular libraries for handling JWTs.
 
 ::::
 ::::right
@@ -696,9 +782,7 @@ There are many libraries to read and verify JWTs across various languages; here 
 :::::row
 ::::left
 
-For Userfront, the access token is available in your React application as `Userfront.accessToken()`.
-
-Your React application can send this as a `Bearer` token inside the `Authorization` header. For example:
+Your React application can send the JWT access token as a `Bearer` token inside the `Authorization` header. For example:
 
 ```js
 // Example of calling an endpoint with a JWT
@@ -718,9 +802,9 @@ async function getInfo() {
 getInfo();
 ```
 
-To handle a request like this, your backend should read the JWT from the `Authorization` header and verify that it is valid using the public key found in your Userfront dashboard.
+To handle a request like this, your backend should read the JWT access token from the `Authorization` header and verify that it is valid using the JWT public key found in your Userfront dashboard.
 
-Here is an example of Node.js middleware to read and verify the JWT:
+Here is an example of Node.js middleware to read and verify the JWT access token:
 
 ```js
 // Node.js example (Express.js)
@@ -742,7 +826,7 @@ function authenticateToken(req, res, next) {
 }
 ```
 
-Using this approach, any invalid or missing tokens would be rejected by your server. You can also reference the contents of the token later in the route handlers using the `req.auth` object:
+Using this approach, any invalid or missing tokens are rejected by your server. You can also reference the contents of the token later in the route handlers using the `req.auth` object:
 
 ```js
 console.log(req.auth);
@@ -765,7 +849,7 @@ console.log(req.auth);
 }
 ```
 
-With this information, you can perform further checks as desired, or use the `userId` or `userUuid` to look up user information to return.
+With this information, you can perform further checks as desired, or use the `userId` or `userUuid` to look up information related to the user.
 
 For example, if you wanted to limit a route to admin users, you could check against the `authorization` object from the verified access token:
 
@@ -793,9 +877,9 @@ app.get("/users", (req, res) => {
 
 From here, you can add social identity providers like Google, Facebook, and LinkedIn to your React application, or business identity providers like Azure AD, Office365, and more.
 
-You do this by creating an application with the identity provider (e.g. Google), and then adding that application's credentials to the Userfront dashboard. The result is a modified sign on experience.
+To do this, create an application with the identity provider (e.g. Google), and then add those SSO credentials to the Userfront dashboard. The result is a modified sign on experience.
 
-No additional code is needed to implement Single Sign On using this approach: you can add and remove providers without updating your forms or the way you handle JWTs.
+No additional code is needed to implement Single Sign On using this approach: you can add and remove providers without updating your forms or the way you handle JWT access tokens.
 ::::
 ::::right
 
