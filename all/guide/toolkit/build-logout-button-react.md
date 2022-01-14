@@ -110,7 +110,7 @@ class LogoutButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      disabled: !Userfront.accessToken(),
+      disabled: !Userfront.tokens.accessToken,
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -190,7 +190,7 @@ You are not required to show the button when the user is not logged in; usually 
 
 You can show a disabled state by adding the `disabled` property to the button.
 
-If the user is logged in, `Userfront.accessToken()` will return a value, so we can test against this and enable the button by setting `state.disabled = !Userfront.accessToken()`.
+If the user is logged in, `Userfront.tokens.accessToken` will return a value, so we can test against this and enable the button by setting `state.disabled = !Userfront.tokens.accessToken`.
 
 We can then map the `disabled` state to the `<button>` element.
 
@@ -202,7 +202,7 @@ class LogoutButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      disabled: !Userfront.accessToken(),
+      disabled: !Userfront.tokens.accessToken,
     };
     // ...
   }

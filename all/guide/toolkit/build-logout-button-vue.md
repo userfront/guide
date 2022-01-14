@@ -96,7 +96,7 @@ When the logout button is clicked, this function calls `Userfront.logout()`.
 
 #### isLoggedOut
 
-This computed property checks `Userfront.accessToken()`, which is only present when the user is logged in. Thus if it is absent, the user is logged out.
+This computed property checks `Userfront.tokens.accessToken`, which is only present when the user is logged in. Thus if it is absent, the user is logged out.
 
 ::::
 :::: right
@@ -126,7 +126,7 @@ This computed property checks `Userfront.accessToken()`, which is only present w
     computed: {
       // User is logged out if they don't have an access token
       isLoggedOut() {
-        return !Userfront.accessToken();
+        return !Userfront.tokens.accessToken;
       },
     },
   };
@@ -186,7 +186,7 @@ Userfront.logout();
 
 We can show a disabled state by adding the `disabled` property to the button.
 
-If the user is logged out, `Userfront.accessToken()` will not return a value, so we can use this to set the `isLoggedOut` property.
+If the user is logged out, `Userfront.tokens.accessToken` will not return a value, so we can use this to set the `isLoggedOut` property.
 
 Note that you are not required to show the button when the user is not logged in; usually the logout button is only shown on pages where the user must be logged in.
 
@@ -207,7 +207,7 @@ Note that you are not required to show the button when the user is not logged in
 computed: {
   // User is logged out if they don't have an access token
   isLoggedOut() {
-    return !Userfront.accessToken();
+    return !Userfront.tokens.accessToken;
   },
 },
 ```

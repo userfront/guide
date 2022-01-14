@@ -145,7 +145,7 @@ Userfront.logout();
 In the example code here, we do the following:
 
 1. Reference all the button with a variable
-2. Enable the button if the user is logged in by calling `Userfront.accessToken()`. If the user is logged in, this will return a value and the `if` statement will evaluate to `true`.
+2. Enable the button if the user is logged in by calling `Userfront.tokens.accessToken`. If the user is logged in, this will return a value and the `if` statement will evaluate to `true`.
 3. Add a `buttonLogout()` function we can call to handle the button click
 4. Add an event listener to call `buttonLogout()` when the form is submitted
 
@@ -160,7 +160,7 @@ Userfront.init("demo1234");
 var buttonEl = document.getElementById("logout-button");
 
 // 2. Enable the button if the user is logged in
-if (Userfront.accessToken()) {
+if (Userfront.tokens.accessToken) {
   buttonEl.disabled = false;
 }
 
@@ -188,7 +188,7 @@ You are not required to show the button when the user is not logged in; usually 
 
 You can show a disabled state by adding the `disabled` property to the button's HTML.
 
-If the user is logged in, `Userfront.accessToken()` will return a value, so we can test against this and enable the button by setting `buttonEl.disabled = false`. This removes the `disabled` property from the button.
+If the user is logged in, `Userfront.tokens.accessToken` will return a value, so we can test against this and enable the button by setting `buttonEl.disabled = false`. This removes the `disabled` property from the button.
 
 ::::
 :::: right
@@ -202,7 +202,7 @@ If the user is logged in, `Userfront.accessToken()` will return a value, so we c
 ```js
 var buttonEl = document.getElementById("logout-button");
 
-if (Userfront.accessToken()) {
+if (Userfront.tokens.accessToken) {
   buttonEl.disabled = false;
 }
 ```

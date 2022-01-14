@@ -21,7 +21,7 @@ const demoMods = {
 
 const store = new Vuex.Store({
   state: {
-    accessToken: Userfront.accessToken(),
+    accessToken: Userfront.tokens.accessToken,
     tenants: [],
     usableTenants: [], // admin or member role
     demoTenant,
@@ -209,7 +209,7 @@ const store = new Vuex.Store({
 
 const getAccessTokenObject = () => {
   try {
-    const accessToken = Userfront.accessToken();
+    const accessToken = Userfront.tokens.accessToken;
     if (!accessToken) return;
     return JSON.parse(atob(accessToken.split(".")[1]));
   } catch (error) {

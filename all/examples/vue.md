@@ -416,9 +416,9 @@ Whenever a user is not logged in but tries to visit `/dashboard`, we can redirec
 
 We can accomplish this by adding a [navigation guard](https://router.vuejs.org/guide/advanced/navigation-guards.html) to our router.
 
-When a user is logged in, they will have an access token available as `Userfront.accessToken()`. We can check for this token to determine if the user is logged in.
+When a user is logged in, they will have an access token available as `Userfront.tokens.accessToken`. We can check for this token to determine if the user is logged in.
 
-Add a `beforeEach` guard that checks for the `Userfront.accessToken()` value and, if not present, redirects to the login page.
+Add a `beforeEach` guard that checks for the `Userfront.tokens.accessToken` value and, if not present, redirects to the login page.
 ::::
 :::::
 
@@ -441,7 +441,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   // If the user is not logged in, redirect to /login
-  const isLoggedIn = !!Userfront.accessToken();
+  const isLoggedIn = !!Userfront.tokens.accessToken;
   if (to.name === "Dashboard" && !isLoggedIn) {
     return next({ path: "/login" });
   }
@@ -561,7 +561,7 @@ There are many libraries to read and verify JWTs across various languages; here 
 :::::row
 ::::left
 
-For Userfront, the access token is available in your Vue application as `Userfront.accessToken()`.
+For Userfront, the access token is available in your Vue application as `Userfront.tokens.accessToken`.
 
 Your Vue application can send this as a `Bearer` token inside the `Authorization` header. For example:
 
@@ -573,7 +573,7 @@ async function getInfo() {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${Userfront.accessToken()}`,
+      Authorization: `Bearer ${Userfront.tokens.accessToken}`,
     },
   });
 
