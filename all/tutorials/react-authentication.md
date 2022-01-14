@@ -792,7 +792,7 @@ async function getInfo() {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${Userfront.accessToken()}`,
+      Authorization: `Bearer ${Userfront.tokens.accessToken}`,
     },
   });
 
