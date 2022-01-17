@@ -582,6 +582,139 @@ In order to invalidate the user's current session, the request must include a va
 ::::
 :::::
 
+## SAML
+
+::::: row
+:::: left
+
+There are three endpoints to log users in and out using SAML.
+
+View the [SAML set up guide](https://userfront.com/guide/sso/saml.html) to set up your service provider in the Userfront dashboard. SAML is only available in live mode.
+
+::::
+:::: right
+
+<endpoints :endpoints="[
+  { verb: 'get', path: '/v0/auth/saml/idp/token', anchor: 'generate-saml-token' },
+  { verb: 'get', path: '/v0/auth/saml/idp/login', anchor: 'login-with-saml' },
+  { verb: 'get', path: '/v0/auth/saml/idp/logout', anchor: 'logout-with-saml' },
+]"/>
+
+::::
+:::::
+
+---
+
+### Generate SAML token
+
+Generate token to complete SAML login/logout.
+
+::::: row
+:::: left
+
+You will need to obtain a SAML token with a valid JWT access token in the Authorization header. You will then use the token to complete the SAML flow using either of the endpoints below to log a user in or out:
+
+- `GET /v0/auth/saml/idp/login`
+- `GET /v0/auth/saml/idp/logout`
+
+<parameters path="/v0/auth/saml/idp/token" verb="get" source="$docsClient" />
+
+::::
+:::: right
+
+<code-samples-client path="/v0/auth/saml/idp/token" verb="get" show-token="access"/>
+
+<response-json-custom title="Response" :response="{ token: 'd889bf75-9ab7-4354-82f9-3a1d9c8d6e6e' }"/>
+
+::::
+:::::
+
+---
+
+### Log in with SAML
+
+::::: row
+:::: left
+
+Complete SAML login with token.
+
+When a service provider requests your identity provider's Login URL, the Userfront API will redirect the client to your [After-logout path](https://userfront.com/guide/glossary.html#after-logout-path) where you will obtain a token using the user's JWT access token as specified in [Generate SAML token](/docs/api-client.html#generate-saml-token).
+
+The response is a self-submitting form containing the SAML response which sends a `POST` request to the service provider to complete the login process.
+
+#### Parameters
+
+---
+
+<parameter
+key="tenant_id"
+name="tenant_id"
+description="Unique identifier for the tenant. Note that this querystring uses underscore instead of camelcase."
+:required="true" />
+
+<parameter
+key="token"
+name="token"
+description="Generated SAML token."
+:required="true" />
+
+<parameter
+key="uuid"
+name="uuid"
+description="The user's UUID."
+:required="true" />
+
+::::
+:::: right
+
+<code-samples-client path="/v0/auth/saml/idp/login?tenant_id=&token=&uuid=" verb="get" />
+
+::::
+:::::
+
+---
+
+### Log out with SAML
+
+::::: row
+:::: left
+
+Complete SAML logout with token.
+
+When a service provider requests your identity provider's Logout URL, the Userfront API will redirect the client to your [After-logout path](https://userfront.com/guide/glossary.html#after-logout-path) where you will obtain a token using the user's JWT access token as specified in [Generate SAML token](/docs/api-client.html#generate-saml-token).
+
+The response is a self-submitting form containing the SAML response which sends a `POST` request to the service provider to complete the logout process.
+
+#### Parameters
+
+---
+
+<parameter
+key="tenant_id"
+name="tenant_id"
+description="Unique identifier for the tenant. Note that this querystring uses underscore instead of camelcase."
+:required="true" />
+
+<parameter
+key="token"
+name="token"
+description="Generated SAML token."
+:required="true" />
+
+<parameter
+key="uuid"
+name="uuid"
+description="The user's UUID."
+:required="true" />
+
+::::
+:::: right
+
+<code-samples-client path="/v0/auth/saml/idp/logout?tenant_id=&token=&uuid=" verb="get" />
+
+::::
+:::::
+
 <!-- ---
 
 ::::: row
