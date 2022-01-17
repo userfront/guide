@@ -30,7 +30,7 @@ export default {
 .endpoint-rows {
   max-width: 100%;
   white-space: nowrap;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 .endpoint-row {
   font-size: 13px;
