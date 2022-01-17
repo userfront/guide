@@ -221,12 +221,16 @@ error-message="Email format is invalid"/>
 ::::: row
 :::: left
 
-Initiates the sign on flow for a given SSO provider.
+Initiates the sign-on flow for a given SSO provider.
 
 ::: tip Note
 When using SSO, there is no difference between the `signup` and `login` methods.
 
-Both methods initiate the sign on flow. New users are ultimately redirected to your After-signup path, and existing users are ultimately redirected to your After-login path.
+Both methods initiate the sign-on flow:
+
+- New users are ultimately redirected to your After-signup path
+- Existing users are ultimately redirected to your After-login path.
+
 :::
 
 ::::
@@ -250,16 +254,16 @@ Userfront.signup({ method: "google" });
 
 Initiates a login for a user with one of the available methods.
 
-| option            | description                                                                                                                                                        |
-| :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _method_          | The method for logging in. Options are: `password`, `passwordless`, `link`, `azure`, `facebook`, `github`,`google`,`linkedin`. See below for more info on methods. |
-| _email_           | The user's email. Used with the `password` and `passwordless` methods.                                                                                             |
-| _username_        | The user's username. Used only with the `password` method.                                                                                                         |
-| _emailOrUsername_ | The user's email or username. Used only with the `password` method.                                                                                                |
-| _password_        | The user's password. Used only with the `password` method.                                                                                                         |
-| _token_           | The `token=` URL parameter sent in a login link. Used only with the `link` method.                                                                                 |
-| _uuid_            | The `uuid=` URL parameter sent in a login link. Used only with the `link` method.                                                                                  |
-| _redirect_        | Manually set the path to redirect to, or `false` to prevent redirection.                                                                                           |
+| option            | description                                                                                                                                                                |
+| :---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _method_          | The method for logging in. Options are: `password`, `passwordless`, `link`, `azure`, `facebook`, `github`,`google`,`linkedin`, `saml`. See below for more info on methods. |
+| _email_           | The user's email. Used with the `password` and `passwordless` methods.                                                                                                     |
+| _username_        | The user's username. Used only with the `password` method.                                                                                                                 |
+| _emailOrUsername_ | The user's email or username. Used only with the `password` method.                                                                                                        |
+| _password_        | The user's password. Used only with the `password` method.                                                                                                                 |
+| _token_           | The `token=` URL parameter sent in a login link. Used only with the `link` method.                                                                                         |
+| _uuid_            | The `uuid=` URL parameter sent in a login link. Used only with the `link` method.                                                                                          |
+| _redirect_        | Manually set the path to redirect to, or `false` to prevent redirection.                                                                                                   |
 
 ### Login via `password` method
 
@@ -384,12 +388,16 @@ error-message="Invalid token"/>
 ::::: row
 :::: left
 
-Initiates the sign on flow for a given SSO provider.
+Initiates the sign-on flow for a given SSO provider.
 
 ::: tip Note
 When using SSO, there is no difference between the `signup` and `login` methods.
 
-Both methods initiate the sign on flow. New users are ultimately redirected to your After-signup path, and existing users are ultimately redirected to your After-login path.
+Both methods initiate the sign-on flow:
+
+- New users are ultimately redirected to your After-signup path
+- Existing users are ultimately redirected to your After-login path.
+
 :::
 
 ::::
@@ -409,16 +417,57 @@ Userfront.login({ method: "google" });
 ::::
 :::::
 
+### Login via `saml` method
+
+<br />
+
+::::: row
+:::: left
+
+Completes the sign-on flow for a SAML service provider.
+
+Obtains a SAML token and redirects the browser to the Userfront API SAML login endpoint where the login response will be sent to the service provider who initiated the SAML login request.
+
+When a user clicks a link to log in to a service provider, the service provider sends a SAML login request to the Userfront API which will then redirect the browser to your [After-logout path](https://userfront.com/guide/glossary.html#after-logout-path) where this method should be called.
+
+::: tip Note
+When using the `saml` method, there is no difference between signing the user _in_ and signing the user _up_.
+
+Both cases are handled by the service provider during the sign-on flow:
+
+- New users are redirected to the service provider's signup process.
+- Existing users will be redirected to the service provider's path after logging in.
+
+:::
+
+::::
+:::: right
+
+```js
+import Userfront from "@userfront/core";
+Userfront.init("demo1234");
+
+Userfront.login({ method: "saml" });
+```
+
+::::
+:::::
+
 ## logout (options)
+
+Initiates logout for a user.
+
+| option     | description                                                              |
+| :--------- | :----------------------------------------------------------------------- |
+| _redirect_ | Manually set the path to redirect to, or `false` to prevent redirection. |
+| _method_   | The method for logging out. Currently only used for SAML.                |
+
+### Default `logout()`
 
 ::::: row
 :::: left
 
 Logs a user out by invalidating their session, removes auth tokens from the browser, and then redirects the browser to the After-logout path.
-
-| option     | description                                                              |
-| :--------- | :----------------------------------------------------------------------- |
-| _redirect_ | Manually set the path to redirect to, or `false` to prevent redirection. |
 
 ::::
 :::: right
@@ -437,6 +486,33 @@ Userfront.logout({ redirect: false });
 ::: caret Return values
 <response-js method="Userfront.logout(...)" path="/v0/auth/logout" verb="get" source="$docsClient"/>
 :::
+
+::::
+:::::
+
+### Log out of SAML service provider
+
+::::: row
+:::: left
+
+Completes the SAML logout process.
+
+Obtains a SAML token and redirects the browser to the SAML logout endpoint where the logout response will be sent to the service provider who initiated the SAML logout request.
+
+When a user wants to log out of a service provider, the service provider sends a SAML logout request to the Userfront API which will then redirect the browser to your [After-logout path](https://userfront.com/guide/glossary.html#after-logout-path) where this method should be called.
+
+Upon successful logout, the user will be logged out of the service provider yet remain logged in to your tenant's application.
+
+::::
+:::: right
+
+```js
+import Userfront from "@userfront/core";
+Userfront.init("demo1234");
+
+// Complete log out process for service provider
+Userfront.logout({ method: "saml" });
+```
 
 ::::
 :::::
