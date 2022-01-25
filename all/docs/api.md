@@ -845,13 +845,15 @@ To remove all roles for a user, pass an empty array for `roles`.
 
 Invite a user to join the application with the given role(s).
 
+This endpoint creates a user, then sends them an email with a link to log in (default) or set their password (see [options.type](#post-v0rolesinvite-options)).
+
 The role(s) that is created will be at the application-wide level. To invite a user to a role within a specific tenant, see [Invite user to a role (tenant level)](#invite-user-to-a-role-tenant-level).
 
 <parameters path="/v0/roles/invite" verb="post" />
 
-| options.type | Purpose                                                  |
-| :----------- | :------------------------------------------------------- |
-| `reset`      | Use the Password Reset Path in the invitation email link |
+| options.type | Purpose                                                      |
+| :----------- | :----------------------------------------------------------- |
+| `reset`      | Include the Password Reset Path in the invitation email link |
 
 ::::
 :::: right
