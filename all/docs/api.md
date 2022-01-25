@@ -548,7 +548,13 @@ To search for users with a specific role use `"tenantId: role name"`, or to sear
 
 Invite a user by email address.
 
+This endpoint creates a user, then sends them an email with a link to log in (default) or set their password (see [options.type](#post-v0usersinvite-options)).
+
 <parameters path="/v0/users/invite" verb="post" />
+
+| options.type | Purpose                                                  |
+| :----------- | :------------------------------------------------------- |
+| `reset`      | Use the Password Reset Path in the invitation email link |
 
 ::::
 :::: right
@@ -556,6 +562,27 @@ Invite a user by email address.
 <code-samples path="/v0/users/invite" verb="post" />
 
 <response-json path="/v0/users/invite" verb="post"/>
+
+::::
+:::::
+
+#### Set password upon login
+
+::::: row
+:::: left
+
+When you use `options.type = "reset"`, Userfront sends the invitation email with a link to your Password Reset Path.
+
+On your password reset page, your application can send the `token` and `uuid` to the [Reset password with link credentials](/docs/api-client.html#reset-password-with-link-credentials) endpoint or use them with the [Userfront.resetPassword()](/docs/js.html#resetpassword-options) method.
+
+::::
+:::: right
+
+::: card
+With `options.type = reset`, the invitation link will still contain `token`, `uuid`, and `type=invite`, but will direct to the Password Reset Path.
+
+`/reset?token=...&uuid=...&type=invite`
+:::
 
 ::::
 :::::
@@ -822,12 +849,37 @@ The role(s) that is created will be at the application-wide level. To invite a u
 
 <parameters path="/v0/roles/invite" verb="post" />
 
+| options.type | Purpose                                                  |
+| :----------- | :------------------------------------------------------- |
+| `reset`      | Use the Password Reset Path in the invitation email link |
+
 ::::
 :::: right
 
 <code-samples path="/v0/roles/invite" verb="post" />
 
 <response-json path="/v0/roles/invite" verb="post"/>
+
+::::
+:::::
+
+#### Set password upon login
+
+::::: row
+:::: left
+
+When you use `options.type = "reset"`, Userfront sends the invitation email with a link to your Password Reset Path.
+
+On your password reset page, your application can send the `token` and `uuid` to the [Reset password with link credentials](/docs/api-client.html#reset-password-with-link-credentials) endpoint or use them with the [Userfront.resetPassword()](/docs/js.html#resetpassword-options) method.
+
+::::
+:::: right
+
+::: card
+With `options.type = reset`, the invitation link will still contain `token`, `uuid`, and `type=invite`, but will direct to the Password Reset Path.
+
+`/reset?token=...&uuid=...&type=invite`
+:::
 
 ::::
 :::::
