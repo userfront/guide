@@ -552,17 +552,34 @@ This endpoint creates a user, then sends them an email with a link to log in (de
 
 <parameters path="/v0/users/invite" verb="post" />
 
-#### Invite link duration
+::: details options.type
 
-Use `options.duration` to set the amount of time until a link expires.
+`reset`
 
-You can use `seconds`, `minutes`, `hours`, `days`, and `weeks`.
+Use `options.type = "reset"` to send the invitation email with a link to your Password Reset Path. For example:
 
-The duration must be between `10 seconds` and `1 week`.
+`/reset?uuid=...&token=...&type=invite`
 
-| Examples                                     |
-| :------------------------------------------- |
-| `10 minutes`, `6 hours` , `1 day` , `1 week` |
+Your frontend application can send the `uuid` and `token` from this link to the [Reset password with link credentials](/docs/api-client.html#reset-password-with-link-credentials) endpoint or use them with the [Userfront.resetPassword()](/docs/js.html#resetpassword-options) method.
+
+When using `options.type="reset"`, the link will expire in 1 hour by default, instead of 3 days for a standard welcome email. See `options.duration` to use a different value.
+
+:::
+
+::: details options.duration
+
+Set the link duration with a number followed by seconds, minutes, hours, days, or weeks.
+
+`"30 seconds"`, `"1 minute"`, `"6 hours"` , `"2 days"` , `"1 week"`
+
+The duration must be between 10 seconds and 1 week. Default durations are:
+
+| options.type        | Default duration |
+| :------------------ | :--------------- |
+| `welcome` (default) | 3 days           |
+| `reset`             | 1 hour           |
+
+:::
 
 ::::
 :::: right
@@ -570,31 +587,6 @@ The duration must be between `10 seconds` and `1 week`.
 <code-samples path="/v0/users/invite" verb="post" />
 
 <response-json path="/v0/users/invite" verb="post"/>
-
-::::
-:::::
-
-#### Set password upon login
-
-::::: row
-:::: left
-
-| options.type | Purpose                                                  |
-| :----------- | :------------------------------------------------------- |
-| `reset`      | Use the Password Reset Path in the invitation email link |
-
-When you use `options.type = "reset"`, Userfront sends the invitation email with a link to your Password Reset Path.
-
-On your password reset page, your application can send the `token` and `uuid` to the [Reset password with link credentials](/docs/api-client.html#reset-password-with-link-credentials) endpoint or use them with the [Userfront.resetPassword()](/docs/js.html#resetpassword-options) method.
-
-::::
-:::: right
-
-::: card
-With `options.type = reset`, the invitation link will still contain `token`, `uuid`, and `type=invite`, but will direct to the Password Reset Path.
-
-`/reset?token=...&uuid=...&type=invite`
-:::
 
 ::::
 :::::
@@ -863,17 +855,34 @@ The role(s) that is created will be at the application-wide level. To invite a u
 
 <parameters path="/v0/roles/invite" verb="post" />
 
-#### Invite link duration
+::: details options.type
 
-Use `options.duration` to set the amount of time until a link expires.
+`reset`
 
-You can use `seconds`, `minutes`, `hours`, `days`, and `weeks`.
+Use `options.type = "reset"` to send the invitation email with a link to your Password Reset Path. For example:
 
-The duration must be between `10 seconds` and `1 week`.
+`/reset?uuid=...&token=...&type=invite`
 
-| Examples                                     |
-| :------------------------------------------- |
-| `10 minutes`, `6 hours` , `1 day` , `1 week` |
+Your frontend application can send the `uuid` and `token` from this link to the [Reset password with link credentials](/docs/api-client.html#reset-password-with-link-credentials) endpoint or use them with the [Userfront.resetPassword()](/docs/js.html#resetpassword-options) method.
+
+When using `options.type="reset"`, the link will expire in 1 hour by default, instead of 3 days for a standard welcome email. See `options.duration` to use a different value.
+
+:::
+
+::: details options.duration
+
+Set the link duration with a number followed by seconds, minutes, hours, days, or weeks.
+
+`"30 seconds"`, `"1 minute"`, `"6 hours"` , `"2 days"` , `"1 week"`
+
+The duration must be between 10 seconds and 1 week. Default durations are:
+
+| options.type        | Default duration |
+| :------------------ | :--------------- |
+| `welcome` (default) | 3 days           |
+| `reset`             | 1 hour           |
+
+:::
 
 ::::
 :::: right
@@ -881,31 +890,6 @@ The duration must be between `10 seconds` and `1 week`.
 <code-samples path="/v0/roles/invite" verb="post" />
 
 <response-json path="/v0/roles/invite" verb="post"/>
-
-::::
-:::::
-
-#### Set password upon login
-
-::::: row
-:::: left
-
-| options.type | Purpose                                                      |
-| :----------- | :----------------------------------------------------------- |
-| `reset`      | Include the Password Reset Path in the invitation email link |
-
-When you use `options.type = "reset"`, Userfront sends the invitation email with a link to your Password Reset Path.
-
-On your password reset page, your application can send the `token` and `uuid` to the [Reset password with link credentials](/docs/api-client.html#reset-password-with-link-credentials) endpoint or use them with the [Userfront.resetPassword()](/docs/js.html#resetpassword-options) method.
-
-::::
-:::: right
-
-::: card
-With `options.type = reset`, the invitation link will still contain `token`, `uuid`, and `type=invite`, but will direct to the Password Reset Path.
-
-`/reset?token=...&uuid=...&type=invite`
-:::
 
 ::::
 :::::
@@ -971,40 +955,40 @@ Invite a user to join the application with the given role(s) in the specified te
 
 <parameters path="/v0/tenants/{tenantId}/roles/invite" verb="post" />
 
-#### Invite link duration
+::: details options.type
 
-Use `options.duration` to set the amount of time until a link expires.
+`reset`
 
-You can use `seconds`, `minutes`, `hours`, `days`, and `weeks`.
+Use `options.type = "reset"` to send the invitation email with a link to your Password Reset Path. For example:
 
-The duration must be between `10 seconds` and `1 week`.
+`/reset?uuid=...&token=...&type=invite`
 
-| Examples                                     |
-| :------------------------------------------- |
-| `10 minutes`, `6 hours` , `1 day` , `1 week` |
+Your frontend application can send the `uuid` and `token` from this link to the [Reset password with link credentials](/docs/api-client.html#reset-password-with-link-credentials) endpoint or use them with the [Userfront.resetPassword()](/docs/js.html#resetpassword-options) method.
 
+When using `options.type="reset"`, the link will expire in 1 hour by default, instead of 3 days for a standard welcome email. See `options.duration` to use a different value.
+
+:::
+
+::: details options.duration
+
+Set the link duration with a number followed by seconds, minutes, hours, days, or weeks.
+
+`"30 seconds"`, `"1 minute"`, `"6 hours"` , `"2 days"` , `"1 week"`
+
+The duration must be between 10 seconds and 1 week. Default durations are:
+
+| options.type        | Default duration |
+| :------------------ | :--------------- |
+| `welcome` (default) | 3 days           |
+| `reset`             | 1 hour           |
+
+:::
 ::::
 :::: right
 
-<code-samples path="/v0/roles/invite" verb="post" />
+<code-samples path="/v0/tenants/{tenantId}/roles/invite" verb="post" />
 
-<response-json path="/v0/roles/invite" verb="post"/>
-
-::::
-:::::
-
-#### Set password upon login
-
-::::: row
-:::: left
-
-| options.type | Purpose                                                      |
-| :----------- | :----------------------------------------------------------- |
-| `reset`      | Include the Password Reset Path in the invitation email link |
-
-When you use `options.type = "reset"`, Userfront sends the invitation email with a link to your Password Reset Path.
-
-On your password reset page, your application can send the `token` and `uuid` to the [Reset password with link credentials](/docs/api-client.html#reset-password-with-link-credentials) endpoint or use them with the [Userfront.resetPassword()](/docs/js.html#resetpassword-options) method.
+<response-json path="/v0/tenants/{tenantId}/roles/invite" verb="post"/>
 
 ::::
 :::::
@@ -1358,31 +1342,47 @@ Generate link credentials for use in custom login, welcome, verification, or pas
 
 This endpoint returns the `uuid` and `token` credentials but does not send an email.
 
-If you want Userfront to send an email on your behalf, you can use endpoints like [generate login link](/docs/api-client.html#generate-login-link) or [generate password reset link](/docs/api-client.html#generate-password-reset-link).
+The generated `uuid` and `token` combination can only be used once.
+
+If you want Userfront to send an email on your behalf, you can use endpoints like [generate login link](/docs/api-client.html#send-login-link-email) or [generate password reset link](/docs/api-client.html#send-password-reset-email).
 
 <parameters path="/v0/auth/link/generate" verb="post" />
 
-#### Login, welcome, and verification
+::: details options.type
 
-Your application can send the `token` and `uuid` to the [Log in with login link](/docs/api-client.html#log-in-with-login-link) endpoint or use them with the [Userfront.login()](/docs/js.html#login-options) method.
+| options.type      | Default expiration |
+| :---------------- | :----------------- |
+| `login` (default) | 1 hour             |
+| `welcome`         | 3 days             |
+| `verify`          | 3 days             |
+| `reset`           | 1 hour             |
 
-The `token` and `uuid` can only be used once and will automatically expire according to the type of link:
+#### Login, welcome, and verify
 
-| options.type      | Expiration |
-| :---------------- | :--------- |
-| `login` (default) | 1 hour     |
-| `welcome`         | 3 days     |
-| `verify`          | 3 days     |
+Your frontend application can send the generated `uuid` and `token` to the [Log in with login link](/docs/api-client.html#log-in-with-login-link) endpoint or use them with the [Userfront.login()](/docs/js.html#login-options) method.
 
 #### Password reset
 
-Your application can send the `token` and `uuid` to the [Reset password with link credentials](/docs/api-client.html#reset-password-with-link-credentials) endpoint or use them with the [Userfront.resetPassword()](/docs/js.html#resetpassword-options) method.
+Your frontend application can send the generated `uuid` and `token` to the [Reset password with link credentials](/docs/api-client.html#reset-password-with-link-credentials) endpoint or use them with the [Userfront.resetPassword()](/docs/js.html#resetpassword-options) method.
 
-The `token` and `uuid` can only be used once and will automatically expire according to the type of link:
+:::
 
-| options.type | Expiration |
-| :----------- | :--------- |
-| `reset`      | 1 hour     |
+::: details options.duration
+
+Set the link duration with a number followed by seconds, minutes, hours, days, or weeks.
+
+`"30 seconds"`, `"1 minute"`, `"6 hours"` , `"2 days"` , `"1 week"`
+
+The duration must be between 10 seconds and 1 week. Default durations are:
+
+| options.type      | Default duration |
+| :---------------- | :--------------- |
+| `login` (default) | 1 hour           |
+| `welcome`         | 3 days           |
+| `verify`          | 3 days           |
+| `reset`           | 1 hour           |
+
+:::
 
 ::::
 :::: right
