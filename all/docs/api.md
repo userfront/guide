@@ -552,9 +552,17 @@ This endpoint creates a user, then sends them an email with a link to log in (de
 
 <parameters path="/v0/users/invite" verb="post" />
 
-| options.type | Purpose                                                  |
-| :----------- | :------------------------------------------------------- |
-| `reset`      | Use the Password Reset Path in the invitation email link |
+#### Invite link duration
+
+Use `options.duration` to set the amount of time until a link expires.
+
+You can use `seconds`, `minutes`, `hours`, `days`, and `weeks`.
+
+The duration must be between `10 seconds` and `1 week`.
+
+| Examples                                     |
+| :------------------------------------------- |
+| `10 minutes`, `6 hours` , `1 day` , `1 week` |
 
 ::::
 :::: right
@@ -570,6 +578,10 @@ This endpoint creates a user, then sends them an email with a link to log in (de
 
 ::::: row
 :::: left
+
+| options.type | Purpose                                                  |
+| :----------- | :------------------------------------------------------- |
+| `reset`      | Use the Password Reset Path in the invitation email link |
 
 When you use `options.type = "reset"`, Userfront sends the invitation email with a link to your Password Reset Path.
 
@@ -851,9 +863,17 @@ The role(s) that is created will be at the application-wide level. To invite a u
 
 <parameters path="/v0/roles/invite" verb="post" />
 
-| options.type | Purpose                                                      |
-| :----------- | :----------------------------------------------------------- |
-| `reset`      | Include the Password Reset Path in the invitation email link |
+#### Invite link duration
+
+Use `options.duration` to set the amount of time until a link expires.
+
+You can use `seconds`, `minutes`, `hours`, `days`, and `weeks`.
+
+The duration must be between `10 seconds` and `1 week`.
+
+| Examples                                     |
+| :------------------------------------------- |
+| `10 minutes`, `6 hours` , `1 day` , `1 week` |
 
 ::::
 :::: right
@@ -869,6 +889,10 @@ The role(s) that is created will be at the application-wide level. To invite a u
 
 ::::: row
 :::: left
+
+| options.type | Purpose                                                      |
+| :----------- | :----------------------------------------------------------- |
+| `reset`      | Include the Password Reset Path in the invitation email link |
 
 When you use `options.type = "reset"`, Userfront sends the invitation email with a link to your Password Reset Path.
 
@@ -947,12 +971,40 @@ Invite a user to join the application with the given role(s) in the specified te
 
 <parameters path="/v0/tenants/{tenantId}/roles/invite" verb="post" />
 
+#### Invite link duration
+
+Use `options.duration` to set the amount of time until a link expires.
+
+You can use `seconds`, `minutes`, `hours`, `days`, and `weeks`.
+
+The duration must be between `10 seconds` and `1 week`.
+
+| Examples                                     |
+| :------------------------------------------- |
+| `10 minutes`, `6 hours` , `1 day` , `1 week` |
+
 ::::
 :::: right
 
-<code-samples path="/v0/tenants/{tenantId}/roles/invite" verb="post" />
+<code-samples path="/v0/roles/invite" verb="post" />
 
-<response-json path="/v0/tenants/{tenantId}/roles/invite" verb="post"/>
+<response-json path="/v0/roles/invite" verb="post"/>
+
+::::
+:::::
+
+#### Set password upon login
+
+::::: row
+:::: left
+
+| options.type | Purpose                                                      |
+| :----------- | :----------------------------------------------------------- |
+| `reset`      | Include the Password Reset Path in the invitation email link |
+
+When you use `options.type = "reset"`, Userfront sends the invitation email with a link to your Password Reset Path.
+
+On your password reset page, your application can send the `token` and `uuid` to the [Reset password with link credentials](/docs/api-client.html#reset-password-with-link-credentials) endpoint or use them with the [Userfront.resetPassword()](/docs/js.html#resetpassword-options) method.
 
 ::::
 :::::
