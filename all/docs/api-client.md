@@ -218,6 +218,28 @@ Log in with a password and email/username.
 ::::
 :::::
 
+#### Alternate response - (if tenant requires MFA)
+
+::::: row
+:::: left
+
+If your tenant requires multi-factor authentication (MFA), the response will be a `firstFactorCode` and available MFA options.
+
+The `firstFactorCode` will be required in order to request & submit a verification code via the MFA endpoints. See [Multi-factor authentication](#multi-factor-authentication) for more information on how to request & submit a verification code.
+
+::::
+:::: right
+
+<response-json-custom title="Response (if tenant requires MFA)" :response="{ message: 'OK', result: {
+  mode: 'live',
+  firstFactorCode: '304a8def-651c-4ab2-9ca0-1e3fca9e280a',
+  allowedStrategies: ['securityCode'],
+  allowedChannels: ['sms'],
+}}"/>
+
+::::
+:::::
+
 ---
 
 ### Update own password
@@ -367,6 +389,28 @@ Log in using the `token` and `uuid` from a login link.
 <code-samples-client path="/v0/auth/link" verb="put"/>
 
 <response-json path="/v0/auth/link" verb="put" source="$docsClient"/>
+
+::::
+:::::
+
+#### Alternate response - (if tenant requires MFA)
+
+::::: row
+:::: left
+
+If your tenant requires multi-factor authentication (MFA), the response will be a `firstFactorCode` and available MFA options.
+
+The `firstFactorCode` will be required in order to request & submit a verification code via the MFA endpoints. See [Multi-factor authentication](#multi-factor-authentication) for more information on how to request & submit a verification code.
+
+::::
+:::: right
+
+<response-json-custom title="Response (if tenant requires MFA)" :response="{ message: 'OK', result: {
+  mode: 'live',
+  firstFactorCode: '304a8def-651c-4ab2-9ca0-1e3fca9e280a',
+  allowedStrategies: ['securityCode'],
+  allowedChannels: ['sms'],
+}}"/>
 
 ::::
 :::::
@@ -578,6 +622,81 @@ In order to invalidate the user's current session, the request must include a va
 <code-samples-client path="/v0/auth/logout" verb="get" show-token="access"/>
 
 <response-json path="/v0/auth/logout" verb="get" source="$docsClient"/>
+
+::::
+:::::
+
+## Multi-factor authentication
+
+::::: row
+:::: left
+
+There are two endpoints to log users in using multi-factor authentication (MFA).
+
+You will need a `firstFactorCode` to interact with either endpoint. When MFA is required for your tenant, the `firstFactorCode` is provided in the response when a user authenticates rather than the usual response containing ID, access, and refresh tokens.
+
+See the alternate responses for [Log in with password](#alternate-response-if-tenant-requires-mfa) and [Log in with login link](#alternate-response-if-tenant-requires-mfa-2):
+
+<response-json-custom title="Response containing firstFactorCode" :response="{ message: 'OK', result: {
+  mode: 'live',
+  firstFactorCode: '304a8def-651c-4ab2-9ca0-1e3fca9e280a',
+  allowedStrategies: ['securityCode'],
+  allowedChannels: ['sms'],
+}}"/>
+
+::::
+:::: right
+
+<endpoints :endpoints="[
+  { verb: 'post', path: '/v0/auth/mfa', anchor: 'request-code' },
+  { verb: 'put', path: '/v0/auth/mfa', anchor: 'submit-code' },
+]"/>
+
+::::
+:::::
+
+---
+
+### Request code
+
+::::: row
+:::: left
+
+Request a verification code to complete login process.
+
+<parameters path="/v0/auth/mfa" verb="post" source="$docsClient"/>
+
+`to` phone number must be in E.164 format. E.164 numbers are formatted [+] [country code] [subscriber number including area code] and can have a maximum of fifteen digits. e.g. `+15558675309`
+
+::::
+:::: right
+
+<code-samples-client path="/v0/auth/mfa" verb="post" />
+
+<response-json path="/v0/auth/mfa" verb="post" source="$docsClient"/>
+
+::::
+:::::
+
+---
+
+### Submit code
+
+::::: row
+:::: left
+
+Submit a verification code to complete login process.
+
+<parameters path="/v0/auth/mfa" verb="put" source="$docsClient"/>
+
+`to` phone number must be in E.164 format. E.164 numbers are formatted [+] [country code] [subscriber number including area code] and can have a maximum of fifteen digits. e.g. `+15558675309`
+
+::::
+:::: right
+
+<code-samples-client path="/v0/auth/mfa" verb="put" />
+
+<response-json path="/v0/auth/mfa" verb="put" source="$docsClient"/>
 
 ::::
 :::::
