@@ -633,17 +633,6 @@ In order to invalidate the user's current session, the request must include a va
 
 There are two endpoints to log users in using multi-factor authentication (MFA).
 
-You will need a `firstFactorCode` to interact with either endpoint. When MFA is required for your tenant, the `firstFactorCode` is provided in the response when a user authenticates rather than the usual response containing ID, access, and refresh tokens.
-
-See the alternate responses for [Log in with password](#alternate-response-if-tenant-requires-mfa) and [Log in with login link](#alternate-response-if-tenant-requires-mfa-2):
-
-<response-json-custom title="Response containing firstFactorCode" :response="{ message: 'OK', result: {
-  mode: 'live',
-  firstFactorCode: '304a8def-651c-4ab2-9ca0-1e3fca9e280a',
-  allowedStrategies: ['securityCode'],
-  allowedChannels: ['sms'],
-}}"/>
-
 ::::
 :::: right
 
@@ -651,6 +640,28 @@ See the alternate responses for [Log in with password](#alternate-response-if-te
   { verb: 'post', path: '/v0/auth/mfa', anchor: 'request-code' },
   { verb: 'put', path: '/v0/auth/mfa', anchor: 'submit-code' },
 ]"/>
+
+::::
+:::::
+
+::::: row
+:::: left
+
+### First factor code, strategy, channel
+
+To the right is an example of the alternate response for [Log in with password](#alternate-response-if-tenant-requires-mfa) and [Log in with login link](#alternate-response-if-tenant-requires-mfa-2) when MFA is required for your tenant.
+
+The response contains the `firstFactorCode`, strategies, and channels to use when requesting and submitting your verification code.
+
+::::
+:::: right
+
+<response-json-custom title="Response containing firstFactorCode" :response="{ message: 'OK', result: {
+  mode: 'live',
+  firstFactorCode: '304a8def-651c-4ab2-9ca0-1e3fca9e280a',
+  allowedStrategies: ['securityCode'],
+  allowedChannels: ['sms'],
+}}"/>
 
 ::::
 :::::
@@ -664,9 +675,15 @@ See the alternate responses for [Log in with password](#alternate-response-if-te
 
 Request a verification code to complete login process.
 
+After the request is sent, see [Submit code](#submit-code) to for information on how to submit your verification code.
+
 <parameters path="/v0/auth/mfa" verb="post" source="$docsClient"/>
 
-`to` phone number must be in E.164 format. E.164 numbers are formatted [+] [country code] [subscriber number including area code] and can have a maximum of fifteen digits. e.g. `+15558675309`
+- `strategy` is one of `allowedStrategies` found in the login [alternate response](#first-factor-code-strategy-channel)
+
+- `channel` is one of `allowedChannels` found in the login [alternate response](#first-factor-code-strategy-channel)
+
+- `to` phone number must be in E.164 format. E.164 numbers are formatted [+] [country code] [subscriber number including area code] and can have a maximum of fifteen digits. e.g. `+15558675309`
 
 ::::
 :::: right
@@ -689,7 +706,11 @@ Submit a verification code to complete login process.
 
 <parameters path="/v0/auth/mfa" verb="put" source="$docsClient"/>
 
-`to` phone number must be in E.164 format. E.164 numbers are formatted [+] [country code] [subscriber number including area code] and can have a maximum of fifteen digits. e.g. `+15558675309`
+- `strategy` is one of `allowedStrategies` found in the login [alternate response](#first-factor-code-strategy-channel)
+
+- `channel` is one of `allowedChannels` found in the login [alternate response](#first-factor-code-strategy-channel)
+
+- `to` phone number must be in E.164 format. E.164 numbers are formatted [+] [country code] [subscriber number including area code] and can have a maximum of fifteen digits. e.g. `+15558675309`
 
 ::::
 :::: right
