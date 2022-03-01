@@ -144,6 +144,28 @@ In test mode, Userfront does not send emails.
 ::::
 :::::
 
+#### Alternate response: MFA - First factor code
+
+::::: row
+:::: left
+
+Response when tenant requires MFA.
+
+See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a security code using the information in this response.
+
+::::
+:::: right
+
+<response-json-custom title="Response (MFA - First factor code)" :response="{ message: 'OK', result: {
+  mode: 'live',
+  firstFactorCode: '304a8def-651c-4ab2-9ca0-1e3fca9e280a',
+  allowedStrategies: ['securityCode'],
+  allowedChannels: ['sms'],
+}}"/>
+
+::::
+:::::
+
 ---
 
 ### Sign up with passwordless
@@ -218,19 +240,19 @@ Log in with a password and email/username.
 ::::
 :::::
 
-#### Alternate response - (if tenant requires MFA)
+#### Alternate response: MFA - First factor code
 
 ::::: row
 :::: left
 
-If your tenant requires multi-factor authentication (MFA), the response will be a `firstFactorCode` and available MFA options.
+Response when tenant requires MFA.
 
-The `firstFactorCode` will be required in order to request & submit a verification code via the MFA endpoints. See [Multi-factor authentication](#multi-factor-authentication) for more information on how to request & submit a verification code.
+See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a security code using the information in this response.
 
 ::::
 :::: right
 
-<response-json-custom title="Response (if tenant requires MFA)" :response="{ message: 'OK', result: {
+<response-json-custom title="Response (MFA - First factor code)" :response="{ message: 'OK', result: {
   mode: 'live',
   firstFactorCode: '304a8def-651c-4ab2-9ca0-1e3fca9e280a',
   allowedStrategies: ['securityCode'],
@@ -393,19 +415,19 @@ Log in using the `token` and `uuid` from a login link.
 ::::
 :::::
 
-#### Alternate response - (if tenant requires MFA)
+#### Alternate response: MFA - First factor code
 
 ::::: row
 :::: left
 
-If your tenant requires multi-factor authentication (MFA), the response will be a `firstFactorCode` and available MFA options.
+Response when tenant requires MFA.
 
-The `firstFactorCode` will be required in order to request & submit a verification code via the MFA endpoints. See [Multi-factor authentication](#multi-factor-authentication) for more information on how to request & submit a verification code.
+See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a security code using the information in this response.
 
 ::::
 :::: right
 
-<response-json-custom title="Response (if tenant requires MFA)" :response="{ message: 'OK', result: {
+<response-json-custom title="Response (MFA - First factor code)" :response="{ message: 'OK', result: {
   mode: 'live',
   firstFactorCode: '304a8def-651c-4ab2-9ca0-1e3fca9e280a',
   allowedStrategies: ['securityCode'],
@@ -553,6 +575,28 @@ Upon success, returns a JWT access token so that the user can log in directly.
 ::::
 :::::
 
+#### Alternate response: MFA - First factor code
+
+::::: row
+:::: left
+
+Response when tenant requires MFA.
+
+See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a security code using the information in this response.
+
+::::
+:::: right
+
+<response-json-custom title="Response (MFA - First factor code)" :response="{ message: 'OK', result: {
+  mode: 'live',
+  firstFactorCode: '304a8def-651c-4ab2-9ca0-1e3fca9e280a',
+  allowedStrategies: ['securityCode'],
+  allowedChannels: ['sms'],
+}}"/>
+
+::::
+:::::
+
 ---
 
 ### Send account verification email
@@ -647,16 +691,21 @@ There are two endpoints to log users in using multi-factor authentication (MFA).
 ::::: row
 :::: left
 
-### First factor code, strategy, channel
+### First factor code
 
-To the right is an example of the alternate response for [Log in with password](#alternate-response-if-tenant-requires-mfa) and [Log in with login link](#alternate-response-if-tenant-requires-mfa-2) when MFA is required for your tenant.
+This response that is returned for the following methods when your tenant requires MFA to log in:
 
-The response contains the `firstFactorCode`, strategies, and channels to use when requesting and submitting your verification code.
+- [Sign up with password](#alternate-response-mfa-first-factor-code)
+- [Log in with password](#alternate-response-mfa-first-factor-code-2)
+- [Log in with login link](#alternate-response-mfa-first-factor-code-3)
+- [Reset password with link credentials](#alternate-response-mfa-first-factor-code-4)
+
+The response contains a `firstFactorCode`, strategies, and channels to use in order to [Request code](#request-code) and [Submit code](#submit-code) via the MFA endpoints.
 
 ::::
 :::: right
 
-<response-json-custom title="Response containing firstFactorCode" :response="{ message: 'OK', result: {
+<response-json-custom title="Response (MFA - First factor code)" :response="{ message: 'OK', result: {
   mode: 'live',
   firstFactorCode: '304a8def-651c-4ab2-9ca0-1e3fca9e280a',
   allowedStrategies: ['securityCode'],
@@ -673,17 +722,19 @@ The response contains the `firstFactorCode`, strategies, and channels to use whe
 ::::: row
 :::: left
 
-Request a verification code to complete login process.
+Request a security code to complete login process.
 
-After the request is sent, see [Submit code](#submit-code) to for information on how to submit your verification code.
+After the request is sent, see [Submit code](#submit-code) to for information on how to submit your security code.
 
 <parameters path="/v0/auth/mfa" verb="post" source="$docsClient"/>
 
-- `strategy` is one of `allowedStrategies` found in the login [alternate response](#first-factor-code-strategy-channel)
+- `strategy` is one of `allowedStrategies` found in the login [alternate response](#first-factor-code).
 
-- `channel` is one of `allowedChannels` found in the login [alternate response](#first-factor-code-strategy-channel)
+- `channel` is one of `allowedChannels` found in the login [alternate response](#first-factor-code).
 
-- `to` phone number must be in E.164 format. E.164 numbers are formatted [+] [country code] [subscriber number including area code] and can have a maximum of fifteen digits. e.g. `+15558675309`
+- `to` phone number must be in E.164 format.
+
+  E.164 numbers are formatted [+] [country code] [subscriber number including area code] and can have a maximum of fifteen digits. e.g. `+15558675309`
 
 ::::
 :::: right
@@ -702,15 +753,17 @@ After the request is sent, see [Submit code](#submit-code) to for information on
 ::::: row
 :::: left
 
-Submit a verification code to complete login process.
+Submit a security code to complete login process.
 
 <parameters path="/v0/auth/mfa" verb="put" source="$docsClient"/>
 
-- `strategy` is one of `allowedStrategies` found in the login [alternate response](#first-factor-code-strategy-channel)
+- `strategy` is one of `allowedStrategies` found in the login [alternate response](#first-factor-code).
 
-- `channel` is one of `allowedChannels` found in the login [alternate response](#first-factor-code-strategy-channel)
+- `channel` is one of `allowedChannels` found in the login [alternate response](#first-factor-code).
 
-- `to` phone number must be in E.164 format. E.164 numbers are formatted [+] [country code] [subscriber number including area code] and can have a maximum of fifteen digits. e.g. `+15558675309`
+- `to` phone number must be in E.164 format.
+
+  E.164 numbers are formatted [+] [country code] [subscriber number including area code] and can have a maximum of fifteen digits. e.g. `+15558675309`
 
 ::::
 :::: right
