@@ -675,6 +675,10 @@ In order to invalidate the user's current session, the request must include a va
 ::::: row
 :::: left
 
+::: warning Note
+MFA is currently in beta. If you would like to enable it for your account, please contact us using the chat in the bottom-right.
+:::
+
 There are two endpoints to log users in using multi-factor authentication (MFA).
 
 ::::
