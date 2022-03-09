@@ -144,6 +144,28 @@ In test mode, Userfront does not send emails.
 ::::
 :::::
 
+#### Alternate response: MFA - First factor code
+
+::::: row
+:::: left
+
+Response when tenant requires MFA.
+
+See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a security code using the information in this response.
+
+::::
+:::: right
+
+<response-json-custom title="Response (MFA - First factor code)" :response="{ message: 'OK', result: {
+  mode: 'live',
+  firstFactorCode: '304a8def-651c-4ab2-9ca0-1e3fca9e280a',
+  allowedStrategies: ['securityCode'],
+  allowedChannels: ['sms'],
+}}"/>
+
+::::
+:::::
+
 ---
 
 ### Sign up with passwordless
@@ -214,6 +236,28 @@ Log in with a password and email/username.
 <code-samples-client path="/v0/auth/basic" verb="post"/>
 
 <response-json path="/v0/auth/basic" verb="post" source="$docsClient"/>
+
+::::
+:::::
+
+#### Alternate response: MFA - First factor code
+
+::::: row
+:::: left
+
+Response when tenant requires MFA.
+
+See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a security code using the information in this response.
+
+::::
+:::: right
+
+<response-json-custom title="Response (MFA - First factor code)" :response="{ message: 'OK', result: {
+  mode: 'live',
+  firstFactorCode: '304a8def-651c-4ab2-9ca0-1e3fca9e280a',
+  allowedStrategies: ['securityCode'],
+  allowedChannels: ['sms'],
+}}"/>
 
 ::::
 :::::
@@ -371,6 +415,28 @@ Log in using the `token` and `uuid` from a login link.
 ::::
 :::::
 
+#### Alternate response: MFA - First factor code
+
+::::: row
+:::: left
+
+Response when tenant requires MFA.
+
+See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a security code using the information in this response.
+
+::::
+:::: right
+
+<response-json-custom title="Response (MFA - First factor code)" :response="{ message: 'OK', result: {
+  mode: 'live',
+  firstFactorCode: '304a8def-651c-4ab2-9ca0-1e3fca9e280a',
+  allowedStrategies: ['securityCode'],
+  allowedChannels: ['sms'],
+}}"/>
+
+::::
+:::::
+
 ---
 
 ### Log in with SSO
@@ -509,6 +575,28 @@ Upon success, returns a JWT access token so that the user can log in directly.
 ::::
 :::::
 
+#### Alternate response: MFA - First factor code
+
+::::: row
+:::: left
+
+Response when tenant requires MFA.
+
+See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a security code using the information in this response.
+
+::::
+:::: right
+
+<response-json-custom title="Response (MFA - First factor code)" :response="{ message: 'OK', result: {
+  mode: 'live',
+  firstFactorCode: '304a8def-651c-4ab2-9ca0-1e3fca9e280a',
+  allowedStrategies: ['securityCode'],
+  allowedChannels: ['sms'],
+}}"/>
+
+::::
+:::::
+
 ---
 
 ### Send account verification email
@@ -578,6 +666,115 @@ In order to invalidate the user's current session, the request must include a va
 <code-samples-client path="/v0/auth/logout" verb="get" show-token="access"/>
 
 <response-json path="/v0/auth/logout" verb="get" source="$docsClient"/>
+
+::::
+:::::
+
+## Multi-factor authentication
+
+::::: row
+:::: left
+
+::: warning Note
+MFA is currently in beta. If you would like to enable it for your account, please contact us using the chat in the bottom-right.
+:::
+
+There are two endpoints to log users in using multi-factor authentication (MFA).
+
+::::
+:::: right
+
+<endpoints :endpoints="[
+  { verb: 'post', path: '/v0/auth/mfa', anchor: 'request-code' },
+  { verb: 'put', path: '/v0/auth/mfa', anchor: 'submit-code' },
+]"/>
+
+::::
+:::::
+
+::::: row
+:::: left
+
+### First factor code
+
+This response that is returned for the following methods when your tenant requires MFA to log in:
+
+- [Sign up with password](#alternate-response-mfa-first-factor-code)
+- [Log in with password](#alternate-response-mfa-first-factor-code-2)
+- [Log in with login link](#alternate-response-mfa-first-factor-code-3)
+- [Reset password with link credentials](#alternate-response-mfa-first-factor-code-4)
+
+The response contains a `firstFactorCode`, strategies, and channels to use in order to [Request code](#request-code) and [Submit code](#submit-code) via the MFA endpoints.
+
+::::
+:::: right
+
+<response-json-custom title="Response (MFA - First factor code)" :response="{ message: 'OK', result: {
+  mode: 'live',
+  firstFactorCode: '304a8def-651c-4ab2-9ca0-1e3fca9e280a',
+  allowedStrategies: ['securityCode'],
+  allowedChannels: ['sms'],
+}}"/>
+
+::::
+:::::
+
+---
+
+### Request code
+
+::::: row
+:::: left
+
+Request a security code to complete login process.
+
+After the request is sent, see [Submit code](#submit-code) to for information on how to submit your security code.
+
+<parameters path="/v0/auth/mfa" verb="post" source="$docsClient"/>
+
+- `strategy` is one of `allowedStrategies` found in the login [alternate response](#first-factor-code).
+
+- `channel` is one of `allowedChannels` found in the login [alternate response](#first-factor-code).
+
+- `to` phone number must be in E.164 format.
+
+  E.164 numbers are formatted [+] [country code] [subscriber number including area code] and can have a maximum of fifteen digits. e.g. `+15558675309`
+
+::::
+:::: right
+
+<code-samples-client path="/v0/auth/mfa" verb="post" />
+
+<response-json path="/v0/auth/mfa" verb="post" source="$docsClient"/>
+
+::::
+:::::
+
+---
+
+### Submit code
+
+::::: row
+:::: left
+
+Submit a security code to complete login process.
+
+<parameters path="/v0/auth/mfa" verb="put" source="$docsClient"/>
+
+- `strategy` is one of `allowedStrategies` found in the login [alternate response](#first-factor-code).
+
+- `channel` is one of `allowedChannels` found in the login [alternate response](#first-factor-code).
+
+- `to` phone number must be in E.164 format.
+
+  E.164 numbers are formatted [+] [country code] [subscriber number including area code] and can have a maximum of fifteen digits. e.g. `+15558675309`
+
+::::
+:::: right
+
+<code-samples-client path="/v0/auth/mfa" verb="put" />
+
+<response-json path="/v0/auth/mfa" verb="put" source="$docsClient"/>
 
 ::::
 :::::
