@@ -728,9 +728,9 @@ After the request is sent, see [Submit code](#submit-code) to for information on
 
 <parameters path="/v0/auth/mfa" verb="post" source="$docsClient"/>
 
-- `strategy` is one of `allowedStrategies` found in the login [alternate response](#first-factor-code).
+- `strategy` is one of `allowedStrategies` found in the [first factor code response](#first-factor-code).
 
-- `channel` is one of `allowedChannels` found in the login [alternate response](#first-factor-code).
+- `channel` is one of `allowedChannels` found in the [first factor code response](#first-factor-code).
 
 - `to` phone number must be in E.164 format.
 
@@ -757,9 +757,9 @@ Submit a security code to complete login process.
 
 <parameters path="/v0/auth/mfa" verb="put" source="$docsClient"/>
 
-- `strategy` is one of `allowedStrategies` found in the login [alternate response](#first-factor-code).
+- `strategy` is one of `allowedStrategies` found in the [first factor code response](#first-factor-code).
 
-- `channel` is one of `allowedChannels` found in the login [alternate response](#first-factor-code).
+- `channel` is one of `allowedChannels` found in the [first factor code response](#first-factor-code).
 
 - `to` phone number must be in E.164 format.
 
