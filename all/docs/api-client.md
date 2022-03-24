@@ -697,7 +697,7 @@ There are two endpoints to log users in using multi-factor authentication (MFA).
 
 ### First factor code
 
-This response that is returned for the following methods when your tenant requires MFA to log in:
+This response is returned when using one of the following methods when MFA is enabled for your tenant:
 
 - [Sign up with password](#alternate-response-mfa-first-factor-code)
 - [Log in with password](#alternate-response-mfa-first-factor-code-2)
