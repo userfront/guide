@@ -704,7 +704,7 @@ The response to the right is returned when using one of the following methods wh
 - [Log in with login link](#alternate-response-mfa-first-factor-code-3)
 - [Reset password with link credentials](#alternate-response-mfa-first-factor-code-4)
 
-The response contains a `firstFactorCode`, strategies, and channels to use in order to [Send security code](#send-security-code-sms) and [Login with security code](#login-with-security-code) via the MFA endpoints.
+The response contains a `firstFactorCode`, strategies, and channels to use in order to [Send security code (SMS)](#send-security-code-sms) and [Login with security code](#login-with-security-code) via the MFA endpoints.
 
 ::::
 :::: right
