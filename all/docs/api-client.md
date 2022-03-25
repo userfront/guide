@@ -151,7 +151,7 @@ In test mode, Userfront does not send emails.
 
 Response when tenant requires MFA.
 
-See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a security code using the information in this response.
+See [Multi-factor authentication - First factor code](#the-first-factor-code) for more information on how to request & submit a security code using the information in this response.
 
 ::::
 :::: right
@@ -247,7 +247,7 @@ Log in with a password and email/username.
 
 Response when tenant requires MFA.
 
-See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a security code using the information in this response.
+See [Multi-factor authentication - First factor code](#the-first-factor-code) for more information on how to request & submit a security code using the information in this response.
 
 ::::
 :::: right
@@ -422,7 +422,7 @@ Log in using the `token` and `uuid` from a login link.
 
 Response when tenant requires MFA.
 
-See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a security code using the information in this response.
+See [Multi-factor authentication - First factor code](#the-first-factor-code) for more information on how to request & submit a security code using the information in this response.
 
 ::::
 :::: right
@@ -582,7 +582,7 @@ Upon success, returns a JWT access token so that the user can log in directly.
 
 Response when tenant requires MFA.
 
-See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a security code using the information in this response.
+See [Multi-factor authentication - First factor code](#the-first-factor-code) for more information on how to request & submit a security code using the information in this response.
 
 ::::
 :::: right
@@ -685,8 +685,8 @@ There are two endpoints to log users in using multi-factor authentication (MFA).
 :::: right
 
 <endpoints :endpoints="[
-  { verb: 'post', path: '/v0/auth/mfa', anchor: 'request-code' },
-  { verb: 'put', path: '/v0/auth/mfa', anchor: 'submit-code' },
+  { verb: 'post', path: '/v0/auth/mfa', anchor: 'send-security-code' },
+  { verb: 'put', path: '/v0/auth/mfa', anchor: 'login-with-security-code' },
 ]"/>
 
 ::::
@@ -695,16 +695,16 @@ There are two endpoints to log users in using multi-factor authentication (MFA).
 ::::: row
 :::: left
 
-### First factor code
+### The first factor code
 
-This response is returned when using one of the following methods when MFA is enabled for your tenant:
+The response to the right is returned when using one of the following methods when **MFA is enabled** for your tenant:
 
 - [Sign up with password](#alternate-response-mfa-first-factor-code)
 - [Log in with password](#alternate-response-mfa-first-factor-code-2)
 - [Log in with login link](#alternate-response-mfa-first-factor-code-3)
 - [Reset password with link credentials](#alternate-response-mfa-first-factor-code-4)
 
-The response contains a `firstFactorCode`, strategies, and channels to use in order to [Request code](#request-code) and [Submit code](#submit-code) via the MFA endpoints.
+The response contains a `firstFactorCode`, strategies, and channels to use in order to [Send security code](#send-security-code) and [Login with security code](#login-with-security-code) via the MFA endpoints.
 
 ::::
 :::: right
@@ -721,20 +721,20 @@ The response contains a `firstFactorCode`, strategies, and channels to use in or
 
 ---
 
-### Request code
+### Send security code
 
 ::::: row
 :::: left
 
-Request a security code to complete login process.
+Send a security code to complete login process.
 
-After the request is sent, see [Submit code](#submit-code) to for information on how to submit your security code.
+After this request is made, you can perform a [Login with security code](#login-with-security-code) using the security code sent to the user.
 
 <parameters path="/v0/auth/mfa" verb="post" source="$docsClient"/>
 
-- `strategy` is one of `allowedStrategies` found in the [first factor code response](#first-factor-code).
+- `strategy` is one of `allowedStrategies` found in the [first factor code response](#the-first-factor-code).
 
-- `channel` is one of `allowedChannels` found in the [first factor code response](#first-factor-code).
+- `channel` is one of `allowedChannels` found in the [first factor code response](#the-first-factor-code).
 
 - `to` phone number must be in E.164 format.
 
@@ -752,18 +752,18 @@ After the request is sent, see [Submit code](#submit-code) to for information on
 
 ---
 
-### Submit code
+### Login with security code
 
 ::::: row
 :::: left
 
-Submit a security code to complete login process.
+Log a user in using a security code to complete the login process.
 
 <parameters path="/v0/auth/mfa" verb="put" source="$docsClient"/>
 
-- `strategy` is one of `allowedStrategies` found in the [first factor code response](#first-factor-code).
+- `strategy` is one of `allowedStrategies` found in the [first factor code response](#the-first-factor-code).
 
-- `channel` is one of `allowedChannels` found in the [first factor code response](#first-factor-code).
+- `channel` is one of `allowedChannels` found in the [first factor code response](#the-first-factor-code).
 
 - `to` phone number must be in E.164 format.
 
