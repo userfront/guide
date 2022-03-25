@@ -685,7 +685,7 @@ There are two endpoints to log users in using multi-factor authentication (MFA).
 :::: right
 
 <endpoints :endpoints="[
-  { verb: 'post', path: '/v0/auth/mfa', anchor: 'send-security-code' },
+  { verb: 'post', path: '/v0/auth/mfa', anchor: 'send-security-code-sms' },
   { verb: 'put', path: '/v0/auth/mfa', anchor: 'login-with-security-code' },
 ]"/>
 
@@ -704,7 +704,7 @@ The response to the right is returned when using one of the following methods wh
 - [Log in with login link](#alternate-response-mfa-first-factor-code-3)
 - [Reset password with link credentials](#alternate-response-mfa-first-factor-code-4)
 
-The response contains a `firstFactorCode`, strategies, and channels to use in order to [Send security code](#send-security-code) and [Login with security code](#login-with-security-code) via the MFA endpoints.
+The response contains a `firstFactorCode`, strategies, and channels to use in order to [Send security code](#send-security-code-sms) and [Login with security code](#login-with-security-code) via the MFA endpoints.
 
 ::::
 :::: right
@@ -721,7 +721,7 @@ The response contains a `firstFactorCode`, strategies, and channels to use in or
 
 ---
 
-### Send security code
+### Send security code (SMS)
 
 ::::: row
 :::: left
