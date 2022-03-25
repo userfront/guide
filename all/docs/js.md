@@ -22,7 +22,6 @@ It can be used for the following:
   **MFA methods**
 
   - [sendSms()](#sendsms-options)
-  - [loginWithSecurityCode()](#loginwithsecuritycode-options)
 
 - **User**: read or update information about a logged in user.
 
@@ -469,19 +468,16 @@ Completes the login process using an MFA security code.
 ::::: row
 :::: left
 
-The `firstFactorCode` parameter is obtained in the response of [login()](#login-options) when MFA is enabled for your tenant:
+::: warning Note
+Requires MFA to be enabled for tenant.
 
-```json
-{
-  "message": "OK",
-  "result": {
-    "mode": "live",
-    "firstFactorCode": "304a8def-651c-4ab2-9ca0-1e3fca9e280a",
-    "allowedStrategies": ["securityCode"],
-    "allowedChannels": ["sms"]
-  }
-}
-```
+MFA is currently in beta. If you would like to enable it for your account, please contact us using the chat in the bottom-right.
+:::
+
+| Property          | Type   | Description                                                                                                                                                |
+| :---------------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `firstFactorCode` | String | The string identifier obtained from the [login()](#login-options) response to complete MFA login - see [sendSms()](#sendsms-options) for more information. |
+| `securityCode`    | String | The security code sent to the user's device.                                                                                                               |
 
 ::::
 :::: right
@@ -694,7 +690,7 @@ Sends an SMS to a phone number.
 | _to_              | The phone number where the SMS should be sent. The phone number should be in E.164 format. <br><br>E.164 numbers are formatted [+] [country code] [subscriber number including area code] and can have a maximum of fifteen digits. e.g. +15558675309 |
 | _firstFactorCode_ | A string identifier obtained from the [login()](#login-options) response to complete MFA login.                                                                                                                                                       |
 
-The `firstFactorCode` parameter is obtained in the response of [login()](#login-options) when MFA is enabled for your tenant:
+The `firstFactorCode` parameter is obtained in the response of [login()](#login-options) when **MFA is enabled** for your tenant:
 
 ```json
 {
@@ -738,45 +734,6 @@ Userfront.sendSms({
 ::: caret Return values
 <response-js method="Userfront.sendSms(...)" path="/v0/auth/mfa" verb="post" source="$docsClient"
 error-message="Phone number must be in E.164 format."/>
-:::
-
-::::
-:::::
-
-## loginWithSecurityCode (options)
-
-::::: row
-:::: left
-
-Logs a user in using an MFA security code.
-
-::: warning Note
-Requires MFA to be enabled for tenant.
-
-MFA is currently in beta. If you would like to enable it for your account, please contact us using the chat in the bottom-right.
-:::
-
-| Property          | Type   | Description                                                                                                                                               |
-| :---------------- | :----- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `firstFactorCode` | String | The string identifier obtained from the [login()](#login-options) response to complete MFA login. See [sendSms()](#sendsms-options) for more information. |
-| `securityCode`    | String | The security code sent to the user's device.                                                                                                              |
-
-::::
-:::: right
-
-```js
-import Userfront from "@userfront/core";
-Userfront.init("demo1234");
-
-Userfront.loginWithSecurityCode({
-  firstFactorCode: "a9c9b41c-ce76-4f7e-915a-abf18a36a4ae",
-  securityCode: "123456",
-});
-```
-
-::: caret Return values
-<response-js method="Userfront.loginWithSecurityCode(...)" path="/v0/auth/mfa" verb="post" source="$docsClient"
-error-message="Missing information"/>
 :::
 
 ::::
