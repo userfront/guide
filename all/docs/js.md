@@ -494,7 +494,7 @@ Userfront.login({
 ```
 
 ::: caret Return values
-<response-js method="Userfront.login(...)" path="/v0/auth/mfa" verb="post" source="$docsClient"
+<response-js method="Userfront.login(...)" path="/v0/auth/mfa" verb="put" source="$docsClient"
 error-message="Missing information"/>
 :::
 
