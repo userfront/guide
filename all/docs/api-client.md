@@ -726,7 +726,7 @@ The response contains a `firstFactorCode`, strategies, and channels to use in or
 ::::: row
 :::: left
 
-Send a security code to complete login process.
+Send a security code via SMS to complete login process.
 
 After this request is made, you can perform a [Login with security code](#login-with-security-code) using the security code sent to the user.
 
