@@ -151,7 +151,7 @@ In test mode, Userfront does not send emails.
 
 Response when tenant requires MFA.
 
-See [Multi-factor authentication - First factor code](#the-first-factor-code) for more information on how to request & submit a security code using the information in this response.
+See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a security code using the information in this response.
 
 ::::
 :::: right
@@ -247,7 +247,7 @@ Log in with a password and email/username.
 
 Response when tenant requires MFA.
 
-See [Multi-factor authentication - First factor code](#the-first-factor-code) for more information on how to request & submit a security code using the information in this response.
+See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a security code using the information in this response.
 
 ::::
 :::: right
@@ -422,7 +422,7 @@ Log in using the `token` and `uuid` from a login link.
 
 Response when tenant requires MFA.
 
-See [Multi-factor authentication - First factor code](#the-first-factor-code) for more information on how to request & submit a security code using the information in this response.
+See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a security code using the information in this response.
 
 ::::
 :::: right
@@ -582,7 +582,7 @@ Upon success, returns a JWT access token so that the user can log in directly.
 
 Response when tenant requires MFA.
 
-See [Multi-factor authentication - First factor code](#the-first-factor-code) for more information on how to request & submit a security code using the information in this response.
+See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a security code using the information in this response.
 
 ::::
 :::: right
@@ -675,11 +675,13 @@ In order to invalidate the user's current session, the request must include a va
 ::::: row
 :::: left
 
+When Multi-factor authentication (MFA) is enabled, a user's initial login request will return a `firstFactorCode` instead of their JWT access token.
+
+This `firstFactorCode` can then be sent along with a second factor in order to obtain the JWT access token.
+
 ::: warning Note
 MFA is currently in beta. If you would like to enable it for your account, please contact us using the chat in the bottom-right.
 :::
-
-There are two endpoints to log users in using multi-factor authentication (MFA).
 
 ::::
 :::: right
@@ -692,10 +694,10 @@ There are two endpoints to log users in using multi-factor authentication (MFA).
 ::::
 :::::
 
+### First factor code
+
 ::::: row
 :::: left
-
-### The first factor code
 
 The response to the right is returned when using one of the following methods when **MFA is enabled** for your tenant:
 
@@ -732,9 +734,9 @@ After this request is made, you can perform a [Login with security code](#login-
 
 <parameters path="/v0/auth/mfa" verb="post" source="$docsClient"/>
 
-- `strategy` is one of `allowedStrategies` found in the [first factor code response](#the-first-factor-code).
+- `strategy` is one of `allowedStrategies` found in the [first factor code response](#first-factor-code).
 
-- `channel` is one of `allowedChannels` found in the [first factor code response](#the-first-factor-code).
+- `channel` is one of `allowedChannels` found in the [first factor code response](#first-factor-code).
 
 - `to` phone number must be in E.164 format.
 
@@ -761,9 +763,9 @@ Log a user in using a security code to complete the login process.
 
 <parameters path="/v0/auth/mfa" verb="put" source="$docsClient"/>
 
-- `strategy` is one of `allowedStrategies` found in the [first factor code response](#the-first-factor-code).
+- `strategy` is one of `allowedStrategies` found in the [first factor code response](#first-factor-code).
 
-- `channel` is one of `allowedChannels` found in the [first factor code response](#the-first-factor-code).
+- `channel` is one of `allowedChannels` found in the [first factor code response](#first-factor-code).
 
 - `to` phone number must be in E.164 format.
 
