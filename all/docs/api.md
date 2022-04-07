@@ -678,7 +678,7 @@ You can create and read tenants with standard REST operations.
 
 Creates a new tenant.
 
-<parameters path="/v0/tenants" verb="post" :show-only="['name', 'image']"/>
+<parameters path="/v0/tenants" verb="post" :show-only="['name', 'image', 'data']"/>
 
 ::::
 :::: right
@@ -724,7 +724,7 @@ Reads a tenant record by its `tenantId`.
 
 Updates an existing tenant.
 
-<parameters path="/v0/tenants/{tenantId}" verb="put" :show-only="['name', 'image']"/>
+<parameters path="/v0/tenants/{tenantId}" verb="put" :show-only="['name', 'image', 'data']"/>
 
 ::::
 :::: right
