@@ -725,7 +725,7 @@ import Userfront from "@userfront/core";
 Userfront.init("demo1234");
 
 Userfront.sendSms({
-  type: "securityCode"
+  type: "securityCode",
   to: "+15558675309",
   firstFactorCode: "a9c9b41c-ce76-4f7e-915a-abf18a36a4ae",
 });
