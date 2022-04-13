@@ -16,11 +16,6 @@ It can be used for the following:
   - [resetPassword()](#resetpassword-options)
   - [sendLoginLink()](#sendloginlink-email)
   - [sendResetLink()](#sendresetlink-email)
-
-  ***
-
-  **MFA methods**
-
   - [sendSms()](#sendsms-options)
 
 - **User**: read or update information about a logged in user.
@@ -682,6 +677,9 @@ error-message="Email format is invalid"/>
 
 ## sendSms (options)
 
+::::: row
+:::: left
+
 Sends an SMS to a phone number.
 
 | Option            | Description                                                                                                                                                                                                                                           |
@@ -689,6 +687,10 @@ Sends an SMS to a phone number.
 | _type_            | The type of SMS to send. Currently the only option is `mfa`. See below for more info.                                                                                                                                                                 |
 | _to_              | The phone number where the SMS should be sent. The phone number should be in E.164 format. <br><br>E.164 numbers are formatted [+] [country code] [subscriber number including area code] and can have a maximum of fifteen digits. e.g. +15558675309 |
 | _firstFactorCode_ | A string identifier obtained from the [login()](#login-options) response to complete MFA login.                                                                                                                                                       |
+
+::::
+
+:::: right
 
 The `firstFactorCode` parameter is obtained in the response of [login()](#login-options) when **MFA is enabled** for your tenant:
 
@@ -703,6 +705,9 @@ The `firstFactorCode` parameter is obtained in the response of [login()](#login-
   }
 }
 ```
+
+::::
+:::::
 
 ### Send SMS via type `securityCode`
 
