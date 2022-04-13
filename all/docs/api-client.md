@@ -675,36 +675,38 @@ In order to invalidate the user's current session, the request must include a va
 ::::: row
 :::: left
 
+When Multi-factor authentication (MFA) is enabled, a user's initial login request will return a `firstFactorCode` instead of their JWT access token.
+
+This `firstFactorCode` can then be sent along with a second factor in order to obtain the JWT access token.
+
 ::: warning Note
 MFA is currently in beta. If you would like to enable it for your account, please contact us using the chat in the bottom-right.
 :::
-
-There are two endpoints to log users in using multi-factor authentication (MFA).
 
 ::::
 :::: right
 
 <endpoints :endpoints="[
-  { verb: 'post', path: '/v0/auth/mfa', anchor: 'request-code' },
-  { verb: 'put', path: '/v0/auth/mfa', anchor: 'submit-code' },
+  { verb: 'post', path: '/v0/auth/mfa', anchor: 'send-security-code-sms' },
+  { verb: 'put', path: '/v0/auth/mfa', anchor: 'login-with-security-code' },
 ]"/>
 
 ::::
 :::::
 
+### First factor code
+
 ::::: row
 :::: left
 
-### First factor code
-
-This response that is returned for the following methods when your tenant requires MFA to log in:
+The response to the right is returned when using one of the following methods when **MFA is enabled** for your tenant:
 
 - [Sign up with password](#alternate-response-mfa-first-factor-code)
 - [Log in with password](#alternate-response-mfa-first-factor-code-2)
 - [Log in with login link](#alternate-response-mfa-first-factor-code-3)
 - [Reset password with link credentials](#alternate-response-mfa-first-factor-code-4)
 
-The response contains a `firstFactorCode`, strategies, and channels to use in order to [Request code](#request-code) and [Submit code](#submit-code) via the MFA endpoints.
+The response contains a `firstFactorCode`, strategies, and channels to use in order to [Send security code (SMS)](#send-security-code-sms) and [Login with security code](#login-with-security-code) via the MFA endpoints.
 
 ::::
 :::: right
@@ -721,14 +723,14 @@ The response contains a `firstFactorCode`, strategies, and channels to use in or
 
 ---
 
-### Request code
+### Send security code (SMS)
 
 ::::: row
 :::: left
 
-Request a security code to complete login process.
+Send a security code via SMS to complete login process.
 
-After the request is sent, see [Submit code](#submit-code) to for information on how to submit your security code.
+After this request is made, you can perform a [Login with security code](#login-with-security-code) using the security code sent to the user.
 
 <parameters path="/v0/auth/mfa" verb="post" source="$docsClient"/>
 
@@ -752,12 +754,12 @@ After the request is sent, see [Submit code](#submit-code) to for information on
 
 ---
 
-### Submit code
+### Login with security code
 
 ::::: row
 :::: left
 
-Submit a security code to complete login process.
+Log a user in using a security code to complete the login process.
 
 <parameters path="/v0/auth/mfa" verb="put" source="$docsClient"/>
 

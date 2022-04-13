@@ -16,6 +16,7 @@ It can be used for the following:
   - [resetPassword()](#resetpassword-options)
   - [sendLoginLink()](#sendloginlink-email)
   - [sendResetLink()](#sendresetlink-email)
+  - [sendSms()](#sendsms-options)
 
 - **User**: read or update information about a logged in user.
 
@@ -118,7 +119,7 @@ Userfront.init("demo1234");
 
 Registers a new user with one of the available methods.
 
-| option     | description                                                                                                                                                 |
+| Option     | Description                                                                                                                                                 |
 | :--------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | _method_   | The method for registering. Options are: `password`, `passwordless`, `azure`, `facebook`, `github`,`google`,`linkedin`. See below for more info on methods. |
 | _email_    | The user's email address, which is required for the `password` and `passwordless` methods.                                                                  |
@@ -254,16 +255,18 @@ Userfront.signup({ method: "google" });
 
 Initiates a login for a user with one of the available methods.
 
-| option            | description                                                                                                                                                                |
-| :---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _method_          | The method for logging in. Options are: `password`, `passwordless`, `link`, `azure`, `facebook`, `github`,`google`,`linkedin`, `saml`. See below for more info on methods. |
-| _email_           | The user's email. Used with the `password` and `passwordless` methods.                                                                                                     |
-| _username_        | The user's username. Used only with the `password` method.                                                                                                                 |
-| _emailOrUsername_ | The user's email or username. Used only with the `password` method.                                                                                                        |
-| _password_        | The user's password. Used only with the `password` method.                                                                                                                 |
-| _token_           | The `token=` URL parameter sent in a login link. Used only with the `link` method.                                                                                         |
-| _uuid_            | The `uuid=` URL parameter sent in a login link. Used only with the `link` method.                                                                                          |
-| _redirect_        | Manually set the path to redirect to, or `false` to prevent redirection.                                                                                                   |
+| Option            | Description                                                                                                                                                                       |
+| :---------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _method_          | The method for logging in. Options are: `password`, `passwordless`, `link`, `mfa`, `azure`, `facebook`, `github`,`google`,`linkedin`, `saml`. See below for more info on methods. |
+| _email_           | The user's email. Used with the `password` and `passwordless` methods.                                                                                                            |
+| _username_        | The user's username. Used only with the `password` method.                                                                                                                        |
+| _emailOrUsername_ | The user's email or username. Used only with the `password` method.                                                                                                               |
+| _password_        | The user's password. Used only with the `password` method.                                                                                                                        |
+| _token_           | The `token=` URL parameter sent in a login link. Used only with the `link` method.                                                                                                |
+| _uuid_            | The `uuid=` URL parameter sent in a login link. Used only with the `link` method.                                                                                                 |
+| _redirect_        | Manually set the path to redirect to, or `false` to prevent redirection.                                                                                                          |
+| _firstFactorCode_ | A string identifier obtained from the login response (requires MFA enabled for your tenant) to complete MFA login. Used only with `mfa` method.                                   |
+| _securityCode_    | MFA security code sent to the user's device. Used only with `mfa` method.                                                                                                         |
 
 ### Login via `password` method
 
@@ -453,11 +456,51 @@ Userfront.login({ method: "saml" });
 ::::
 :::::
 
+### Login via `mfa` method
+
+Completes the login process using an MFA security code.
+
+::::: row
+:::: left
+
+::: warning Note
+Requires MFA to be enabled for tenant.
+
+MFA is currently in beta. If you would like to enable it for your account, please contact us using the chat in the bottom-right.
+:::
+
+| Property          | Type   | Description                                                                                                                                                |
+| :---------------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `firstFactorCode` | String | The string identifier obtained from the [login()](#login-options) response to complete MFA login - see [sendSms()](#sendsms-options) for more information. |
+| `securityCode`    | String | The security code sent to the user's device.                                                                                                               |
+
+::::
+:::: right
+
+```js
+import Userfront from "@userfront/core";
+Userfront.init("demo1234");
+
+Userfront.login({
+  method: "mfa",
+  firstFactorCode: "a9c9b41c-ce76-4f7e-915a-abf18a36a4ae",
+  securityCode: "123456",
+});
+```
+
+::: caret Return values
+<response-js method="Userfront.login(...)" path="/v0/auth/mfa" verb="put" source="$docsClient"
+error-message="Missing information"/>
+:::
+
+::::
+:::::
+
 ## logout (options)
 
 Initiates logout for a user.
 
-| option     | description                                                              |
+| Option     | Description                                                              |
 | :--------- | :----------------------------------------------------------------------- |
 | _redirect_ | Manually set the path to redirect to, or `false` to prevent redirection. |
 | _method_   | The method for logging out. Currently only used for SAML.                |
@@ -544,7 +587,7 @@ Userfront.redirectIfLoggedIn();
 
 Resets a user's password, then logs the user in by adding auth tokens to the browser's cookies and redirects the browser to the After-login path.
 
-| option     | required | description                                                 |
+| Option     | Required | Description                                                 |
 | :--------- | -------- | :---------------------------------------------------------- |
 | _password_ | ✓        | The new password to set for the user.                       |
 | _token_    |          | The `token=` URL parameter sent in the password reset link. |
@@ -632,6 +675,75 @@ error-message="Email format is invalid"/>
 ::::
 :::::
 
+## sendSms (options)
+
+::::: row
+:::: left
+
+Sends an SMS to a phone number.
+
+| Option            | Description                                                                                                                                                                                                                                           |
+| :---------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _type_            | The type of SMS to send. Currently the only option is `mfa`. See below for more info.                                                                                                                                                                 |
+| _to_              | The phone number where the SMS should be sent. The phone number should be in E.164 format. <br><br>E.164 numbers are formatted [+] [country code] [subscriber number including area code] and can have a maximum of fifteen digits. e.g. +15558675309 |
+| _firstFactorCode_ | A string identifier obtained from the [login()](#login-options) response to complete MFA login.                                                                                                                                                       |
+
+::::
+
+:::: right
+
+The `firstFactorCode` parameter is obtained in the response of [login()](#login-options) when **MFA is enabled** for your tenant:
+
+```json
+{
+  "message": "OK",
+  "result": {
+    "mode": "live",
+    "firstFactorCode": "304a8def-651c-4ab2-9ca0-1e3fca9e280a",
+    "allowedStrategies": ["securityCode"],
+    "allowedChannels": ["sms"]
+  }
+}
+```
+
+::::
+:::::
+
+### Send SMS via type `securityCode`
+
+::::: row
+:::: left
+
+Sends an SMS containing an MFA security code to the phone number provided.
+
+::: warning Note
+Requires MFA to be enabled for tenant.
+
+MFA is currently in beta. If you would like to enable it for your account, please contact us using the chat in the bottom-right.
+:::
+
+::::
+:::: right
+
+```js
+import Userfront from "@userfront/core";
+Userfront.init("demo1234");
+
+Userfront.sendSms({
+  type: "securityCode",
+  to: "+15558675309",
+  firstFactorCode: "a9c9b41c-ce76-4f7e-915a-abf18a36a4ae",
+});
+```
+
+::: caret Return values
+<response-js method="Userfront.sendSms(...)" path="/v0/auth/mfa" verb="post" source="$docsClient"
+error-message="Phone number must be in E.164 format."/>
+:::
+
+::::
+:::::
+
 # User
 
 ## user
@@ -650,7 +762,7 @@ Userfront.user is intended for frontend use only, to help you display informatio
 ::::: row
 :::: left
 
-| Property      | Type          | Note                                       |
+| Property      | Type          | Description                                |
 | :------------ | :------------ | :----------------------------------------- |
 | `email`       | String        |                                            |
 | `name`        | String        | Full name                                  |
@@ -751,7 +863,7 @@ user.hasRole() should only be used to show or hide public elements like buttons 
 Sensitive information should always rely on server-side checks.
 :::
 
-| option     | description                                                                           |
+| Option     | Description                                                                           |
 | :--------- | :------------------------------------------------------------------------------------ |
 | _tenantId_ | The tenant to check against. Defaults to the tenantId from `Userfront.init(tenantId)` |
 
