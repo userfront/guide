@@ -45,11 +45,11 @@ Based on the response from your old system, Userfront either logs the user in an
 ::::: row
 :::: left
 
-These steps allow you to perform successful password migration:
+To perform a successful password migration:
 
 1. <u>**Import your existing user data into Userfront**</u>, excluding passwords. You can use [CSV upload](/guide/import-export.html) for smaller data sets, or [contact us](mailto:team@userfront.com) for larger data sets.
 
-2. <u>**Set up a passthrough route**</u>. Userfront builds a database of password hashes by passing user login requests through to your old system and observing the responses.
+2. <u>**Set up a passthrough route**</u>. Userfront passes user login requests through to your old system and observes the responses in order to automatically generate a database of password hashes.
 
 3. <u>**Wait for the password transfer window**</u>. Wait as long as desired: typically 1-6 months, or until 90-100% of active users have transferred. As each user's password is verified, Userfront stores their password hash and can handle their subsequent logins directly.
 
@@ -58,7 +58,15 @@ These steps allow you to perform successful password migration:
 ::::
 :::::
 
-## Example of successful login
+## Example of a successful login
+
+::::: row
+:::: left
+
+In this example, we show an existing user's login request during the password transfer window.
+
+::::
+:::::
 
 ::::: row
 :::: left
@@ -84,7 +92,7 @@ This can be done with the toolkit [login form](/guide/toolkit/automatic-login-fo
 ::::: row
 :::: left
 
-Userfront forwards this information to your server based on your desired format, and optionally adds a `passthroughCode`.
+Userfront forwards this information to your old login system based on your desired format, and optionally adds a `passthroughCode`.
 ::::
 :::: right
 
@@ -103,11 +111,11 @@ Userfront forwards this information to your server based on your desired format,
 ::::: row
 :::: left
 
-Your server responds as it normally would, with an optional `passbackCode`.
+Your old login system responds as it normally would, with an optional `passbackCode`.
 
-Typically, your server would respond with either a `200` response for success or a `4XX` response for failure.
+Typically, your old system would respond with either a `200` response for success or a `4XX` response for failure.
 
-In this example, your server responds with `200` for success.
+In this example, your old system responds with `200` for success.
 
 From this point forward, Userfront stores a hash of the user's password and can handle future login requests without the passthrough.
 
@@ -133,6 +141,8 @@ From this point forward, Userfront stores a hash of the user's password and can 
 For all successful login requests (passthrough or not), Userfront generates a standard response based on the [Log in with password](https://userfront.com/docs/api-client.html#log-in-with-password) endpoint and sends this response to the client.
 
 If you are using the toolkit [login form](/guide/toolkit/automatic-login-form-html.html) or Core JS [login()](/docs/js.html#login-via-password-method) method on the client, this response is handled automatically and the user is logged in.
+
+Using this approach, you get a standard set of client-side interactions for all new and existing users while you migrate your login to a new system.
 
 ::::
 :::: right
