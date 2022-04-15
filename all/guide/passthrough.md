@@ -8,7 +8,7 @@ title: Passthrough migration
 ::::: row
 :::: left
 
-This guide describes the "passthrough" strategy for migrating password-based login from your existing system to Userfront.
+This guide describes the **passthrough** strategy for migrating password-based login from your existing system to Userfront.
 
 Using this approach, you get a standard set of client-side interactions for all new and existing users while you migrate your login to a new system.
 
