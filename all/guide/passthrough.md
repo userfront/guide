@@ -8,7 +8,17 @@ title: Passthrough migration
 ::::: row
 :::: left
 
-This guide describes the "passthrough" strategy to migrate existing users with password-based login from your existing system to Userfront.
+This guide describes the "passthrough" strategy for migrating password-based login from your existing system to Userfront.
+
+In general, the steps are:
+
+1. <u>**Import your existing user data into Userfront**</u>, excluding passwords. You can use [CSV upload](/guide/import-export.html) for smaller data sets, or [contact us](mailto:team@userfront.com) for larger data sets.
+
+2. <u>**Set up a passthrough route**</u>. Userfront builds a database of password hashes by passing user login requests through to your old system and observing the responses.
+
+3. <u>**Wait for the password transfer window**</u>. Wait as long as desired: typically 1-6 months, or until 90-100% of active users have transferred. As each user's password is verified, Userfront stores their password hash and can handle their subsequent logins directly.
+
+4. <u>**Disconnect the passthrough**</u>. Users who did not log in during the password transfer window are prompted to reset their password upon their next login.
 
 ::::
 :::: right
@@ -20,7 +30,7 @@ Userfront does not store user passwords in a recoverable format (it stores a [ha
 ::::
 :::::
 
-## How it works
+## How the passthrough works
 
 ::::: row
 :::: left
@@ -114,6 +124,7 @@ If you are using the toolkit [login form](/guide/toolkit/automatic-login-form-ht
 :::: right
 
 ```json
+// Status: 200
 {
   "mode": "live",
   "redirectTo": "https://example.com/path",
@@ -150,15 +161,14 @@ If you are using the toolkit [login form](/guide/toolkit/automatic-login-form-ht
 ::::
 :::::
 
-## Implementation steps
+## Set up a passthrough
 
 ::::: row
 :::: left
 
-1. Import users
-2. Point client-side login to Userfront
-3. Wait
-4. Disconnect old system
+Please [contact us](mailto:team@userfront.com) if you are interested in setting up a passthrough route.
+
+We can work with you to map the passthrough requests and responses to your existing system, as well as assist with any other transition topics or questions you may have.
 
 ::::
 :::::
