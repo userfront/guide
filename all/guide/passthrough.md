@@ -10,15 +10,7 @@ title: Passthrough migration
 
 This guide describes the "passthrough" strategy for migrating password-based login from your existing system to Userfront.
 
-In general, the steps are:
-
-1. <u>**Import your existing user data into Userfront**</u>, excluding passwords. You can use [CSV upload](/guide/import-export.html) for smaller data sets, or [contact us](mailto:team@userfront.com) for larger data sets.
-
-2. <u>**Set up a passthrough route**</u>. Userfront builds a database of password hashes by passing user login requests through to your old system and observing the responses.
-
-3. <u>**Wait for the password transfer window**</u>. Wait as long as desired: typically 1-6 months, or until 90-100% of active users have transferred. As each user's password is verified, Userfront stores their password hash and can handle their subsequent logins directly.
-
-4. <u>**Disconnect the passthrough**</u>. Users who did not log in during the password transfer window are prompted to reset their password upon their next login.
+Using this approach, you get a standard set of client-side interactions for all new and existing users while you migrate your login to a new system.
 
 ::::
 :::: right
@@ -35,9 +27,9 @@ Userfront does not store user passwords in a recoverable format (it stores a [ha
 ::::: row
 :::: left
 
-The first time an existing user attempts to log into your application with Userfront, we forward their information to your old login system using whatever format your existing system requires.
+The first time an existing user attempts to log into your application with Userfront, we forward their request to your old login system using whatever format your old system uses.
 
-Based on the response from the existing system, Userfront either logs the user in and stores their password hash for future use, or rejects the login along with a message based on your old system's response.
+Based on the response from your old system, Userfront either logs the user in and stores their password hash for future use, or rejects the login along with a message based on your old system's response.
 
 ::::
 :::: right
@@ -48,7 +40,25 @@ Based on the response from the existing system, Userfront either logs the user i
 
 :::::
 
-### Example of successful login
+## Passthrough steps
+
+::::: row
+:::: left
+
+These steps allow you to perform successful password migration:
+
+1. <u>**Import your existing user data into Userfront**</u>, excluding passwords. You can use [CSV upload](/guide/import-export.html) for smaller data sets, or [contact us](mailto:team@userfront.com) for larger data sets.
+
+2. <u>**Set up a passthrough route**</u>. Userfront builds a database of password hashes by passing user login requests through to your old system and observing the responses.
+
+3. <u>**Wait for the password transfer window**</u>. Wait as long as desired: typically 1-6 months, or until 90-100% of active users have transferred. As each user's password is verified, Userfront stores their password hash and can handle their subsequent logins directly.
+
+4. <u>**Disconnect the passthrough**</u>. Users who did not log in during the password transfer window are prompted to reset their password upon their next login.
+
+::::
+:::::
+
+## Example of successful login
 
 ::::: row
 :::: left
@@ -99,6 +109,8 @@ Typically, your server would respond with either a `200` response for success or
 
 In this example, your server responds with `200` for success.
 
+From this point forward, Userfront stores a hash of the user's password and can handle future login requests without the passthrough.
+
 ::::
 :::: right
 
@@ -113,10 +125,12 @@ In this example, your server responds with `200` for success.
 ::::
 :::::
 
+#### Response to the client
+
 ::::: row
 :::: left
 
-Userfront generates a standard response based on the [Log in with password](https://userfront.com/docs/api-client.html#log-in-with-password) endpoint and sends this response to the client.
+For all successful login requests (passthrough or not), Userfront generates a standard response based on the [Log in with password](https://userfront.com/docs/api-client.html#log-in-with-password) endpoint and sends this response to the client.
 
 If you are using the toolkit [login form](/guide/toolkit/automatic-login-form-html.html) or Core JS [login()](/docs/js.html#login-via-password-method) method on the client, this response is handled automatically and the user is logged in.
 
