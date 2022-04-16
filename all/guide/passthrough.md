@@ -51,9 +51,9 @@ To perform a successful password migration:
 
 2. <u>**Set up a passthrough route**</u>. Userfront passes user login requests through to your old system and observes the responses in order to automatically generate a database of password hashes.
 
-3. <u>**Wait for the password transfer window**</u>. Wait as long as desired: typically 1-6 months, or until 90-100% of active users have transferred. As each user's password is verified, Userfront stores their password hash and can handle their subsequent logins directly.
+3. <u>**Choose your password transfer window**</u>. Run the passthrough for as long as desired: typically 1-6 months, or until 90-100% of active users have transferred. As each user's password is verified, Userfront stores their password hash and can handle their subsequent logins directly. Userfront also gives you regular statistics about the transfer process.
 
-4. <u>**Disconnect the passthrough**</u>. Users who did not log in during the password transfer window are prompted to reset their password upon their next login.
+4. <u>**Once you are finished transferring, disconnect the passthrough**</u>. Users who did not log in during the password transfer window are prompted to reset their password upon their next login.
 
 ::::
 :::::
