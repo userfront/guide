@@ -130,7 +130,7 @@ Register a new user with an email and password.
 
 By default, Userfront sends new users a welcome email to confirm their account. The link in this email contains a `uuid` and `token` that allow login the same way as a [login link](/docs/api-client.html#log-in-with-login-link).
 
-You can disable this email with the `noSignupEmail` parameter above.
+You can disable this email with the `options.noSignupEmail` parameter above.
 
 In test mode, Userfront does not send emails.
 
@@ -189,10 +189,10 @@ If the user already exists, sends them a login link email. See [send login link 
 ::::
 :::::
 
+#### Test mode
+
 ::::: row
 :::: left
-
-#### Test mode
 
 In test mode, Userfront does not send emails. Instead, the API response will contain a `link` attribute that can be followed directly to log in.
 
@@ -204,18 +204,18 @@ In test mode, Userfront does not send emails. Instead, the API response will con
 ::::
 :::::
 
+#### Welcome / signup email
+
 ::::: row
 :::: left
 
-#### Welcome / signup email
-
 By default, Userfront sends new users a welcome email to confirm their account. The link in this email contains a `uuid` and `token` and works the same way as a [login link](/docs/api-client.html#log-in-with-login-link).
 
-You can disable this email with the `noSignupEmail` parameter above.
+You can disable this email with the `options.noSignupEmail` parameter above.
 ::::
 :::: right
 
-<response-json-custom title="Response (noSignupEmail: true)" :response="{ message: 'OK' }"/>
+<response-json-custom title="Response (options.noSignupEmail: true)" :response="{ message: 'OK' }"/>
 ::::
 :::::
 
@@ -237,6 +237,21 @@ Log in with a password and email/username.
 
 <response-json path="/v0/auth/basic" verb="post" source="$docsClient"/>
 
+::::
+:::::
+
+#### Password reset email
+
+::::: row
+:::: left
+
+By default, Userfront sends a password reset link email to users when they try to log in with a password but have not yet set a password. The link in this email contains a `uuid` and `token` and can be used to [reset password with link credentials](docs/api-client.html#reset-password-with-link-credentials).
+
+You can disable this email with the `options.noResetEmail` parameter above.
+::::
+:::: right
+
+<response-json-custom title="Response (options.noResetEmail: true)" :response='{"statusCode":400,"error":"Bad Request","message":"Incorrect email or password"}'/>
 ::::
 :::::
 
