@@ -233,7 +233,7 @@ Log in with a password and email/username.
 ::::
 :::: right
 
-<code-samples-client path="/v0/auth/basic" verb="post"/>
+<code-samples-client path="/v0/auth/basic" verb="post" :show-only="['password','emailOrUsername','tenantId','options']"/>
 
 <response-json path="/v0/auth/basic" verb="post" source="$docsClient"/>
 
@@ -535,7 +535,7 @@ Generate and send a password reset link email.
 ::::
 :::: right
 
-<code-samples-client path="/v0/auth/reset/link" verb="post"/>
+<code-samples-client path="/v0/auth/reset/link" verb="post" :show-only="['email','tenantId','options']"/>
 
 <response-json path="/v0/auth/reset/link" verb="post" source="$docsClient"/>
 
@@ -632,7 +632,7 @@ You can process the account verification link's `token` and `uuid` credentials t
 ::::
 :::: right
 
-<code-samples-client path="/v0/auth/verify/link" verb="post"/>
+<code-samples-client path="/v0/auth/verify/link" verb="post":show-only="['email','userId','userUuid','tenantId','options']"/>
 
 <response-json path="/v0/auth/verify/link" verb="post" source="$docsClient"/>
 
