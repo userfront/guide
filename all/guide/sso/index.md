@@ -90,6 +90,17 @@ Your SSO provider will have 2 pieces of information you need:
 
 Locate these 2 pieces of information so that you can add them to Userfront.
 
+:::warning Sign in with Apple
+
+- The "Client secret" is a Key created and downloaded in Apple Developer
+
+You will need the following additional information to add Apple SSO in the Userfront dashboard:
+
+3. Key ID (identifier of your Key above)
+4. Team ID
+
+:::
+
 ::::
 :::: right
 
