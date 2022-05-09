@@ -702,8 +702,8 @@ MFA is currently in beta. If you would like to enable it for your account, pleas
 :::: right
 
 <endpoints :endpoints="[
-  { verb: 'post', path: '/v0/auth/mfa', anchor: 'send-security-code-sms' },
-  { verb: 'put', path: '/v0/auth/mfa', anchor: 'login-with-security-code' },
+  { verb: 'post', path: '/v0/auth/mfa', anchor: 'send-verification-code-sms' },
+  { verb: 'put', path: '/v0/auth/mfa', anchor: 'login-with-verification-code' },
 ]"/>
 
 ::::
@@ -721,7 +721,7 @@ The response to the right is returned when using one of the following methods wh
 - [Log in with login link](#alternate-response-mfa-first-factor-code-3)
 - [Reset password with link credentials](#alternate-response-mfa-first-factor-code-4)
 
-The response contains a `firstFactorCode`, strategies, and channels to use in order to [Send verification code (SMS)](#send-security-code-sms) and [Login with verification code](#login-with-security-code) via the MFA endpoints.
+The response contains a `firstFactorCode`, strategies, and channels to use in order to [Send verification code (SMS)](#send-verification-code-sms) and [Login with verification code](#login-with-verification-code) via the MFA endpoints.
 
 ::::
 :::: right
@@ -745,7 +745,7 @@ The response contains a `firstFactorCode`, strategies, and channels to use in or
 
 Send a verification code via SMS to complete login process.
 
-After this request is made, you can perform a [Login with verification code](#login-with-security-code) using the verification code sent to the user.
+After this request is made, you can perform a [Login with verification code](#login-with-verification-code) using the verification code sent to the user.
 
 <parameters path="/v0/auth/mfa" verb="post" source="$docsClient"/>
 
