@@ -106,7 +106,7 @@ Most of these actions are also implemented with helper functions in the [Core JS
   { verb: 'get', path: '/v0/auth/refresh', anchor: 'refresh-jwt-access-token' },
   { verb: 'post', path: '/v0/auth/reset/link', anchor: 'send-password-reset-email' },
   { verb: 'put', path: '/v0/auth/reset', anchor: 'reset-password-with-link-credentials' },
-  { verb: 'post', path: '/v0/auth/verify/link', anchor: 'send-account-verification-email' },
+  { verb: 'post', path: '/v0/auth/verify/email', anchor: 'send-account-verification-email' },
   { verb: 'get', path: '/v0/auth/logout', anchor: 'log-out' },
 ]"/>
 
@@ -151,7 +151,7 @@ In test mode, Userfront does not send emails.
 
 Response when tenant requires MFA.
 
-See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a security code using the information in this response.
+See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a verification code using the information in this response.
 
 ::::
 :::: right
@@ -159,7 +159,7 @@ See [Multi-factor authentication - First factor code](#first-factor-code) for mo
 <response-json-custom title="Response (MFA - First factor code)" :response="{ message: 'OK', result: {
   mode: 'live',
   firstFactorCode: '304a8def-651c-4ab2-9ca0-1e3fca9e280a',
-  allowedStrategies: ['securityCode'],
+  allowedStrategies: ['verificationCode'],
   allowedChannels: ['sms'],
 }}"/>
 
@@ -262,7 +262,7 @@ You can disable this email with the `options.noResetEmail` parameter above.
 
 Response when tenant requires MFA.
 
-See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a security code using the information in this response.
+See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a verification code using the information in this response.
 
 ::::
 :::: right
@@ -270,7 +270,7 @@ See [Multi-factor authentication - First factor code](#first-factor-code) for mo
 <response-json-custom title="Response (MFA - First factor code)" :response="{ message: 'OK', result: {
   mode: 'live',
   firstFactorCode: '304a8def-651c-4ab2-9ca0-1e3fca9e280a',
-  allowedStrategies: ['securityCode'],
+  allowedStrategies: ['verificationCode'],
   allowedChannels: ['sms'],
 }}"/>
 
@@ -437,7 +437,7 @@ Log in using the `token` and `uuid` from a login link.
 
 Response when tenant requires MFA.
 
-See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a security code using the information in this response.
+See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a verification code using the information in this response.
 
 ::::
 :::: right
@@ -445,7 +445,7 @@ See [Multi-factor authentication - First factor code](#first-factor-code) for mo
 <response-json-custom title="Response (MFA - First factor code)" :response="{ message: 'OK', result: {
   mode: 'live',
   firstFactorCode: '304a8def-651c-4ab2-9ca0-1e3fca9e280a',
-  allowedStrategies: ['securityCode'],
+  allowedStrategies: ['verificationCode'],
   allowedChannels: ['sms'],
 }}"/>
 
@@ -597,7 +597,7 @@ Upon success, returns a JWT access token so that the user can log in directly.
 
 Response when tenant requires MFA.
 
-See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a security code using the information in this response.
+See [Multi-factor authentication - First factor code](#first-factor-code) for more information on how to request & submit a verification code using the information in this response.
 
 ::::
 :::: right
@@ -605,7 +605,7 @@ See [Multi-factor authentication - First factor code](#first-factor-code) for mo
 <response-json-custom title="Response (MFA - First factor code)" :response="{ message: 'OK', result: {
   mode: 'live',
   firstFactorCode: '304a8def-651c-4ab2-9ca0-1e3fca9e280a',
-  allowedStrategies: ['securityCode'],
+  allowedStrategies: ['verificationCode'],
   allowedChannels: ['sms'],
 }}"/>
 
@@ -627,14 +627,14 @@ If the user submitted a new email address to this endpoint, their email address 
 
 You can process the account verification link's `token` and `uuid` credentials the same way as login link credentials: with [Log in with login link](/docs/api-client.html#log-in-with-login-link).
 
-<parameters path="/v0/auth/verify/link" verb="post" source="$docsClient"/>
+<parameters path="/v0/auth/verify/email" verb="post" source="$docsClient"/>
 
 ::::
 :::: right
 
-<code-samples-client path="/v0/auth/verify/link" verb="post":show-only="['email','userId','userUuid','tenantId','options']"/>
+<code-samples-client path="/v0/auth/verify/email" verb="post":show-only="['email','userId','userUuid','tenantId','options']"/>
 
-<response-json path="/v0/auth/verify/link" verb="post" source="$docsClient"/>
+<response-json path="/v0/auth/verify/email" verb="post" source="$docsClient"/>
 
 ::::
 :::::
@@ -702,8 +702,8 @@ MFA is currently in beta. If you would like to enable it for your account, pleas
 :::: right
 
 <endpoints :endpoints="[
-  { verb: 'post', path: '/v0/auth/mfa', anchor: 'send-security-code-sms' },
-  { verb: 'put', path: '/v0/auth/mfa', anchor: 'login-with-security-code' },
+  { verb: 'post', path: '/v0/auth/mfa', anchor: 'send-verification-code-sms' },
+  { verb: 'put', path: '/v0/auth/mfa', anchor: 'login-with-verification-code' },
 ]"/>
 
 ::::
@@ -721,7 +721,7 @@ The response to the right is returned when using one of the following methods wh
 - [Log in with login link](#alternate-response-mfa-first-factor-code-3)
 - [Reset password with link credentials](#alternate-response-mfa-first-factor-code-4)
 
-The response contains a `firstFactorCode`, strategies, and channels to use in order to [Send security code (SMS)](#send-security-code-sms) and [Login with security code](#login-with-security-code) via the MFA endpoints.
+The response contains a `firstFactorCode`, strategies, and channels to use in order to [Send verification code (SMS)](#send-verification-code-sms) and [Login with verification code](#login-with-verification-code) via the MFA endpoints.
 
 ::::
 :::: right
@@ -729,7 +729,7 @@ The response contains a `firstFactorCode`, strategies, and channels to use in or
 <response-json-custom title="Response (MFA - First factor code)" :response="{ message: 'OK', result: {
   mode: 'live',
   firstFactorCode: '304a8def-651c-4ab2-9ca0-1e3fca9e280a',
-  allowedStrategies: ['securityCode'],
+  allowedStrategies: ['verificationCode'],
   allowedChannels: ['sms'],
 }}"/>
 
@@ -738,14 +738,14 @@ The response contains a `firstFactorCode`, strategies, and channels to use in or
 
 ---
 
-### Send security code (SMS)
+### Send verification code (SMS)
 
 ::::: row
 :::: left
 
-Send a security code via SMS to complete login process.
+Send a verification code via SMS to complete login process.
 
-After this request is made, you can perform a [Login with security code](#login-with-security-code) using the security code sent to the user.
+After this request is made, you can perform a [Login with verification code](#login-with-verification-code) using the verification code sent to the user.
 
 <parameters path="/v0/auth/mfa" verb="post" source="$docsClient"/>
 
@@ -769,12 +769,12 @@ After this request is made, you can perform a [Login with security code](#login-
 
 ---
 
-### Login with security code
+### Login with verification code
 
 ::::: row
 :::: left
 
-Log a user in using a security code to complete the login process.
+Log a user in using a verification code to complete the login process.
 
 <parameters path="/v0/auth/mfa" verb="put" source="$docsClient"/>
 
