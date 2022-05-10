@@ -119,15 +119,15 @@ Userfront.init("demo1234");
 
 Registers a new user with one of the available methods.
 
-| Option     | Description                                                                                                                                                 |
-| :--------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _method_   | The method for registering. Options are: `password`, `passwordless`, `azure`, `facebook`, `github`,`google`,`linkedin`. See below for more info on methods. |
-| _email_    | The user's email address, which is required for the `password` and `passwordless` methods.                                                                  |
-| _username_ | The user's username (optional). Used only with the `password` and `passwordless` methods.                                                                   |
-| _name_     | The user's name (optional). Used only with the `password` and `passwordless` methods.                                                                       |
-| _data_     | The user's custom data object (optional). Used only with the `password` and `passwordless` methods.                                                         |
-| _password_ | The user's password. Used only with the `password`.                                                                                                         |
-| _redirect_ | Manually set the path to redirect to, or `false` to prevent redirection.                                                                                    |
+| Option     | Description                                                                                                                                                          |
+| :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _method_   | The method for registering. Options are: `password`, `passwordless`, `apple`, `azure`, `facebook`, `github`,`google`,`linkedin`. See below for more info on methods. |
+| _email_    | The user's email address, which is required for the `password` and `passwordless` methods.                                                                           |
+| _username_ | The user's username (optional). Used only with the `password` and `passwordless` methods.                                                                            |
+| _name_     | The user's name (optional). Used only with the `password` and `passwordless` methods.                                                                                |
+| _data_     | The user's custom data object (optional). Used only with the `password` and `passwordless` methods.                                                                  |
+| _password_ | The user's password. Used only with the `password`.                                                                                                                  |
+| _redirect_ | Manually set the path to redirect to, or `false` to prevent redirection.                                                                                             |
 
 ### Signup via `password` method
 
@@ -215,7 +215,7 @@ error-message="Email format is invalid"/>
 ::::
 :::::
 
-### Signup via `azure`, `facebook`, `github`,`google`, or `linkedin` methods
+### Signup via `apple`, `azure`, `facebook`, `github`, `google`, or `linkedin` methods
 
 <br/>
 
@@ -241,8 +241,8 @@ Both methods initiate the sign-on flow:
 import Userfront from "@userfront/core";
 Userfront.init("demo1234");
 
-// Example with Azure
-Userfront.signup({ method: "azure" });
+// Example with GitHub
+Userfront.signup({ method: "github" });
 
 // Example with Google
 Userfront.signup({ method: "google" });
@@ -255,18 +255,19 @@ Userfront.signup({ method: "google" });
 
 Initiates a login for a user with one of the available methods.
 
-| Option             | Description                                                                                                                                                                       |
-| :----------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _method_           | The method for logging in. Options are: `password`, `passwordless`, `link`, `mfa`, `azure`, `facebook`, `github`,`google`,`linkedin`, `saml`. See below for more info on methods. |
-| _email_            | The user's email. Used with the `password` and `passwordless` methods.                                                                                                            |
-| _username_         | The user's username. Used only with the `password` method.                                                                                                                        |
-| _emailOrUsername_  | The user's email or username. Used only with the `password` method.                                                                                                               |
-| _password_         | The user's password. Used only with the `password` method.                                                                                                                        |
-| _token_            | The `token=` URL parameter sent in a login link. Used only with the `link` method.                                                                                                |
-| _uuid_             | The `uuid=` URL parameter sent in a login link. Used only with the `link` method.                                                                                                 |
-| _redirect_         | Manually set the path to redirect to, or `false` to prevent redirection.                                                                                                          |
-| _firstFactorCode_  | A string identifier obtained from the login response (requires MFA enabled for your tenant) to complete MFA login. Used only with `mfa` method.                                   |
+| Option            | Description                                                                                                                                                                                |
+| :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _method_          | The method for logging in. Options are: `password`, `passwordless`, `link`, `mfa`, `apple`, `azure`, `facebook`, `github`,`google`,`linkedin`, `saml`. See below for more info on methods. |
+| _email_           | The user's email. Used with the `password` and `passwordless` methods.                                                                                                                     |
+| _username_        | The user's username. Used only with the `password` method.                                                                                                                                 |
+| _emailOrUsername_ | The user's email or username. Used only with the `password` method.                                                                                                                        |
+| _password_        | The user's password. Used only with the `password` method.                                                                                                                                 |
+| _token_           | The `token=` URL parameter sent in a login link. Used only with the `link` method.                                                                                                         |
+| _uuid_            | The `uuid=` URL parameter sent in a login link. Used only with the `link` method.                                                                                                          |
+| _redirect_        | Manually set the path to redirect to, or `false` to prevent redirection.                                                                                                                   |
+| _firstFactorCode_ | A string identifier obtained from the login response (requires MFA enabled for your tenant) to complete MFA login. Used only with `mfa` method.                                            |
 | _verificationCode_ | MFA verification code sent to the user's device. Used only with `mfa` method.                                                                                                     |
+
 
 ### Login via `password` method
 
@@ -384,7 +385,7 @@ error-message="Invalid token"/>
 ::::
 :::::
 
-### Login via `azure`, `facebook`, `github`,`google`, or `linkedin` methods
+### Login via `apple`, `azure`, `facebook`, `github`, `google`, or `linkedin` methods
 
 <br />
 
@@ -410,8 +411,8 @@ Both methods initiate the sign-on flow:
 import Userfront from "@userfront/core";
 Userfront.init("demo1234");
 
-// Example with Azure
-Userfront.login({ method: "azure" });
+// Example with GitHub
+Userfront.login({ method: "github" });
 
 // Example with Google
 Userfront.login({ method: "google" });

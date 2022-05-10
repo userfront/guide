@@ -467,7 +467,7 @@ The SSO provider must already be configured.
 
 The `:provider` value should be the lowercased name of the SSO provider.
 
-For example: `google`, `github`, `linkedin`, `facebook`, or `azure`.
+Example: `github`
 
 #### Query strings
 
@@ -487,7 +487,7 @@ For example: `google`, `github`, `linkedin`, `facebook`, or `azure`.
     title="JavaScript"
     language="js"
     code="// Example link
-https://api.userfront.com/v0/auth/google/login?tenant_id=demo1234&origin=https://example.com"
+https://api.userfront.com/v0/auth/github/login?tenant_id=demo1234&origin=https://example.com"
   />
 </code-group-custom>
 
