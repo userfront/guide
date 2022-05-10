@@ -106,7 +106,7 @@ Most of these actions are also implemented with helper functions in the [Core JS
   { verb: 'get', path: '/v0/auth/refresh', anchor: 'refresh-jwt-access-token' },
   { verb: 'post', path: '/v0/auth/reset/link', anchor: 'send-password-reset-email' },
   { verb: 'put', path: '/v0/auth/reset', anchor: 'reset-password-with-link-credentials' },
-  { verb: 'post', path: '/v0/auth/verify/link', anchor: 'send-account-verification-email' },
+  { verb: 'post', path: '/v0/auth/verify/email', anchor: 'send-account-verification-email' },
   { verb: 'get', path: '/v0/auth/logout', anchor: 'log-out' },
 ]"/>
 
@@ -627,14 +627,14 @@ If the user submitted a new email address to this endpoint, their email address 
 
 You can process the account verification link's `token` and `uuid` credentials the same way as login link credentials: with [Log in with login link](/docs/api-client.html#log-in-with-login-link).
 
-<parameters path="/v0/auth/verify/link" verb="post" source="$docsClient"/>
+<parameters path="/v0/auth/verify/email" verb="post" source="$docsClient"/>
 
 ::::
 :::: right
 
-<code-samples-client path="/v0/auth/verify/link" verb="post":show-only="['email','userId','userUuid','tenantId','options']"/>
+<code-samples-client path="/v0/auth/verify/email" verb="post":show-only="['email','userId','userUuid','tenantId','options']"/>
 
-<response-json path="/v0/auth/verify/link" verb="post" source="$docsClient"/>
+<response-json path="/v0/auth/verify/email" verb="post" source="$docsClient"/>
 
 ::::
 :::::
