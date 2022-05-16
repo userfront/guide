@@ -84,6 +84,23 @@ Some `4xx` errors that could be handled programmatically (e.g. a token is expire
 ::::
 :::::
 
+### Error response format
+
+::::: row
+:::: left
+
+Errors contain a `statusCode`, `message`, and `error` object.
+
+The `message` describes what went wrong for the request, while the `error` object contains additional information about the error.
+
+::::
+:::: right
+
+<response-json-custom title="Error response" :response='{"statusCode":400,"message":"Incorrect email or password","error":{"type":"bad_request_error"}}'/>
+
+::::
+:::::
+
 ## Authentication actions
 
 ::::: row
@@ -245,13 +262,13 @@ Log in with a password and email/username.
 ::::: row
 :::: left
 
-By default, Userfront sends a password reset link email to users when they try to log in with a password but have not yet set a password. The link in this email contains a `uuid` and `token` and can be used to [reset password with link credentials](docs/api-client.html#reset-password-with-link-credentials).
+By default, Userfront sends a password reset link email to users when they try to log in with a password but have not yet set a password.
 
-You can disable this email with the `options.noResetEmail` parameter above.
+You can disable this email with the `options.noResetEmail` parameter, which will then return an error of the type `"intended_error"`. This distinguishes the request from a user who has a password; their error would be `"bad_request_error"`
 ::::
 :::: right
 
-<response-json-custom title="Response (options.noResetEmail: true)" :response='{"statusCode":400,"error":"Bad Request","message":"Incorrect email or password"}'/>
+<response-json-custom title="Response (options.noResetEmail: true)" :response='{"statusCode":400,"message":"Incorrect email or password","error":{"type":"intended_error"}}'/>
 ::::
 :::::
 
@@ -955,3 +972,7 @@ description="The user's UUID."
 "/v0/keys/jwt",
 ::::
 ::::: -->
+
+```
+
+```
