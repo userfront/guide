@@ -94,10 +94,20 @@ Locate these 2 pieces of information so that you can add them to Userfront.
 
 - The "Client secret" is a Key created and downloaded in Apple Developer
 
-You will need the following additional information to add Apple SSO in the Userfront dashboard:
+You will need to add the following additional information in the Userfront dashboard:
 
 3. Key ID (identifier of your Key above)
 4. Team ID
+
+:::
+
+:::warning Azure SSO with single tenant
+
+By default, Userfront is configured to work with multi-tenant Azure applications.
+
+You will need to add the following additional information in the Userfront dashboard:
+
+3. Azure tenant ID
 
 :::
 
