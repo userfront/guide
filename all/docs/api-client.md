@@ -128,7 +128,7 @@ Most of these actions are also implemented with helper functions in the [Core JS
   { verb: 'post', path: '/v0/auth/reset/link', anchor: 'send-password-reset-email' },
   { verb: 'put', path: '/v0/auth/reset', anchor: 'reset-password-with-link-credentials' },
   { verb: 'post', path: '/v0/auth/verify/email', anchor: 'send-account-verification-email' },
-  { verb: 'post', path: '/v0/auth/verify/phone', anchor: 'send-account-verification-sms' },
+  { verb: 'post', path: '/v0/auth/verify/phone', anchor: 'verify-a-phone-number' },
   { verb: 'get', path: '/v0/auth/logout', anchor: 'log-out' },
 ]"/>
 
