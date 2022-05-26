@@ -119,11 +119,16 @@ Most of these actions are also implemented with helper functions in the [Core JS
   { verb: 'put', path: '/v0/auth/basic', anchor: 'update-own-password' },
   { verb: 'post', path: '/v0/auth/link', anchor: 'send-login-link-email' },
   { verb: 'put', path: '/v0/auth/link', anchor: 'log-in-with-login-link' },
+  { verb: 'post', path: '/v0/auth/code', anchor: 'send-verification-code' },
+  { verb: 'put', path: '/v0/auth/code', anchor: 'log-in-with-verification-code' },
+  { verb: 'get', path: '/v0/auth/totp', anchor: 'set-up-totp' },
+  { verb: 'post', path: '/v0/auth/totp', anchor: 'log-in-with-totp' },
   { verb: 'get', path: '/v0/auth/{provider}/login', anchor: 'log-in-with-sso' },
   { verb: 'get', path: '/v0/auth/refresh', anchor: 'refresh-jwt-access-token' },
   { verb: 'post', path: '/v0/auth/reset/link', anchor: 'send-password-reset-email' },
   { verb: 'put', path: '/v0/auth/reset', anchor: 'reset-password-with-link-credentials' },
   { verb: 'post', path: '/v0/auth/verify/email', anchor: 'send-account-verification-email' },
+  { verb: 'post', path: '/v0/auth/verify/phone', anchor: 'send-account-verification-sms' },
   { verb: 'get', path: '/v0/auth/logout', anchor: 'log-out' },
 ]"/>
 
@@ -471,6 +476,65 @@ See [Multi-factor authentication - First factor code](#first-factor-code) for mo
 
 ---
 
+### Send verification code
+
+::::: row
+:::: left
+
+Generate and send a 6-digit verification code by SMS or email.
+
+<parameters path="/v0/auth/code" verb="post" source="$docsClient"/>
+
+::::
+:::: right
+
+<code-samples-client path="/v0/auth/code" verb="post" :show-only="['tenantId','channel','phoneNumber']"/>
+
+<response-json path="/v0/auth/code" verb="post" source="$docsClient"/>
+
+::::
+:::::
+
+::::: row
+:::: left
+
+#### Test mode
+
+In test mode, Userfront does not send SMS messages or emails. Instead, the API response will contain the verification code directly.
+
+::::
+:::: right
+
+<response-json-custom title="Response (test mode)" :response="{ message: 'OK', result: { phoneNumber: '+15558675309', channel: 'sms', verificationCode: '123456' }}"/>
+
+::::
+:::::
+
+---
+
+### Log in with verification code
+
+::::: row
+:::: left
+
+Log in using a 6-digit verification code.
+
+The request must use the same `channel` and `phoneNumber` / `email` as were used to generate the verification code.
+
+<parameters path="/v0/auth/code" verb="put" source="$docsClient"/>
+
+::::
+:::: right
+
+<code-samples-client path="/v0/auth/code" verb="put" :show-only="['tenantId','channel','phoneNumber','verificationCode']"/>
+
+<response-json path="/v0/auth/code" verb="put" source="$docsClient"/>
+
+::::
+:::::
+
+---
+
 ### Log in with SSO
 
 ::::: row
@@ -671,15 +735,47 @@ In test mode, Userfront does not send emails. Instead, the API response will con
 ::::
 :::::
 
+---
+
+### Verify a phone number
+
 ::::: row
 :::: left
 
-#### Generate link credentials without sending email
+Generate a verification code and send it to a phone number.
 
-You can generate account verification link credentials to use in your own custom emails by using the [generate link credentials](/docs/api.html#generate-link-credentials) endpoint.
+To add a new phone number for a user, the request must include a valid JWT access token in the `Authorization` header.
+
+After a user submits the verification code to the [verification code endpoint](#log-in-with-verification-code), their phone number is verified and can be used in login and MFA flows.
+
+<parameters path="/v0/auth/verify/phone" verb="post" source="$docsClient" :show-only="['phoneNumber','userId','userUuid','tenantId']"/>
+
+::::
+:::: right
+
+<code-samples-client path="/v0/auth/verify/phone" verb="post" :show-only="['phoneNumber','userId','tenantId']" show-token="access"/>
+
+<response-json path="/v0/auth/verify/phone" verb="post" source="$docsClient"/>
 
 ::::
 :::::
+
+::::: row
+:::: left
+
+#### Test mode
+
+In test mode, Userfront does not send SMS messages. Instead, the API response will contain the verification code directly.
+
+::::
+:::: right
+
+<response-json-custom title="Response (test mode)" :response="{ message: 'OK', result: { channel: 'sms', phoneNumber: '+15558675309', verificationCode: '123456' }}"/>
+
+::::
+:::::
+
+---
 
 ### Log out
 
@@ -707,21 +803,13 @@ In order to invalidate the user's current session, the request must include a va
 ::::: row
 :::: left
 
-When Multi-factor authentication (MFA) is enabled, a user's initial login request will return a `firstFactorCode` instead of their JWT access token.
-
-This `firstFactorCode` can then be sent along with a second factor in order to obtain the JWT access token.
-
 ::: warning Note
 MFA is currently in beta. If you would like to enable it for your account, please contact us using the chat in the bottom-right.
 :::
 
-::::
-:::: right
+When Multi-factor authentication (MFA) is enabled, a user's initial login request will return a `firstFactorCode` instead of their JWT access token.
 
-<endpoints :endpoints="[
-  { verb: 'post', path: '/v0/auth/mfa', anchor: 'send-verification-code-sms' },
-  { verb: 'put', path: '/v0/auth/mfa', anchor: 'login-with-verification-code' },
-]"/>
+This `firstFactorCode` can then be sent along with a second factor in order to obtain the JWT access token.
 
 ::::
 :::::
@@ -731,14 +819,7 @@ MFA is currently in beta. If you would like to enable it for your account, pleas
 ::::: row
 :::: left
 
-The response to the right is returned when using one of the following methods when **MFA is enabled** for your tenant:
-
-- [Sign up with password](#alternate-response-mfa-first-factor-code)
-- [Log in with password](#alternate-response-mfa-first-factor-code-2)
-- [Log in with login link](#alternate-response-mfa-first-factor-code-3)
-- [Reset password with link credentials](#alternate-response-mfa-first-factor-code-4)
-
-The response contains a `firstFactorCode`, strategies, and channels to use in order to [Send verification code (SMS)](#send-verification-code-sms) and [Login with verification code](#login-with-verification-code) via the MFA endpoints.
+The response to the right is returned when using one of the following methods when **MFA is enabled** for your tenant.
 
 ::::
 :::: right
@@ -749,66 +830,6 @@ The response contains a `firstFactorCode`, strategies, and channels to use in or
   allowedStrategies: ['verificationCode'],
   allowedChannels: ['sms'],
 }}"/>
-
-::::
-:::::
-
----
-
-### Send verification code (SMS)
-
-::::: row
-:::: left
-
-Send a verification code via SMS to complete login process.
-
-After this request is made, you can perform a [Login with verification code](#login-with-verification-code) using the verification code sent to the user.
-
-<parameters path="/v0/auth/mfa" verb="post" source="$docsClient"/>
-
-- `strategy` is one of `allowedStrategies` found in the [first factor code response](#first-factor-code).
-
-- `channel` is one of `allowedChannels` found in the [first factor code response](#first-factor-code).
-
-- `to` phone number must be in E.164 format.
-
-  E.164 numbers are formatted [+] [country code] [subscriber number including area code] and can have a maximum of fifteen digits. e.g. `+15558675309`
-
-::::
-:::: right
-
-<code-samples-client path="/v0/auth/mfa" verb="post" />
-
-<response-json path="/v0/auth/mfa" verb="post" source="$docsClient"/>
-
-::::
-:::::
-
----
-
-### Login with verification code
-
-::::: row
-:::: left
-
-Log a user in using a verification code to complete the login process.
-
-<parameters path="/v0/auth/mfa" verb="put" source="$docsClient"/>
-
-- `strategy` is one of `allowedStrategies` found in the [first factor code response](#first-factor-code).
-
-- `channel` is one of `allowedChannels` found in the [first factor code response](#first-factor-code).
-
-- `to` phone number must be in E.164 format.
-
-  E.164 numbers are formatted [+] [country code] [subscriber number including area code] and can have a maximum of fifteen digits. e.g. `+15558675309`
-
-::::
-:::: right
-
-<code-samples-client path="/v0/auth/mfa" verb="put" />
-
-<response-json path="/v0/auth/mfa" verb="put" source="$docsClient"/>
 
 ::::
 :::::
