@@ -119,11 +119,16 @@ Most of these actions are also implemented with helper functions in the [Core JS
   { verb: 'put', path: '/v0/auth/basic', anchor: 'update-own-password' },
   { verb: 'post', path: '/v0/auth/link', anchor: 'send-login-link-email' },
   { verb: 'put', path: '/v0/auth/link', anchor: 'log-in-with-login-link' },
+  { verb: 'post', path: '/v0/auth/code', anchor: 'send-verification-code' },
+  { verb: 'put', path: '/v0/auth/code', anchor: 'log-in-with-verification-code' },
+  { verb: 'get', path: '/v0/auth/totp', anchor: 'set-up-totp' },
+  { verb: 'post', path: '/v0/auth/totp', anchor: 'log-in-with-totp' },
   { verb: 'get', path: '/v0/auth/{provider}/login', anchor: 'log-in-with-sso' },
   { verb: 'get', path: '/v0/auth/refresh', anchor: 'refresh-jwt-access-token' },
   { verb: 'post', path: '/v0/auth/reset/link', anchor: 'send-password-reset-email' },
   { verb: 'put', path: '/v0/auth/reset', anchor: 'reset-password-with-link-credentials' },
   { verb: 'post', path: '/v0/auth/verify/email', anchor: 'send-account-verification-email' },
+  { verb: 'post', path: '/v0/auth/verify/phone', anchor: 'verify-a-phone-number' },
   { verb: 'get', path: '/v0/auth/logout', anchor: 'log-out' },
 ]"/>
 
@@ -471,6 +476,157 @@ See [Multi-factor authentication - First factor code](#first-factor-code) for mo
 
 ---
 
+### Send verification code
+
+::::: row
+:::: left
+
+Generate and send a 6-digit verification code by SMS or email.
+
+<parameters path="/v0/auth/code" verb="post" source="$docsClient"/>
+
+::::
+:::: right
+
+<code-samples-client path="/v0/auth/code" verb="post" :show-only="['tenantId','channel','phoneNumber']"/>
+
+<response-json path="/v0/auth/code" verb="post" source="$docsClient"/>
+
+::::
+:::::
+
+::::: row
+:::: left
+
+#### Test mode
+
+In test mode, Userfront does not send SMS messages or emails. Instead, the API response will contain the verification code directly.
+
+::::
+:::: right
+
+<response-json-custom title="Response (test mode)" :response="{ message: 'OK', result: { phoneNumber: '+15558675309', channel: 'sms', verificationCode: '123456' }}"/>
+
+::::
+:::::
+
+---
+
+### Log in with verification code
+
+::::: row
+:::: left
+
+Log in using a 6-digit verification code.
+
+The request must use the same `channel` and `phoneNumber` / `email` as were used to generate the verification code.
+
+<parameters path="/v0/auth/code" verb="put" source="$docsClient"/>
+
+::::
+:::: right
+
+<code-samples-client path="/v0/auth/code" verb="put" :show-only="['tenantId','channel','phoneNumber','verificationCode']"/>
+
+<response-json path="/v0/auth/code" verb="put" source="$docsClient"/>
+
+::::
+:::::
+
+---
+
+### Set up TOTP authenticator
+
+::::: row
+:::: left
+
+Read a user's TOTP information, including their QR code image and their remaining single-use backup codes.
+
+The request must include a valid JWT access token in the `Authorization` header.
+
+<parameters path="/v0/auth/totp" verb="get" source="$docsClient"/>
+
+::::
+:::: right
+
+<code-samples-client path="/v0/auth/totp" verb="get" show-token="access"/>
+
+<response-json path="/v0/auth/totp" verb="get" source="$docsClient"/>
+
+::::
+:::::
+
+#### QR code
+
+::::: row
+:::: left
+
+The `qrCode` attribute is a base-64 encoded png that can be displayed directly to the user.
+
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOQAAADkCAYAAACIV4iNAAAAAklEQVR4AewaftIAAAxUSURBVO3BQY4cSRLAQDLR//8yV0c/BZCoailm4Wb2B2utKzysta7xsNa6xsNa6xoPa61rPKy1rvGw1rrGw1rrGg9rrWs8rLWu8bDWusbDWusaD2utazysta7xsNa6xsNa6xo/fEjlb6qYVN6o+ITKVDGpTBWTylRxonJSMam8UTGp/KaKSWWqeENlqphU/qaKTzysta7xsNa6xsNa6xo/fFnFN6m8UfGGyidUpopJ5UTlb6qYVE4qJpWpYlJ5o+JE5Zsqvknlmx7WWtd4WGtd42GtdY0ffpnKGxWfUJkqTipOVKaKSeWNihOVk4pJZap4o2JSOamYVKaKSWVSeaNiUvkmlTcqftPDWusaD2utazysta7xw39cxYnKGxVTxaQyVUwqb6hMFScqU8WJylTxTRWTyknFicobFf9PHtZa13hYa13jYa11jR/+41SmipOKN1TeqDhRmSomlTdU3lCZKqaKSWWqmFSmijdU3qj4f/aw1rrGw1rrGg9rrWv88MsqflPFScWk8omKE5WTiknljYo3VKaKSeWkYlKZKiaVqWJSmSomlUllqvimips8rLWu8bDWusbDWusaP3yZyt+kMlVMKlPFpDJVTConKlPFpPJGxaRyojJVfKJiUpkqJpWpYlKZKiaVqWJSOVGZKk5Ubvaw1rrGw1rrGg9rrWv88KGKf6liUjlR+ZsqTio+UfFNKlPFpDJVnFRMKlPFGypvVPyXPKy1rvGw1rrGw1rrGj98SGWqOFG5mcqJyidUTipOVP4mlaniROUNlZOKN1SmihOVqWJSeaPiEw9rrWs8rLWu8bDWuob9wQdUTipOVE4q3lA5qZhUpooTlaliUpkq3lA5qThROal4Q+WkYlL5RMWkMlV8QuWk4kRlqvimh7XWNR7WWtd4WGtdw/7gi1ROKiaVqWJS+aaKSeWNijdUPlHxTSpTxRsqU8WkclJxojJVTConFd+kMlVMKlPFJx7WWtd4WGtd42GtdQ37gw+onFScqJxUnKhMFZPKScWkMlVMKlPFJ1Smik+oTBWTylQxqUwVJypTxTepnFScqJxU3ORhrXWNh7XWNR7WWtewP7iIym+qmFTeqPgmlaniROWkYlKZKiaVk4oTlTcqJpWpYlKZKk5U/qWKTzysta7xsNa6xsNa6xo/fEhlqphUpoo3KiaVqeJEZVKZKt5QOak4UblJxYnKScUbKlPFpPKGyicqTlROKr7pYa11jYe11jUe1lrX+OGXVXxCZaqYVE4q3lCZKqaKSeWNijdUpopPqLxRMam8ofJGxaQyqUwVb6icqLyhMlV84mGtdY2HtdY1HtZa1/jhy1SmiknlpOJE5Q2VqWJSmSomlU+oTBWTylTxhsonKj6h8psqTlROKqaKk4oTlanimx7WWtd4WGtd42GtdQ37g4upvFExqZxUTCpTxaQyVfxNKlPFGypTxaQyVZyoTBWTyhsVb6hMFZPKGxX/0sNa6xoPa61rPKy1rvHDL1N5o2KqOFE5qfhNKlPFpDJVTCqfUJkqvknlpOKk4hMqU8UnKk5UTiomlaniEw9rrWs8rLWu8bDWuob9wT+k8kbFpDJVvKEyVbyh8omKSeUTFW+oTBUnKlPFGyonFW+onFScqHyi4pse1lrXeFhrXeNhrXUN+4MvUjmpmFSmihOVqeI3qUwVb6hMFb9J5ZsqvknlpGJSOamYVKaKN1SmihOVqeITD2utazysta7xsNa6xg//WMWkclIxqUwVk8pJxaTyhspUMVV8k8obFZPKScWJyknFScWJylQxqZxUfKLiX3pYa13jYa11jYe11jV++JDKVPGGylRxonKiMlVMKicVk8pJxaQyVZyonFS8UTGpnFRMKm9UTConFW+oTBWTylQxqbxRMalMFVPFNz2sta7xsNa6xsNa6xo/fKhiUpkqJpUTlU9UTCpTxaQyVbyh8obKGypvqHyi4g2Vb6r4hMpvUjmp+MTDWusaD2utazysta7xw4dUpoqTikllqnhD5aTiExUnFZPKJyomlaniDZV/qWJSmSreUDmpeEPlExXf9LDWusbDWusaD2uta/zwoYpJ5ZtUpooTlZOKE5Wp4o2Kk4pvUpkqTiomlanim1SmiknljYpJ5URlqjhRmSomlUllqvjEw1rrGg9rrWs8rLWuYX/wAZWpYlKZKiaVqeINlZOKT6icVEwqU8WJylQxqUwVb6h8U8WJylQxqZxUTCpvVLyhMlX8Sw9rrWs8rLWu8bDWuob9wV+k8jdVTCpTxaTyiYpPqNykYlKZKiaVqeJE5Y2KSeUmFZ94WGtd42GtdY2HtdY1fvjLKiaVqeJE5aRiUjlReaPim1TeqJhUpopJ5aTimyomlaliqphUblIxqfymh7XWNR7WWtd4WGtd44e/TOUNlaliUplU3qiYVKaKE5Wp4hMVn1D5JpUTlaniROWkYlKZVN6omFSmikllUjmp+KaHtdY1HtZa13hYa13jhw+pfKLipGJSmSomlaliUvmEylTxhsobKp+oeENlqjhR+ZsqJpU3KiaVqWJS+Zse1lrXeFhrXeNhrXWNH76s4kTlROWbVE5Upoo3VKaKSeWk4o2KSWWqmFTeqJhUpoo3KiaVNypOKiaVb6o4UZkqPvGw1rrGw1rrGg9rrWv88GUqJxVvVHyiYlKZKiaVqWKqOFE5qThR+YTKVDGp/CaVqeKkYlKZKiaVqeINlaniJg9rrWs8rLWu8bDWusYPv6ziRGWqmFROKk5UpopJZao4UZkqpopJ5Y2KE5Wp4hMVJxWTyknFScWkMlW8oTJVnFRMKlPFicpvelhrXeNhrXWNh7XWNX74UMU3qUwVb1S8UfFNKlPFGyonFW+oTBWTylRxUvGGyjdVTConKp9QmSp+08Na6xoPa61rPKy1rvHDl6lMFScVJyonFScqU8UnKiaV/xKVqeITKlPFGxWTylRxUjGpnFRMKpPKVDGpnFR84mGtdY2HtdY1HtZa1/jhl6l8ouI3qZxUTConFZPKScUnVD6hMlVMKm+onFRMKicqb1S8UTGpTCp/08Na6xoPa61rPKy1rmF/8AGVk4o3VE4qJpWTikllqjhRmSo+oXJSMamcVEwqf1PFicobFScqb1RMKlPFpDJVnKhMFZ94WGtd42GtdY2HtdY17A++SOWk4ptUTiomlaniROWNir9JZao4UTmpmFQ+UfEJlW+qmFTeqJhUpopPPKy1rvGw1rrGw1rrGj/8soo3VE4qvknlpOINlanim1ROVN6oOKn4TSpTxUnFpPKJihOVSeU3Pay1rvGw1rrGw1rrGvYHX6TyRsU3qZxUvKHyRsWkMlVMKp+omFSmik+oTBUnKicVJyqfqHhD5Y2KSWWq+MTDWusaD2utazysta7xw4dU3qh4Q2Wq+JcqvqliUnlD5URlqnijYlI5qXhD5ZtU/qaKb3pYa13jYa11jYe11jXsD/7DVKaKSeUTFZPKScWkclJxojJVvKHyRsWkMlVMKlPFpPKJihOVqeINlaniRGWq+KaHtdY1HtZa13hYa13jhw+p/E0VJypTxaQyVZyoTBWTyqQyVUwq36QyVZxUTCqTylRxUjGpTBWTylTxm1SmijdUpopJZar4xMNa6xoPa61rPKy1rvHDl1V8k8obFW+oTBUnKlPFpPKGylTxRsUbKp9QmSqmim9SmSreqHhDZaqYVKaKb3pYa13jYa11jYe11jV++GUqb1R8QmWqmCreqDhROVGZKk5UTlR+U8VJxYnKVHGiMlV8QuUTFZPKVDGpTBWfeFhrXeNhrXWNh7XWNX74P1PxCZWTiqliUpkqTlSmik+oTBWTym+qmFSmiknlpGJSmSpOVE4qJpV/6WGtdY2HtdY1HtZa1/jhP65iUpkqJpWTijdUpooTlW9SmSpOKt5QmSomlaniEypTxYnKVDFVTCqTyknF3/Sw1rrGw1rrGg9rrWv88Msq/iWVN1TeqDhRmSreUDmpmFTeqHhDZao4qTipeKPiROWNijdUftPDWusaD2utazysta7xw5ep/E0qU8WkclIxqUwVk8qJylTxhspJxTepTBVTxaQyqZxUTCpTxaQyVUwqJxUnKpPKVHFSMal808Na6xoPa61rPKy1rmF/sNa6wsNa6xoPa61rPKy1rvGw1rrGw1rrGg9rrWs8rLWu8bDWusbDWusaD2utazysta7xsNa6xsNa6xoPa61rPKy1rvE/mVW/DoI0Q5EAAAAASUVORK5CYII="/>
+
+#### Backup codes
+
+Each user initially begins with 10 single-use backup codes for TOTP.
+
+You should display these backup codes to the user so that they can store them in case they lose access to their authenticator device.
+
+If all 10 single-use backup codes are used, the user will have to re-pair their authenticator device, at which time they will receive 10 new codes.
+
+::::
+:::: right
+
+```html
+<img src="data:image/png;base64..." />
+```
+
+::::
+:::::
+
+---
+
+### Log in with TOTP authenticator
+
+::::: row
+:::: left
+
+Log in using a code generated by a TOTP authenticator app, or with a single-use backup code.
+
+In addition to either a `totpCode` or a `backupCode`, the request must contain one of the following to identify the user: `userId`, `userUuid`, `emailOrUsername`, `email`, `username`, or `phoneNumber`.
+
+<parameters path="/v0/auth/totp" verb="post" source="$docsClient"/>
+
+::::
+:::: right
+
+<code-samples-client path="/v0/auth/totp" verb="post" :show-only="['tenantId','userId','totpCode']"/>
+
+<response-json path="/v0/auth/totp" verb="post" source="$docsClient"/>
+
+::::
+:::::
+
+#### Log in with backup code
+
+::::: row
+:::: left
+
+Login with a `backupCode` works the same way as login with a `totpCode`.
+
+Each user initially begins with 10 single-use backup codes for TOTP.
+
+If all 10 single-use backup codes are used, the user will have [set up TOTP authenticator](#set-up-totp-authenticator) again, at which time they will receive 10 new codes.
+
+::::
+:::: right
+
+<code-samples-client path="/v0/auth/totp" verb="post" :show-only="['tenantId','userId','backupCode']"/>
+
+::::
+:::::
+
+---
+
 ### Log in with SSO
 
 ::::: row
@@ -671,15 +827,47 @@ In test mode, Userfront does not send emails. Instead, the API response will con
 ::::
 :::::
 
+---
+
+### Verify a phone number
+
 ::::: row
 :::: left
 
-#### Generate link credentials without sending email
+Generate a verification code and send it to a phone number.
 
-You can generate account verification link credentials to use in your own custom emails by using the [generate link credentials](/docs/api.html#generate-link-credentials) endpoint.
+To add a new phone number for a user, the request must include a valid JWT access token in the `Authorization` header.
+
+After a user submits the verification code to the [verification code endpoint](#log-in-with-verification-code), their phone number is verified and can be used in login and MFA flows.
+
+<parameters path="/v0/auth/verify/phone" verb="post" source="$docsClient" :show-only="['phoneNumber','userId','userUuid','tenantId']"/>
+
+::::
+:::: right
+
+<code-samples-client path="/v0/auth/verify/phone" verb="post" :show-only="['phoneNumber','userId','tenantId']" show-token="access"/>
+
+<response-json path="/v0/auth/verify/phone" verb="post" source="$docsClient"/>
 
 ::::
 :::::
+
+::::: row
+:::: left
+
+#### Test mode
+
+In test mode, Userfront does not send SMS messages. Instead, the API response will contain the verification code directly.
+
+::::
+:::: right
+
+<response-json-custom title="Response (test mode)" :response="{ message: 'OK', result: { channel: 'sms', phoneNumber: '+15558675309', verificationCode: '123456' }}"/>
+
+::::
+:::::
+
+---
 
 ### Log out
 
@@ -707,21 +895,13 @@ In order to invalidate the user's current session, the request must include a va
 ::::: row
 :::: left
 
-When Multi-factor authentication (MFA) is enabled, a user's initial login request will return a `firstFactorCode` instead of their JWT access token.
-
-This `firstFactorCode` can then be sent along with a second factor in order to obtain the JWT access token.
-
 ::: warning Note
 MFA is currently in beta. If you would like to enable it for your account, please contact us using the chat in the bottom-right.
 :::
 
-::::
-:::: right
+When Multi-factor authentication (MFA) is enabled, a user's initial login request will return a `firstFactorCode` instead of their JWT access token.
 
-<endpoints :endpoints="[
-  { verb: 'post', path: '/v0/auth/mfa', anchor: 'send-verification-code-sms' },
-  { verb: 'put', path: '/v0/auth/mfa', anchor: 'login-with-verification-code' },
-]"/>
+This `firstFactorCode` can then be sent along with a second factor in order to obtain the JWT access token.
 
 ::::
 :::::
@@ -731,14 +911,7 @@ MFA is currently in beta. If you would like to enable it for your account, pleas
 ::::: row
 :::: left
 
-The response to the right is returned when using one of the following methods when **MFA is enabled** for your tenant:
-
-- [Sign up with password](#alternate-response-mfa-first-factor-code)
-- [Log in with password](#alternate-response-mfa-first-factor-code-2)
-- [Log in with login link](#alternate-response-mfa-first-factor-code-3)
-- [Reset password with link credentials](#alternate-response-mfa-first-factor-code-4)
-
-The response contains a `firstFactorCode`, strategies, and channels to use in order to [Send verification code (SMS)](#send-verification-code-sms) and [Login with verification code](#login-with-verification-code) via the MFA endpoints.
+The response to the right is returned when using one of the following methods when **MFA is enabled** for your tenant.
 
 ::::
 :::: right
@@ -749,66 +922,6 @@ The response contains a `firstFactorCode`, strategies, and channels to use in or
   allowedStrategies: ['verificationCode'],
   allowedChannels: ['sms'],
 }}"/>
-
-::::
-:::::
-
----
-
-### Send verification code (SMS)
-
-::::: row
-:::: left
-
-Send a verification code via SMS to complete login process.
-
-After this request is made, you can perform a [Login with verification code](#login-with-verification-code) using the verification code sent to the user.
-
-<parameters path="/v0/auth/mfa" verb="post" source="$docsClient"/>
-
-- `strategy` is one of `allowedStrategies` found in the [first factor code response](#first-factor-code).
-
-- `channel` is one of `allowedChannels` found in the [first factor code response](#first-factor-code).
-
-- `to` phone number must be in E.164 format.
-
-  E.164 numbers are formatted [+] [country code] [subscriber number including area code] and can have a maximum of fifteen digits. e.g. `+15558675309`
-
-::::
-:::: right
-
-<code-samples-client path="/v0/auth/mfa" verb="post" />
-
-<response-json path="/v0/auth/mfa" verb="post" source="$docsClient"/>
-
-::::
-:::::
-
----
-
-### Login with verification code
-
-::::: row
-:::: left
-
-Log a user in using a verification code to complete the login process.
-
-<parameters path="/v0/auth/mfa" verb="put" source="$docsClient"/>
-
-- `strategy` is one of `allowedStrategies` found in the [first factor code response](#first-factor-code).
-
-- `channel` is one of `allowedChannels` found in the [first factor code response](#first-factor-code).
-
-- `to` phone number must be in E.164 format.
-
-  E.164 numbers are formatted [+] [country code] [subscriber number including area code] and can have a maximum of fifteen digits. e.g. `+15558675309`
-
-::::
-:::: right
-
-<code-samples-client path="/v0/auth/mfa" verb="put" />
-
-<response-json path="/v0/auth/mfa" verb="put" source="$docsClient"/>
 
 ::::
 :::::
