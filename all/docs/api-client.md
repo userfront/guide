@@ -312,46 +312,18 @@ The request must include a valid JWT access token in the `Authorization` header.
 
 <parameters path="/v0/auth/basic" verb="put" source="$docsClient"/>
 
+<br>
+
+#### If no password exists
+
+If the user does not have a password (for example, if they logged in via SSO), the `existingPassword` field is ignored, and Userfront sets the password based on the `password` field alone.
+
 ::::
 :::: right
 
 <code-samples-client path="/v0/auth/basic" verb="put" show-token="access"/>
 
 <response-json-custom :response="{ message: 'OK' }"/>
-
-::::
-:::::
-
-::::: row
-:::: left
-
-#### If no password exists
-
-If the user does not have a password (for example, if they logged in via SSO), the `password` and `existingPassword` fields are both ignored, and Userfront sends the user a password reset link.
-
-::::
-:::: right
-
-<response-json-custom title="Response (if no password exists)" :response="{ message: 'OK', result: { to: 'user@example.com', messageId: '18299324-bf92-4ec9-bd47-403eda5f278d', submittedAt: new Date() }}"/>
-
-::::
-:::::
-
-::::: row
-:::: left
-
-#### Test mode
-
-In test mode, Userfront does not send emails.
-
-If a test user does not have a password, the API response will contain a `link` attribute that can be followed directly in order to set the password.
-
-This link will direct the user to your Password reset path.
-
-::::
-:::: right
-
-<response-json-custom title="Response (if no password exists, test mode)" :response="{ message: 'OK', result: { link: 'http://localhost:3000/reset?uuid=64758625-a004-44d0-90fe-fa7e5b012be4&token=d889bf75-9ab7-4354-82f9-3a1d9c8d6e6e' }}"/>
 
 ::::
 :::::
