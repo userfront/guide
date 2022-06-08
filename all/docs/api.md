@@ -662,6 +662,8 @@ You can create and read tenants with standard REST operations.
   { verb: 'get', path: '/v0/tenants/:tenantId', anchor: 'read-tenant' },
   { verb: 'put', path: '/v0/tenants/:tenantId', anchor: 'update-tenant' },
   { verb: 'delete', path: '/v0/tenants/:tenantId', anchor: 'delete-tenant' },
+  {},
+  { verb: 'post', path: '/v0/tenants/:tenantId/tenants/find', anchor: 'search-tenants' },
 ]"/>
 
 ::::
@@ -755,6 +757,212 @@ Deletes an existing tenant.
 <code-samples path="/v0/tenants/{tenantId}" verb="delete" />
 
 <response-json path="/v0/tenants/{tenantId}" verb="delete"/>
+
+::::
+:::::
+
+---
+
+### Search tenants
+
+<access-level type="admin-or-readonly"/>
+
+::::: row
+:::: left
+
+Search tenant records within a parent tenant.
+
+<parameters path="/v0/tenants/{tenantId}/tenants/find" verb="post" />
+
+<br>
+
+#### Filter options
+
+<hr>
+
+The `filters` object has a top-level `conjunction` that applies to one or more `filterGroups`.
+
+```json
+{
+  "filters": {
+    "conjunction": "and",
+    "filterGroups": [
+      {
+        "conjunction": "and",
+        "filters": [
+          {
+            "attr": "name",
+            "type": "string",
+            "comparison": "contains",
+            "value": "Acme"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+The `"and"` conjunction returns results that meet all of the criteria, while the `"or"` conjunction returns results that meet any one of the criteria.
+
+Each `filter` has the following options:
+
+#### attr
+
+The attribute to search, such as `name` or `tenantId`. For attributes in the `data` object, use `data.myAttr`.
+
+#### type
+
+The data type of the attribute. Can be `string`, `boolean`, `number`, `date`, or `array`.
+
+#### comparison
+
+The desired criteria for returned results.
+
+::: details Comparison options
+
+<style>
+  #comparison-table {
+    background:white;
+  }
+  #comparison-table tbody {
+    display:table;
+    width:100%;
+  }
+  #comparison-table code {
+    line-height: 2em;
+  }
+</style>
+
+<table id="comparison-table">
+<tbody>
+<tr>
+<td><code>string</code></td>
+<td>
+<code>is</code><br>
+<code>contains</code><br>
+<code>does not contain</code><br>
+<code>starts with</code><br>
+<code>ends with</code><br>
+<code>is unknown</code><br>
+<code>has any value</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>boolean</code>
+</td>
+<td>
+<code>is</code><br>
+<code>is not</code><br>
+</td>
+</tr>
+<tr>
+<td>
+<code>date</code>
+</td>
+<td>
+<code>before</code><br>
+<code>after</code><br>
+<code>between</code><br>
+<code>less than</code> (days ago)<br>
+<code>more than</code> (days ago)
+</td>
+</tr>
+<tr>
+<td>
+<code>number</code>
+</td>
+<td>
+<code>is</code><br>
+<code>more than</code><br>
+<code>less than</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>array</code>
+</td>
+<td>
+<code>contains</code><br>
+<code>does not contain</code><br>
+<code>any</code>
+</td>
+</tr>
+</tbody>
+</table>
+
+:::
+
+#### value
+
+The value to be compared. Should make sense in the context of the `type` and `comparison`.
+
+#### Example searches
+
+::: details Tenants with Acme in the name
+
+```json
+{
+  "order": "createdAt_DESC",
+  "filters": {
+    "conjunction": "and",
+    "filterGroups": [
+      {
+        "conjunction": "and",
+        "filters": [
+          {
+            "attr": "name",
+            "type": "string",
+            "comparison": "contains",
+            "value": "Acme"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+:::
+
+::: details Tenants matching 2 custom data attributes
+
+```json
+{
+  "filters": {
+    "conjunction": "and",
+    "filterGroups": [
+      {
+        "conjunction": "and",
+        "filters": [
+          {
+            "attr": "data.subdomain",
+            "type": "string",
+            "comparison": "contains",
+            "value": "acme"
+          },
+          {
+            "attr": "data.activated",
+            "type": "boolean",
+            "comparison": "is",
+            "value": true
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+:::
+
+::::
+:::: right
+
+<code-samples path="/v0/tenants/{tenantId}/tenants/find" verb="post" />
+
+<response-json path="/v0/tenants/{tenantId}/tenants/find" verb="post"/>
 
 ::::
 :::::
