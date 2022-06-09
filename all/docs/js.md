@@ -14,6 +14,7 @@ It can be used for the following:
   - [logout()](#logout-options)
   - [redirectIfLoggedIn()](#redirectifloggedin)
   - [resetPassword()](#resetpassword-options)
+  - [updatePassword()](#updatepassword-options)
   - [sendLoginLink()](#sendloginlink-email)
   - [sendResetLink()](#sendresetlink-email)
   - [sendSms()](#sendsms-options)
@@ -136,7 +137,7 @@ Registers a new user with one of the available methods.
 
 Submits an email and password to create a user.
 
-Upon success, receives auth tokens and adds the auth tokens to the browser's cookies, then redirects the browser to the After-signup path.
+Upon success, receives JWT access token and adds the JWT access token to the browser's cookies, then redirects the browser to the After-signup path.
 
 ::::
 :::: right
@@ -255,26 +256,25 @@ Userfront.signup({ method: "google" });
 
 Initiates a login for a user with one of the available methods.
 
-| Option            | Description                                                                                                                                                                                |
-| :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _method_          | The method for logging in. Options are: `password`, `passwordless`, `link`, `mfa`, `apple`, `azure`, `facebook`, `github`,`google`,`linkedin`, `saml`. See below for more info on methods. |
-| _email_           | The user's email. Used with the `password` and `passwordless` methods.                                                                                                                     |
-| _username_        | The user's username. Used only with the `password` method.                                                                                                                                 |
-| _emailOrUsername_ | The user's email or username. Used only with the `password` method.                                                                                                                        |
-| _password_        | The user's password. Used only with the `password` method.                                                                                                                                 |
-| _token_           | The `token=` URL parameter sent in a login link. Used only with the `link` method.                                                                                                         |
-| _uuid_            | The `uuid=` URL parameter sent in a login link. Used only with the `link` method.                                                                                                          |
-| _redirect_        | Manually set the path to redirect to, or `false` to prevent redirection.                                                                                                                   |
-| _firstFactorCode_ | A string identifier obtained from the login response (requires MFA enabled for your tenant) to complete MFA login. Used only with `mfa` method.                                            |
-| _verificationCode_ | MFA verification code sent to the user's device. Used only with `mfa` method.                                                                                                     |
-
+| Option             | Description                                                                                                                                                                                |
+| :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _method_           | The method for logging in. Options are: `password`, `passwordless`, `link`, `mfa`, `apple`, `azure`, `facebook`, `github`,`google`,`linkedin`, `saml`. See below for more info on methods. |
+| _email_            | The user's email. Used with the `password` and `passwordless` methods.                                                                                                                     |
+| _username_         | The user's username. Used only with the `password` method.                                                                                                                                 |
+| _emailOrUsername_  | The user's email or username. Used only with the `password` method.                                                                                                                        |
+| _password_         | The user's password. Used only with the `password` method.                                                                                                                                 |
+| _token_            | The `token=` URL parameter sent in a login link. Used only with the `link` method.                                                                                                         |
+| _uuid_             | The `uuid=` URL parameter sent in a login link. Used only with the `link` method.                                                                                                          |
+| _redirect_         | Manually set the path to redirect to, or `false` to prevent redirection.                                                                                                                   |
+| _firstFactorCode_  | A string identifier obtained from the login response (requires MFA enabled for your tenant) to complete MFA login. Used only with `mfa` method.                                            |
+| _verificationCode_ | MFA verification code sent to the user's device. Used only with `mfa` method.                                                                                                              |
 
 ### Login via `password` method
 
 ::::: row
 :::: left
 
-Sends a username or email along with a password in order to receive auth tokens, then adds the auth tokens to the browser's cookies and redirects the browser to the After-login path.
+Sends a username or email along with a password in order to receive JWT access token, then adds the JWT access token to the browser's cookies and redirects the browser to the After-login path.
 
 ::::
 :::: right
@@ -355,7 +355,7 @@ error-message="Email format is invalid"/>
 
 This method is used to read the URL query parameters `token` and `uuid` that are sent with login link emails, and uses these parameters to log in a user.
 
-Sends the token and uuid in order to receive auth tokens, then adds the auth tokens to the browser's cookies and redirects the browser to the After-login path.
+Sends the token and uuid in order to receive JWT access token, then adds the JWT access token to the browser's cookies and redirects the browser to the After-login path.
 
 ::::
 :::: right
@@ -511,7 +511,7 @@ Initiates logout for a user.
 ::::: row
 :::: left
 
-Logs a user out by invalidating their session, removes auth tokens from the browser, and then redirects the browser to the After-logout path.
+Logs a user out by invalidating their session, removes JWT access token from the browser, and then redirects the browser to the After-logout path.
 
 ::::
 :::: right
@@ -586,13 +586,7 @@ Userfront.redirectIfLoggedIn();
 ::::: row
 :::: left
 
-Resets a user's password, then logs the user in by adding auth tokens to the browser's cookies and redirects the browser to the After-login path.
-
-| Option     | Required | Description                                                 |
-| :--------- | -------- | :---------------------------------------------------------- |
-| _password_ | ✓        | The new password to set for the user.                       |
-| _token_    |          | The `token=` URL parameter sent in the password reset link. |
-| _uuid_     |          | The `uuid=` URL parameter sent in the password reset link.  |
+Alias of [updatePassword()](#updatepassword-options)
 
 ::::
 :::: right
@@ -605,9 +599,56 @@ Userfront.init("demo1234");
 Userfront.resetPassword({
   password: "myshinynewpassword",
 });
+```
+
+::::
+:::::
+
+## updatePassword (options)
+
+::::: row
+:::: left
+
+Updates a user's password with one of the following methods:
+
+- Reset link credentials (`token` and `uuid`); or
+- The user's JWT access token (when logged in)
+
+If the user does not have a password yet, then their password is created.
+
+::::
+:::::
+
+| Option             | Required | Description                                                                                                                                                                                  |
+| :----------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _password_         | ✓        | The new password to set for the user.                                                                                                                                                        |
+| _existingPassword_ |          | The user's existing password. Only used with the `jwt` method.                                                                                                                               |
+| _method_           |          | Optionally specify the `link` or `jwt` method. When not defined, `updatePassword` checks for the reset link credentials (`token` and `uuid`) first, followed by the user's JWT access token. |
+| _token_            |          | The `token=` URL parameter sent in the password reset link. Used only with the `link` method.                                                                                                |
+| _uuid_             |          | The `uuid=` URL parameter sent in the password reset link. Used only with the `link` method.                                                                                                 |
+| _redirect_         |          | Manually set the path to redirect to, or `false` to prevent redirection. Used only with the `link` method.                                                                                   |
+
+### Password reset via `link` method
+
+::::: row
+:::: left
+
+Uses the reset link credentials (`token` and `uuid`) to reset the user's password, then logs the user in by adding their JWT access token to the browser's cookies, and finally redirects the browser to the After-login path.
+
+::::
+:::: right
+
+```js
+import Userfront from "@userfront/core";
+Userfront.init("demo1234");
+
+// Read token & uuid from the URL
+Userfront.updatePassword({
+  password: "myshinynewpassword",
+});
 
 // Pass token & uuid explicitly
-Userfront.resetPassword({
+Userfront.updatePassword({
   password: "myshinynewpassword",
   token: "34765497-f806-4be2-a32e-26df63ce9f7f",
   uuid: "9994b8d1-d51b-4a83-aa85-7e7508b92525",
@@ -615,8 +656,41 @@ Userfront.resetPassword({
 ```
 
 ::: caret Return values
-<response-js method="Userfront.resetPassword(...)" path="/v0/auth/reset" verb="put" source="$docsClient"
+<response-js method="Userfront.updatePassword(...)" path="/v0/auth/reset" verb="put" source="$docsClient"
 error-message="Invalid token"/>
+:::
+
+::::
+:::::
+
+### Password update via `jwt` method
+
+::::: row
+:::: left
+
+Updates a user's password while they are logged in.
+
+If the user has a password already, the `existingPassword` field must be correct.
+
+If the user does not have a password yet (e.g. if they signed up with SSO), the `existingPassword` field is ignored, and the `password` field is set directly.
+
+::::
+:::: right
+
+```js
+import Userfront from "@userfront/core";
+Userfront.init("demo1234");
+
+// Update a user's password while logged in
+Userfront.updatePassword({
+  password: "myshinynewpassword",
+  existingPassword: "mydulloldpassword",
+});
+```
+
+::: caret Return values
+<response-js method="Userfront.updatePassword(...)" path="/v0/auth/basic" verb="put" source="$docsClient"
+error-message="Incorrect password"/>
 :::
 
 ::::
@@ -655,6 +729,8 @@ error-message="Email format is invalid"/>
 :::: left
 
 Sends an email containing a password reset link. This link directs the user to the Password reset path.
+
+The password reset link contains the `token` and `uuid` credentials, which can be used with the [updatePassword](#updatepassword-options) method.
 
 The user in question must exist already.
 
