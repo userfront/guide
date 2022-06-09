@@ -611,7 +611,7 @@ Userfront.resetPassword({
 
 Updates a user's password with one of the following methods:
 
-- Reset link credentials (`token` and `uuid`); or
+- The reset link credentials (`token` and `uuid`); or
 - The user's JWT access token (when logged in)
 
 If the user does not have a password yet, then their password is created.
