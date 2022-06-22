@@ -14,15 +14,17 @@ It can be used for the following:
   - [logout()](#logout-options)
   - [redirectIfLoggedIn()](#redirectifloggedin)
   - [resetPassword()](#resetpassword-options)
-  - [updatePassword()](#updatepassword-options)
   - [sendLoginLink()](#sendloginlink-email)
   - [sendResetLink()](#sendresetlink-email)
+  - [sendVerificationCode()](#sendverificationcode-options)
   - [sendSms()](#sendsms-options)
 
 - **User**: read or update information about a logged in user.
 
   - [user](#user)
   - [user.update()](#user-update-options)
+  - [user.updatePassword()](#user-updatepassword-options)
+  - [user.getTotp()](#user-gettotp)
   - [user.hasRole()](#user-hasrole-rolename-options)
 
 - **Tokens**: read the user's access or ID token.
@@ -120,15 +122,16 @@ Userfront.init("demo1234");
 
 Registers a new user with one of the available methods.
 
-| Option     | Description                                                                                                                                                          |
-| :--------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _method_   | The method for registering. Options are: `password`, `passwordless`, `apple`, `azure`, `facebook`, `github`,`google`,`linkedin`. See below for more info on methods. |
-| _email_    | The user's email address, which is required for the `password` and `passwordless` methods.                                                                           |
-| _username_ | The user's username (optional). Used only with the `password` and `passwordless` methods.                                                                            |
-| _name_     | The user's name (optional). Used only with the `password` and `passwordless` methods.                                                                                |
-| _data_     | The user's custom data object (optional). Used only with the `password` and `passwordless` methods.                                                                  |
-| _password_ | The user's password. Used only with the `password`.                                                                                                                  |
-| _redirect_ | Manually set the path to redirect to, or `false` to prevent redirection.                                                                                             |
+| Option        | Description                                                                                                                                                                                                                                                                                                                                                                                    |
+| :------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _method_      | The method for registering. Options are: [password](#signup-via-password-method), [passwordless](#signup-via-passwordless-method), [verificationCode](#signup-via-verificationcode-method), [apple, azure, facebook, github, google, or linkedin](#signup-via-apple-azure-facebook-github-google-or-linkedin-methods). See below for more info on methods. See below for more info on methods. |
+| _email_       | The user's email address, which is required for the `password` and `passwordless` methods.                                                                                                                                                                                                                                                                                                     |
+| _phoneNumber_ | The user's phone number, which is required for the `verificationCode` method when using the `sms` channel.                                                                                                                                                                                                                                                                                     |
+| _username_    | The user's username (optional). Used only with the `password` and `passwordless` methods.                                                                                                                                                                                                                                                                                                      |
+| _name_        | The user's name (optional). Used only with the `password` and `passwordless` methods.                                                                                                                                                                                                                                                                                                          |
+| _data_        | The user's custom data object (optional). Used only with the `password` and `passwordless` methods.                                                                                                                                                                                                                                                                                            |
+| _password_    | The user's password. Used only with the `password`.                                                                                                                                                                                                                                                                                                                                            |
+| _redirect_    | Manually set the path to redirect to, or `false` to prevent redirection.                                                                                                                                                                                                                                                                                                                       |
 
 ### Signup via `password` method
 
@@ -216,6 +219,56 @@ error-message="Email format is invalid"/>
 ::::
 :::::
 
+### Signup via `verificationCode` method
+
+::::: row
+:::: left
+
+This method creates a new user and sends them a 6-digit `verificationCode` by SMS or email.
+
+If a user with the given phone number or email address already exists, it sends them a 6-digit verification code to log in.
+
+This verification code works with the [Login via verificationCode](#login-via-verificationcode-method) method.
+
+::::
+:::: right
+
+```js
+import Userfront from "@userfront/core";
+Userfront.init("demo1234");
+
+// Sign up with SMS verificationCode (default)
+Userfront.signup({
+  method: "verificationCode",
+  channel: "sms",
+  phoneNumber: "+15558675309",
+  name: "John Doe",
+  username: "jdoe11",
+  email: "user@example.com",
+  data: {
+    custom: "information",
+  },
+});
+
+// Sign up with email verificationCode
+Userfront.signup({
+  method: "verificationCode",
+  channel: "email",
+  email: "user@example.com",
+  data: {
+    custom: "information",
+  },
+});
+```
+
+::: caret Return values
+<response-js method="Userfront.login(...)" path="/v0/auth/code" verb="post" source="$docsClient"
+error-message="Email exists"/>
+:::
+
+::::
+:::::
+
 ### Signup via `apple`, `azure`, `facebook`, `github`, `google`, or `linkedin` methods
 
 <br/>
@@ -256,25 +309,28 @@ Userfront.signup({ method: "google" });
 
 Initiates a login for a user with one of the available methods.
 
-| Option             | Description                                                                                                                                                                                |
-| :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _method_           | The method for logging in. Options are: `password`, `passwordless`, `link`, `mfa`, `apple`, `azure`, `facebook`, `github`,`google`,`linkedin`, `saml`. See below for more info on methods. |
-| _email_            | The user's email. Used with the `password` and `passwordless` methods.                                                                                                                     |
-| _username_         | The user's username. Used only with the `password` method.                                                                                                                                 |
-| _emailOrUsername_  | The user's email or username. Used only with the `password` method.                                                                                                                        |
-| _password_         | The user's password. Used only with the `password` method.                                                                                                                                 |
-| _token_            | The `token=` URL parameter sent in a login link. Used only with the `link` method.                                                                                                         |
-| _uuid_             | The `uuid=` URL parameter sent in a login link. Used only with the `link` method.                                                                                                          |
-| _redirect_         | Manually set the path to redirect to, or `false` to prevent redirection.                                                                                                                   |
-| _firstFactorCode_  | A string identifier obtained from the login response (requires MFA enabled for your tenant) to complete MFA login. Used only with `mfa` method.                                            |
-| _verificationCode_ | MFA verification code sent to the user's device. Used only with `mfa` method.                                                                                                              |
+| Option             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _method_           | The method for logging in. Options are: [password](#login-via-password-method), [passwordless](#login-via-passwordless-method), [link](#login-via-link-method), [totp](#login-via-totp-method), [verificationCode](#login-via-verificationcode-method), [apple, azure, facebook, github, google, linkedin](#login-via-apple-azure-facebook-github-google-or-linkedin-methods), and [saml](#login-via-saml-method). See below for more info on methods. |
+| _email_            | The user's email. Used with the `password` and `passwordless` methods.                                                                                                                                                                                                                                                                                                                                                                                 |
+| _username_         | The user's username. Used only with the `password` method.                                                                                                                                                                                                                                                                                                                                                                                             |
+| _emailOrUsername_  | The user's email or username. Used only with the `password` method.                                                                                                                                                                                                                                                                                                                                                                                    |
+| _password_         | The user's password. Used only with the `password` method.                                                                                                                                                                                                                                                                                                                                                                                             |
+| _token_            | The `token=` URL parameter sent in a login link. Used only with the `link` method.                                                                                                                                                                                                                                                                                                                                                                     |
+| _uuid_             | The `uuid=` URL parameter sent in a login link. Used only with the `link` method.                                                                                                                                                                                                                                                                                                                                                                      |
+| _totpCode_         | A one-time code generated by a TOTP authenicator device. Used only with the `totp` method.                                                                                                                                                                                                                                                                                                                                                             |
+| _backupCode_       | A single-use backup code to be used in place of the `totpCode` if a TOTP authenticator device is lost. Used only with the `totp` method.                                                                                                                                                                                                                                                                                                               |
+| _verificationCode_ | A 6-digit code sent by email or SMS. Used only with `verificationCode` method.                                                                                                                                                                                                                                                                                                                                                                         |
+| _redirect_         | Manually set the path to redirect to, or `false` to prevent redirection.                                                                                                                                                                                                                                                                                                                                                                               |
 
 ### Login via `password` method
 
 ::::: row
 :::: left
 
-Sends a username or email along with a password in order to receive JWT access token, then adds the JWT access token to the browser's cookies and redirects the browser to the After-login path.
+This method is used to log in with a `password` along with an `email` or `username`.
+
+Sends a `username` or `email` along with a `password` in order to receive a JWT access token, then adds the JWT access token to the browser's cookies and redirects the browser to the After-login path.
 
 ::::
 :::: right
@@ -318,6 +374,8 @@ error-message="Incorrect email or password"/>
 ::::: row
 :::: left
 
+This method is used to send the user a magic/passwordless login link.
+
 Sends the user an email with a link to log in. This link works with the [Login via link](/docs/js.html#login-via-link-method) method.
 
 ::: tip Note
@@ -355,7 +413,7 @@ error-message="Email format is invalid"/>
 
 This method is used to read the URL query parameters `token` and `uuid` that are sent with login link emails, and uses these parameters to log in a user.
 
-Sends the token and uuid in order to receive JWT access token, then adds the JWT access token to the browser's cookies and redirects the browser to the After-login path.
+Sends the `token` and `uuid` in order to receive JWT access token, then adds the JWT access token to the browser's cookies and redirects the browser to the After-login path.
 
 ::::
 :::: right
@@ -364,22 +422,108 @@ Sends the token and uuid in order to receive JWT access token, then adds the JWT
 import Userfront from "@userfront/core";
 Userfront.init("demo1234");
 
-// Get token & uuid from URL
-const urlParams = new URLSearchParams(window.location.search);
-const token = urlParams.get("token");
-const uuid = urlParams.get("uuid");
+// Read token & uuid from the URL
+Userfront.login({ method: "link" });
 
-// Log in with link
+// Pass token & uuid explicitly
 Userfront.login({
   method: "link",
-  token: token,
-  uuid: uuid,
+  token: "34765497-f806-4be2-a32e-26df63ce9f7f",
+  uuid: "9994b8d1-d51b-4a83-aa85-7e7508b92525",
 });
 ```
 
 ::: caret Return values
 <response-js method="Userfront.login(...)" path="/v0/auth/link" verb="put" source="$docsClient"
 error-message="Invalid token"/>
+:::
+
+::::
+:::::
+
+### Login via `totp` method
+
+::::: row
+:::: left
+
+This method is used to pass a one-time `totpCode` generated by the user's TOTP authenticator device.
+
+The [user.getTotp()](#getTotp) method allows a user to pair their TOTP authenticator device to generate codes.
+
+#### Backup codes
+
+When a user pairs their TOTP authenticator device with [user.getTotp()](#getTotp), the response also returns an array of single-use backup codes.
+
+These `backupCodes` can be used once each, to log in without a `totpCode` in case their TOTP authenticator device is lost.
+
+::::
+:::: right
+
+```js
+import Userfront from "@userfront/core";
+Userfront.init("demo1234");
+
+// Log in with totpCode
+Userfront.login({
+  method: "totp",
+  emailOrUsername: "user@example.com",
+  totpCode: "123456",
+});
+
+// Log in with backupCode
+Userfront.login({
+  method: "totp",
+  emailOrUsername: "user@example.com",
+  backupCode: "aaaaa-bbbbb",
+});
+```
+
+::: caret Return values
+<response-js method="Userfront.login(...)" path="/v0/auth/totp" verb="post" source="$docsClient"
+error-message="Invalid TOTP code"/>
+:::
+
+::::
+:::::
+
+### Login via `verificationCode` method
+
+::::: row
+:::: left
+
+This method is used to log in with a 6-digit `verificationCode`.
+
+Sends the `channel`, `phoneNumber` (or `email`), and `verificationCode` in order to receive a JWT access token, then adds the JWT access token to the browser's cookies and redirects the browser to the After-login path.
+
+See the [sendVerificationCode()](#sendverificationcode-options) method to send the user a verification code by `sms` or `email`.
+
+::::
+:::: right
+
+```js
+import Userfront from "@userfront/core";
+Userfront.init("demo1234");
+
+// Log in with SMS verificationCode (default)
+Userfront.login({
+  method: "verificationCode",
+  channel: "sms",
+  phoneNumber: "+15558675309",
+  verificationCode: "123456",
+});
+
+// Log in with email verificationCode
+Userfront.login({
+  method: "verificationCode",
+  channel: "email",
+  email: "user@example.com",
+  verificationCode: "123456",
+});
+```
+
+::: caret Return values
+<response-js method="Userfront.login(...)" path="/v0/auth/code" verb="put" source="$docsClient"
+error-message="Invalid verificationCode"/>
 :::
 
 ::::
@@ -586,54 +730,18 @@ Userfront.redirectIfLoggedIn();
 ::::: row
 :::: left
 
-Alias of [updatePassword()](#updatepassword-options)
+Reset a user's password with the reset link credentials (`token` and `uuid`).
 
-::::
-:::: right
-
-```js
-import Userfront from "@userfront/core";
-Userfront.init("demo1234");
-
-// Read token & uuid from the URL
-Userfront.resetPassword({
-  password: "myshinynewpassword",
-});
-```
-
-::::
-:::::
-
-## updatePassword (options)
-
-::::: row
-:::: left
-
-Updates a user's password with one of the following methods:
-
-- The reset link credentials (`token` and `uuid`); or
-- The user's JWT access token (when logged in)
+Uses the reset link credentials (`token` and `uuid`) to reset the user's password, then logs the user in by adding their JWT access token to the browser's cookies, and finally redirects the browser to the After-login path.
 
 If the user does not have a password yet, then their password is created.
 
-::::
-:::::
-
-| Option             | Required | Description                                                                                                                                                                                  |
-| :----------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _password_         | ✓        | The new password to set for the user.                                                                                                                                                        |
-| _existingPassword_ |          | The user's existing password. Only used with the `jwt` method.                                                                                                                               |
-| _method_           |          | Optionally specify the `link` or `jwt` method. When not defined, `updatePassword` checks for the reset link credentials (`token` and `uuid`) first, followed by the user's JWT access token. |
-| _token_            |          | The `token=` URL parameter sent in the password reset link. Used only with the `link` method.                                                                                                |
-| _uuid_             |          | The `uuid=` URL parameter sent in the password reset link. Used only with the `link` method.                                                                                                 |
-| _redirect_         |          | Manually set the path to redirect to, or `false` to prevent redirection. Used only with the `link` method.                                                                                   |
-
-### Password reset via `link` method
-
-::::: row
-:::: left
-
-Uses the reset link credentials (`token` and `uuid`) to reset the user's password, then logs the user in by adding their JWT access token to the browser's cookies, and finally redirects the browser to the After-login path.
+| Option     | Description                                                              |
+| :--------- | :----------------------------------------------------------------------- |
+| _password_ | The new password to set for the user.                                    |
+| _token_    | The `token=` URL parameter sent in the password reset link.              |
+| _uuid_     | The `uuid=` URL parameter sent in the password reset link.               |
+| _redirect_ | Manually set the path to redirect to, or `false` to prevent redirection. |
 
 ::::
 :::: right
@@ -658,39 +766,6 @@ Userfront.updatePassword({
 ::: caret Return values
 <response-js method="Userfront.updatePassword(...)" path="/v0/auth/reset" verb="put" source="$docsClient"
 error-message="Invalid token"/>
-:::
-
-::::
-:::::
-
-### Password update via `jwt` method
-
-::::: row
-:::: left
-
-Updates a user's password while they are logged in.
-
-If the user has a password already, the `existingPassword` field must be correct.
-
-If the user does not have a password yet (e.g. if they signed up with SSO), the `existingPassword` field is ignored, and the `password` field is set directly.
-
-::::
-:::: right
-
-```js
-import Userfront from "@userfront/core";
-Userfront.init("demo1234");
-
-// Update a user's password while logged in
-Userfront.updatePassword({
-  password: "myshinynewpassword",
-  existingPassword: "mydulloldpassword",
-});
-```
-
-::: caret Return values
-<response-js method="Userfront.updatePassword(...)" path="/v0/auth/basic" verb="put" source="$docsClient"
-error-message="Incorrect password"/>
 :::
 
 ::::
@@ -747,6 +822,54 @@ Userfront.sendResetLink("user@example.com");
 ::: caret Return values
 <response-js method="Userfront.sendResetLink(...)" path="/v0/auth/reset/link" verb="post" source="$docsClient"
 error-message="Email format is invalid"/>
+:::
+
+::::
+:::::
+
+## sendVerificationCode (options)
+
+::::: row
+:::: left
+
+Sends an SMS or email containing a 6-digit verification code.
+
+The verification code can be used with the [Login via verificationCode](#login-via-verificationcode-method) method.
+
+If the user does not exist yet, a new record is created.
+
+| Option        | Description                                                                                     |
+| :------------ | :---------------------------------------------------------------------------------------------- |
+| _channel_     | `"sms"` (default) or `"email"`                                                                  |
+| _phoneNumber_ | The user's phone number. Required when using the `sms` channel.                                 |
+| _email_       | The user's email address. Required when using the `email` channel or if registering a new user. |
+| _username_    | The user's username (optional). Used if registering a new user.                                 |
+| _name_        | The user's name (optional). Used if registering a new user.                                     |
+| _data_        | The user's custom data object (optional). Used if registering a new user.                       |
+
+::::
+:::: right
+
+```js
+import Userfront from "@userfront/core";
+Userfront.init("demo1234");
+
+// Send verification code by SMS (default)
+Userfront.sendVerificationCode({
+  channel: "sms",
+  phoneNumber: "+15558675309",
+});
+
+// Send verification code by email
+Userfront.sendVerificationCode({
+  channel: "email",
+  email: "user@example.com",
+});
+```
+
+::: caret Return values
+<response-js method="Userfront.sendVerificationCode(...)" path="/v0/auth/code" verb="post" source="$docsClient"
+error-message='"phoneNumber" not found or not yet verified'/>
 :::
 
 ::::
@@ -921,6 +1044,90 @@ Userfront.user.update({
   },
 });
 ```
+
+::::
+:::::
+
+## user.updatePassword (options)
+
+::::: row
+:::: left
+
+Updates a user's password while they are logged in.
+
+If the user has a password already, the `existingPassword` field must be correct.
+
+If the user does not have a password yet (e.g. if they signed up with SSO), the `existingPassword` field is ignored, and the `password` field is set directly.
+
+| Option             | Description                                                                                                                                                                                                           |
+| :----------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _password_         | The new password to set for the user.                                                                                                                                                                                 |
+| _existingPassword_ | The user's existing password. Ignored if they do not have an existing password.                                                                                                                                       |
+| _method_           | If not defined, `user.updatePassword` first checks for reset link credentials (`token` and `uuid`), then checks the user's JWT access token. To skip checking for reset link credentials, specify `{ method: "jwt" }` |
+
+::::
+:::: right
+
+```js
+import Userfront from "@userfront/core";
+Userfront.init("demo1234");
+
+// Update a user's password while logged in
+Userfront.user.updatePassword({
+  password: "myshinynewpassword",
+  existingPassword: "mydulloldpassword",
+});
+```
+
+::: caret Return values
+<response-js method="Userfront.updatePassword(...)" path="/v0/auth/basic" verb="put" source="$docsClient"
+error-message="Incorrect password"/>
+:::
+
+::::
+:::::
+
+## user.getTotp ()
+
+::::: row
+:::: left
+
+Reads TOTP credentials for the currently logged in user, allowing them to pair a TOTP authenticator device to their account.
+
+Once a device is paired, users can generate codes to [Login via TOTP method](#login-via-totp-method).
+
+### QR code
+
+The `qrCode` attribute is the URL for a png image that can be displayed directly to the user.
+
+```html
+<img src="data:image/png;base64,iVBORw0KG..." />
+```
+
+<img src="data:image/png;base64,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"/>
+
+### Backup codes
+
+Each user initially begins with 10 single-use backup codes for TOTP.
+
+You should display these backup codes to the user so that they can store them in case they lose access to their authenticator device.
+
+If all 10 single-use backup codes are used, the user will have to re-pair their authenticator device, at which time they will receive 10 new codes.
+
+::::
+:::: right
+
+```js
+import Userfront from "@userfront/core";
+Userfront.init("demo1234");
+
+Userfront.user.getTotp();
+```
+
+::: caret Return values
+<response-js method="Userfront.user.getTotp()" path="/v0/auth/totp" verb="get" source="$docsClient"
+error-message="Unauthorized"/>
+:::
 
 ::::
 :::::
